@@ -190,7 +190,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Estudiantes</span>
+										<span class="menu-title">Estudiantesr</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -2451,9 +2451,9 @@ License: For each use you must have a valid license purchased only from above li
 																	</div>
 																</td>
 															</tr>
-															
-															
-															
+
+
+
 															</tr>
 														</tbody>
 														<!--end::Table body-->

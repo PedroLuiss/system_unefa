@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/estudiantes', [App\Http\Controllers\EstudiantesController::class, 'index'])->name('estudiantes');
     
 });
 
