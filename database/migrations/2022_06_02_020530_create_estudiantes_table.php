@@ -15,28 +15,27 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cedula',10);
-            $table->string('estudiante',60);
-            $table->string('nucleo',60);
-            $table->string('cod_carrera',['1320D','1309D','1322D','1326D','1310D','1303D','1320N','1309N','1322N','1326N','1310N','1303N']);
-            $table->string('carrera',60);
+            $table->integer('cedula');
+            $table->string('estudiante');
+            $table->string('nucleo');
+            $table->string('cod_carrera');
+            $table->string('carrera');
             $table->date('fe_ingreso');
             $table->date('inicio_programa');
-            $table->char('sexo',1);
-            $table->char('sanguineo',3);
-            $table->string('edo_civil',60);
-            $table->string('condicion',60);
-            $table->string('etnia',60);
-            $table->string('discapacidad',60);
-            $table->string('pais',60);
+            $table->char('sexo');
+            $table->char('sanguineo');
+            $table->string('edo_civil');
+            $table->string('condicion');
+            $table->string('etnia');
+            $table->string('discapacidad');
+            $table->string('pais');
             $table->date('fe_nac');
             $table->string('lugar_nac');
-            $table->string('ciudad',60);
+            $table->string('ciudad');
             $table->string('direccion');
-            $table->integer('tel_hab',10);
-            $table->integer('tel_cel',10);
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullabsle();
+            $table->integer('tel_hab');
+            $table->integer('tel_cel');
+            $table->string('email');
             $table->timestamps();
         });
     }

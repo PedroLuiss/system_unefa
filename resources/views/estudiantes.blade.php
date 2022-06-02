@@ -1,135 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
+@extends('layouts.app')
 
-th, td {
-  text-align: left;
-  padding: 8px;
-}
+@section('content')
+<div>
+    <div class="table-responsive table-loading">
+        <div class="table-loading-message">
+         Loading...
+        </div>
 
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
-</head>
-<body>
-
-<h2>Responsive Table</h2>
-<p>If you have a table that is too wide, you can add a container element with overflow-x:auto around the table, and it will display a horizontal scroll bar when needed.</p>
-<p>Resize the browser window to see the effect. Try to remove the div element and see what happens to the table.</p>
-
-<div style="overflow-x:auto;">
-  <table>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-      <th>Points</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-    </tr>
-    <tr>
-      <td>Adam</td>
-      <td>Johnson</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-      <td>67</td>
-    </tr>
-    <tr>
-        <td>Adam</td>
-        <td>Johnson</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-      </tr>
-      <tr>
-        <td>Adam</td>
-        <td>Johnson</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-      </tr>
-  </table>
+        <table class="table table-row-bordered gy-5">
+         <thead>
+          <tr class="fw-bolder fs-6 text-gray-800">
+           <th>Name</th>
+           <th>Position</th>
+           <th>Office</th>
+           <th>Age</th>
+           <th>Start date</th>
+           <th>Salary</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Tiger Nixon</td>
+           <td>System Architect</td>
+           <td>Edinburgh</td>
+           <td>61</td>
+           <td>2011/04/25</td>
+           <td>$320,800</td>
+          </tr>
+          <tr>
+           <td>Garrett Winters</td>
+           <td>Accountant</td>
+           <td>Tokyo</td>
+           <td>63</td>
+           <td>2011/07/25</td>
+           <td>$170,750</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
 </div>
-
-</body>
-</html>
+@endsection
