@@ -78,11 +78,11 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="/m2/../demo1/layouts/aside/light.html">
+                            <a class="menu-link" href="{{route('expedientes.ingsistemas.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Light Skin</span>
+                                <span class="menu-title">Ingeniería De Sistemas</span>
                             </a>
                         </div>
                     </div>

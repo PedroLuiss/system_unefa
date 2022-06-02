@@ -23,6 +23,11 @@ Auth::routes();
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/estudiantes', [App\Http\Controllers\EstudiantesController::class, 'index'])->name('estudiantes');
-    
+
+    /**---------------------------------------------------------Expedientes--------------------------------------------------------- */
+    Route::get('/expedientes/ingenieria-de-sistemas', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_index'])->name('expedientes.ingsistemas.index');
+    Route::get('/expedientes/ingenieria-de-sistemas/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_create'])->name('expedientes.ingsistemas.create');
+    /**---------------------------------------------------------End Expedientes--------------------------------------------------------- */
+
 });
 
