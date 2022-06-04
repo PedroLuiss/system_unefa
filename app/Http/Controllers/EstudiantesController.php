@@ -26,6 +26,20 @@ class EstudiantesController extends Controller
         return view('estudiantes');
     }
 
+    public function store()
+    {
+        return view('');
+    }
+
+    public function create()
+    {
+        return view('');
+    }
+
+    public function destroy()
+    {
+        return view('');
+    }
     public function login()
     {
        return redirect()->route('login');
