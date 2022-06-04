@@ -35,6 +35,12 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+        <style>
+                .select2-container .select2-selection--single {
+
+                    height: 46px !important;
+                    }
+        </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
