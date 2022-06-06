@@ -11,30 +11,43 @@
                 </button>
             </div>
         </div>
-        <div class="card-body card-scroll h-300px">
+        <div class="card-body card-scroll h-400px">
                 <div style="display: flex; ">
 
                     <div class="mb-10 ">
-                        <label for="exampleFormControlInput1" class="required form-label">Cedula</label>
+                        <label for="exampleFormControlInput1" class="required form-label">CEDULA</label>
                         <input type="email" class="form-control form-control-solid" placeholder="Numero de Identidad"/>
                     </div>
 
                     <div class="mb-10 ">
-                        <label for="exampleFormControlInput1" class="required form-label">Nombres</label>
+                        <label for="exampleFormControlInput1" class="required form-label">NOMBRES</label>
                         <input type="email" class="form-control form-control-solid" placeholder="Nombres"/>
                     </div>
                     <div class="mb-10">
-                        <label for="exampleFormControlInput1" class="required form-label">Apellidos</label>
+                        <label for="exampleFormControlInput1" class="required form-label">APELLIDOS</label>
                         <input type="email" class="form-control form-control-solid" placeholder="Apellidos"/>
-                    </div>
-                    <div class="mb-10">
-                        <label for="exampleFormControlInput1" class="required form-label">x</label>
-                        <input type="email" class="form-control form-control-solid" placeholder="Example input"/>
                     </div>
 
                 </div>
 
-                <div class="div" style="display: flex; padding: 5px;">
+                <div style="display: flex; ">
+
+                    <div class="mb-10 ">
+                        <label for="exampleFormControlInput1" class="required form-label">TEL-HABITCION</label>
+                        <input type="email" class="form-control form-control-solid" placeholder="NUMERO LOCAL"/>
+                    </div>
+                    <div class="mb-10">
+                        <label for="exampleFormControlInput1" class="required form-label">TEL-MOVIL</label>
+                        <input type="email" class="form-control form-control-solid" placeholder="NUMERO MOVIL"/>
+                    </div>
+                    <div class="mb-10">
+                        <label for="exampleFormControlInput1" class="required form-label">DIRECCION</label>
+                        <input type="email" class="form-control form-control-solid" placeholder="DIRECCION ACTUAL"/>
+                    </div>
+
+                </div>
+
+                <div class="div" style="display: flex; padding: 10px;">
 
                         <select class="form-select form-select-transparent" aria-label="NUCLEO">
                             <option>NUCLEO</option>
@@ -44,7 +57,7 @@
                         </select>
 
                         <select class="form-select form-select-transparent" aria-label="Select example">
-                            <option>CODIGO CARRERA</option>
+                            <option>COD_CARRERA</option>
                             <option value="1">1326</option>
                             <option value="2">1320</option>
                             <option value="3">1309</option>
@@ -71,10 +84,16 @@
                             <option value="3">VIUDO/A</option>
                         </select>
 
+                        <select class="form-select form-select-transparent" aria-label="Select example">
+                            <option>SANGUINEO</option>
+                            <option value="1">O+</option>
+
+                        </select>
+
                 </div>
 
 
-                <div class="div" style="display: flex; padding: 5px;">
+                <div class="div" style="display: flex; padding: 10px;">
 
                     <select class="form-select form-select-transparent" aria-label="Select example">
                         <option>CONDICION</option>
@@ -107,34 +126,40 @@
 
                     </select>
 
-            </div>
-        </div>
+                    <select class="form-select form-select-transparent" aria-label="Select example">
+                        <option>CIUDAD</option>
+                        <option value="1">BARQUISIMETO</option>
 
-        <div class="div" style="display: flex;">
+                    </select>
 
-            <div class="mb-0">
-                <label class="form-label">Example</label>
-                <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_3"/>
             </div>
 
-        </div>
 
+        <div class="div" style="display: flex; padding:10px;">
+
+            <div class="mb-10">
+                <label for="exampleFormControlInput1" class="required form-label">FECHA NACIMIENTO</label>
+                <input type="date" class="form-control form-control-solid" placeholder="Example input"/>
+            </div>
+
+            <div class="mb-10">
+                <label for="exampleFormControlInput1" class="required form-label">FECHA INGRESO</label>
+                <input type="date" class="form-control form-control-solid" placeholder="Example input"/>
+            </div>
+
+            <div class="mb-10">
+                <label for="exampleFormControlInput1" class="required form-label">CORREO</label>
+                <input type="email" class="form-control form-control-solid" placeholder="CORREO ELECTRONICO"/>
+            </div>
+
+
+        </div>
+    </div>
         <div class="card-footer">
             UNEFA
         </div>
     </div>
 
-    <script>
-            $("#kt_daterangepicker_3").daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                minYear: 1901,
-                maxYear: parseInt(moment().format("YYYY"),10)
-            }, function(start, end, label) {
-                var years = moment().diff(start, "years");
-                alert("You are " + years + " years old!");
-            }
-        );
-    </script>
+
 
     @endsection
