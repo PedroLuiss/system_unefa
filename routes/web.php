@@ -29,5 +29,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/expedientes/ingenieria-de-sistemas/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_create'])->name('expedientes.ingsistemas.create');
     /**---------------------------------------------------------End Expedientes--------------------------------------------------------- */
 
+
+
+ /**-------------------------------------------------------------------------Expedientes----------------------------------------------------------- */
+
+//  Ingenieria de sistemas
+ Route::post('expedientes/store_file_expedientes_ig_sitem',[App\Http\Controllers\ExpedientesController::class,'store_file_expedientes_ig_sitem'])->name('expedientes.file.store');
+ Route::get('expedientes/sistemas/{id}/get_files_ing_sistemas',[App\Http\Controllers\ExpedientesController::class,'get_files_ing_sistemas']);
+ Route::delete('expedientes/delete_file_ing_sistemas/{id}',[App\Http\Controllers\ExpedientesController::class, 'delete_file_ing_sistemas']);
+
+ /**-------------------------------------------------------------------------End Expedientes--------------------------------------------------------- */
 });
 

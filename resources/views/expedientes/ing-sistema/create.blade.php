@@ -24,11 +24,11 @@
                             </span>
                             <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
                                 <select class="form-select rounded-start-0" data-control="select2"
-                                    data-placeholder="Seleccionar estudiante">
+                                    data-placeholder="Seleccionar estudiante" id="select_estudiente">
                                     <option></option>
-                                    <option value="1">v-1554545211 - Pedro rojas</option>
-                                    <option value="2">Nancy palma</option>
-                                    <option value="3">Bonifacio</option>>
+                                    @foreach ($estudiantes as $value)
+                                        <option value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="card card-flush">
+    <div id="box-all-file-ing-sistem" style="display: none;" class="card card-flush">
         <!--begin::Card header-->
         <div class="card-header pt-8">
             <div class="card-title">
@@ -57,7 +57,7 @@
                     </span>
                     <!--end::Svg Icon-->
                     <input type="text" data-kt-filemanager-table-filter="search"
-                        class="form-control form-control-solid w-500px ps-15" placeholder="Search Files &amp; Folders">
+                        class="form-control form-control-solid w-500px ps-15" placeholder="Buscar por código">
                 </div>
                 <!--end::Search-->
             </div>
@@ -78,7 +78,7 @@
                                     fill="currentColor"></path>
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->New Folder
+                        <!--end::Svg Icon-->Subir Archivos
                     </button>
                     <!--end::Export-->
                 </div>
@@ -135,92 +135,33 @@
 
 
                                 <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody class="fw-bold text-gray-600">
-                                    <tr class="odd">
-                                        <td>
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1">
-                                            </div>
-                                        </td>
-                                        <td>
-                                         wweewew
-                                        </td>
-                                        <td>   <span class="svg-icon svg-icon-2x svg-icon-primary me-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
-                                                    fill="currentColor"></path>
-                                            </svg>
-                                        </span><a href="?page=apps/file-manager/blank"
-                                            class="text-gray-800 text-hover-primary">bgbiughk</a>
-                                        </td>
-                                        <td data-kt-filemanager-table="action_dropdown" class="text-end">
-                                            <div class="d-flex justify-content-end">
+                                <!--begin::Table body -->
+                                <tbody class="fw-bold text-gray-600" id="list_files_ing_sistemas" >
 
-                                                <!--begin::More-->
-                                                <div class="ms-2">
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-icon btn-light btn-active-light-primary"
-                                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen052.svg-->
-                                                        <span class="svg-icon svg-icon-5 m-0">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                viewBox="0 0 24 24" fill="none">
-                                                                <rect x="10" y="10" width="4" height="4" rx="2"
-                                                                    fill="currentColor"></rect>
-                                                                <rect x="17" y="10" width="4" height="4" rx="2"
-                                                                    fill="currentColor"></rect>
-                                                                <rect x="3" y="10" width="4" height="4" rx="2"
-                                                                    fill="currentColor"></rect>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </button>
-                                                    <!--begin::Menu-->
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4"
-                                                        data-kt-menu="true">
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Download File</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
-                                                                data-kt-filemanager-table="rename">Rename</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
-                                                                data-kt-filemanager-table-filter="move_row"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#kt_modal_move_to_folder">Move to folder</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link text-danger px-3"
-                                                                data-kt-filemanager-table-filter="delete_row">Delete</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                    </div>
-                                                    <!--end::Menu-->
-                                                </div>
-                                                <!--end::More-->
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
                         </div>
+
                     </div>
+
                 </div>
+                <div class="row border-to-grey pt-3">
+                    <div class="col-9 col-md-8 ">
+                        <span  class="text-muted px-2" id="total_registros_files_operacion"></span><small>Regístros</small>
+
+                    </div>
+                    <div class="col-4 col-md-4">
+                      <div id="option-pagination" class="info-block">
+                        <nav aria-label="...">
+                          <ul class="pagination pagination-primary page-iten-operacion_file ">
+
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+
+                  </div>
                 <div class="row">
                     <div
                         class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
@@ -235,7 +176,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#" class="btn btn-success">Ir al listado</a>
+                    <a href="javascript:void(0)" id="btn-guardar-all-files-ing-sistema" class="btn btn-success">Guardar</a>
                 </div>
             </div>
         </div>
@@ -243,25 +184,240 @@
 @include('expedientes.ing-sistema.form-add-file')
 
     @push('scripts')
-        <script src="/metronic8/demo1/assets/plugins/global/plugins.bundle.js"></script>
-        <script src="/metronic8/demo1/assets/js/scripts.bundle.js"></script>
-        <!--end::Global Javascript Bundle-->
-        <!--begin::Page Vendors Javascript(used by this page)-->
-        <script src="/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-        <!--end::Page Vendors Javascript-->
-        <!--begin::Page Custom Javascript(used by this page)-->
-        <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
-        <script src="/m2/assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-        <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
-        <script src="/m2/assets/js/widgets.bundle.js"></script>
-        <script src="/m2/assets/js/custom/widgets.js"></script>
-        <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
-        <script src="/m2/assets/js/custom/intro.js"></script>
-        <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-        <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
-        <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
-        <script>
 
+        <script src="{{asset('js/axios.min.js')}}"></script>
+        <script>
+        $(document).ready(function(){
+        $('#kt_file_manager_new_folder').hide();
+        $("#selet_code").select2({
+            dropdownParent: $("#kt_modal_new_target"),
+            // placeholder:"hhhhh"
+        });
+        });
+        $('#select_estudiente').on('change',(e)=>{
+            $('#kt_file_manager_new_folder').show();
+            $('#box-all-file-ing-sistem').show(100);
+                let id_estudiante = $('#select_estudiente').val();
+                console.log(id_estudiante);
+                $('#id_estudiantes').val(id_estudiante)
+                get_files_ing_system(id_estudiante,"");
+         });
+
+
+            $('#btn_add_files_expedientes').on('click',(e)=>{
+                e.preventDefault();
+
+
+            var url = document.getElementById('url_add_file_ing_sistema');
+            var formData = new FormData(document.getElementById("form-file-expediente-ing-sistema"));
+            $('#btn_loader').addClass('fa fa-spin fa-spinner');
+            $.ajax({
+                url: url.value,
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            }).done(function(res){
+                msg = JSON.parse(res)
+                console.log(msg);
+                if (msg.status ==200) {
+                    $('#description').val("");
+                    $('#name').val("");
+                    $('#file').val(null);
+                    get_files_ing_system($('#id_estudiantes').val());
+                    $('.modal_file').modal('hide');
+
+                    $('#file').removeClass('is-invalid');
+                    $('#error-file').text("")
+                }else{
+                    if (msg.campo=='file') {
+                        $('#file').addClass('is-invalid');
+                        $('#error-file').text("Debes seleccionar un archivo")
+                    }else{
+                        $('#file').removeClass('is-invalid');
+                    $('#error-file').text("")
+                    }
+
+
+                    if (msg.campo=='code') {
+                        $('#code').addClass('is-invalid');
+                        $('#error-code').text("El codigo ya existe")
+                    }else{
+                        $('#file').removeClass('is-invalid');
+                    $('#error-file').text("")
+                    }
+
+                    $('#msg_file').text(msg.error);
+                    $('#btn_loader').removeClass('fa fa-spin fa-spinner');
+                }
+                $('#btn_loader').removeClass('fa fa-spin fa-spinner');
+            }).fail(function(res){
+                console.log(res)
+            });
+
+             });
+
+             $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
+                 console.log("holasss");
+             });
+
+        function get_files_ing_system(id,num="") {
+            var valor = (num=="")?1:num;
+            const sendGetRequest = async () => {
+                try {
+                        const resp = await axios.get("/expedientes/sistemas/"+id+"/get_files_ing_sistemas?page="+valor);
+                        console.log(resp.data);
+                        var table = "";
+
+                        if (resp.data.data=="") {
+                            table+=' <tr class="iten">';
+                            table+='<td colspan="4" class="text-center"> <h3 class="text-muted">Sin Archivos</h3>  </td> ';
+                            table+=' </tr>';
+                        }else{
+                        for (let i = 0; i < resp.data.data.length; i++) {
+
+
+                            table+=' <tr class="iten">';
+
+                            table+='<td>';
+                            table+='<div class="form-check form-check-sm form-check-custom form-check-solid">';
+                            table+='<input class="form-check-input" type="checkbox" value="1">';
+                            table+='</div>';
+                            table+='</td>';
+
+                            table+='<td>'+resp.data.data[i].code+'</td>'
+                            table+=`
+                            <td>
+                                <span class="svg-icon svg-icon-2x svg-icon-primary me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
+                                     <path
+                                                    d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
+                                                    fill="currentColor"></path>
+                                </svg>
+                                </span>
+                            <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
+                         </td>
+                            `;
+                            table+=`<td class="text-end">
+                                <div class="d-flex justify-content-end flex-shrink-0">
+
+									<a href="javascript:void(0)" onclick="delet_file(${resp.data.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+										<span class="svg-icon svg-icon-3">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+												<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
+												<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"></path>
+												<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"></path>
+											</svg>
+										</span>
+									</a>
+								</div>
+                            </td>`;
+
+                            table+=' </tr>';
+
+                        }
+
+                            $("#view_vacio_files_operacion").hide();
+                        }
+
+                        var x="";
+                            for (let d = 0; d < resp.data.links.length; d++) {
+                            var r= resp.data.current_page-1;
+                            if (resp.data.links[d].url==null) {
+                                x+='<li class="page-item previous disabled"><a class="page-link page-endorsement-ope page-link-endorsement-previous-ope" href="javascript:void(0)" data-page="1" >Atras</a></li>';
+                                break;
+                            }else{
+                                x+='<li class="page-item "><a class="page-link page-endorsement-ope page-link-endorsement-previous-ope" href="javascript:void(0)" data-page="'+r+'" >Atras</a></li>';
+                                break;
+                            }
+                            }
+                            for (let j = 1; j <= resp.data.last_page; j++) {
+                            if (resp.data.current_page==j) {
+                            x+='<li class="page-item active"><a class="page-link" href="javascript:void(0)">'+j+'<span class="sr-only">(current)</span></a></li>';
+                            }else{
+                            x+='<li class="page-item  page-link-endorsements-ope page-endorsement-ope-'+j+'"><a data-page="'+j+'" class="page-link page-endorsement-ope" href="javascript:void(0)">'+j+'</a></li>';
+
+                            }
+
+                            }
+                            var s= resp.data.current_page+1;
+
+                            if (resp.data.current_page>=resp.data.last_page) {
+                            x+='<li class="page-item next disabled"><a data-page="" class="page-link page-endorsement-ope page-link-endorsement-next-ope" href="javascript:void(0)">Siguiente</a></li>';
+
+                            }else{
+                            x+='<li class="page-item next "><a data-page="'+s+'" class="page-link page-endorsement-ope page-link-endorsement-next-ope" href="javascript:void(0)">Siguiente</a></li>';
+                            }
+                        $(".page-iten-operacion_file").html(x);
+                        $("#total_registros_files_operacion").text(resp.data.total);
+                        $("#list_files_ing_sistemas").html(table);
+
+
+
+                $('.page-endorsement-ope').on('click', function () {
+                    const page = $(this).data( 'page' )
+                                console.log(page);
+                                console.log(resp.data.last_page);
+                                $('.page-link-endorsements-ope').removeClass('active')
+                                $('.page-endorsement-ope-'+page).addClass('active')
+
+                                if((page-1) < 1 ){
+                                    $('.page-link-endorsement-previous-ope').data('page', 1)
+                                    $('.page-link-endorsement-next-ope').data('page', 2)
+                                }else if ((page+1) <= resp.data.last_page ) {
+                                    $('.page-link-endorsement-next-ope').data('page', page+1)
+                                    $('.page-link-endorsement-previous-ope').data('page', page-1)
+                                }else if((page+1) > resp.data.last_page ){
+                                    $('.page-link-endorsement-next-ope').data('page', resp.data.last_page)
+                                    $('.page-link-endorsement-previous-ope').data('page', resp.data.last_page-1)
+                                }
+                                get_files_ing_system(id,page);
+
+                });
+
+
+                    } catch (err) {
+                        console.log(err);
+                    }
+                };
+                sendGetRequest();
+            }
+
+            function delet_file(id,id_estudiante) {
+                console.log(id);
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
+                        console.log(resp);
+                        if (resp.data.status==200) {
+                            get_files_ing_system(id_estudiante);
+                        }
+
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendGetRequest();
+            }
         </script>
+                {{-- <script src="/metronic8/demo1/assets/plugins/global/plugins.bundle.js"></script>
+                <script src="/metronic8/demo1/assets/js/scripts.bundle.js"></script>
+                <!--end::Global Javascript Bundle-->
+                <!--begin::Page Vendors Javascript(used by this page)-->
+                <script src="/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                <!--end::Page Vendors Javascript-->
+                <!--begin::Page Custom Javascript(used by this page)-->
+                <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
+                <script src="/m2/assets/js/custom/apps/user-management/users/list/export-users.js"></script>
+                <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
+                <script src="/m2/assets/js/widgets.bundle.js"></script>
+                <script src="/m2/assets/js/custom/widgets.js"></script>
+                <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
+                <script src="/m2/assets/js/custom/intro.js"></script>
+                <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+                <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
+                <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
     @endpush
 @endsection

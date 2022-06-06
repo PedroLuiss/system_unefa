@@ -14,12 +14,12 @@ class CreateEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('cedula');
-            $table->string('estudiante');
-            $table->string('nucleo');
-            $table->string('cod_carrera');
-            $table->string('carrera');
+            $table->string('nombres')->nullable();
+            $table->string('primer_apellido')->nullable();
+            $table->string('segundo_apellido')->nullable();
+            $table->string('carreras_id');
             $table->date('fe_ingreso');
             $table->date('inicio_programa');
             $table->char('sexo');
@@ -33,8 +33,8 @@ class CreateEstudiantesTable extends Migration
             $table->string('lugar_nac');
             $table->string('ciudad');
             $table->string('direccion');
-            $table->integer('tel_hab');
-            $table->integer('tel_cel');
+            $table->string('tel_hab');
+            $table->string('tel_cel');
             $table->string('email');
             $table->timestamps();
         });

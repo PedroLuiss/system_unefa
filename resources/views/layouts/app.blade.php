@@ -35,6 +35,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+        @stack('css')
         <style>
                 .select2-container .select2-selection--single {
 

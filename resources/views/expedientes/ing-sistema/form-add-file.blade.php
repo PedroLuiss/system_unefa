@@ -23,7 +23,10 @@
 					<!--begin::Modal body-->
 					<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
 						<!--begin:Form-->
-						<form id="kt_modal_new_target_form" class="form" action="#">
+                        <input type="hidden" name="url_add_file_ing_sistema" id="url_add_file_ing_sistema" value="{{route('expedientes.file.store')}}">
+						<form  enctype="multipart/form-data" class="row g-3 needs-validation" id="form-file-expediente-ing-sistema" class="form" >
+                            @csrf
+                            <input type="hidden" class="form-control " id="id_estudiantes" name="id_estudiantes"  />
 							<!--begin::Heading-->
 							<div class="mb-13 text-center">
 								<!--begin::Title-->
@@ -43,7 +46,24 @@
 									<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Es importante crear el código para su archivo."></i>
 								</label>
 								<!--end::Label-->
-								<input type="text" class="form-control form-control-solid" placeholder="EIngrese el código" name="target_title" />
+                                <select class="form-select rounded-start-0" data-control="select2"
+                                data-placeholder="Seleccionar códigos" id="selet_code" name="code">
+                                <option value="001-RAE">001-RAE</option>
+                                <option value="002-CBG">002-CBG</option>
+                                <option value="003-SAA">003-SAA</option>
+                                <option value="004-ATG">004-ATG</option>
+                                <option value="005-APP">005-APP</option>
+                                <option value="006-CPP">006-CPP</option>
+                                <option value="007-PCE">007-PCE</option>
+                                <option value="008-CSC">008-CSC</option>
+                                <option value="009-CSE">009-CSE</option>
+                                <option value="010-RCE">010-RCE</option>
+                                <option value="011-CIM">011-CIM</option>
+                                <option value="012-TBC">012-TBC</option>
+                                <option value="013-CCB">013-CCB</option>
+                                <option value="014-CIU">014-CIU</option>
+                            </select>
+                            <div id="error-code" class="invalid-feedback">Campo es requerido.</div>
 							</div>
 							<!--end::Input group-->
 
@@ -55,14 +75,14 @@
 
 								</label>
 								<!--end::Label-->
-								<input type="text" class="form-control form-control-solid" placeholder="Ingrese un nombre" name="target_title" />
+								<input type="text" class="form-control form-control-solid" id="name" name="name" placeholder="Ingrese un nombre"  />
 							</div>
 							<!--end::Input group-->
 
 							<!--begin::Input group-->
 							<div class="d-flex flex-column mb-8">
 								<label class="fs-6 fw-bold mb-2">Descripción:</label>
-								<textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Type Target Details"></textarea>
+								<textarea class="form-control form-control-solid" rows="3" id="description" name="description" placeholder="Type Target Details"></textarea>
 							</div>
 							<!--end::Input group-->
 							<!--begin::Input group-->
@@ -73,14 +93,15 @@
 									<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo cargar archivo con extenciones PDF, DOC"></i>
 								</label>
 								<!--end::Label-->
-								<input class="form-control form-control-solid" type="file" name="tags" />
+								<input class="form-control form-control-solid" type="file" id="file" name="file" />
+                                <div id="error-file" class="invalid-feedback">Campo es requerido.</div>
 							</div>
 							<!--end::Input group-->
 							<!--begin::Actions-->
 							<div class="text-center">
-								<button type="reset" id="kt_modal_new_target_cancel" data-bs-dismiss="modal" class="btn btn-light btn-cancel-modal me-3">Cancel</button>
-								<button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
-									<span class="indicator-label">Submit</span>
+								<button type="reset" id="kt_modal_new_target_cancel" data-bs-dismiss="modal" class="btn btn-light btn-cancel-modal me-3"> Cerrar</button>
+								<button type="submit" id="btn_add_files_expedientes" class="btn btn-primary">
+									<span class="indicator-label"><i id="btn_loader" class=""></i> Guardar</span>
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 								</button>
@@ -95,9 +116,4 @@
 			</div>
 			<!--end::Modal dialog-->
 		</div>
-<script>
-            $('#kt_modal_new_target_submit).on('click',()=>{
-                 console.log("hola");
 
-             });
- </script>
