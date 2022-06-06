@@ -23,7 +23,7 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        return view('estudiantes');
+        return view('estudiantedatos.index');
     }
 
     public function store()
@@ -33,7 +33,7 @@ class EstudiantesController extends Controller
 
     public function create()
     {
-        return view('');
+        return view('estudiantedatos.create');
     }
 
     public function destroy()

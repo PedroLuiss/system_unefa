@@ -51,11 +51,11 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link">
+                            <a class="menu-link" href="{{route('estudiantedatos.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title" href="{{ route('estudiantes') }}" >{{ __('estudiantes') }}</span>
+                                <span class="menu-title">Estudiantes</span>
                             </a>
                         </div>
 

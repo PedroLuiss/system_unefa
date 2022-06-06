@@ -28,6 +28,8 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
+        <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+        <script src="assets/plugins/global/plugins.bundle.js"></script>
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link href="/m2/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/m2/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
@@ -46,6 +48,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
 		<!--End::Google Tag Manager -->
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -6197,6 +6200,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Javascript-->
         @includeIf('layouts.templete-includ.js')
 		<!--end::Javascript-->
+
 	</body>
 	<!--end::Body-->
 </html>

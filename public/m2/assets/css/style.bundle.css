@@ -8879,6 +8879,7 @@ textarea.form-control-lg {
 
 .mb-10 {
   margin-bottom: 2.5rem !important;
+  padding: 10px;
 }
 
 .mb-11 {
@@ -39784,6 +39785,7 @@ code:not([class*=language-]) {
   background-color: transparent;
   border-color: transparent;
   color: #5E6278;
+  padding: 15px;
 }
 .form-select.form-select-transparent::placeholder {
   color: #A1A5B7;
