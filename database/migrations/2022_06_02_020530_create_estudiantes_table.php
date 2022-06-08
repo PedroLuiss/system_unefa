@@ -26,6 +26,7 @@ class CreateEstudiantesTable extends Migration
             $table->char('sanguineo');
             $table->string('edo_civil');
             $table->string('condicion');
+            $table->string('nucleo');
             $table->string('etnia');
             $table->string('discapacidad');
             $table->string('pais');
