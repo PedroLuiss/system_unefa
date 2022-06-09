@@ -36,6 +36,12 @@
                                 <label for="exampleFormControlInput1" class="required form-label">APELLIDO MATERNO  </label>
                                 <input type="txtApeliidoMaterno" name="segundo_apellido"  class="form-control form-control-solid" placeholder="APELLIDO MATERNO"/>
                             </div>
+                            <select class="form-select form-select-transparent" name="carrera" aria-label="NUCLEO">
+                                <option>CARRERAS</option>
+                                    @foreach ($carreras as $val)
+                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
+                                    @endforeach
+                            </select>
 
                         </div>
 

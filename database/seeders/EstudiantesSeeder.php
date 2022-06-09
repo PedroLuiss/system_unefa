@@ -50,6 +50,7 @@ class EstudiantesSeeder extends Seeder
                 'sanguineo'    => 'O+',
                 'edo_civil'    => 'Soltero',
                 'condicion'    => 'En buenas condiciones',
+                'nucleo'    => 'Lara',
                 'etnia'    => 'Desconocidad',
                 'discapacidad'    => 'Sin discapacidad',
                 'pais'    => 'Venezuela',

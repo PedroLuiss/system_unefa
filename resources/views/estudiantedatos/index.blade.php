@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('mensaje'))
+<div class="alert alert-success">
+    <strong>{{ session('mensaje') }}</strong>
+</div>
+@endif
 <div >
     <div class="card shadow-sm">
 
