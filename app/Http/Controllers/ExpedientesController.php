@@ -21,6 +21,23 @@ class ExpedientesController extends Controller
      return  view('expedientes.ing-sistema.index',compact('expedie'));
    }
 
+   public function ing_sistem_edit($id)
+   {
+       $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+       ->where('expedientes.id',$id)->get();
+       $file_st = Expediente_file::where('expedientes_id',$id)->get();
+       $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+       $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+       $m = date("m", $fechaComoEntero);
+       $y = date("Y", $fechaComoEntero);
+
+       $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+        $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+
+    // return response($expedie);
+     return  view('expedientes.ing-sistema.edit',compact('expedie','file_st','all_perio'));
+   }
+
    public function ing_sistem_create()
    {
         $estudiantes=Estudiantes::where('carreras_id',1)->get();
@@ -45,8 +62,8 @@ class ExpedientesController extends Controller
     // ]);
 
     $estud = Estudiantes::find($request['id_estudiantes']);
-    $data_carrera = carrera::where('id',$estud->carreras_id)->first();
-    // return response($data_carrera);
+    $data_carrera = carrera::where('id',1)->first();
+    // return response($request);
     $fechaComoEntero = strtotime($estud->fe_ingreso);
     $m = date("m", $fechaComoEntero);
     $y = date("Y", $fechaComoEntero);

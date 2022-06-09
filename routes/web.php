@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /**---------------------------------------------------------Expedientes--------------------------------------------------------- */
     Route::get('/expedientes/ingenieria-de-sistemas', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_index'])->name('expedientes.ingsistemas.index');
+    Route::get('/expedientes/ingenieria-de-sistemas/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_edit'])->name('expedientes.ingsistemas.edit');
     Route::get('/expedientes/ingenieria-de-sistemas/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_create'])->name('expedientes.ingsistemas.create');
     /**---------------------------------------------------------End Expedientes--------------------------------------------------------- */
 

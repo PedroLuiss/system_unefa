@@ -60,7 +60,7 @@
                         </div>
                     </th>
                     <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="User: activate to sort column ascending" style="width: 228.406px;">Estudiante</th>
-                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 126.141px;">Teléfono</th>
+                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 126.141px;">Cédula</th>
                     <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Last login: activate to sort column ascending" style="width: 126.141px;">Estado</th>
                     <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Joined Date: activate to sort column ascending" style="width: 163.422px;">Progreso</th>
                     <th class="text-center min-w-100px sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 101px;">Actions</th>
@@ -95,7 +95,7 @@
                     </td>
                     <!--end::User=-->
                     <!--begin::Role=-->
-                    <td >{{$value->tel_cel}} </td>
+                    <td >{{$value->cedula}} </td>
                     <!--end::Role=-->
 
                     <!--begin::Two step=-->
@@ -134,13 +134,14 @@
                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true" style="">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="/metronic8/demo1/../demo1/apps/user-management/users/view.html" class="menu-link px-3">Edit</a>
+                                <a href="{{route('expedientes.ingsistemas.edit',$value->id)}}" class="menu-link px-3">Edit</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Empaquetar</a>
                             </div>
+
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->
@@ -157,23 +158,21 @@
     <!--end::Card body-->
 </div>
 @push('scripts')
-<script src="/metronic8/demo1/assets/plugins/global/plugins.bundle.js"></script>
-<script src="/metronic8/demo1/assets/js/scripts.bundle.js"></script>
+<script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/m2/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Page Vendors Javascript(used by this page)-->
-<script src="/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Page Vendors Javascript-->
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
-<script src="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+{{-- <script src="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
 <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
 <script src="/m2/assets/js/widgets.bundle.js"></script>
 <script src="/m2/assets/js/custom/widgets.js"></script>
 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
 <script src="/m2/assets/js/custom/intro.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
+
 
 @endpush
 @endsection
