@@ -68,8 +68,8 @@
                 <!--end::Table row-->
             </thead>
             <tbody class="text-gray-600 fw-bold">
-
-            <tr class="odd">
+                @foreach ($expedie as $value )
+                <tr class="odd">
                     <!--begin::Checkbox-->
                     <td>
                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -81,36 +81,41 @@
                     <td class="d-flex align-items-center">
                         <!--begin:: Avatar -->
                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                            <a href="/metronic8/demo1/../demo1/apps/user-management/users/view.html">
-                                <div class="symbol-label fs-3 bg-light-danger text-danger">M</div>
+                            <a href="#">
+                                <div class="symbol-label fs-3 bg-light-danger text-danger">E</div>
                             </a>
                         </div>
                         <!--end::Avatar-->
                         <!--begin::User details-->
                         <div class="d-flex flex-column">
-                            <a href="/metronic8/demo1/../demo1/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Melody Macy</a>
-                            <span>melody@altbox.com</span>
+                            <a href="#" class="text-gray-800 text-hover-primary mb-1">{{$value->nombres." ".$value->primer_apellido}} </a>
+                            <span>{{$value->email}} </span>
                         </div>
                         <!--begin::User details-->
                     </td>
                     <!--end::User=-->
                     <!--begin::Role=-->
-                    <td >01500566656</td>
+                    <td >{{$value->tel_cel}} </td>
                     <!--end::Role=-->
 
                     <!--begin::Two step=-->
                     <td>
-                        <div class="badge badge-light-success fw-bolder">Enabled</div>
+                        @if ($value->status)
+                        <div class="badge badge-light-success fw-bolder">Completado</div>
+                        @else
+
+                        <div class="badge badge-light-info fw-bolder">Pindiente</div>
+                        @endif
                     </td>
                     <!--end::Two step=-->
                     <!--begin::Joined-->
                     <td>
                         <div class="d-flex flex-column w-100 me-2">
                             <div class="d-flex flex-stack mb-2">
-                                <span class="text-muted me-2 fs-7 fw-bold">50%</span>
+                                <span class="text-muted me-2 fs-7 fw-bold">{{$value->progres}}%</span>
                             </div>
                             <div class="progress h-6px w-100">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{$value->progres}}%" aria-valuenow="{{$value->progres}}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </td>
@@ -142,6 +147,8 @@
                     </td>
                     <!--end::Action=-->
                 </tr>
+                @endforeach
+
             </tbody>
             <!--end::Table body-->
         </table></div><div class="row"><div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"></div><div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"><div class="dataTables_paginate paging_simple_numbers" id="kt_table_users_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="kt_table_users_previous"><a href="#" aria-controls="kt_table_users" data-dt-idx="0" tabindex="0" class="page-link"><i class="previous"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="kt_table_users" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="kt_table_users_next"><a href="#" aria-controls="kt_table_users" data-dt-idx="2" tabindex="0" class="page-link"><i class="next"></i></a></li></ul></div></div></div></div>
@@ -158,7 +165,7 @@
 <!--end::Page Vendors Javascript-->
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
-<script src="/m2/assets/js/custom/apps/user-management/users/list/export-users.js"></script>
+<script src="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
 <script src="/m2/assets/js/widgets.bundle.js"></script>
 <script src="/m2/assets/js/custom/widgets.js"></script>

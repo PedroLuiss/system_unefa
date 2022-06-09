@@ -80,20 +80,29 @@ class ExpedientesController extends Controller
                         'path'=>$path,
                     ]);
                     $verfi_exp=Expediente::where('estudiantes_id',$request['id_estudiantes'])->get();
-
+                    $can=Expediente_file::where('estudiantes_id',$request['id_estudiantes'])->get()->count();
                     if (!count($verfi_exp)) {
+                        $porc = ($can*100)/14;
                         $exp = Expediente::create([
                             'estudiantes_id'=>$request['id_estudiantes'],
+                            'progres'=>$porc
                         ]);
                         Expediente_file::where('estudiantes_id',$request['id_estudiantes'])->update([
                             'expedientes_id'=>$exp->id,
                         ]);
 
                     }else{
+                        $porc = ($can*100)/14;
+                        Expediente::where('estudiantes_id',$request['id_estudiantes'])->update([
+                            'progres'=>$porc
+                        ]);
                         $j= Expediente::where('estudiantes_id',$request['id_estudiantes'])->get();
                         Expediente_file::where('estudiantes_id',$request['id_estudiantes'])->update([
                             'expedientes_id'=>$j[0]->id,
                         ]);
+
+
+
                     }
 
                     return response()->json(['success' => 'Archivo subido correctamente.','status' => 200],201);

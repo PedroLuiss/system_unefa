@@ -11,5 +11,6 @@ class Expediente extends Model
     protected $fillable = [
         'estudiantes_id',
         'progres',
+        'status'
     ];
 }

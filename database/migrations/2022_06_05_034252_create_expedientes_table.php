@@ -17,6 +17,7 @@ class CreateExpedientesTable extends Migration
             $table->id();
             $table->foreignId('estudiantes_id')->nullable()->constrained('estudiantes')->onDelete('cascade');
             $table->integer('progres')->default(0);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
