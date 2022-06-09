@@ -21,6 +21,7 @@ class Estudiantes extends Model
         'sanguineo',
         'edo_civil',
         'condicion',
+        'nucleo',
         'etnia',
         'discapacidad',
         'pais',
