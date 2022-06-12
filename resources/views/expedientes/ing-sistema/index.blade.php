@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}"> --}}
+<link rel="stylesheet" type="text/css" href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
 <div class="card">
 
     <!--begin::Card header-->
@@ -49,20 +51,22 @@
     <!--begin::Card body-->
     <div class="card-body py-4">
         <!--begin::Table-->
-        <div id="kt_table_users_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="table-responsive"><table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_table_users">
+        <div id="kt_table_users_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            <div class="table-responsive">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_table_users">
             <!--begin::Table head-->
             <thead>
                 <!--begin::Table row-->
                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                     <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" aria-label=" " style="width: 29.25px;">
                         <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1">
+                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target=" .form-check-input" value="1">
                         </div>
                     </th>
-                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="User: activate to sort column ascending" style="width: 228.406px;">Estudiante</th>
-                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 126.141px;">Cédula</th>
-                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Last login: activate to sort column ascending" style="width: 126.141px;">Estado</th>
-                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1" aria-label="Joined Date: activate to sort column ascending" style="width: 163.422px;">Progreso</th>
+                    <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1" colspan="1" aria-label="User: activate to sort column ascending" style="width: 228.406px;">Estudiante</th>
+                    <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 126.141px;">Cédula</th>
+                    <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1" colspan="1" aria-label="Last login: activate to sort column ascending" style="width: 126.141px;">Estado</th>
+                    <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1" colspan="1" aria-label="Joined Date: activate to sort column ascending" style="width: 163.422px;">Progreso</th>
                     <th class="text-center min-w-100px sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 101px;">Actions</th>
                 </tr>
                 <!--end::Table row-->
@@ -139,7 +143,7 @@
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Empaquetar</a>
+                                <a href="{{route('expedientes.empaquetar.student',$value->id)}}" class="menu-link px-3" data-kt-users-table-filter="delete_row">Empaquetar</a>
                             </div>
 
                             <!--end::Menu item-->
@@ -158,6 +162,7 @@
     <!--end::Card body-->
 </div>
 @push('scripts')
+<script>var hostUrl = "/m2/assets/";</script>
 <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
 <script src="/m2/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
@@ -172,7 +177,20 @@
 <script src="/m2/assets/js/custom/widgets.js"></script>
 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
 <script src="/m2/assets/js/custom/intro.js"></script>
+    {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
+<script>
 
+// $('#kt_table_users').dataTable( {
+//         "language": {
+//             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+//         },
+//             "order": [[ 1, 'asc' ]],
+//             dom: 'Bfrtip',
+//             buttons: [
+//                 'copy', 'csv', 'excel', 'pdf', 'print'
+//             ]
+//         } );
+</script>
 
 @endpush
 @endsection

@@ -41,7 +41,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
  Route::post('expedientes/store_file_expedientes_ig_sitem',[App\Http\Controllers\ExpedientesController::class,'store_file_expedientes_ig_sitem'])->name('expedientes.file.store');
  Route::get('expedientes/sistemas/{id}/get_files_ing_sistemas',[App\Http\Controllers\ExpedientesController::class,'get_files_ing_sistemas']);
  Route::delete('expedientes/delete_file_ing_sistemas/{id}',[App\Http\Controllers\ExpedientesController::class, 'delete_file_ing_sistemas']);
+ Route::get('expedientes/empaquetar_student/{id}',[App\Http\Controllers\ExpedientesController::class, 'empaquetar_student'])->name('expedientes.empaquetar.student');
 
  /**-------------------------------------------------------------------------End Expedientes--------------------------------------------------------- */
+
+
+ /**-------------------------------------------------------------------------Expedientes Carreras----------------------------------------------------------- */
+ Route::get('expedientes-carreras/index',[App\Http\Controllers\ExpedienteCarrerasController::class,'index'])->name('expedientes.carreras.index');
+ /**-------------------------------------------------------------------------End Expedientes Carreras----------------------------------------------------------- */
 });
 

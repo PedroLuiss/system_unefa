@@ -348,7 +348,8 @@
                     $('#name').val("");
                     $('#file').val(null);
                     get_files_ing_system($('#id_estudiantes').val());
-                    $('.modal_file').modal('hide');
+                    // $('.modal_file').modal('hide');
+                    $('#kt_modal_new_target_cancel').click();
 
                     $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
@@ -412,12 +413,11 @@
                             table+=`
                             <td>
                                 <span class="svg-icon svg-icon-2x svg-icon-primary me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
-                                     <path
-                                                    d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
-                                                    fill="currentColor"></path>
-                                </svg>
-                                </span>
+							        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+										<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22Z" fill="currentColor"></path>
+											<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"></path>
+											</svg>
+									</span>
                             <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
                          </td>
                             `;

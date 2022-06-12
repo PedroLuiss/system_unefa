@@ -10,10 +10,18 @@ use App\Models\TempFileExpediente;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use ZipArchive;
+use File;
 
 class ExpedientesController extends Controller
 {
+    public $carpeta_nucleo="UNEFA-LARA";
     public $carpeta_ing_sistema="\INGENIERIA DE SISTEMAS";
+    public $carpeta_ing_electrica="\INGENIERIA DE ELECTRICA";
+    public $carpeta_ing_agronomica="\INGENIERIA AGRONOMO";
+    public $carpeta_emfermeria="\LIC. EMFERMERIA";
+    public $carpeta_economia="\LIC. ECONOMIA";
+    public $carpeta_administracion="\LIC. ADMINISTRACION";
 
    public function ing_sistem_index()
    {
@@ -155,5 +163,41 @@ class ExpedientesController extends Controller
              return response()->json(['success' => 'Archivo eliminado correctamente','status' => 200,], 201);
         }
 
+    }
+
+    public function empaquetar_student($id)
+    {
+        $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+        ->where('expedientes.id',$id)->get();
+        $file_st = Expediente_file::where('expedientes_id',$id)->get();
+        $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+
+
+        $estud = Estudiantes::find($expedie[0]->estudiantes_id);
+        // return response($request);
+        $fechaComoEntero = strtotime($estud->fe_ingreso);
+        $m = date("m", $fechaComoEntero);
+        $y = date("Y", $fechaComoEntero);
+
+        $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+
+        $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula;
+
+        $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+         $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+        $zip = new ZipArchive();
+        $filename = $all_perio.".zip";
+        if ($zip->open(public_path($filename),ZipArchive::CREATE) === TRUE) {
+            $files = File::files(public_path($this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
+            foreach($files as $key=> $value){
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value,$relativeNameInZipFile);
+
+            }
+            $zip->close();
+        }
+
+         return response()->download(public_path($filename));
+        // return response($carpeta_estudiantes);
     }
 }

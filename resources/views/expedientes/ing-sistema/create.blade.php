@@ -227,7 +227,8 @@
                     $('#name').val("");
                     $('#file').val(null);
                     get_files_ing_system($('#id_estudiantes').val());
-                    $('.modal_file').modal('hide');
+                    // $('.modal_file').modal('hide');
+                    $('#kt_modal_new_target_cancel').click();
 
                     $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
