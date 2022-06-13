@@ -58,31 +58,7 @@ class EstudiantesController extends Controller
             'tel_cel'=> $data['tel_cel'],
             'email'=> $data['email']
         ]);
-        // $estu = new Estudiantes();
 
-        // $estu->cedula = $request->cedula;
-        // $estu->nombres = $request->nombres;
-        // $estu->primer_apellido = $request->primer_apellido;
-        // $estu->segundo_apellido = $request->segundo_apellido;
-        // $estu->fe_ingreso = $request->fe_ingreso;
-        // $estu->sexo = $request->sexo;
-        // $estu->sanguineo = $request->sanguineo;
-        // $estu->edo_civil = $request->edo_civil;
-        // $estu->condicion = $request->condicion;
-        // $estu->nucleo = $request->nucleo;
-        // $estu->etnia = $request->etnia;
-        // $estu->discapacidad = $request->discapacidad;
-        // $estu->pais = $request->pais;
-        // $estu->fe_nac = $request->fe_nac;
-        // $estu->lugar_nac = $request->lugar_nac;
-        // $estu->ciudad = $request->ciudad;
-        // $estu->direccion = $request->direccion;
-        // $estu->tel_hab = $request->tel_hab;
-        // $estu->tel_cel = $request->tel_cel;
-        // $estu->inicio_programa = $request->inicio_programa;
-        // $estu->email = $request->email;
-
-        // $estu->save();
         $messege = $estud_st ? 'Etudiante Creado Correctamente' : 'Error al agregar';
         return redirect()->route('estudiantedatos.index')->with('mensaje', $messege);
     }
@@ -93,8 +69,11 @@ class EstudiantesController extends Controller
         return view('estudiantedatos.create',compact('carreras'));
     }
 
-    public function destroy()
+
+    public function update()
     {
+
+
         return view('');
     }
     public function login()

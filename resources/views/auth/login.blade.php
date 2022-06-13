@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="/m2/assets/media/logos/favicon.ico" />
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SystUnefa') }}</title>
 
    		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
 		<link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/favicon.ico" />
@@ -28,6 +28,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
@@ -47,21 +48,24 @@
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
-							<a href="/metronic8/demo1/../demo1/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-2.svg" class="h-60px">
+							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefa.png" class="h-60px">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Bienvenido a Systnet</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystUnefa</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Systnet Es u sistema de gestion de  
-							<br>conexiones de internet</p>
+							<p class="fw-bold fs-2" style="color: #05156f;">SystUnefa sistema de gestion de
+							<br>Documentos Digitales</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
 						<!--begin::Illustration-->
-						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url(/m2/assets/media/illustrations/sketchy-1/13.png"></div>
+						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
+                                <p class="fw-bold fs-2" style="color: #05156f;">La innovacion es lo que distingue a los lideres
+                                <br>de los seguidores</p>
+                        </div>
 						<!--end::Illustration-->
 					</div>
 					<!--end::Wrapper-->
@@ -79,10 +83,10 @@
                                 @csrf
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-muted mb-3">Acceder a Systnet</h1>
+									<h1 class="text-muted mb-3">Acceder a SystUnefa</h1>
 									<!--end::Title-->
 									<!--begin::Link-->
-									<div class="text-gray-400 fw-bold fs-4">No tienes cuenta? 
+									<div class="text-gray-400 fw-bold fs-4">No tienes cuenta?
 									<a href="{{ route('register') }}" class="link-primary fw-bolder">Create una aquí</a></div>
 									<!--end::Link-->
 								</div>
@@ -90,7 +94,7 @@
 								<!--begin::Input group-->
 								<div class="fv-row mb-10 fv-plugins-icon-container">
 									<!--begin::Label-->
-									<label class="form-label fs-6 fw-bolder text-muted">Email</label>
+									<label class="form-label fs-6 fw-bolder text-muted">Correo </label>
 									<!--end::Label-->
 									<!--begin::Input-->
 									<input class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror" type="text" value="{{ old('email') }}" name="email" autocomplete="off" >
@@ -107,10 +111,10 @@
 									<!--begin::Wrapper-->
 									<div class="d-flex flex-stack mb-2">
 										<!--begin::Label-->
-										<label class="form-label fw-bolder text-muted fs-6 mb-0">Password</label>
+										<label class="form-label fw-bolder text-muted fs-6 mb-0">Contraseña</label>
 										<!--end::Label-->
 										<!--begin::Link-->
-										<a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">Olvidaste tu password ?</a>
+										<a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">Olvidaste tu contraseña ?</a>
 										<!--end::Link-->
 									</div>
 									<!--end::Wrapper-->
@@ -124,7 +128,7 @@
 									<!--begin::Submit button-->
 									<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
 										<span class="indicator-label">Ingresar</span>
-										<span class="indicator-progress">Espere... 
+										<span class="indicator-progress">Espere...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 								</div>
@@ -144,7 +148,8 @@
 		</div>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script> --}}
-    		<script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
+        <script>var hostUrl = "/m2/assets/";</script>
+        <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
 		<script src="/m2/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->

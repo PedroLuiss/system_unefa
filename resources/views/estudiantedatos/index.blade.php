@@ -38,7 +38,7 @@
                             <th class="min-w-200px">CEDULA</th>
                             <th class="min-w-200px">NOMBRES</th>
                             <th class="min-w-200px">APELLIDO PATERNO</th>
-                            <th class="min-w-200px">APELLIDO MATERNO</th>sss
+                            <th class="min-w-200px">APELLIDO MATERNO</th>
                             <th class="min-w-200px">FE_INGRESO</th>
                             <th class="min-w-200px">INICIO_PROGRAMA</th>
                             <th class="min-w-200px">SEXO</th>

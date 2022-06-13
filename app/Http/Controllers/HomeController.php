@@ -30,4 +30,10 @@ class HomeController extends Controller
     {
        return redirect()->route('login');
     }
+
+    public function destroy ()
+    {
+
+        return redirect()->route('login');
+    }
 }
