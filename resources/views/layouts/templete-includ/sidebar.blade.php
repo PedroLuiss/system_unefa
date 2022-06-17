@@ -3,7 +3,8 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="#">
-            <img alt="Logo" src="/m2/assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
+            <img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-65px logo" />
+
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

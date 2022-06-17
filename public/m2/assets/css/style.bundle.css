@@ -7710,7 +7710,7 @@ textarea.form-control-lg {
 }
 
 .h-60px {
-  height: 60px !important;
+  width: 50% !important;
 }
 
 .h-65px {
@@ -21924,7 +21924,7 @@ textarea.form-control-lg {
   }
 
   .pt-lg-20 {
-    padding-top: 5rem !important;
+    padding-top: 2rem !important;
   }
 
   .pe-lg-0 {
@@ -47180,6 +47180,13 @@ label.rating-label:hover ~ .rating-label > i, label.rating-label:hover ~ .rating
   border-right: solid 2rem red;
   border-top: solid 2rem red;
 }
+
+/*CSS DEL SELECT DE CARRERAS EN EL FORMULARIO AJUST DE ANCHURA*/
+select.form-select.form-select-transparent.ca {
+    width: 30%;
+}
+
+
 .ribbon.ribbon-triangle.ribbon-bottom-start {
   bottom: 0;
   left: 0;

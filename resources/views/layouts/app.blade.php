@@ -13,7 +13,7 @@ License: For each use you must have a valid license purchased only from above li
 <html lang="en">
 	<!--begin::Head-->
 	<head>
-		<title>Sistema Unefa</title>
+		<title>SystUnefa</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -24,7 +24,7 @@ License: For each use you must have a valid license purchased only from above li
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="/m2/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -90,7 +90,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Mobile logo-->
 							<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 								<a href="/m2/../demo1/index.html" class="d-lg-none">
-									<img alt="Logo" src="/m2/assets/media/logos/logo-2.svg" class="h-30px" />
+									<img alt="Logo" src="/m2/assets/media/logos/logo-unefa.svg" class="h-30px" />
 								</a>
 							</div>
 							<!--end::Mobile logo-->
