@@ -48,6 +48,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
  /**-------------------------------------------------------------------------Expedientes Carreras----------------------------------------------------------- */
  Route::get('expedientes-carreras/index',[App\Http\Controllers\ExpedienteCarrerasController::class,'index'])->name('expedientes.carreras.index');
+ Route::get('expedientes/empaquetar_nucleo',[App\Http\Controllers\ExpedientesController::class, 'empaquetar_nucleo'])->name('expedientes.empaquetar.nucleo');
  /**-------------------------------------------------------------------------End Expedientes Carreras----------------------------------------------------------- */
+
 });
 

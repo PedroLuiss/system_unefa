@@ -90,8 +90,8 @@ class ExpedientesController extends Controller
                 $foo = \File::extension($filename);
                 if($foo == 'pdf'|| $foo == 'docx'){
                         $nam_patch = strtoupper($request['code']).'.'.$foo;
-                        $route_file = $this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR.$nam_patch;
-                        $path = public_path().DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes;
+                        $route_file = $this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR.$nam_patch;
+                        $path = public_path().DIRECTORY_SEPARATOR.$this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes;
                         $file->move($path,$route_file);
 
                     $file_operacion=Expediente_file::create([
@@ -157,8 +157,11 @@ class ExpedientesController extends Controller
 
             $r=Expediente_file::where('id',$id)->get();
             $del_path = public_path().$r[0]->file_url;
+            if (file_exists($del_path )) {
+                unlink($del_path);
+            }
             //  return response($del_path);
-             unlink($del_path);
+
              Expediente_file::where('id',$id)->delete();
              return response()->json(['success' => 'Archivo eliminado correctamente','status' => 200,], 201);
         }
@@ -167,14 +170,16 @@ class ExpedientesController extends Controller
 
     public function empaquetar_student($id)
     {
+
         $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
-        ->where('expedientes.id',$id)->get();
-        $file_st = Expediente_file::where('expedientes_id',$id)->get();
+        ->where('estudiantes.id',$id)->get();
+        // return response($expedie);
+        // $file_st = Expediente_file::where('expedientes_id',$id)->get();
         $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
 
 
         $estud = Estudiantes::find($expedie[0]->estudiantes_id);
-        // return response($request);
+
         $fechaComoEntero = strtotime($estud->fe_ingreso);
         $m = date("m", $fechaComoEntero);
         $y = date("Y", $fechaComoEntero);
@@ -188,7 +193,7 @@ class ExpedientesController extends Controller
         $zip = new ZipArchive();
         $filename = $all_perio.".zip";
         if ($zip->open(public_path($filename),ZipArchive::CREATE) === TRUE) {
-            $files = File::files(public_path($this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
+            $files = File::files(public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
             foreach($files as $key=> $value){
                 $relativeNameInZipFile = basename($value);
                 $zip->addFile($value,$relativeNameInZipFile);
@@ -199,5 +204,45 @@ class ExpedientesController extends Controller
 
          return response()->download(public_path($filename));
         // return response($carpeta_estudiantes);
+    }
+
+
+    public function empaquetar_nucleo()
+    {
+
+        $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')->get();
+        // // return response($expedie);
+        // // $file_st = Expediente_file::where('expedientes_id',$id)->get();
+        $data_carrera = carrera::all();
+
+
+        // $estud = Estudiantes::find($expedie[0]->estudiantes_id);
+
+        // $fechaComoEntero = strtotime($estud->fe_ingreso);
+        // $m = date("m", $fechaComoEntero);
+        // $y = date("Y", $fechaComoEntero);
+
+        // $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+
+        // $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula;
+
+        // $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+
+        $zip = new ZipArchive();
+        $all_perio= "nucleo-lara";
+        $zipfile = $all_perio.".zip";
+        $tozip = public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR);
+        if ($zip->open(public_path($zipfile),ZipArchive::CREATE) === TRUE) {
+
+            $zip->addPattern("/\.(?:pdf,folder)$/", $tozip, [
+                "add_path"=>"inside/",
+                "remove_all_path"=>true
+            ]);
+
+            $zip->close();
+        }
+        return response(public_path($zipfile));
+        //  return response()->download(public_path($zipfile));
+
     }
 }
