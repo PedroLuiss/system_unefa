@@ -4,7 +4,12 @@
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}"> --}}
 <link rel="stylesheet" type="text/css" href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
 <div class="card">
-
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder text-dark">Listas de expedientes - Lic. Enfermeria</span>
+            <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los estudiantes con sus expedientes</span>
+        </h3>
+    </div>
     <!--begin::Card header-->
     <div class="card-header border-0 pt-6">
         <!--begin::Card title-->
