@@ -143,7 +143,7 @@
     <!--end::Aside menu-->
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-        <a href="/m2/../demo1/documentation/getting-started.html" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Salir del sistema">
+        <a href="#" action="{{ url('logout') }}" method="POST" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Salir del sistema">
             <span class="btn-label">Salir</span>
             <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
 

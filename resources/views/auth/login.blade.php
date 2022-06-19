@@ -7,11 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="/m2/assets/media/logos/favicon.ico" />
-    <title>{{ config('app.name', 'SystUnefa') }}</title>
+    <link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
+    <title>{{ config('app.name','SystUnefa') }}</title>
 
    		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/logo-unefa.ico" />
 		<!--begin::Fonts-->
 
 		<!--end::Fonts-->
@@ -49,7 +49,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefa.png" class="h-60px">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->

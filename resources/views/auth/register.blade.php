@@ -91,7 +91,7 @@
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="/m2/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -124,7 +124,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefa.png" class="h-60px">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
