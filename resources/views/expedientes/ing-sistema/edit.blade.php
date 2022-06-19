@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <style>
-
-    </style>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
 @endpush
 @section('content')
 
@@ -301,7 +299,8 @@
 @include('expedientes.ing-sistema.form-add-file')
 
     @push('scripts')
-
+    <script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
+    <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
         $(document).ready(function(){
@@ -315,6 +314,34 @@
             // placeholder:"hhhhh"
         });
         });
+
+        function messeg(m,t) {
+            if (t=="success") {
+                $.notify(
+                    '<i class="fa fa-bell-o"></i><strong>Excelente</strong> ' +m+
+                        "",
+                    {
+                        type: t,
+                        allow_dismiss: true,
+                        delay: 2000,
+                        showProgressbar: false,
+                        timer: 300,
+                    }
+                );
+                return false;
+            }
+            $.notify(
+                '<i class="fa fa-bell-o"></i><strong>!Hoops¡</strong> ' +m+
+                    "",
+                {
+                    type: t,
+                    allow_dismiss: true,
+                    delay: 2000,
+                    showProgressbar: false,
+                    timer: 300,
+                }
+            );
+        }
         $('#select_estudiente').on('change',(e)=>{
             $('#kt_file_manager_new_folder').show();
             $('#box-all-file-ing-sistem').show(100);
@@ -350,13 +377,14 @@
                     get_files_ing_system($('#id_estudiantes').val());
                     // $('.modal_file').modal('hide');
                     $('#kt_modal_new_target_cancel').click();
-
+                    messeg(msg.success,'success');
                     $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
                 }else{
                     if (msg.campo=='file') {
                         $('#file').addClass('is-invalid');
                         $('#error-file').text("Debes seleccionar un archivo")
+                        messeg("Debes seleccionar un archivo",'danger');
                     }else{
                         $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
@@ -366,6 +394,7 @@
                     if (msg.campo=='code') {
                         $('#code').addClass('is-invalid');
                         $('#error-code').text("El codigo ya existe")
+                        messeg("El codigo ya existe",'danger');
                     }else{
                         $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
@@ -505,29 +534,41 @@
                 };
                 sendGetRequest();
             }
-
             function delet_file(id,id_estudiante) {
                 console.log(id);
-                const sendGetRequest = async () => {
-                    try {
-                        const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
-                        console.log(resp);
-                        if (resp.data.status==200) {
-                            get_files_ing_system(id_estudiante);
-                        }
+                        swal({
+                            title: "Estas seguro?",
+                                        text: "Deseas eliminar el archivo?",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            const sendGetRequest = async () => {
+                                                try {
+                                                    const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
+                                                    console.log(resp);
+                                                    if (resp.data.status==200) {
+                                                        get_files_ing_system(id_estudiante);
+                                                        messeg(resp.data.success,'success');
+                                                    }
 
-                    } catch (err) {
-                        // Handle Error Here
-                    }
-                };
-                sendGetRequest();
+                                                } catch (err) {
+                                                    // Handle Error Here
+                                                }
+                                            };
+                                            sendGetRequest();
+                                        }
+                                    })
+
             }
         </script>
-                <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
                 <script src="/m2/assets/js/scripts.bundle.js"></script>
                 <!--end::Global Javascript Bundle-->
                 <!--begin::Page Vendors Javascript(used by this page)-->
-                <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
                 <!--end::Page Vendors Javascript-->
                 <!--begin::Page Custom Javascript(used by this page)-->
                 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>

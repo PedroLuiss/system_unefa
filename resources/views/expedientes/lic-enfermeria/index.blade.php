@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder text-dark">Listas de expedientes - Ingenieria Agronómica</span>
+            <span class="card-label fw-bolder text-dark">Listas de expedientes - Lic. Enfermeria</span>
             <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los estudiantes con sus expedientes</span>
         </h3>
     </div>
@@ -37,7 +37,7 @@
 
 
                 <!--begin::Add user-->
-                <a href="{{url('/expedientes/ingenieria-agronomica/crear')}}" class="btn btn-primary" >
+                <a href="{{route('expedientes.enfermeria.create')}}" class="btn btn-primary" >
                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                 <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -143,7 +143,7 @@
                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true" style="">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="{{url('/expedientes/ingenieria-agronomica/'.$value->id.'/edit')}}" class="menu-link px-3">Edit</a>
+                                <a href="{{route('expedientes.enfermeria.edit',$value->id)}}" class="menu-link px-3">Edit</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->

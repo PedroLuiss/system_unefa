@@ -6,6 +6,12 @@
 <div class="card">
 
     <!--begin::Card header-->
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder text-dark">Listas de expedientes - Ingenieria De Sistemas</span>
+            <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los estudiantes con sus expedientes</span>
+        </h3>
+    </div>
     <div class="card-header border-0 pt-6">
         <!--begin::Card title-->
         <div class="card-title">

@@ -75,12 +75,8 @@
                             <select class="form-select form-select-transparent ca" name="carrera" aria-label="CARRERA">
                                 <option>CARRERA</option>
                                     @foreach ($carreras as $val)
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
-                                    <option value="{{$val->id}}">{{$val->code." ".$val->name}}</option>
+                                    <option value="{{$val->id}}">{{$val->code." - ".$val->name}}</option>
+
                                     @endforeach
                             </select>
 

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Ingenieria De Sistemas</span>
+                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Lic. Enfermería</span>
                 <span class="text-muted mt-1 fw-bold fs-7">Los campos son requerido</span>
             </h3>
         </div>
@@ -174,7 +174,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
+                    <a href="{{route('expedientes.enfermeria.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
                 </div>
             </div>
         </div>
@@ -334,7 +334,7 @@ function messeg(m,t) {
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
 
-									<a href="javascript:void(0)" onclick="delet_file(${resp.data.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+									<a href="javascript:void(0)" onclick="delet_file(${resp.data.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
 										<span class="svg-icon svg-icon-3">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 												<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>

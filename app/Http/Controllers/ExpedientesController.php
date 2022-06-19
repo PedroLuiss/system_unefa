@@ -25,14 +25,15 @@ class ExpedientesController extends Controller
 
    public function ing_sistem_index()
    {
-       $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')->get();
+       $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+       ->where('estudiantes.carreras_id',1)->get();
      return  view('expedientes.ing-sistema.index',compact('expedie'));
    }
 
    public function ing_sistem_edit($id)
    {
        $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
-       ->where('expedientes.id',$id)->get();
+       ->where('estudiantes.id',$id)->get();
        $file_st = Expediente_file::where('expedientes_id',$id)->get();
        $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
        $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
@@ -68,9 +69,32 @@ class ExpedientesController extends Controller
     //     'name' => 'Nombre',
     //     'description' => 'Descripcion',
     // ]);
-
+    $carpeta_carrera = "";
     $estud = Estudiantes::find($request['id_estudiantes']);
-    $data_carrera = carrera::where('id',1)->first();
+    $data_carrera = carrera::where('id',$estud->carreras_id)->first();
+    switch ($data_carrera->code) {
+        case '2613':
+            $carpeta_carrera=$this->carpeta_ing_sistema;
+            break;
+        case '2213':
+            $carpeta_carrera=$this->carpeta_ing_electrica;
+            break;
+        case '2013':
+            $carpeta_carrera=$this->carpeta_ing_agronomica;
+            break;
+        case '0913':
+            $carpeta_carrera=$this->carpeta_administracion;
+            break;
+        case '0313':
+            $carpeta_carrera=$this->carpeta_emfermeria;
+            break;
+        case '1013':
+            $carpeta_carrera=$this->carpeta_economia;
+            break;
+        default:
+        return response()->json(['error' => 'Codigo de Carrera no existe en el sistemna.','status' => 404],201);
+            break;
+    }
     // return response($request);
     $fechaComoEntero = strtotime($estud->fe_ingreso);
     $m = date("m", $fechaComoEntero);
@@ -90,8 +114,8 @@ class ExpedientesController extends Controller
                 $foo = \File::extension($filename);
                 if($foo == 'pdf'|| $foo == 'docx'){
                         $nam_patch = strtoupper($request['code']).'.'.$foo;
-                        $route_file = $this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR.$nam_patch;
-                        $path = public_path().DIRECTORY_SEPARATOR.$this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes;
+                        $route_file = $this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR.$nam_patch;
+                        $path = public_path().DIRECTORY_SEPARATOR.$this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes;
                         $file->move($path,$route_file);
 
                     $file_operacion=Expediente_file::create([
@@ -101,7 +125,7 @@ class ExpedientesController extends Controller
                         'name'=>$request['name'],
                         'description'=>$request['description'],
                         'name_file'=>$nam_patch,
-                        'file_url'=>$route_file,
+                        'file_url'=>"/".$route_file,
                         'path'=>$path,
                     ]);
                     $verfi_exp=Expediente::where('estudiantes_id',$request['id_estudiantes'])->get();
@@ -110,7 +134,8 @@ class ExpedientesController extends Controller
                         $porc = ($can*100)/14;
                         $exp = Expediente::create([
                             'estudiantes_id'=>$request['id_estudiantes'],
-                            'progres'=>$porc
+                            'progres'=>$porc,
+                            'carpeta_student'=>$carpeta_estudiantes
                         ]);
                         Expediente_file::where('estudiantes_id',$request['id_estudiantes'])->update([
                             'expedientes_id'=>$exp->id,
@@ -156,7 +181,7 @@ class ExpedientesController extends Controller
         }else{
 
             $r=Expediente_file::where('id',$id)->get();
-            $del_path = public_path().$r[0]->file_url;
+            $del_path = public_path().DIRECTORY_SEPARATOR.$r[0]->file_url;
             if (file_exists($del_path )) {
                 unlink($del_path);
             }
@@ -170,13 +195,35 @@ class ExpedientesController extends Controller
 
     public function empaquetar_student($id)
     {
-
+        $carpeta_carrera = "";
         $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
         ->where('estudiantes.id',$id)->get();
         // return response($expedie);
         // $file_st = Expediente_file::where('expedientes_id',$id)->get();
         $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
-
+        switch ($data_carrera->code) {
+            case '2613':
+                $carpeta_carrera=$this->carpeta_ing_sistema;
+                break;
+            case '2213':
+                $carpeta_carrera=$this->carpeta_ing_electrica;
+                break;
+            case '2013':
+                $carpeta_carrera=$this->carpeta_ing_agronomica;
+                break;
+            case '0913':
+                $carpeta_carrera=$this->carpeta_administracion;
+                break;
+            case '0313':
+                $carpeta_carrera=$this->carpeta_emfermeria;
+                break;
+            case '1013':
+                $carpeta_carrera=$this->carpeta_economia;
+                break;
+            default:
+            return response()->json(['error' => 'Codigo de Carrera no existe en el sistemna.','status' => 404],201);
+                break;
+        }
 
         $estud = Estudiantes::find($expedie[0]->estudiantes_id);
 
@@ -193,7 +240,7 @@ class ExpedientesController extends Controller
         $zip = new ZipArchive();
         $filename = $all_perio.".zip";
         if ($zip->open(public_path($filename),ZipArchive::CREATE) === TRUE) {
-            $files = File::files(public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
+            $files = File::files(public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
             foreach($files as $key=> $value){
                 $relativeNameInZipFile = basename($value);
                 $zip->addFile($value,$relativeNameInZipFile);
@@ -206,43 +253,196 @@ class ExpedientesController extends Controller
         // return response($carpeta_estudiantes);
     }
 
+//---------------------------------------------------------End Ingenieria sistemas---------------------------------------------------------
 
-    public function empaquetar_nucleo()
-    {
+//---------------------------------------------------------------Electrica-------------------------------------------------------
+public function ing_electrica_index()
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.carreras_id',2)->get();
+  return  view('expedientes.ing-electrica.index',compact('expedie'));
+}
 
-        $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')->get();
-        // // return response($expedie);
-        // // $file_st = Expediente_file::where('expedientes_id',$id)->get();
-        $data_carrera = carrera::all();
+
+public function ing_electrica_create()
+{
+     $estudiantes=Estudiantes::where('carreras_id',2)->get();
+ return  view('expedientes.ing-electrica.create',compact('estudiantes'));
+}
+
+public function ing_electrica_edit($id)
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.id',$id)->get();
+    $file_st = Expediente_file::where('expedientes_id',$id)->get();
+    $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+    $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+    $m = date("m", $fechaComoEntero);
+    $y = date("Y", $fechaComoEntero);
+
+    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+     $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+
+ // return response($expedie);
+  return  view('expedientes.ing-electrica.edit',compact('expedie','file_st','all_perio'));
+}
 
 
-        // $estud = Estudiantes::find($expedie[0]->estudiantes_id);
+//---------------------------------------------------------------End Electrica-------------------------------------------------------
 
-        // $fechaComoEntero = strtotime($estud->fe_ingreso);
-        // $m = date("m", $fechaComoEntero);
-        // $y = date("Y", $fechaComoEntero);
+//---------------------------------------------------------------Agronomia-------------------------------------------------------
+public function ing_agronomica_index()
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.carreras_id',3)->get();
+  return  view('expedientes.ing-agronomia.index',compact('expedie'));
+}
 
-        // $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+public function ing_agronomica_create()
+{
+     $estudiantes=Estudiantes::where('carreras_id',3)->get();
+ return  view('expedientes.ing-agronomia.create',compact('estudiantes'));
+}
 
-        // $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula;
+public function ing_agronomica_edit($id)
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.id',$id)->get();
+    $file_st = Expediente_file::where('expedientes_id',$id)->get();
+    $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+    $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+    $m = date("m", $fechaComoEntero);
+    $y = date("Y", $fechaComoEntero);
 
-        // $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+     $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
 
-        $zip = new ZipArchive();
-        $all_perio= "nucleo-lara";
-        $zipfile = $all_perio.".zip";
-        $tozip = public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR);
-        if ($zip->open(public_path($zipfile),ZipArchive::CREATE) === TRUE) {
+ // return response($expedie);
+  return  view('expedientes.ing-agronomia.edit',compact('expedie','file_st','all_perio'));
+}
+//---------------------------------------------------------------End Agronomia-------------------------------------------------------
 
-            $zip->addPattern("/\.(?:pdf,folder)$/", $tozip, [
-                "add_path"=>"inside/",
-                "remove_all_path"=>true
-            ]);
 
-            $zip->close();
-        }
-        return response(public_path($zipfile));
-        //  return response()->download(public_path($zipfile));
+//---------------------------------------------------------------Administracion-------------------------------------------------------
+public function ing_administracion_index()
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.carreras_id',4)->get();
+  return  view('expedientes.lic-administracion.index',compact('expedie'));
+}
 
-    }
+public function ing_administracion_create()
+{
+     $estudiantes=Estudiantes::where('carreras_id',4)->get();
+ return  view('expedientes.lic-administracion.create',compact('estudiantes'));
+}
+
+public function ing_administracion_edit($id)
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.id',$id)->get();
+    $file_st = Expediente_file::where('expedientes_id',$id)->get();
+    $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+    $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+    $m = date("m", $fechaComoEntero);
+    $y = date("Y", $fechaComoEntero);
+
+    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+     $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+
+ // return response($expedie);
+  return  view('expedientes.lic-administracion.edit',compact('expedie','file_st','all_perio'));
+}
+//---------------------------------------------------------------End Administracion-------------------------------------------------------
+
+//---------------------------------------------------------------Enfermeria-------------------------------------------------------
+public function ing_enfermeria_index()
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.carreras_id',5)->get();
+  return  view('expedientes.lic-enfermeria.index',compact('expedie'));
+}
+
+public function ing_enfermeria_create()
+{
+     $estudiantes=Estudiantes::where('carreras_id',5)->get();
+ return  view('expedientes.lic-enfermeria.create',compact('estudiantes'));
+}
+
+public function ing_enfermeria_edit($id)
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.id',$id)->get();
+    $file_st = Expediente_file::where('expedientes_id',$id)->get();
+    $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+    $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+    $m = date("m", $fechaComoEntero);
+    $y = date("Y", $fechaComoEntero);
+
+    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+     $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+
+ // return response($expedie);
+  return  view('expedientes.lic-enfermeria.edit',compact('expedie','file_st','all_perio'));
+}
+//---------------------------------------------------------------End Enfermeria-------------------------------------------------------
+
+
+//---------------------------------------------------------------Economia-------------------------------------------------------
+public function ing_economia_index()
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.carreras_id',6)->get();
+  return  view('expedientes.lic-economia.index',compact('expedie'));
+}
+
+public function ing_economia_create()
+{
+     $estudiantes=Estudiantes::where('carreras_id',6)->get();
+ return  view('expedientes.lic-economia.create',compact('estudiantes'));
+}
+
+public function ing_economia_edit($id)
+{
+    $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
+    ->where('estudiantes.id',$id)->get();
+    $file_st = Expediente_file::where('expedientes_id',$id)->get();
+    $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
+    $fechaComoEntero = strtotime($expedie[0]->fe_ingreso);
+    $m = date("m", $fechaComoEntero);
+    $y = date("Y", $fechaComoEntero);
+
+    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
+     $all_perio= $periodo."-".$data_carrera->code."-V-".$expedie[0]->cedula;
+
+ // return response($expedie);
+  return  view('expedientes.lic-economia.edit',compact('expedie','file_st','all_perio'));
+}
+//---------------------------------------------------------------End Economia-------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Ingenieria De Sistemas</span>
+                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Ingenieria Agronómica</span>
                 <span class="text-muted mt-1 fw-bold fs-7">Los campos son requerido</span>
             </h3>
         </div>
@@ -174,7 +174,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
+                    <a href="{{route('expedientes.ingagronomica.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
                 </div>
             </div>
         </div>
@@ -446,22 +446,22 @@ function messeg(m,t) {
 
             }
         </script>
-                {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
-                <script src="/m2/assets/js/scripts.bundle.js"></script>
-                <!--end::Global Javascript Bundle-->
-                <!--begin::Page Vendors Javascript(used by this page)-->
-                {{-- <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
-                <!--end::Page Vendors Javascript-->
-                <!--begin::Page Custom Javascript(used by this page)-->
-                <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
-                <script src="/m2/assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-                <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
-                <script src="/m2/assets/js/widgets.bundle.js"></script>
-                <script src="/m2/assets/js/custom/widgets.js"></script>
-                <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
-                <script src="/m2/assets/js/custom/intro.js"></script>
-                <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-                <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
-                <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
+                 {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
+                 <script src="/m2/assets/js/scripts.bundle.js"></script>
+                 <!--end::Global Javascript Bundle-->
+                 <!--begin::Page Vendors Javascript(used by this page)-->
+                 {{-- <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
+                 <!--end::Page Vendors Javascript-->
+                 <!--begin::Page Custom Javascript(used by this page)-->
+                 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
+                 <script src="/m2/assets/js/custom/apps/user-management/users/list/export-users.js"></script>
+                 <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
+                 <script src="/m2/assets/js/widgets.bundle.js"></script>
+                 <script src="/m2/assets/js/custom/widgets.js"></script>
+                 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
+                 <script src="/m2/assets/js/custom/intro.js"></script>
+                 <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+                 <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
+                 <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
     @endpush
 @endsection

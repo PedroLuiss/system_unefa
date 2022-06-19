@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf14086919a839fe740e00554e4baff6",
+    "content-hash": "311a9d1468c683033a841d88bc2f2087",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2916,6 +2916,49 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "rukhsar/laravel-active-route",
+            "version": "v1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Rukhsar/laravel-active-route.git",
+                "reference": "3a6d6b7c08c06978bf971d7d2a35733edbbcfac1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Rukhsar/laravel-active-route/zipball/3a6d6b7c08c06978bf971d7d2a35733edbbcfac1",
+                "reference": "3a6d6b7c08c06978bf971d7d2a35733edbbcfac1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Rukhsar\\ActiveRoute\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rukhsar Manzoor",
+                    "email": "rukhsar.man@gmail.com"
+                }
+            ],
+            "description": "A laravel helper package.",
+            "support": {
+                "issues": "https://github.com/Rukhsar/laravel-active-route/issues",
+                "source": "https://github.com/Rukhsar/laravel-active-route/tree/master"
+            },
+            "time": "2018-03-03T00:12:37+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7976,5 +8019,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

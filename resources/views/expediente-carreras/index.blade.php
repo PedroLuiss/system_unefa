@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <a href="#" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-5 py-1 px-3">
+                                    <a href="{{route('expedientes.empaquetar.nucleo')}}" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-5 py-1 px-3">
                                         <div class="symbol symbol-30px me-4">
                                             <span class="symbol-label text-success bg-light-success">
                                                 <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->
@@ -40,7 +40,7 @@
 
         <!--begin::Row-->
         <div class="row g-6 g-xl-9">
-
+            @foreach ($carreras as $val)
             <!--begin::Col-->
             <div class="col-md-6 col-xl-4">
                 <!--begin::Card-->
@@ -49,13 +49,42 @@
                     <!--begin:: Card body-->
                     <div class="card-body p-9">
                         <!--begin::Name-->
-                        <div class="fs-3 fw-bolder text-dark">Ingeniería de sistemas</div>
+                        <div class="fs-3 fw-bolder text-dark">{{$val->name}}</div>
                         <!--end::Name-->
                         <!--begin::Description-->
-                        <p class="text-gray-400 fw-bold fs-5 mt-1 mb-7">Código: 2613</p>
+                        <p class="text-gray-400 fw-bold fs-5 mt-1 mb-7">Código: {{$val->code}}</p>
                         <!--end::Description-->
                         <!--begin::Info-->
-
+                        <div class="card-body p-0 pt-1">
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-3"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Section-->
+                                <div class="text-gray-700 fw-bold fs-4 me-2">Estudiantes:</div>
+                                <!--end::Section-->
+                                <!--begin::Statistics-->
+                                <div class="d-flex align-items-senter">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr094.svg-->
+                                    <span class="svg-icon svg-icon-2 svg-icon-success me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="16.9497" y="8.46448" width="13" height="2" rx="1" transform="rotate(135 16.9497 8.46448)" fill="currentColor"></rect>
+                                            <path d="M14.8284 9.97157L14.8284 15.8891C14.8284 16.4749 15.3033 16.9497 15.8891 16.9497C16.4749 16.9497 16.9497 16.4749 16.9497 15.8891L16.9497 8.05025C16.9497 7.49797 16.502 7.05025 15.9497 7.05025L8.11091 7.05025C7.52512 7.05025 7.05025 7.52513 7.05025 8.11091C7.05025 8.6967 7.52512 9.17157 8.11091 9.17157L14.0284 9.17157C14.4703 9.17157 14.8284 9.52975 14.8284 9.97157Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    <!--begin::Number-->
+                                    <span class="text-gray-900 fw-boldest fs-6">{{$c[$val->id]}}</span>
+                                    <!--end::Number-->
+                                </div>
+                                <!--end::Statistics-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-3"></div>
+                            <!--end::Separator-->
+                        </div>
 
                     </div>
                     <!--end:: Card body-->
@@ -64,7 +93,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <a href="#" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Descarga la data completa de la carrera Ingenieria de sistemas, se descargara un archivo .zip" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <a href="{{route('expedientes.empaquetar.cerrara',$val->id)}}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Descarga la data completa de la carrera {{$val->name}}, se descargara un archivo .zip" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                                 <i class="fa-solid fa-cloud-arrow-down"></i>
                                 <!--end::Svg Icon-->Descargar Data</a>
@@ -73,6 +102,8 @@
                 </div>
             </div>
             <!--end::Col-->
+            @endforeach
+
         </div>
         <!--end::Row-->
 
