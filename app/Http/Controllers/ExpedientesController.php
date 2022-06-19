@@ -125,7 +125,7 @@ class ExpedientesController extends Controller
                         'name'=>$request['name'],
                         'description'=>$request['description'],
                         'name_file'=>$nam_patch,
-                        'file_url'=>$route_file,
+                        'file_url'=>"/".$route_file,
                         'path'=>$path,
                     ]);
                     $verfi_exp=Expediente::where('estudiantes_id',$request['id_estudiantes'])->get();
@@ -195,13 +195,35 @@ class ExpedientesController extends Controller
 
     public function empaquetar_student($id)
     {
-
+        $carpeta_carrera = "";
         $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
         ->where('estudiantes.id',$id)->get();
         // return response($expedie);
         // $file_st = Expediente_file::where('expedientes_id',$id)->get();
         $data_carrera = carrera::where('id',$expedie[0]->carreras_id)->first();
-
+        switch ($data_carrera->code) {
+            case '2613':
+                $carpeta_carrera=$this->carpeta_ing_sistema;
+                break;
+            case '2213':
+                $carpeta_carrera=$this->carpeta_ing_electrica;
+                break;
+            case '2013':
+                $carpeta_carrera=$this->carpeta_ing_agronomica;
+                break;
+            case '0913':
+                $carpeta_carrera=$this->carpeta_administracion;
+                break;
+            case '0313':
+                $carpeta_carrera=$this->carpeta_emfermeria;
+                break;
+            case '1013':
+                $carpeta_carrera=$this->carpeta_economia;
+                break;
+            default:
+            return response()->json(['error' => 'Codigo de Carrera no existe en el sistemna.','status' => 404],201);
+                break;
+        }
 
         $estud = Estudiantes::find($expedie[0]->estudiantes_id);
 
@@ -218,7 +240,7 @@ class ExpedientesController extends Controller
         $zip = new ZipArchive();
         $filename = $all_perio.".zip";
         if ($zip->open(public_path($filename),ZipArchive::CREATE) === TRUE) {
-            $files = File::files(public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR.$this->carpeta_ing_sistema.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
+            $files = File::files(public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes));
             foreach($files as $key=> $value){
                 $relativeNameInZipFile = basename($value);
                 $zip->addFile($value,$relativeNameInZipFile);
@@ -422,76 +444,5 @@ public function ing_economia_edit($id)
 
 
 
-    public function empaquetar_nucleo()
-    {
 
-        $all_carreras= carrera::all();
-       // aqui me traigo los estudiantes y lo rrecorro que tenga los archivos
-        $carpeta_carrera = "";
-        $zip = new ZipArchive();
-        for ($j=0; $j < count($all_carreras); $j++) {
-
-            $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
-            ->where('estudiantes.carreras_id',$all_carreras[$j]->id)->get();
-
-            for ($i=0; $i < count($expedie); $i++) {  //el metodo count() me trae la cantidad de registro en un array
-                $all_perio= "UNEFA-LARA"; //nombre del zip
-
-               $filename = $all_perio.".zip"; // nombre del zip
-               if ($zip->open(public_path($filename),ZipArchive::CREATE) == TRUE) {
-
-
-                   $data_carrera = carrera::where('id',$expedie[$i]->carreras_id)->first(); // me traigo la carrera del estudiante
-                   $estud = Estudiantes::find($expedie[$i]->estudiantes_id); // me trigo el estudiante
-                   switch ($data_carrera->code) {
-                       case '2613':
-                           $carpeta_carrera=$this->carpeta_ing_sistema;
-                           break;
-                       case '2213':
-                           $carpeta_carrera=$this->carpeta_ing_electrica;
-                           break;
-                       case '2013':
-                           $carpeta_carrera=$this->carpeta_ing_agronomica;
-                           break;
-                       case '0913':
-                           $carpeta_carrera=$this->carpeta_administracion;
-                           break;
-                       case '0313':
-                           $carpeta_carrera=$this->carpeta_emfermeria;
-                           break;
-                       case '1013':
-                           $carpeta_carrera=$this->carpeta_economia;
-                           break;
-                       default:
-                       return response()->json(['error' => 'Codigo de Carrera no existe en el sistemna.','status' => 404],201);
-                           break;
-                   }
-
-
-                   $fechaComoEntero = strtotime($estud->fe_ingreso);
-                   $m = date("m", $fechaComoEntero);
-                   $y = date("Y", $fechaComoEntero);
-
-                   $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
-
-                   $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
-                   $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula; //aqui creo la carpeta del estudiante
-                   $n=$this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
-                   $folder=public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
-
-                   $zip->addGlob("$folder*.*",GLOB_BRACE, [
-                       "add_path"=> $n,
-                       "remove_all_path"=>true
-                   ]);
-
-               }
-
-            }
-        }
-        $zip->close(); //cierro el zip
-
-            // return response($folder);
-         return response()->download(public_path($filename));
-
-    }
 }

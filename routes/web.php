@@ -73,7 +73,8 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
 
  /**-------------------------------------------------------------------------Expedientes Carreras----------------------------------------------------------- */
  Route::get('expedientes-carreras/index',[App\Http\Controllers\ExpedienteCarrerasController::class,'index'])->name('expedientes.carreras.index');
- Route::get('expedientes/empaquetar_nucleo',[App\Http\Controllers\ExpedientesController::class, 'empaquetar_nucleo'])->name('expedientes.empaquetar.nucleo');
+ Route::get('expedientes/empaquetar_nucleo',[App\Http\Controllers\ExpedienteCarrerasController::class, 'empaquetar_nucleo'])->name('expedientes.empaquetar.nucleo');
+ Route::get('expedientes/empaquetar_carrera/{id}',[App\Http\Controllers\ExpedienteCarrerasController::class, 'empaquetar_carrera'])->name('expedientes.empaquetar.cerrara');
  /**-------------------------------------------------------------------------End Expedientes Carreras----------------------------------------------------------- */
 
 });

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <style>
-
-    </style>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
 @endpush
 @section('content')
 
@@ -301,7 +299,7 @@
 @include('expedientes.ing-sistema.form-add-file')
 
     @push('scripts')
-
+    <script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
         $(document).ready(function(){
@@ -508,26 +506,39 @@
 
             function delet_file(id,id_estudiante) {
                 console.log(id);
-                const sendGetRequest = async () => {
-                    try {
-                        const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
-                        console.log(resp);
-                        if (resp.data.status==200) {
-                            get_files_ing_system(id_estudiante);
-                        }
+                        swal({
+                            title: "Estas seguro?",
+                                        text: "Deseas eliminar el archivo?",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            const sendGetRequest = async () => {
+                                                try {
+                                                    const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
+                                                    console.log(resp);
+                                                    if (resp.data.status==200) {
+                                                        get_files_ing_system(id_estudiante);
+                                                        messeg(resp.data.success,'success');
+                                                    }
 
-                    } catch (err) {
-                        // Handle Error Here
-                    }
-                };
-                sendGetRequest();
+                                                } catch (err) {
+                                                    // Handle Error Here
+                                                }
+                                            };
+                                            sendGetRequest();
+                                        }
+                                    })
+
             }
         </script>
-                <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
                 <script src="/m2/assets/js/scripts.bundle.js"></script>
                 <!--end::Global Javascript Bundle-->
                 <!--begin::Page Vendors Javascript(used by this page)-->
-                <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
                 <!--end::Page Vendors Javascript-->
                 <!--begin::Page Custom Javascript(used by this page)-->
                 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>

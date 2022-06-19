@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @push('css')
-    <style>
-
-    </style>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
 @endpush
 @section('content')
     <div class="card">
@@ -184,7 +182,7 @@
 @include('expedientes.ing-sistema.form-add-file')
 
     @push('scripts')
-
+    <script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
     <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
@@ -325,11 +323,10 @@ function messeg(m,t) {
                             table+=`
                             <td>
                                 <span class="svg-icon svg-icon-2x svg-icon-primary me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
-                                     <path
-                                                    d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
-                                                    fill="currentColor"></path>
-                                </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+										<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22Z" fill="currentColor"></path>
+											<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"></path>
+											</svg>
                                 </span>
                             <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
                          </td>
@@ -337,7 +334,7 @@ function messeg(m,t) {
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
 
-									<a href="javascript:void(0)" onclick="delet_file(${resp.data.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+									<a href="javascript:void(0)" onclick="delet_file(${resp.data.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
 										<span class="svg-icon svg-icon-3">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 												<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
@@ -421,27 +418,39 @@ function messeg(m,t) {
 
             function delet_file(id,id_estudiante) {
                 console.log(id);
-                const sendGetRequest = async () => {
-                    try {
-                        const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
-                        console.log(resp);
-                        if (resp.data.status==200) {
-                            get_files_ing_system(id_estudiante);
-                            messeg(resp.data.success,'success');
-                        }
+                        swal({
+                            title: "Estas seguro?",
+                                        text: "Deseas eliminar el archivo?",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            const sendGetRequest = async () => {
+                                                try {
+                                                    const resp = await axios.delete("/expedientes/delete_file_ing_sistemas/"+id);
+                                                    console.log(resp);
+                                                    if (resp.data.status==200) {
+                                                        get_files_ing_system(id_estudiante);
+                                                        messeg(resp.data.success,'success');
+                                                    }
 
-                    } catch (err) {
-                        // Handle Error Here
-                    }
-                };
-                sendGetRequest();
+                                                } catch (err) {
+                                                    // Handle Error Here
+                                                }
+                                            };
+                                            sendGetRequest();
+                                        }
+                                    })
+
             }
         </script>
-                {{-- <script src="/metronic8/demo1/assets/plugins/global/plugins.bundle.js"></script>
-                <script src="/metronic8/demo1/assets/js/scripts.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
+                <script src="/m2/assets/js/scripts.bundle.js"></script>
                 <!--end::Global Javascript Bundle-->
                 <!--begin::Page Vendors Javascript(used by this page)-->
-                <script src="/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                {{-- <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
                 <!--end::Page Vendors Javascript-->
                 <!--begin::Page Custom Javascript(used by this page)-->
                 <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
@@ -453,6 +462,6 @@ function messeg(m,t) {
                 <script src="/m2/assets/js/custom/intro.js"></script>
                 <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
                 <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
-                <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
+                <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
     @endpush
 @endsection
