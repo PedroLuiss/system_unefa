@@ -48,7 +48,7 @@
 <html lang="en">
 	<!--begin::Head-->
 	<head>
-		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+		<title>SystUnefa</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -91,21 +91,24 @@
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
-							<a href="/metronic8/demo1/../demo1/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-2.svg" class="h-60px" />
+							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Bienvenido a Systnet</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystUnefa</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Systnet Es u sistema de gestion de  
-							<br>conexiones de internet</p>
+							<p class="fw-bold fs-2" style="color: #05156f;">SystUnefa sistema de gestion de
+							<br>Documentos Digitales</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
 						<!--begin::Illustration-->
-						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url(/m2/assets/media/illustrations/sketchy-1/13.png"></div>
+						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
+                                <p class="fw-bold fs-2" style="color: #05156f;">La innovacion es lo que distingue a los lideres
+                                <br>de los seguidores</p>
+                        </div>
 						<!--end::Illustration-->
 					</div>
 					<!--end::Wrapper-->
@@ -122,10 +125,10 @@
 								<!--begin::Heading-->
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-dark mb-3">Cambiar Password ?</h1>
+									<h1 class="text-dark mb-3">Cambiar Contraseña ?</h1>
 									<!--end::Title-->
 									<!--begin::Link-->
-									<div class="text-gray-400 fw-bold fs-4">Debes ingresar el email registrado para poder cambiar tu password.</div>
+									<div class="text-gray-400 fw-bold fs-4">Debes ingresar el email registrado para poder cambiar su contraseña.</div>
 									<!--end::Link-->
 								</div>
 								<!--begin::Heading-->
@@ -144,7 +147,7 @@
 								<div class="d-flex flex-wrap justify-content-center pb-lg-0">
 									<button type="button" id="kt_password_reset_submit" class="btn btn-lg btn-primary fw-bolder me-4">
 										<span class="indicator-label">Actualizar</span>
-										<span class="indicator-progress">Espere... 
+										<span class="indicator-progress">Espere...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 									<a href="{{route('login')}}" class="btn btn-lg btn-light-primary fw-bolder">Cancel</a>
