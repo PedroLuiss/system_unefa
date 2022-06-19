@@ -302,6 +302,7 @@
 
     @push('scripts')
 
+    <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
         $(document).ready(function(){
@@ -315,6 +316,34 @@
             // placeholder:"hhhhh"
         });
         });
+
+        function messeg(m,t) {
+            if (t=="success") {
+                $.notify(
+                    '<i class="fa fa-bell-o"></i><strong>Excelente</strong> ' +m+
+                        "",
+                    {
+                        type: t,
+                        allow_dismiss: true,
+                        delay: 2000,
+                        showProgressbar: false,
+                        timer: 300,
+                    }
+                );
+                return false;
+            }
+            $.notify(
+                '<i class="fa fa-bell-o"></i><strong>!Hoops¡</strong> ' +m+
+                    "",
+                {
+                    type: t,
+                    allow_dismiss: true,
+                    delay: 2000,
+                    showProgressbar: false,
+                    timer: 300,
+                }
+            );
+        }
         $('#select_estudiente').on('change',(e)=>{
             $('#kt_file_manager_new_folder').show();
             $('#box-all-file-ing-sistem').show(100);
@@ -350,13 +379,14 @@
                     get_files_ing_system($('#id_estudiantes').val());
                     // $('.modal_file').modal('hide');
                     $('#kt_modal_new_target_cancel').click();
-
+                    messeg(msg.success,'success');
                     $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
                 }else{
                     if (msg.campo=='file') {
                         $('#file').addClass('is-invalid');
                         $('#error-file').text("Debes seleccionar un archivo")
+                        messeg("Debes seleccionar un archivo",'danger');
                     }else{
                         $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
@@ -366,6 +396,7 @@
                     if (msg.campo=='code') {
                         $('#code').addClass('is-invalid');
                         $('#error-code').text("El codigo ya existe")
+                        messeg("El codigo ya existe",'danger');
                     }else{
                         $('#file').removeClass('is-invalid');
                     $('#error-file').text("")
@@ -514,6 +545,7 @@
                         console.log(resp);
                         if (resp.data.status==200) {
                             get_files_ing_system(id_estudiante);
+                            messeg(resp.data.success,'success');
                         }
 
                     } catch (err) {

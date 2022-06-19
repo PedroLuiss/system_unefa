@@ -29,10 +29,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /**---------------------------------------------------------Expedientes--------------------------------------------------------- */
     Route::get('/expedientes/ingenieria-de-sistemas', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_index'])->name('expedientes.ingsistemas.index');
+
     Route::get('/expedientes/ingenieria-de-sistemas/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_edit'])->name('expedientes.ingsistemas.edit');
     Route::get('/expedientes/ingenieria-de-sistemas/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_create'])->name('expedientes.ingsistemas.create');
     /**---------------------------------------------------------End Expedientes--------------------------------------------------------- */
 
+//electrica
+Route::get('/expedientes/ingenieria-electrica', [App\Http\Controllers\ExpedientesController::class, 'ing_electrica_index'])->name('expedientes.ingelectrica.index');
+Route::get('/expedientes/ingenieria-electrica/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_electrica_create'])->name('expedientes.ingelectrica.create');
+Route::get('/expedientes/ingenieria-electrica/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_electrica_edit'])->name('expedientes.ingelectrica.edit');
+
+//Agronomia
+Route::get('/expedientes/ingenieria-agronomica', [App\Http\Controllers\ExpedientesController::class, 'ing_agronomica_index'])->name('expedientes.ingagronomica.index');
+Route::get('/expedientes/ingenieria-agronomica/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_agronomica_create']);
+Route::get('/expedientes/ingenieria-agronomica/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_agronomica_edit']);
+
+//Administracion
+Route::get('/expedientes/administracion', [App\Http\Controllers\ExpedientesController::class, 'ing_administracion_index'])->name('expedientes.administracion.index');
+Route::get('/expedientes/administracion/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_administracion_create'])->name('expedientes.administracion.create');
+Route::get('/expedientes/administracion/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_administracion_edit'])->name('expedientes.administracion.edit');
+
+//Enfermeria
+Route::get('/expedientes/enfermeria', [App\Http\Controllers\ExpedientesController::class, 'ing_enfermeria_index'])->name('expedientes.enfermeria.index');
+Route::get('/expedientes/enfermeria/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_enfermeria_create'])->name('expedientes.enfermeria.create');
+Route::get('/expedientes/enfermeria/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_enfermeria_edit'])->name('expedientes.enfermeria.edit');
+
+//Economia
+Route::get('/expedientes/economia', [App\Http\Controllers\ExpedientesController::class, 'ing_economia_index'])->name('expedientes.economia.index');
+Route::get('/expedientes/economia/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_economia_create'])->name('expedientes.economia.create');
+Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_economia_edit'])->name('expedientes.economia.edit');
 
 
  /**-------------------------------------------------------------------------Expedientes----------------------------------------------------------- */

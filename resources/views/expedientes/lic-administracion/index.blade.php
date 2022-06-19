@@ -32,7 +32,7 @@
 
 
                 <!--begin::Add user-->
-                <a href="{{route('expedientes.ingelectrica.create')}}" class="btn btn-primary" >
+                <a href="{{route('expedientes.administracion.create')}}" class="btn btn-primary" >
                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                 <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -138,7 +138,7 @@
                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true" style="">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="{{route('expedientes.ingelectrica.edit',$value->id)}}" class="menu-link px-3">Edit</a>
+                                <a href="{{route('expedientes.administracion.edit',$value->id)}}" class="menu-link px-3">Edit</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->

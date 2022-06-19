@@ -87,6 +87,56 @@
                             </a>
                         </div>
                     </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('expedientes.ingelectrica.index')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ingeniería Electrica</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('expedientes.ingagronomica.index')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ingeniería Agronómica</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('expedientes.administracion.index')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Lic. Administracón</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('expedientes.enfermeria.index')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Lic. Enfermería</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('expedientes.economia.index')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Lic. Economía</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">

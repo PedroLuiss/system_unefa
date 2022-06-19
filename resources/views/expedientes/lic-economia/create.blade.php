@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Ingenieria De Sistemas</span>
+                <span class="card-label fw-bolder text-dark">Creación De Expedientes - Lic. Economía</span>
                 <span class="text-muted mt-1 fw-bold fs-7">Los campos son requerido</span>
             </h3>
         </div>
@@ -176,7 +176,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
+                    <a href="{{route('expedientes.economia.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
                 </div>
             </div>
         </div>
@@ -184,6 +184,7 @@
 @include('expedientes.ing-sistema.form-add-file')
 
     @push('scripts')
+
     <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
