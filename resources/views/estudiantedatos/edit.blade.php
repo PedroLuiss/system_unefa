@@ -6,9 +6,7 @@
         <div class="card-header">
             <h3 class="card-title">Actualizacion Datos Estudiantes</h3>
             <div class="card-toolbar">
-                <button type="button" class="btn btn-sm btn-light">
-                    Action
-                </button>
+                <a href="{{route('home')}}" type="button" class="btn btn-sm btn-primary">Regresar</a>
             </div>
         </div>
         <div class="card-body card-scroll h-800px">

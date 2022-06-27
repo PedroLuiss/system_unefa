@@ -30,11 +30,7 @@
                 <!--end::Search-->
             </div>
 
-
-
             <div class="buttton-register" style="text-align:end;">
-
-
 
                 <a href="{{route('estudiantedatos.create')}}" class="btn btn-primary" ><span class="svg-icon svg-icon-1"><svg><!--begin::Svg Icon | path: assets/media/icons/duotune/communication/com013.svg-->
                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -44,6 +40,7 @@
                     <!--end::Svg Icon--></svg></span>Registro
                 </a>
 
+                <a href="{{route('home')}}" type="button" class="btn btn-sm btn-primary">Ir al Home</a>
 
             </div>
 
