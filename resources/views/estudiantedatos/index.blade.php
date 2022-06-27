@@ -76,7 +76,7 @@
                         @foreach ($estu as $estus)
                         <tr>
                             <td >
-                               <a href="{{route('estudiantedatos.edit')}}">
+                               <a href="{{route('estudiantedatos.edit',$estus->id)}}">
                                     <span  class="svg-icon svg-icon-2x svg-icon-primary me-4" s>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
                                             <path
@@ -116,6 +116,8 @@
                 </table>
             </div>
 
+</div>
+</div>
 </div>
 @push('scripts')
 <script>var hostUrl = "/m2/assets/";</script>
