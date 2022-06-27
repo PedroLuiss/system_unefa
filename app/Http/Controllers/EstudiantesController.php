@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\carrera;
 use App\Models\Estudiantes;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EstudiantesController extends Controller
 {
@@ -32,9 +33,37 @@ class EstudiantesController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
 
-        $estud_st=Estudiantes::create([
+            'cedula' =>['required'],
+            'nombres' =>['required'],
+            'primer_apellido' =>['required'],
+            'segundo_apellido' =>['required'],
+            'carrera' =>['required'],
+            'fe_ingreso' =>['required'],
+            'inicio_programa' =>['required'],
+            'sexo' =>['required'],
+            'sanguineo' =>['required'],
+            'edo_civil' =>['required'],
+            'condicion' =>['required'],
+            'nucleo' =>['required'],
+            'etnia' =>['required'],
+            'discapacidad' =>['required'],
+            'pais' =>['required'],
+            'etnia' =>['required'],
+            'fe_nac' =>['required'],
+            'lugar_nac' =>['required'],
+            'ciudad' =>['required'],
+            'direccion' =>['required'],
+            'tel_hab' =>['required','max:15'],
+            'tel_cel' =>['required','max:15'],
+            'email' => ['required']
+
+            ]);
+
+            $data = $request->all();
+
+            $estud_st =  Estudiantes::create([
             'cedula'=> $data['cedula'],
             'nombres'=> $data['nombres'],
             'primer_apellido'=> $data['primer_apellido'],
@@ -59,41 +88,20 @@ class EstudiantesController extends Controller
             'email'=> $data['email']
         ]);
 
-        $messege = $estud_st ? 'Etudiante Creado Correctamente' : 'Error al agregar';
+        $messege = $estud_st ? 'Estudiante Creado Correctamente' : 'Error al agregar';
         return redirect()->route('estudiantedatos.index')->with('mensaje', $messege);
     }
 
-    public function edit(Request $request)
+    public function edit(Estudiantes $estud_st)
     {
-        $data = $request->all();
-        /*$estud_st=Estudiantes::where('id',$data['cedula'])->update([
-            'cedula'=> $data['cedula'],
-            'nombres'=> $data['nombres'],
-            'primer_apellido'=> $data['primer_apellido'],
-            'segundo_apellido'=> $data['segundo_apellido'],
-            'carreras_id'=> $data['carrera'],
-            'fe_ingreso'=> $data['fe_ingreso'],
-            'inicio_programa'=> $data['inicio_programa'],
-            'sexo'=> $data['sexo'],
-            'sanguineo'=> $data['sanguineo'],
-            'edo_civil'=> $data['edo_civil'],
-            'condicion'=> $data['condicion'],
-            'nucleo'=> $data['nucleo'],
-            'etnia'=> $data['etnia'],
-            'discapacidad'=> $data['discapacidad'],
-            'pais'=> $data['pais'],
-            'fe_nac'=> $data['fe_nac'],
-            'lugar_nac'=> $data['lugar_nac'],
-            'ciudad'=> $data['ciudad'],
-            'direccion'=> $data['direccion'],
-            'tel_hab'=> $data['tel_hab'],
-            'tel_cel'=> $data['tel_cel'],
-            'email'=> $data['email']
-        ]);
+        $carreras = carrera::all();
+        return view('estudiantedatos.edit',compact('estud_st','carreras'));
+    }
 
+    public function update()
+    {
 
-        return response()->json(['success' => 'Datos Actualizdos correctamente','status' => 200],201);
-     */return view('estudiantedatos.edit');
+        return view('estudiantedatos.update');
     }
 
     public function create()

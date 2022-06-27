@@ -15,10 +15,10 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->integer('cedula');
-            $table->string('nombres')->nullable();
-            $table->string('primer_apellido')->nullable();
-            $table->string('segundo_apellido')->nullable();
+            $table->string('cedula');
+            $table->string('nombres');
+            $table->string('primer_apellido');
+            $table->string('segundo_apellido');
             $table->string('carreras_id');
             $table->date('fe_ingreso');
             $table->date('inicio_programa');

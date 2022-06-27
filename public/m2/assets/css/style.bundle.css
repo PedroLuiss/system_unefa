@@ -7318,7 +7318,7 @@ textarea.form-control-lg {
 }
 
 .w-500px {
-  width: 500px !important;
+  width: 430px !important;
 }
 
 .w-550px {
@@ -37306,7 +37306,7 @@ a:hover {
 }
 .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
   border: 0;
-  padding: calc(0.75rem + 1px) calc(1.5rem + 1px);
+  padding: 10px 10px 10px 10px;
 }
 .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon).btn-lg, .btn-group-lg > .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
   padding: calc(0.825rem + 1px) calc(1.75rem + 1px);
@@ -39782,11 +39782,17 @@ code:not([class*=language-]) {
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 .form-select.form-select-transparent {
-  background-color: transparent;
-  border-color: transparent;
-  color: #5E6278;
+  background-color: #1e1e2d !important;
+  border-color: #1e1e2d;
+  color: #fdfdfd;
   padding: 15px;
 }
+
+#lista:hover{
+    color:#ffffff;
+}
+
+
 .form-select.form-select-transparent::placeholder {
   color: #A1A5B7;
 }
