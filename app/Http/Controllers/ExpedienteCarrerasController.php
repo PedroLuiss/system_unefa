@@ -13,7 +13,7 @@ use File;
 class ExpedienteCarrerasController extends Controller
 {
 
-    public $carpeta_nucleo="UNEFA-LARA";
+    public $carpeta_nucleo="SG-010-OC";
     public $carpeta_ing_sistema="\INGENIERIA DE SISTEMAS";
     public $carpeta_ing_electrica="\INGENIERIA DE ELECTRICA";
     public $carpeta_ing_agronomica="\INGENIERIA AGRONOMO";
@@ -48,7 +48,7 @@ class ExpedienteCarrerasController extends Controller
             ->where('estudiantes.carreras_id',$all_carreras[$j]->id)->get();
 
             for ($i=0; $i < count($expedie); $i++) {  //el metodo count() me trae la cantidad de registro en un array
-                $all_perio= "UNEFA-LARA"; //nombre del zip
+                $all_perio= "SG-010-OC"; //nombre del zip
 
                $filename = $all_perio.".zip"; // nombre del zip
                if ($zip->open(public_path($filename),ZipArchive::CREATE) == TRUE) {
@@ -117,9 +117,13 @@ class ExpedienteCarrerasController extends Controller
 
              $expedie = Expediente::select('*')->join('estudiantes', 'estudiantes.id', '=', 'expedientes.estudiantes_id')
              ->where('estudiantes.carreras_id',$all_carreras[0]->id)->get();
+             if (!count($expedie)) {
+                $messege = 'No hay estudiantes registrados';
+                return redirect()->route('expedientes.carreras.index')->with('mensaje', $messege);
+             }
             // return response($expedie);
              for ($i=0; $i < count($expedie); $i++) {  //el metodo count() me trae la cantidad de registro en un array
-                 $all_perio= "UNEFA-LARA-".$all_carreras[0]->code."-".strtoupper($all_carreras[0]->name); //nombre del zip
+                 $all_perio= "SG-010-OC-".$all_carreras[0]->code."-".strtoupper($all_carreras[0]->name); //nombre del zip
 
                 $filename = $all_perio.".zip"; // nombre del zip
                 if ($zip->open(public_path($filename),ZipArchive::CREATE) == TRUE) {
