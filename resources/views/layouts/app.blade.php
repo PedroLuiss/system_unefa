@@ -936,13 +936,19 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Page title-->
 								<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 									<!--begin::Title-->
-									<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Home
+									<a href="{{route('home')}}" >
+                                        <button  class="btn btn-danger btn-xs" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+                                            <rect opacity="0.3" x="8" y="3" width="5" height="5" rx="4" fill="currentColor"/>
+                                        </svg> Ir al Home
+                                        </button>
+                                   </a>
 									<!--begin::Separator-->
 									<span class="h-20px border-1 border-gray-200 border-start ms-3 mx-2 me-1"></span>
 									<!--end::Separator-->
 									<!--begin::Description-->
 									{{-- <span class="text-muted fs-7 fw-bold ms-2">#XRS-45670</span> --}}
-									<!--end::Description--></h1>
+									<!--end::Description-->
 									<!--end::Title-->
 								</div>
 								<!--end::Page title-->

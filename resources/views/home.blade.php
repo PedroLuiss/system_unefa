@@ -15,8 +15,8 @@
                     <h3 class="fs-2hx text-dark mb-6">UNEFA LARA</h3>
                     <!--end::Title-->
                     <!--begin::Text-->
-                    <div class="fs-5 text-muted fw-bold">La innovacion es lo que distingue a los lideres
-                        de los seguidores</div>
+                    <div class="fs-5 text-dark mb-6">"La innovacion es lo que distingue a los lideres
+                        de los seguidores".</div>
                     <!--end::Text-->
                 </div>
                 <!--end::Top-->
@@ -48,10 +48,10 @@
             <!--begin::Heading-->
             <div class="text-center mb-17">
                 <!--begin::Title-->
-                <h3 class="fs-2hx text-dark mb-5">Mision</h3>
+                <h3 class="fs-2hx text-dark mb-5">Visión</h3>
                 <!--end::Title-->
                 <!--begin::Sub-title-->
-                <div class="fs-5 text-muted fw-bold">Formar a través de la docencia, la investigación y la extensión, ciudadanos corresponsables con la seguridad y Defensa Integral de la Nación, comprometidos con la Revolución Bolivariana, con competencias emancipadoras y humanistas necesarias para sustentar los planes de desarrollo del país, promoviendo la producción y el intercambio de saberes, como mecanismo de integración latinoamericana y caribeña.</div>
+                <div class="fs-5 text-muted fw-bold">Ser la primera universidad socialista, reconocida por su Excelencia Educativa en el territorio nacional e internacional, líder en los saberes humanistas, científicos, tecnológicos y militares, inspirada en el ideario bolivariano.</div>
                 <!--end::Sub-title=-->
             </div>
             <!--end::Heading-->
@@ -195,21 +195,18 @@
             <!--begin::Top-->
             <div class="mb-13">
                 <!--begin::Title-->
-                <h3 class="fs-2hx text-dark mb-5">Join Us</h3>
+                <h3 class="fs-2hx text-dark mb-5">Misión</h3>
                 <!--end::Title-->
                 <!--begin::Text-->
-                <div class="fs-5 text-muted fw-bold">Save thousands to millions of bucks by using single tool
-                <br>for different amazing and great useful admin</div>
+                <div class="fs-5 fw-bold text-gray-600 text-start mb-15">Formar a través de la docencia, la investigación y la extensión, ciudadanos corresponsables con la seguridad y Defensa Integral de la Nación, comprometidos con la Revolución Bolivariana, con competencias emancipadoras y humanistas necesarias para sustentar los planes de desarrollo del país, promoviendo la producción y el intercambio de saberes, como mecanismo de integración latinoamericana y caribeña.</div>
                 <!--end::Text-->
             </div>
             <!--end::Top-->
             <!--begin::Text-->
-            <p class="fs-5 fw-bold text-gray-600 text-start mb-15">First, a disclaimer – the entire process of writing a blog post often takes more than a couple of hours, even if you can type eighty words per minute and your writing skills are sharp. From the seed of the idea to finally hitting “Publish,” you might spend several days or maybe even a week “writing” a blog post, but it’s important to spend those vital hours planning
-            <a href="/metronic8/demo1/../demo1/dark/pages/blog/post.html" class="link-primary pe-1">Your Post</a>(yes, thinking counts as working if you’re a blogger) before you actually write it.</p>
+            <p class="fs-5 fw-bold text-gray-600 text-start mb-15">La Secretaría General de la UNEFA es una dependencia académico/administrativa, que actúa como organismo de coordinación, ejecución, supervisión, evaluación y de apoyo, en los procesos referidos a ingreso, permanencia, traslado y egreso de estudiantes; registro y control de los títulos, diplomas y certificados que otorga la universidad.
+                <br><h5>Jefe o encargado: Rivert Vargas</h5>
             <!--end::Text-->
-            <!--begin::Action-->
-            <a href="/metronic8/demo1/../demo1/dark/pages/careers/apply.html" class="btn btn-primary mb-5">Apply Now</a>
-            <!--end::Action-->
+
         </div>
         <!--end::Join-->
         <!--begin::Card-->

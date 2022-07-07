@@ -3,12 +3,7 @@
     @section('content')
 
     <div class="card shadow-sm">
-        <div class="card-header">
-            <h3 class="card-title">Registro Estudiantes</h3>
-            <div class="card-toolbar">
-                <a href="{{route('estudiantedatos.index')}}" type="button" class="btn btn-sm btn-primary">Regresar</a>
-            </div>
-        </div>
+
         <div class="card-body card-scroll h-800px">
 
             <form action="{{route('estudiantedatos.store')}}" method="POST" novalidate>
