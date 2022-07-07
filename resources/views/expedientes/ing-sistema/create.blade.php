@@ -174,7 +174,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar</a>
+                    <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Guardar Datos</a>
                 </div>
             </div>
         </div>

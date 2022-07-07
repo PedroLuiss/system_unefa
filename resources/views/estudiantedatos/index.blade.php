@@ -32,15 +32,13 @@
 
             <div class="buttton-register" style="text-align:end;">
 
-                <a href="{{route('estudiantedatos.create')}}" class="btn btn-primary" ><span class="svg-icon svg-icon-1"><svg><!--begin::Svg Icon | path: assets/media/icons/duotune/communication/com013.svg-->
+                <a href="{{route('estudiantedatos.create')}}" class="btn btn-sm btn-primary" ><span class="svg-icon svg-icon-1"><svg><!--begin::Svg Icon | path: assets/media/icons/duotune/communication/com013.svg-->
                     <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"/>
                     <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"/>
                     </svg></span>
                     <!--end::Svg Icon--></svg></span>Registro
                 </a>
-
-                <a href="{{route('home')}}" type="button" class="btn btn-sm btn-primary">Ir al Home</a>
 
             </div>
 
@@ -73,19 +71,17 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach ($estu as $estus)
                         <tr>
                             <td >
-                               <a href="{{route('estudiantedatos.edit',$estus->id)}}">
-                                    <span  class="svg-icon svg-icon-2x svg-icon-primary me-4" s>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
-                                            <path
-                                                        d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
-                                                        fill="currentColor">
-                                            </path>
-                                    </svg>
-                                    </span>
-                                  </a>
+                                <a href="{{route('estudiantedatos.edit',$estus->id)}}">
+                                    <button  class="btn btn-danger btn-xs" >Editar  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                      </svg>
+                                    </button>
+                                </a>
                             </td>
 
                             <td>{{$estus->cedula}}</td>
