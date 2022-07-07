@@ -89,7 +89,7 @@ class ExpedienteCarrerasController extends Controller
 
                    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
                    $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula; //aqui creo la carpeta del estudiante
-                   $n=$this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
+                   $n=$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
                    $folder=public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
 
                    $zip->addGlob("$folder*.*",GLOB_BRACE, [
