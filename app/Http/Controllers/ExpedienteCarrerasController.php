@@ -14,12 +14,12 @@ class ExpedienteCarrerasController extends Controller
 {
 
     public $carpeta_nucleo="SG-010-OC";
-    public $carpeta_ing_sistema="\INGENIERIA DE SISTEMAS";
-    public $carpeta_ing_electrica="\INGENIERIA DE ELECTRICA";
-    public $carpeta_ing_agronomica="\INGENIERIA AGRONOMO";
-    public $carpeta_emfermeria="\LIC. EMFERMERIA";
-    public $carpeta_economia="\LIC. ECONOMIA";
-    public $carpeta_administracion="\LIC. ADMINISTRACION";
+    public $carpeta_ing_sistema="INGENIERIA DE SISTEMAS";
+    public $carpeta_ing_electrica="INGENIERIA DE ELECTRICA";
+    public $carpeta_ing_agronomica="INGENIERIA AGRONOMO";
+    public $carpeta_emfermeria="LIC. EMFERMERIA";
+    public $carpeta_economia="LIC. ECONOMIA";
+    public $carpeta_administracion="LIC. ADMINISTRACION";
 
     public function index()
     {
@@ -90,7 +90,7 @@ class ExpedienteCarrerasController extends Controller
                    $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
                    $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula; //aqui creo la carpeta del estudiante
                    $n=$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
-                   $folder=public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
+                   $folder=public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
 
                    $zip->addGlob("$folder*.*",GLOB_BRACE, [
                        "add_path"=> $n,
@@ -164,8 +164,8 @@ class ExpedienteCarrerasController extends Controller
 
                     $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
                     $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula; //aqui creo la carpeta del estudiante
-                    $n=$this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
-                    $folder=public_path($this->carpeta_nucleo.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
+                    $n=$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR;
+                    $folder=public_path($this->carpeta_nucleo.DIRECTORY_SEPARATOR.$carpeta_carrera.DIRECTORY_SEPARATOR.$carpeta_estudiantes.DIRECTORY_SEPARATOR);
 
                     $zip->addGlob("$folder*.*",GLOB_BRACE, [
                         "add_path"=> $n,

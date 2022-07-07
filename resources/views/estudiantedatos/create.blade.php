@@ -137,7 +137,7 @@
 
                         <div class="div-lista" style="display: flex; padding: 15px; gap:20px;">
 
-                            <select id="lista" class="form-select form-select-transparent @error('carrera') is-invalid @enderror" value="{{old('carrera')}} " name="carrera" aria-label="CARRERA">
+                            <select id="lista" class="form-select form-select-transparent @error('carrera') is-invalid @enderror" value="{{old('carrera')}} " name="carrera" >
                                 <option>CARRERA</option>
                                     @foreach ($carreras as $val)
                                     <option value="{{$val->id}} ">{{$val->code." - ".$val->name}}</option>
