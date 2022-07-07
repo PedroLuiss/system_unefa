@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('mensaje'))
-<div class="alert alert-danger">
-    <strong>{{ session('mensaje') }}</strong>
-</div>
-@endif
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}"> --}}
 <link rel="stylesheet" type="text/css" href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
 <div class="post d-flex flex-column-fluid" id="kt_post">
