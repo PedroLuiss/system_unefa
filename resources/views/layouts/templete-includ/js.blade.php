@@ -1,8 +1,4 @@
-
-
-
 <script>
-
 </script>
 <script>var hostUrl = "/m2/assets/";</script>
 <!--begin::Global Javascript Bundle(used by all pages)-->
@@ -18,8 +14,8 @@
 <script src="/m2/assets/js/custom/widgets.js"></script>
 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
 <script src="/m2/assets/js/custom/intro.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script>
+{{-- <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script> --}}
+{{-- <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script> --}}
+{{-- <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
 <!--end::Page Custom Javascript-->
 @stack('scripts')

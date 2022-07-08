@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('mensaje'))
+<div class="alert alert-danger">
+    <strong>{{ session('mensaje') }}</strong>
+</div>
+@endif
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}"> --}}
 <link rel="stylesheet" type="text/css" href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
 <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -130,7 +135,6 @@
 <script src="/m2/assets/js/custom/intro.js"></script>
     {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
 <script>
-
 // $('#kt_table_users').dataTable( {
 //         "language": {
 //             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
