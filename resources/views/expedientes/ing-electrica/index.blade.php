@@ -181,7 +181,7 @@
 <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Page Vendors Javascript-->
 <!--begin::Page Custom Javascript(used by this page)-->
-<script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script>
+{{-- <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script> --}}
 {{-- <script src="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
 <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
 <script src="/m2/assets/js/widgets.bundle.js"></script>

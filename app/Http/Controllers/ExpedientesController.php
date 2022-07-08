@@ -15,7 +15,7 @@ use File;
 
 class ExpedientesController extends Controller
 {
-    public $carpeta_nucleo="UNEFA-LARA";
+    public $carpeta_nucleo="SG-010-OC";
     public $carpeta_ing_sistema="\INGENIERIA DE SISTEMAS";
     public $carpeta_ing_electrica="\INGENIERIA DE ELECTRICA";
     public $carpeta_ing_agronomica="\INGENIERIA AGRONOMO";
