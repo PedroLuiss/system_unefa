@@ -101,8 +101,8 @@ class ExpedientesController extends Controller
     $y = date("Y", $fechaComoEntero);
 
     $periodo = ($m>=06) ? "2-".$y : "1-".$y ;
-
-    $carpeta_estudiantes=strtoupper($estud->primer_apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula;
+    $apellido = $estud->primer_apellido==null?$estud->segundo_apellido:$estud->primer_apellido;
+    $carpeta_estudiantes=strtoupper($apellido)." ".strtoupper(substr($estud->nombres,0, 1))." ".$periodo."-".$data_carrera->code."-V-".$estud->cedula;
 
        $file = $request->file('file');
        if($file){
