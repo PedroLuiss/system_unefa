@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profesore;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProfesoresController extends Controller
 {
@@ -33,9 +35,7 @@ class ProfesoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-
-        
+    {
         $request->validate([
 
             'cedula' => [
@@ -46,31 +46,30 @@ class ProfesoresController extends Controller
             'nombres' =>['required'],
             'primer_apellido' =>[],
             'segundo_apellido' =>[],
-            'especializacion' =>['required'],
-            
-            
+            'especialidad' =>['required'],
+
+
         ],[],[
             'cedula' => '',
             'nombres' => '',
             'primer_apellido' => '',
             'segundo_apellido' => '',
-            'especializacion' => '',
-            
-        ]);
+            'especialidad' => '',
 
+        ]);
+        // dd($request);
             $data = $request->all();
-echo "<pre>" . print_r($data,1) . "</pre>";die; 
-            $profe_st =  Profesores::create([
+        $profe_st =  Profesore::create([
             'cedula'=> $data['cedula'],
-            'nombres'=> $data['nombres'],
+            'nombre'=> $data['nombres'],
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
-            'especializacion'=> $data['especializacion'],
-            
+            'especialidad'=> $data['especialidad'],
+
         ]);
 
         $messege = $profe_st ? 'Profesor Creado Correctamente' : 'Error al agregar';
-        return redirect()->route('profesores.index')->with('mensaje', $messege);
+        return redirect()->route('profesoresdatos.index')->with('mensaje', $messege);
     }
 
     /**
