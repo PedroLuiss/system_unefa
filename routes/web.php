@@ -29,6 +29,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/estudiantedatos/{id}/edit',[App\Http\Controllers\EstudiantesController::class, 'edit'])->name('estudiantedatos.edit');
     Route::put('/estudiantedatos/update',[App\Http\Controllers\EstudiantesController::class, 'update'])->name('estudiantedatos.update');
 
+
+    //PROFESORES 
+    Route::get('/profesoresdatos', [App\Http\Controllers\ProfesoresController::class, 'index'])->name('profesoresdatos.index');
+
+    Route::get('/profesoresdatos/create', [App\Http\Controllers\ProfesoresController::class, 'create'])->name('profesoresdatos.create');
+
+
+    Route::post('/profesoresdatos',[App\Http\Controllers\EstudiantesController::class, 'store'])->name('profesoresdatos.store');
+
+    Route::get('/profesoresdatos/{id}/edit',[App\Http\Controllers\EstudiantesController::class, 'edit'])->name('profesoresdatos.edit');
+
+    Route::put('/profesoresdatos/update',[App\Http\Controllers\EstudiantesController::class, 'update'])->name('profesoresdatos.update');
+
     /**---------------------------------------------------------Expedientes--------------------------------------------------------- */
     Route::get('/expedientes/ingenieria-de-sistemas', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_index'])->name('expedientes.ingsistemas.index');
 

@@ -81,7 +81,7 @@
                     <!--begin::Person-->
                     <div class="mb-0">
                         <!--begin::Name-->
-                        <a href="http://www.unefa.edu.ve/portal/plantillainter.php" class="text-dark fw-bolder text-hover-primary fs-3">Gaceta Univercitaria</a>
+                        <a href="http://www.unefa.edu.ve/portal/plantillainter.php" class="text-dark fw-bolder text-hover-primary fs-3">Gaceta Universitaria</a>
                         <!--end::Name-->
                         <!--begin::Position-->
                         <!--begin::Position-->
@@ -204,7 +204,7 @@
             <!--end::Top-->
             <!--begin::Text-->
             <p class="fs-5 fw-bold text-gray-600 text-start mb-15">La Secretaría General de la UNEFA es una dependencia académico/administrativa, que actúa como organismo de coordinación, ejecución, supervisión, evaluación y de apoyo, en los procesos referidos a ingreso, permanencia, traslado y egreso de estudiantes; registro y control de los títulos, diplomas y certificados que otorga la universidad.
-                <br><h5>Jefe o encargado: Rivert Vargas</h5>
+                <br><h5>Jefe o encargado: Riberth Vargas</h5>
             <!--end::Text-->
 
         </div>
