@@ -15,7 +15,10 @@ class ProfesoresController extends Controller
      */
     public function index()
     {
-        return view('profesoresdatos.index');
+
+        $profe_all = Profesore::All();
+
+        return view('profesoresdatos.index', compact('profe_all'));
     }
 
     /**
