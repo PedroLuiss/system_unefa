@@ -17,21 +17,21 @@ class ProfesoresSeeder extends Seeder
         $data = [
             [
                 'cedula'     => 12343568,
-                'nombres'    => 'Eduar',
+                'nombre'    => 'Eduar',
                 'primer_apellido'    => 'Pereira',
                 'segundo_apellido'    => 'Rojas',
                 'especialidad'    =>'Ingenieria Sistema',
 
             ],[
                 'cedula'     => 26846596,
-                'nombres'    => 'Jose',
+                'nombre'    => 'Jose',
                 'primer_apellido'    => 'guzman',
                 'segundo_apellido'    => 'Peña',
                 'especialidad'    =>'Ingenieria Sistema',
 
             ],[
                 'cedula'     => 4234563,
-                'nombres'    => 'Edecio',
+                'nombre'    => 'Edecio',
                 'primer_apellido'    => 'Freitez',
                 'segundo_apellido'    => 'Mendoza',
                 'especialidad'    =>'Ingenieria Electrica',
