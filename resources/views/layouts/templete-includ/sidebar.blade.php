@@ -91,15 +91,15 @@
                         <span class="menu-title">Ante-proyectos-sc</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    
+
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{{route('serviciocomunitario.listfaseone')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Grupos</span>
+                                <span class="menu-title">Fase Nº1</span>
                             </a>
                         </div>
 
@@ -131,7 +131,7 @@
                 </div>
 
 
-                
+
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">

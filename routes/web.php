@@ -92,5 +92,11 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  Route::get('expedientes/empaquetar_carrera/{id}',[App\Http\Controllers\ExpedienteCarrerasController::class, 'empaquetar_carrera'])->name('expedientes.empaquetar.cerrara');
  /**-------------------------------------------------------------------------End Expedientes Carreras----------------------------------------------------------- */
 
+ /**-------------------------------------------------------------------------Servicio Comunitario---------------------------------------------------------- */
+ Route::get('servicio-comunitario/faseone',[App\Http\Controllers\ServicioComunitarioController::class,'list_faseone'])->name('serviciocomunitario.listfaseone');
+ Route::get('servicio-comunitario/faseone/crear', [App\Http\Controllers\ServicioComunitarioController::class, 'faseone_create'])->name('faseone.create');
+ Route::post('servicio-comunitario/faseone/estudent/store', [App\Http\Controllers\ServicioComunitarioController::class, 'temp_store_student'])->name('faseone.temp_store_student');
+ /**-------------------------------------------------------------------------End Servicio Comunitario----------------------------------------------------------- */
+
 });
 

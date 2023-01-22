@@ -19,3 +19,9 @@
 {{-- <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
 <!--end::Page Custom Javascript-->
 @stack('scripts')
+<script>
+    function base_url() {
+        let url = '{{url('/')}}'
+        return url;
+    }
+</script>

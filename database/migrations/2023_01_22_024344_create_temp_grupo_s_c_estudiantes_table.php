@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\Estudiantes;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGrupoSCEstudiantesTable extends Migration
+class CreateTempGrupoSCEstudiantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +15,10 @@ class CreateGrupoSCEstudiantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('grupo_s_c_estudiantes', function (Blueprint $table) {
+        Schema::create('temp_grupo_s_c_estudiantes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Estudiantes::class)->nullable();
-            $table->string("observaciones")->nullable();
-            $table->float("nota_eno")->nullable();
-            $table->float("nota_two")->nullable();
-            $table->integer("status")->default(1);
+            $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateGrupoSCEstudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grupo_s_c_estudiantes');
+        Schema::dropIfExists('temp_grupo_s_c_estudiantes');
     }
 }
