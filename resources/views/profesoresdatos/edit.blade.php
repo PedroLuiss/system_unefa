@@ -78,7 +78,7 @@
                         </div>
 
                        
-                        <button type="submit" class="btn btn-success gu" style="left: 40%; align-items: center; position: relative;">Actualizar Datos</button>
+                        <button type="submit" class="btn btn-success gu" style="width: 30vw;position: relative;left: 18vw;margin-bottom: 1vw;">Actualizar Datos</button>
             </form>
 
         </div>
