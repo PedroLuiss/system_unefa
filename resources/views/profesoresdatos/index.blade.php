@@ -69,7 +69,7 @@
                             </td>
 
                             <td>{{$profe_alls->cedula}}</td>
-                            <td>{{$profe_alls->nombres}}</td>
+                            <td>{{$profe_alls->nombre}}</td>
                             <td>{{$profe_alls->primer_apellido}}</td>
                             <td>{{$profe_alls->segundo_apellido}}</td>
                             <td>{{$profe_alls->especialidad}}</td>

@@ -94,7 +94,10 @@ class ProfesoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profe_ed = Profesore::find($id);
+        
+
+        return view('profesoresdatos.edit',compact('profe_ed'));
     }
 
     /**
@@ -104,9 +107,42 @@ class ProfesoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+
+            'cedula' => [
+                'required',
+                'max:20',
+                Rule::unique('profesores','cedula')->ignore($request->id,'id'),
+            ],
+            'nombres' =>['required'],
+            'primer_apellido' =>[],
+            'segundo_apellido' =>[],
+            'especialidad' =>['required'],
+
+
+        ],[],[
+            'cedula' => '',
+            'nombres' => '',
+            'primer_apellido' => '',
+            'segundo_apellido' => '',
+            'especialidad' => '',
+
+        ]);
+        // dd($request);
+        $data = $request->all();
+        $profe_st =  Profesore::where('id',$data['id'])->update([
+            'cedula'=> $data['cedula'],
+            'nombre'=> $data['nombres'],
+            'primer_apellido'=> $data['primer_apellido'],
+            'segundo_apellido'=> $data['segundo_apellido'],
+            'especialidad'=> $data['especialidad'],
+
+        ]);
+
+        $messege = $profe_st ? 'Profesores Actualizado Correctamente' : 'Error al actualizar';
+        return redirect()->route('profesoresdatos.index')->with('mensaje', $messege);
     }
 
     /**
