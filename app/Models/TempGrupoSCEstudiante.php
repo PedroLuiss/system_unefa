@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TempGrupoSCEstudiante extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'estudiantes_id',
+        'users_id',
+    ];
 }
