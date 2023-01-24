@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Estudiantes;
+use App\Models\GrupoSC;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ class CreateGrupoSCEstudiantesTable extends Migration
     {
         Schema::create('grupo_s_c_estudiantes', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(GrupoSC::class)->nullable();
             $table->foreignIdFor(Estudiantes::class)->nullable();
             $table->string("observaciones")->nullable();
             $table->float("nota_eno")->nullable();

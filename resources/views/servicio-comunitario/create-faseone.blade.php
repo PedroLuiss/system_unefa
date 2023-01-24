@@ -22,7 +22,7 @@
                             </span>
                             <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
                                 <select class="form-select rounded-start-0" data-control="select2"
-                                    data-placeholder="Seleccionar Profesor" id="select_estudiente">
+                                    data-placeholder="Seleccionar Profesor" id="select_profesor">
                                     <option></option>
                                     @foreach ($profesor as $value)
                                         <option value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
@@ -165,7 +165,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{route('expedientes.ingsistemas.index')}}" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Crear Grupo</a>
+                            <a href="javascript:void(0);" id="btn-guardar-all-files-ing-sistema" class="btn btn-success" style="left: 40%; align-items: center; position: relative;">Crear Grupo</a>
                         </div>
                     </div>
                 </div>
@@ -274,7 +274,7 @@ function messeg(m,t) {
                     console.log(resp.data);
                     if (resp.data=="") {
                             table+=' <tr class="iten">';
-                            table+='<td colspan="4" class="text-center"> <h3 class="text-muted">Sin Archivos</h3>  </td> ';
+                            table+='<td colspan="4" class="text-center"> <h3 class="text-muted">Sin Información</h3>  </td> ';
                             table+=' </tr>';
                     }else{
                         // console.log(resp.data);
@@ -384,6 +384,27 @@ function messeg(m,t) {
 
              $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
                  console.log("holasss");
+                 const data = {
+                    profesor: $('#select_profesor').val()
+                 }
+                 console.log(data);
+                 const sendPostRequest = async () => {
+                try {
+                        const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/store",data);
+                        console.log(resp.data);
+                        // if (resp.data.status == 200) {
+                        //     messeg(resp.data.message,'success');
+                        //     list_temp_student();
+                        // }else{
+                        //     messeg(resp.data.message,'danger');
+                        // }
+
+
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendPostRequest();
              });
 
         function get_files_ing_system(id,num="") {

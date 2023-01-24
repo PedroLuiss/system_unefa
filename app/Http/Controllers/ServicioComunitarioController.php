@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiantes;
+use App\Models\GrupoSC;
 use App\Models\GrupoSCEstudiante;
 use App\Models\Profesore;
 use App\Models\TempGrupoSCEstudiante;
@@ -36,11 +37,35 @@ class ServicioComunitarioController extends Controller
             }else{
                 TempGrupoSCEstudiante::create([
                     'estudiantes_id'=>$request->id_estudiante,
+                    'users_id'=>1,
                 ]);
                  return response()->json(['message' => "Estudiante Agregado Correctamente.",'status'=>200],201);
             }
         }
 
+    }
+    public function store_faseone(Request $request)
+    {
+    //    return response($request);
+
+       $temp_student = TempGrupoSCEstudiante::all();
+
+       $resp_grup = GrupoSC::create([
+        'profesore_id'=>$request->profesor,
+        'estado'=>0,
+        'total_studiante'=>count($temp_student),
+        'status'=>1,
+       ]);
+
+       foreach ($temp_student as $key => $value) {
+           GrupoSCEstudiante::create([
+                'grupo_s_c_id'=>$resp_grup->id,
+                'estudiantes_id'=>$value->estudiantes_id,
+                'status'=>1,
+           ]);
+       }
+       TempGrupoSCEstudiante::where('user_id',1)->delete();
+        return response()->json(['message' => 'Grupo Generado Correctamente','status' => 200,], 201);
     }
     public function List_student_temp()
     {
