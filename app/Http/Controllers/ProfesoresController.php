@@ -70,6 +70,7 @@ class ProfesoresController extends Controller
         $profe_st =  Profesore::create([
             'cedula'=> $data['cedula'],
             'nombre'=> $data['nombres'],
+            'email'=> $data['email'],
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
@@ -145,6 +146,7 @@ class ProfesoresController extends Controller
         $profe_st =  Profesore::where('id',$data['id'])->update([
             'cedula'=> $data['cedula'],
             'nombre'=> $data['nombres'],
+            'email'=> $data['email'],
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
