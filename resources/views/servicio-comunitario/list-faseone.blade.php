@@ -62,6 +62,7 @@
                 <!--end::Table row-->
             </thead>
             <tbody class="text-gray-600 fw-bold">
+                @foreach ($data as $value )
                 <tr class="odd">
                     <!--begin::Checkbox-->
                     <td>
@@ -81,29 +82,33 @@
                         <!--end::Avatar-->
                         <!--begin::User details-->
                         <div class="d-flex flex-column">
-                            <a href="#" class="text-gray-800 text-hover-primary mb-1">Pedro Rojas </a>
-                            <span>Example@gmail.com </span>
+                            <a href="#" class="text-gray-800 text-hover-primary mb-1">{{$value->nombre}} {{$value->segundo_apellido}} {{$value->primer_apellido}}</a>
+                            <span>{{$value->email}} </span>
                         </div>
                         <!--begin::User details-->
                     </td>
                     <!--end::User=-->
                     <!--begin::Role=-->
-                    <td >213441241 </td>
+                    <td >{{$value->cedula}} </td>
                     <!--end::Role=-->
 
                     <!--begin::Two step=-->
                     <td>
-                        <div class="badge badge-light-success fw-bolder" style="font-size: 1vw;">5</div>
+                        <div class="badge badge-light-success fw-bolder" style="font-size: 1vw;">{{$value->total_studiante}}</div>
                     </td>
                     <!--end::Two step=-->
                     <!--begin::Joined-->
                     <td>
-                        <div class="badge badge-light-info fw-bolder">Pindiente</div>
+                        @if ($value->estado == 0)
+                            <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">Pindiente</div>
+                        @else
+                            <div class="badge badge-light-success fw-bolder">Finalizado</div>
+                        @endif
                     </td>
                     <!--begin::Joined-->
                     <!--begin::Action=-->
                     <td class="text-end">
-                        <a href="" title="editar" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                        <a href="{{route('faseone.edit',$value->id)}}" title="editar" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                             <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                             <span class="svg-icon svg-icon-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -123,29 +128,11 @@
                             </span>
                             <!--end::Svg Icon-->
                         </a>
-                        {{-- <a href="{{route('expedientes.ingsistemas.edit',$value->id)}}" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">editar
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                        <span class="svg-icon svg-icon-5 m-0">
-                        </span>
-                        <!--end::Svg Icon--></a>
-                        <!--begin::Menu-->
-                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="false" style="">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{route('expedientes.ingsistemas.edit',$value->id)}}" class="menu-link px-3">Edit</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{route('expedientes.empaquetar.student',$value->id)}}" class="menu-link px-3" data-kt-users-table-filter="delete_row">Empaquetar</a>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu--> --}}
+
                     </td>
                     <!--end::Action=-->
                 </tr>
-
+                @endforeach
             </tbody>
             <!--end::Table body-->
         </table></div>

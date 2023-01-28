@@ -99,6 +99,7 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  Route::post('servicio-comunitario/faseone/store', [App\Http\Controllers\ServicioComunitarioController::class, 'store_faseone'])->name('faseone.store_faseone');
  Route::get('servicio-comunitario/faseone/estudent/list_temp_student', [App\Http\Controllers\ServicioComunitarioController::class, 'List_student_temp'])->name('faseone.listtempstudent');
  Route::delete('servicio-comunitario/delete_temp_student/{id}',[App\Http\Controllers\ServicioComunitarioController::class, 'delete_temp_student_list']);
+ Route::get('servicio-comunitario/faseone/{id}/edit',[App\Http\Controllers\ServicioComunitarioController::class, 'edit_faseone'])->name('faseone.edit');
  /**-------------------------------------------------------------------------End Servicio Comunitario----------------------------------------------------------- */
 
 });

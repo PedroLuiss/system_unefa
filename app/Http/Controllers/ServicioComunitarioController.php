@@ -13,8 +13,11 @@ class ServicioComunitarioController extends Controller
 {
     public function list_faseone()
     {
-
-      return  view('servicio-comunitario.list-faseone');
+        $data = GrupoSC::select('grupo_s_c_s.id','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','grupo_s_c_s.estado',
+        'grupo_s_c_s.total_studiante','grupo_s_c_s.status')
+        ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')->get();
+      return  view('servicio-comunitario.list-faseone',compact('data'));
     }
 
     public function faseone_create()
@@ -84,4 +87,13 @@ class ServicioComunitarioController extends Controller
         }
 
     }
+
+    public function edit_faseone($id)
+    {
+        $estudiantes=Estudiantes::where('carreras_id',1)->get();
+        $profesor=Profesore::all();
+        return  view('servicio-comunitario.edit-faseone',compact('estudiantes','profesor'));
+    }
+
+
 }
