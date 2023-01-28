@@ -17,6 +17,7 @@ class CreateProfesoresTable extends Migration
             $table->id();
             $table->string('cedula');
             $table->string('nombre');
+            $table->string('email');
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
             $table->string('especialidad');

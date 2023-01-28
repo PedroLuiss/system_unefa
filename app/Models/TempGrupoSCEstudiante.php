@@ -10,6 +10,6 @@ class TempGrupoSCEstudiante extends Model
     use HasFactory;
     protected $fillable = [
         'estudiantes_id',
-        'users_id',
+        'user_id',
     ];
 }

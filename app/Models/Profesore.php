@@ -12,6 +12,7 @@ class Profesore extends Model
     protected $fillable = [
         'cedula',
         'nombre',
+        'email',
         'primer_apellido',
         'segundo_apellido',
         'especialidad'

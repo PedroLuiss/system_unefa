@@ -37,7 +37,7 @@ class ServicioComunitarioController extends Controller
             }else{
                 TempGrupoSCEstudiante::create([
                     'estudiantes_id'=>$request->id_estudiante,
-                    'users_id'=>1,
+                    'user_id'=>1,
                 ]);
                  return response()->json(['message' => "Estudiante Agregado Correctamente.",'status'=>200],201);
             }

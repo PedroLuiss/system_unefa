@@ -46,6 +46,10 @@ class ProfesoresController extends Controller
                 'max:20',
                 Rule::unique('profesores','cedula'),
             ],
+            'email' => [
+                'required',
+                Rule::unique('profesores','email'),
+            ],
             'nombres' =>['required'],
             'primer_apellido' =>[],
             'segundo_apellido' =>[],
@@ -58,6 +62,7 @@ class ProfesoresController extends Controller
             'primer_apellido' => '',
             'segundo_apellido' => '',
             'especialidad' => '',
+            'email' => 'Email',
 
         ]);
         // dd($request);
@@ -95,7 +100,7 @@ class ProfesoresController extends Controller
     public function edit($id)
     {
         $profe_ed = Profesore::find($id);
-        
+
 
         return view('profesoresdatos.edit',compact('profe_ed'));
     }
@@ -116,6 +121,10 @@ class ProfesoresController extends Controller
                 'max:20',
                 Rule::unique('profesores','cedula')->ignore($request->id,'id'),
             ],
+            'email' => [
+                'required',
+                Rule::unique('profesores','email')->ignore($request->id,'id'),
+            ],
             'nombres' =>['required'],
             'primer_apellido' =>[],
             'segundo_apellido' =>[],
@@ -128,6 +137,7 @@ class ProfesoresController extends Controller
             'primer_apellido' => '',
             'segundo_apellido' => '',
             'especialidad' => '',
+            'email' => '',
 
         ]);
         // dd($request);
