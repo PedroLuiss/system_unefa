@@ -13,7 +13,7 @@ class GrupoSC extends Model
         'estado',
         'total_studiante',
         'status',
-        // 'id_grupo_estudiante',
-        // 'id_grupo_file',
+        'nombre_proyecto',
+        'archivo_subido',
     ];
 }

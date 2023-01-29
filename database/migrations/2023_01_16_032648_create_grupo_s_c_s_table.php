@@ -17,6 +17,7 @@ class CreateGrupoSCSTable extends Migration
         Schema::create('grupo_s_c_s', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Profesore::class)->nullable();
+            $table->string('nombre_proyecto')->nullable();
             $table->integer('estado')->comment("0 = pendiente, 1 = Finalizado");
             $table->integer('total_studiante')->nullable();
             $table->integer('status')->comment("1 Face N1, Face N2");

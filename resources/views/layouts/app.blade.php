@@ -26,20 +26,22 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
 		<link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
         <!--BOOSTSTRAP 5 -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fontawesome.css')}}">
-        <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
-        <script src="assets/plugins/global/plugins.bundle.js"></script>
+
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link href="/m2/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/m2/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('m2/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.js')}}">
         @stack('css')
         <style>
                 .select2-container .select2-selection--single {

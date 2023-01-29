@@ -12,5 +12,6 @@ class GrupoSCFile extends Model
         'grupo_s_c_id',
         'nombre',
         'url',
+        'fase'
     ];
 }

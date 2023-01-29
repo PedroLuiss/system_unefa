@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}">
 @endpush
 @section('content')
     <div class="card">
@@ -13,8 +14,8 @@
         <div class="card-body pb-0">
             <div class="row">
                 <div class="col-12 col-md-12">
-                    <div class="mb-10" data-select2-id="select2-data-100-kjmd">
-                        <label for="" class="form-label">Selecciona El Profesor</label>
+                    <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                        <label for="" class="form-label required">Selecciona El Profesor</label>
                         <!--begin::Default example-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">
@@ -31,6 +32,21 @@
                             </div>
                         </div>
                         <!--end::Default example-->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-5">
+                        <label for="exampleFormControlInput1" class="required form-label">Nombre Del Proyecto</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text">
+                                {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                <i class="fa-solid fa-layer-group fs-4"></i>
+
+                            </span>
+                            <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                <input type="email" class="form-control " id="nombre_proyecto" placeholder="Ingresar el nombre del proyecto"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -67,14 +83,7 @@
                             <button  type="button" class="btn btn-light-primary me-3" id="btn_add_student">
                                 <!--begin::Svg Icon | path: icons/duotune/files/fil013.svg-->
                                 <span class="svg-icon svg-icon-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
-                                        <path
-                                            d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM16 11.6L12.7 8.29999C12.3 7.89999 11.7 7.89999 11.3 8.29999L8 11.6H11V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H16Z"
-                                            fill="currentColor"></path>
-                                        <path opacity="0.3" d="M11 11.6V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H11Z"
-                                            fill="currentColor"></path>
-                                    </svg>
+                                    <i class="fa-solid fa-plus fs-1 "></i>
                                 </span>
                                 <!--end::Svg Icon-->
                                 Agregar
@@ -176,6 +185,7 @@
     @push('scripts')
     <script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
     <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.js')}}">
                     {{-- <script src="/m2/assets/plugins/global/plugins.bundle.js"></script> --}}
                 {{-- <script src="/m2/assets/js/scripts.bundle.js"></script> --}}
                 <!--end::Global Javascript Bundle-->
@@ -385,7 +395,22 @@ function messeg(m,t) {
              $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
                 //  console.log("holasss");
                  const data = {
-                    profesor: $('#select_profesor').val()
+                    profesor: $('#select_profesor').val(),
+                    nombre_proyecto: $('#nombre_proyecto').val()
+                 }
+
+                 if (data.profesor=="") {
+                    $('#select_profesor').addClass('is-invalid');
+                 }else{
+                    $('#select_profesor').removeClass('is-invalid');
+                 }
+                 if (data.nombre_proyecto=="") {
+                    $('#nombre_proyecto').addClass('is-invalid');
+                 }else{
+                    $('#nombre_proyecto').removeClass('is-invalid');
+                 }
+                 if (data.profesor==""||data.nombre_proyecto=="") {
+                    return false;
                  }
                  console.log(data);
                  const sendPostRequest = async () => {

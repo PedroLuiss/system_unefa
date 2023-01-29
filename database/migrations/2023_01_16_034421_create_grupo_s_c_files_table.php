@@ -19,6 +19,7 @@ class CreateGrupoSCFilesTable extends Migration
             $table->foreignIdFor(GrupoSC::class)->nullable();
             $table->string('nombre')->nullable();
             $table->string('url')->nullable();
+            $table->integer('fase')->nullable();
             $table->timestamps();
         });
     }

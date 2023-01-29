@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}">
+
 @endpush
 @section('content')
     <div class="card">
@@ -13,7 +15,8 @@
         <div class="card-body pb-0">
             <div class="row">
                 <div class="col-12 col-md-12">
-                    <div class="mb-10" data-select2-id="select2-data-100-kjmd">
+                    <input type="hidden" value="{{$grupo->id}}" id="id_grupo_hiden">
+                    <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                         <label for="" class="form-label">Selecciona El Profesor</label>
                         <!--begin::Default example-->
                         <div class="input-group flex-nowrap">
@@ -21,16 +24,31 @@
                                 <i class="bi bi-bookmarks-fill fs-4"></i>
                             </span>
                             <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                <select class="form-select rounded-start-0" data-control="select2"
+                                <select class="form-select rounded-start-0 " data-control="select2"
                                     data-placeholder="Seleccionar Profesor" id="select_profesor">
                                     <option></option>
                                     @foreach ($profesor as $value)
-                                        <option value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
+                                        <option  @if ($grupo->profesore_id == $value->id) selected    @endif value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <!--end::Default example-->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-5">
+                        <label for="exampleFormControlInput1" class="required form-label">Nombre Del Proyecto</label>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text">
+                                {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                <i class="fa-solid fa-layer-group fs-4"></i>
+
+                            </span>
+                            <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                <input type="email" class="form-control " id="nombre_proyecto" value="{{$grupo->nombre_proyecto}}" placeholder="Ingresar el nombre del proyecto"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -194,6 +212,7 @@
                 <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script>
                 <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
         <script src="{{asset('js/axios.min.js')}}"></script>
+        <script src="{{asset('m2/assets/plugins/global/plugins.bundle.js')}}"></script>
         <script>
         $(document).ready(function(){
         // $('#kt_file_manager_new_folder').hide();
@@ -201,7 +220,7 @@
             dropdownParent: $("#kt_modal_new_target"),
             // placeholder:"hhhhh"
         });
-        list_temp_student();
+            list_temp_student();
         });
 
 function messeg(m,t) {
@@ -235,7 +254,8 @@ function messeg(m,t) {
 
         $('#btn_add_student').on('click',(e)=>{
             const data = {
-                id_estudiante:$('#id_estudiante_select').val()
+                id_estudiante:$('#id_estudiante_select').val(),
+                id_grupo:$('#id_grupo_hiden').val()
             }
             if(data.id_estudiante==""){
                 $('#id_estudiante_select').addClass('is-invalid');
@@ -248,7 +268,7 @@ function messeg(m,t) {
             console.log("Hola");
             const sendPostRequest = async () => {
                 try {
-                    const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/estudent/store",data);
+                    const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/estudent/edit",data);
                     console.log(resp.data);
                     if (resp.data.status == 200) {
                         messeg(resp.data.message,'success');
@@ -266,9 +286,10 @@ function messeg(m,t) {
         });
 
         function list_temp_student() {
+            let id_grupo = $('#id_grupo_hiden').val();
             const sendGetRequest = async () => {
                 try {
-                    const resp = await axios.get(base_url()+"/servicio-comunitario/faseone/estudent/list_temp_student");
+                    const resp = await axios.get(base_url()+"/servicio-comunitario/faseone/estudent/list_student/"+id_grupo);
 
                     var table = "";
                     console.log(resp.data);
@@ -385,12 +406,14 @@ function messeg(m,t) {
              $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
                 //  console.log("holasss");
                  const data = {
-                    profesor: $('#select_profesor').val()
+                    id_grupo: $('#id_grupo_hiden').val(),
+                    profesor: $('#select_profesor').val(),
+                    nombre_proyecto: $('#nombre_proyecto').val(),
                  }
                  console.log(data);
                  const sendPostRequest = async () => {
                 try {
-                        const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/store",data);
+                        const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/update",data);
                         console.log(resp.data);
                         if (resp.data.status == 200) {
                             messeg(resp.data.message,'success');
@@ -539,7 +562,7 @@ function messeg(m,t) {
                                         if (willDelete) {
                                             const sendGetRequest = async () => {
                                                 try {
-                                                    const resp = await axios.delete(base_url()+"/servicio-comunitario/delete_temp_student/"+id_estudiante);
+                                                    const resp = await axios.delete(base_url()+"/servicio-comunitario/delete_student/"+id_estudiante);
                                                     console.log(resp);
                                                     if (resp.data.status==200) {
                                                         list_temp_student();
