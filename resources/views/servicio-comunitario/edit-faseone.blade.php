@@ -2,6 +2,7 @@
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/js/notify/bootstrap-notify.min.js')}}">
 
 @endpush
 @section('content')
@@ -416,10 +417,11 @@ function messeg(m,t) {
                         const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/update",data);
                         console.log(resp.data);
                         if (resp.data.status == 200) {
-                            messeg(resp.data.message,'success');
-                            list_temp_student();
+                            // list_temp_student();
+                            console.log("Hola");
                             url = "{{route('serviciocomunitario.listfaseone')}}";
                             $(location).attr('href',url);
+                            messeg(resp.data.message,'success');
                         }else{
                             messeg(resp.data.message,'danger');
                         }

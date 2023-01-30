@@ -39,8 +39,8 @@
                                     <!--end::Description-->
 							</div>
 							<!--end::Heading-->
-                            <div class="row mb-4">
-                                <div class="col-md-12">
+                            <div class="row mb-4" id="list_files_fase_one">
+                                {{-- <div class="col-md-12">
                                     <h5 class="text-muted text-center">Sin Archivo</h5>
                                 </div>
                                 <div class="col-md-6 ">
@@ -68,7 +68,7 @@
                                         <!--end::Card body-->
                                     </div>
                                     <!--end::Card-->
-                                </div>
+                                </div> --}}
                             </div>
 							<!--begin::Input group-->
 							<div class="d-flex flex-column mb-8 fv-row">

@@ -14,6 +14,7 @@
 <script src="/m2/assets/js/custom/widgets.js"></script>
 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
 <script src="/m2/assets/js/custom/intro.js"></script>
+<script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
 {{-- <script src="/m2/assets/js/custom/utilities/modals/upgrade-plan.js"></script> --}}
 {{-- <script src="/m2/assets/js/custom/utilities/modals/create-app.js"></script> --}}
 {{-- <script src="/m2/assets/js/custom/utilities/modals/users-search.js"></script> --}}
@@ -23,5 +24,48 @@
     function base_url() {
         let url = '{{url('/')}}'
         return url;
+    }
+    function messeg(m,t) {
+        if (t=="success") {
+            $.notify(
+                '<i class="fa fa-bell-o"></i><strong>Excelente</strong> ' +m+
+                    "",
+                {
+                    type: t,
+                    allow_dismiss: true,
+                    delay: 2000,
+                    showProgressbar: false,
+                    timer: 300,
+                }
+            );
+            return false;
+        }
+        $.notify(
+            '<i class="fa fa-bell-o"></i><strong>!Hoops¡</strong> ' +m+
+                "",
+            {
+                type: t,
+                allow_dismiss: true,
+                delay: 2000,
+                showProgressbar: false,
+                timer: 300,
+            }
+        );
+    }
+
+    function date_formate(dat="") {
+        // Creamos array con los meses del año
+        const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+        // Creamos array con los días de la semana
+        const dias_semana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        // Creamos el objeto fecha instanciándolo con la clase Date
+        if (dat == "") {
+            const fecha = new Date();
+        }else{
+
+            const fecha = new Date(dat);
+        }
+        // Construimos el formato de salida
+        return dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear();
     }
 </script>

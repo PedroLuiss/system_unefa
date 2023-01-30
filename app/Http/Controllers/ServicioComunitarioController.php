@@ -166,6 +166,11 @@ class ServicioComunitarioController extends Controller
         $profesor=Profesore::all();
         return  view('servicio-comunitario.edit-faseone',compact('estudiantes','profesor','grupo'));
     }
+    public function get_files_fase_one($id)
+    {
+       $data = GrupoSCFile::where('grupo_s_c_id',$id)->get();
+       return response($data);
+    }
     public function store_file_fase_one(Request $request)
     {
      // return response($request);
@@ -201,6 +206,11 @@ class ServicioComunitarioController extends Controller
                     'fase'=>$request['fase'],
                 ]);
 
+                if ($file_operacion) {
+                    GrupoSC::where('id',$request['id_grupo'])->update([
+                        'archivo_subido'=>true
+                    ]);
+                }
 
                 return response()->json(['success' => 'Archivo subido correctamente.','status' => 200],201);
 

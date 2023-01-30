@@ -240,6 +240,7 @@
                 let id = $(obj).attr('data-id');
                 $('#id_grupo_form_file').val(id);
                 $('#id_fase').val(1);
+                list_files(id);
             }
             $('#kt_table_users').dataTable({
                 "language": {
@@ -305,46 +306,89 @@
                 }).done(function(res) {
                     msg = JSON.parse(res)
                     console.log(msg);
-                    // if (msg.status == 200) {
-                    //     $('#description').val("");
-                    //     $('#name').val("");
-                    //     $('#file').val(null);
-                    //     get_files_ing_system($('#id_estudiantes').val());
-                    //     // $('.modal_file').modal('hide');
-                    //     $('#kt_modal_new_target_cancel').click();
-                    //     messeg(msg.success, 'success');
-                    //     $('#file').removeClass('is-invalid');
-                    //     $('#error-file').text("")
-                    // } else {
-                    //     if (msg.campo == 'file') {
-                    //         $('#file').addClass('is-invalid');
-                    //         $('#error-file').text("Debes seleccionar un archivo")
-                    //         messeg("Debes seleccionar un archivo", 'danger');
-                    //     } else {
-                    //         $('#file').removeClass('is-invalid');
+                    if (msg.status == 200) {
+                        $('#description').val("");
+                        $('#name').val("");
+                        $('#file').val(null);
+                        list_files($('#id_fase').val());
+                        // $('.modal_file').modal('hide');
+                        $('#kt_modal_new_target_cancel').click();
+                        messeg(msg.success, 'success');
+                        $('#file').removeClass('is-invalid');
+                        $('#error-file').text("");
+                    } else {
+                        if (msg.campo == 'file') {
+                            $('#file').addClass('is-invalid');
+                            $('#error-file').text("Debes seleccionar un archivo")
+                            messeg("Debes seleccionar un archivo", 'danger');
+                        } else {
+                            $('#file').removeClass('is-invalid');
 
-                    //         $('#error-file').text("")
-                    //     }
+                            $('#error-file').text("")
+                        }
 
-
-                    //     if (msg.campo == 'code') {
-                    //         $('#code').addClass('is-invalid');
-                    //         $('#error-code').text("El codigo del archivo ya existe")
-                    //         messeg("El codigo ya existe", 'danger');
-                    //     } else {
-                    //         $('#file').removeClass('is-invalid');
-                    //         $('#error-file').text("")
-                    //     }
-
-                    //     $('#msg_file').text(msg.error);
-                    //     $('#btn_loader').removeClass('fa fa-spin fa-spinner');
-                    // }
+                        $('#msg_file').text(msg.error);
+                        $('#btn_loader').removeClass('fa fa-spin fa-spinner');
+                    }
                     $('#btn_loader').removeClass('fa fa-spin fa-spinner');
                 }).fail(function(res) {
                     console.log(res)
                 });
 
             });
+
+            function list_files(id) {
+                $('#modaldemo3').modal('show');
+                console.log(id);
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.get(base_url()+"/servicio-comunitario/faseone/get_files/"+id);
+
+                        var table = "";
+                        console.log(resp.data);
+                        if (resp.data=="") {
+                            $('#file-contend').addClass('bg-grei-p');
+                            table +='<div class="col-md-12"><h5 class="text-muted text-center">Sin Archivo</h5></div>';
+                        }else{
+                            $('#file-contend').removeClass('bg-grei-p');
+                            // console.log(resp.data);
+                            let g = 1;
+                            for (let i = 0; i < resp.data.length; i++) {
+                                const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+                                // Creamos array con los días de la semana
+                                const dias_semana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                                // Creamos el objeto fecha instanciándolo con la clase Date
+                                const fecha = new Date(resp.data[i].created_at);
+                                // Construimos el formato de salida
+                                 let  dia = dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear();
+                                // table += '<div  class="col-3 my-3 px-0 text-center col-md-1">';
+                                // table += '<span   onmouseout="btn_delete_show(false,'+i+')" onmouseover="btn_delete_show(true,'+i+')" title="'+resp.data[i].name+'" class="files-view"><span  id="btn-delete-file'+i+'" class="btn-file-delete ocult-btn" onclick="delet_file_compras('+resp.data[i].id+');" ><i class="fa fa-times"></i></span><i onclick="showFile('+resp.data[i].id+')" class="'+ex+'"></i></span>';
+                                // table += ' </div>';
+
+                                table += '<div class="col-md-6 ">';
+                                table += ' <div class="card h-100 border">';
+                                table += ' <div class="card-body d-flex justify-content-center text-center flex-column p-8">';
+                                table += '<a href="'+base_url()+resp.data[i].url+'"  target="_blank" class="text-gray-800 text-hover-primary d-flex flex-column">';
+                                table += ' <div class="symbol symbol-60px mb-5">';
+                                table += ' <img src="/m2/assets/media/svg/files/doc.svg" class="theme-light-show" alt="">';
+                                table += ' </div>';
+                                table += '<div class="fs-5 fw-bold mb-2">'+resp.data[i].nombre+'</div>';
+                                table += ' </a>';
+                                table += '<div class="fs-7 fw-semibold text-gray-400">'+dia+'</div>';
+                                table += `</div>`;
+                                table += '  </div>';
+                                table += ' </div>';
+                                table += '</div>'
+                                g++;
+                            }
+                        }
+                        $('#list_files_fase_one').html(table);
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendGetRequest();
+            }
         </script>
     @endpush
 @endsection
