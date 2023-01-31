@@ -109,5 +109,22 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  Route::post('servicio-comunitario/store_file_fase_one',[App\Http\Controllers\ServicioComunitarioController::class,'store_file_fase_one'])->name('faseone.file.store');
  /**-------------------------------------------------------------------------End Servicio Comunitario----------------------------------------------------------- */
 
+
+/**-----------------------------------------------------------
+Registro estudiantes comunitarios */
+
+Route::get('/estudiantedatos/ccregistro', [App\Http\Controllers\EstudiantesController::class, 'index_cc_estudiante'])->name('estudiantedatos.index_cc_estudiante');
+
+Route::get('/estudiantedatos/ccregistro/create_cc_registro', [App\Http\Controllers\EstudiantesController::class, 'create_cc_estudiante'])->name('estudiantedatos.create_cc_estudiante');
+
+Route::post('/estudiantedatos/ccregistro',[App\Http\Controllers\EstudiantesController::class, 'store_cc_estudiante'])->name('estudiantedatos.store_cc_estudiante');
+
+Route::get('/estudiantedatos/{id}/ccregistro/edit_cc_registro',[App\Http\Controllers\EstudiantesController::class, 'edit_cc_estudiante'])->name('estudiantedatos.edit_cc_estudiante');
+
+Route::put('/estudiantedatos/ccregistr0/update_cc_registro',[App\Http\Controllers\EstudiantesController::class, 'update_cc_estudiante'])->name('estudiantedatos.update_cc_estudiante');
+
+/**-----------------------------------------------------------
+Registro estudiantes comunitarios */
+
 });
 

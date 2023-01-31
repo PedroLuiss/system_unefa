@@ -93,6 +93,18 @@
                     </span>
 
 
+                     <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('estudiantedatos.index_cc_estudiante')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Registro Estudiante C.C</span>
+                            </a>
+                        </div>
+
+                    </div>
+
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
                             <a class="menu-link" href="{{route('serviciocomunitario.listfaseone')}}">
