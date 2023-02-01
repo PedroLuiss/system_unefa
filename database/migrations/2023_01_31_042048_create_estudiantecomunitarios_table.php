@@ -15,6 +15,10 @@ class CreateEstudiantecomunitariosTable extends Migration
     {
         Schema::create('estudiantecomunitarios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiantes_id');
+            $table->integer('semestre')->nullable();
+            $table->string('turno')->nullable();
+            $table->string('seccion')->nullable();
             $table->timestamps();
         });
     }

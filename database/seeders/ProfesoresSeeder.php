@@ -21,6 +21,7 @@ class ProfesoresSeeder extends Seeder
                 'primer_apellido'    => 'Pereira',
                 'segundo_apellido'    => 'Rojas',
                 'especialidad'    =>'Ingenieria Sistema',
+                'email'    =>'1@gmail.com',
 
             ],[
                 'cedula'     => 26846596,
@@ -28,6 +29,7 @@ class ProfesoresSeeder extends Seeder
                 'primer_apellido'    => 'guzman',
                 'segundo_apellido'    => 'Peña',
                 'especialidad'    =>'Ingenieria Sistema',
+                'email'    =>'1@gmail.com',
 
             ],[
                 'cedula'     => 4234563,
@@ -35,6 +37,7 @@ class ProfesoresSeeder extends Seeder
                 'primer_apellido'    => 'Freitez',
                 'segundo_apellido'    => 'Mendoza',
                 'especialidad'    =>'Ingenieria Electrica',
+                'email'    =>'1@gmail.com',
 
             ]
         ];

@@ -117,7 +117,7 @@ Route::get('/estudiantedatos/ccregistro', [App\Http\Controllers\EstudiantesContr
 
 Route::get('/estudiantedatos/ccregistro/create_cc_registro', [App\Http\Controllers\EstudiantesController::class, 'create_cc_estudiante'])->name('estudiantedatos.create_cc_estudiante');
 
-Route::post('/estudiantedatos/ccregistro',[App\Http\Controllers\EstudiantesController::class, 'store_cc_estudiante'])->name('estudiantedatos.store_cc_estudiante');
+Route::post('/estudiantedatos/ccregistro/store_cc_estudiante',[App\Http\Controllers\EstudiantesController::class, 'store_cc_estudiante'])->name('estudiantedatos.store_cc_estudiante');
 
 Route::get('/estudiantedatos/{id}/ccregistro/edit_cc_registro',[App\Http\Controllers\EstudiantesController::class, 'edit_cc_estudiante'])->name('estudiantedatos.edit_cc_estudiante');
 
