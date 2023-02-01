@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\carrera;
 use App\Models\Estudiantes;
+use App\Models\Estudiantecomunitarios;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -266,17 +268,17 @@ class EstudiantesController extends Controller
     }
 
     public function store_cc_estudiante(Request $request)
-    {   
+    {
 
-          
+
         $request->validate([
 
             'estudiantes_id' =>['required'],
             'semestre' =>['required'],
             'turno' =>['required'],
             'seccion' =>['required'],
-            
-            
+
+
         ],[],[
 
             'estudiantes_id' => '',
@@ -285,8 +287,8 @@ class EstudiantesController extends Controller
             'seccion' => '',
         ]);
 
-         
-      
+
+
             $data = $request->all();
            // dd($data);
             $estudiante_cc =  Estudiantecomunitarios::create([
@@ -295,7 +297,7 @@ class EstudiantesController extends Controller
             'semestre'=> $data['semestre'],
             'turno'=> $data['turno'],
             'seccion'=> $data['seccion'],
-           
+
         ]);
 
         // dd($data);
