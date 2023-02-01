@@ -166,6 +166,19 @@ class ServicioComunitarioController extends Controller
         $profesor=Profesore::all();
         return  view('servicio-comunitario.edit-faseone',compact('estudiantes','profesor','grupo'));
     }
+    public function add_nota_faseone($id)
+    {
+        $grupo = GrupoSC::find($id);
+        $estudiantes=GrupoSCEstudiante::select('grupo_s_c_estudiantes.id','grupo_s_c_estudiantes.estudiantes_id','grupo_s_c_estudiantes.observaciones',
+        'grupo_s_c_estudiantes.nota_eno','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','carreras.name as nombre_carrera',
+        'estudiantes.fe_ingreso','estudiantes.inicio_programa','estudiantes.sexo','estudiantes.email')
+        ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+        ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')
+        ->where('grupo_s_c_estudiantes.grupo_s_c_id',$id)->get();
+
+        $profesor=Profesore::where('id',$grupo->profesore_id)->first();
+        return  view('servicio-comunitario.agregar_nota',compact('estudiantes','profesor','grupo'));
+    }
     public function get_files_fase_one($id)
     {
        $data = GrupoSCFile::where('grupo_s_c_id',$id)->get();
