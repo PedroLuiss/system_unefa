@@ -21,6 +21,7 @@ class CreateGrupoSCSTable extends Migration
             $table->integer('estado')->comment("0 = pendiente, 1 = Finalizado");
             $table->integer('total_studiante')->nullable();
             $table->integer('status')->comment("1 Face N1, Face N2");
+            $table->boolean('archivo_subido')->default(0);
             $table->timestamps();
         });
     }
