@@ -48,6 +48,9 @@ License: For each use you must have a valid license purchased only from above li
 
                     height: 46px !important;
                     }
+                    .b-danger{
+                        border: 1px solid rgb(238, 51, 51);
+                    }
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->

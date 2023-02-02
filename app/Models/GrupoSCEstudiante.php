@@ -12,6 +12,7 @@ class GrupoSCEstudiante extends Model
         'grupo_s_c_id',
         'estudiantes_id',
         'observaciones',
+        'observaciones_2',
         'nota_eno',
         'nota_two',
         'status',

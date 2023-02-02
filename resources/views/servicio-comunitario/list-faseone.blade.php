@@ -133,16 +133,26 @@
                                     <!--end::Two step=-->
                                     <!--begin::Joined-->
                                     <td>
-                                        @if ($value->estado == 0)
+                                        @if ($value->status == 1)
                                             <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">
                                                 Pindiente</div>
                                         @else
-                                            <div class="badge badge-light-success fw-bolder">Finalizado</div>
+                                            <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
                                         @endif
                                     </td>
                                     <!--begin::Joined-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
+                                        @if ($value->status == 1)
+                                        <a href="javascript:void(0);" onclick="finalizar(this)"
+                                            data-id="{{ $value->id }}" title="Finalizar Fase"
+                                            class="btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                            <span class="svg-icon svg-icon-3">
+                                                <i class="fa-solid fa-check"></i>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </a>
                                         <a href="{{ route('faseone.add_nota_faseone', $value->id) }}" title="Agregar Nota" class="btn btn-icon btn-color-muted btn-bg-light btn-active-color-primary btn-sm">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.0021 10.9128V3.01281C13.0021 2.41281 13.5021 1.91281 14.1021 2.01281C16.1021 2.21281 17.9021 3.11284 19.3021 4.61284C20.7021 6.01284 21.6021 7.91285 21.9021 9.81285C22.0021 10.4129 21.5021 10.9128 20.9021 10.9128H13.0021Z" fill="currentColor"></path>
@@ -204,6 +214,10 @@
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
+                                        @else
+
+                                        @endif
+
 
                                     </td>
                                     <!--end::Action=-->
@@ -261,7 +275,41 @@
                     // 'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
+            function finalizar(obj) {
+                let id = $(obj).attr('data-id');
+                console.log(id);
+                const data = {
+                    id:id
+                }
+                swal({
+                    title: "Estas seguro?",
+                    text: "Deseas Finalizar El Grupo?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        console.log("Hola");
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.put(base_url() +
+                                    "/servicio-comunitario/faseone/finalizar",  data);
+                                console.log(resp.data);
+                                if (resp.data.status == 200) {
+                                    messeg(resp.data.success, 'success');
+                                    location.reload();
+                                } else {
+                                    messeg(resp.data.success, 'danger');
+                                }
 
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+                    }
+                })
+            }
             function delet_grupo(obj) {
                 let id = $(obj).attr('data-id');
                 console.log(id);

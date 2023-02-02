@@ -179,6 +179,24 @@ class ServicioComunitarioController extends Controller
         $profesor=Profesore::where('id',$grupo->profesore_id)->first();
         return  view('servicio-comunitario.agregar_nota',compact('estudiantes','profesor','grupo'));
     }
+    public function add_nota_student(Request $request)
+    {
+        $resp = GrupoSCEstudiante::where('id',$request->id)->update([
+            'observaciones'=>$request->observacion,
+            'nota_eno'=>$request->nota,
+        ]);
+        $res = GrupoSCEstudiante::find($request->id);
+        return response()->json(['success' => 'Operación Realizado Correctamente.','status' => 200,'data'=>$res],201);
+    }
+
+    public function finalisar_fase_one(Request $request)
+    {
+        GrupoSC::where('id',$request->id)->update([
+            'status'=>2
+        ]);
+        return response()->json(['success' => 'Operación Realizado Correctamente.','status' => 200],201);
+    }
+
     public function get_files_fase_one($id)
     {
        $data = GrupoSCFile::where('grupo_s_c_id',$id)->get();
@@ -232,6 +250,36 @@ class ServicioComunitarioController extends Controller
             return response()->json(['error' => 'Campo vacio.','campo'=>'file','status' => 404],201);
         }
 
+    }
+    public function store_value_nota(Request $request)
+    {
+        // return response($request);
+        $grup_student = GrupoSCEstudiante::where('grupo_s_c_id',$request->id_grupo)->get();
+        $resp_d = [];
+        $resp_bool = true;
+        $n=0;
+        foreach ($grup_student as $key => $value) {
+            if (is_null($value->nota_eno)) {
+                $n++;
+                $resp_bool = false;
+                break;
+            }else{
+                $resp_bool = true;
+            }
+        }
+        foreach ($grup_student as $key => $value) {
+            if (is_null($value->nota_eno)) {
+                $resp_d[$n]= $value;
+                $n++;
+            }
+        }
+        if ($resp_bool) {
+            GrupoSC::where('id',$request->id_grup)->update([
+                'nota_evaluada_one'=>true
+            ]);
+        }
+
+        return response()->json(['success' => 'Notas Evaluadas Correctamente.','status' => 200,'resp' => $resp_bool,'data'=>$resp_d],201);
     }
 
 }

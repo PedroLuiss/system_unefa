@@ -15,5 +15,7 @@ class GrupoSC extends Model
         'status',
         'nombre_proyecto',
         'archivo_subido',
+        'nota_evaluada_one',
+        'nota_evaluada_twe'
     ];
 }

@@ -20,6 +20,7 @@ class CreateGrupoSCEstudiantesTable extends Migration
             $table->foreignIdFor(GrupoSC::class)->nullable();
             $table->foreignIdFor(Estudiantes::class)->nullable();
             $table->string("observaciones")->nullable();
+            $table->string("observaciones_2")->nullable();
             $table->float("nota_eno")->nullable();
             $table->float("nota_two")->nullable();
             $table->integer("status")->default(1);

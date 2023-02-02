@@ -6,7 +6,7 @@
 @endpush
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
-
+        <input type="hidden" id="id_grupo_hide" value="{{$grupo->id}}">
         <!--begin::Navbar-->
         <div class="card mb-5 mb-xxl-8">
             <div class="card-header border-0 pt-5">
@@ -311,7 +311,25 @@
             <div class="col-xl-6 ">
 
                 <!--begin::Feeds Widget 2-->
-                <div class="card mb-5 mb-xxl-8">
+                <div id="card_all_studen{{$val_student->id}}" class="card mb-5 mb-xxl-8 ">
+                    <!--begin::Alert-->
+                    <div class="alert alert-primary d-flex align-items-center p-5 alert_not" id="aler_notas{{$val_student->id}}">
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-2hx svg-icon-primary me-3"><i class="fa-solid fa-thumbs-up"></i></span>
+                        <!--end::Icon-->
+
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column">
+                            <!--begin::Title-->
+                            <h4 class="mb-1 text-dark">!Exelente</h4>
+                            <!--end::Title-->
+                            <!--begin::Content-->
+                            <span id="text_aler_nota{{$val_student->id}}"></span>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Alert-->
                     <!--begin::Body-->
                     <div class="card-body pb-0">
                         <!--begin::Header-->
@@ -404,7 +422,7 @@
                             <!--end::Menu-->
                         </div>
                         <!--end::Header-->
-                        <p class="text-gray-800 fw-normal mb-5 h3">Pendiente...
+                        <p class="text-gray-800 fw-normal mb-5 h3 text_observacion{{$val_student->id}}">@if ($val_student->observaciones==null) Pendiente...  @else {{$val_student->observaciones}}   @endif
                         </p>
                         <!--begin::Post-->
                         <div class="mb-5">
@@ -417,11 +435,10 @@
                                         Nota:
                                     </span>
                                     <!--end::Svg Icon-->
-                                    <span>0</span>
+                                    <span class="nom_nota{{$val_student->id}}">@if ($val_student->nota_eno==null) 0 @else {{$val_student->nota_eno}}   @endif </span>
                                 </a>
 
-                                <a href="#"
-                                    class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2" title="Vaciar Nota">
+                                <a href="javascript:void(0);" onclick="vaciar_nota({{$val_student->id}})" class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2" title="Vaciar Nota">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
                                     <span class="svg-icon svg-icon-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -447,19 +464,19 @@
                         <!--end::Separator-->
 
                         <!--begin::Reply input-->
-                        <form class="position-relative mb-8">
+                        <div class="position-relative mb-8">
                             <div class="mb-3">
                                 <label for="nota_student" class="form-label">Nota</label>
-                                <input type="number" id="nota_student" class="form-control" id="nota_student" aria-describedby="emailHelp">
+                                <input type="number" id="nota_student{{$val_student->id}}" class="form-control" id="nota_student" aria-describedby="emailHelp">
                                 {{-- <div id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</div> --}}
                               </div>
                               <div class="mb-6">
                                 <label for="observacion" class="form-label">Observación</label>
-                                <input type="text" id="observacion" class="form-control" id="observacion">
+                                <input type="text" id="observacion{{$val_student->id}}" class="form-control" id="observacion">
                               </div>
 
                               <div class=" top-0 end-0 me-n5">
-                                <button class=" mb-3 btn btn-primary  text-center" id="kt_widget_2_load_more_btn">
+                                <button onclick="save_nota({{$val_student->id}})" class=" mb-3 btn btn-primary  text-center" id="kt_widget_2_load_more_btn">
                                     <span class="indicator-label">
                                         <i class="fa-solid fa-plus"></i> Guardar Cambios
                                     </span>
@@ -468,7 +485,7 @@
                                     </span>
                                 </button>
                             </div>
-                        </form>
+                        </div>
 
                         <!--edit::Reply input-->
                     </div>
@@ -487,7 +504,7 @@
          <div class="separator mb-4"></div>
          <!--end::Separator-->
          <!--begin::Feeds widget 4, 5 load more-->
-         <button class="btn btn-primary w-100 text-center" id="kt_widget_5_load_more_btn">
+         <button class="btn btn-primary w-100 text-center" onclick="Save_all_nota()" id="kt_widget_5_load_more_btn">
             <span class="indicator-label">
                 Guardar Notas
             </span>
@@ -508,12 +525,126 @@
         <script src="{{ asset('js/axios.min.js') }}"></script>
         <script src="{{ asset('m2/assets/plugins/global/plugins.bundle.js') }}"></script>
         <script>
+
+            function Save_all_nota() {
+                const data = {
+                    id_grupo: $('#id_grupo_hide').val()
+                }
+
+                console.log(data);
+
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/store_value_nota",data)
+                        .catch(function(error) {
+                            console.log(error);
+                            $("#load").hide();
+                        });;
+                        console.log(resp.data);
+                        if (resp.data.resp) {
+                            url = "{{route('serviciocomunitario.listfaseone')}}";
+                            $(location).attr('href',url);
+                        }else{
+                            for (let i = 1; i < resp.data.data.length; i++) {
+                                console.log(resp.data.data);
+                                $('#card_all_studen'+resp.data.data[i].id).addClass('b-danger');
+                            }
+                        }
+
+
+                    } catch (err) {
+                        // Handle Error Here
+                        console.log(err);
+                    }
+                };
+                sendGetRequest();
+            }
+
+            function vaciar_nota(id) {
+                const data = {
+                    id,
+                    observacion:null,
+                    nota:null,
+                }
+                process_data_nota(data);
+                $('.text_observacion'+data.id).text("Pendiente..");
+                $('.nom_nota'+data.id).text(0);
+            }
+            function save_nota(id) {
+
+
+               const data = {
+                    id,
+                    observacion:$('#observacion'+id).val(),
+                    nota:$('#nota_student'+id).val(),
+                }
+
+                if (data.observacion=="") {
+                    $('#observacion'+id).addClass('is-invalid');
+                }else{
+                    $('#observacion'+id).removeClass('is-invalid');
+                }
+
+                if (data.nota=="") {
+                    $('#nota_student'+id).addClass('is-invalid');
+                }else{
+                    if (data.nota < 0 || data.nota > 20) {
+                        $('#nota_student'+id).addClass('is-invalid');
+                        return false;
+                    }else{
+
+                        $('#nota_student'+id).removeClass('is-invalid');
+                    }
+                }
+
+                if (data.observacion==""||data.nota=="") {
+                    return false;
+                }
+                console.log(data);
+                process_data_nota(data);
+                $('.text_observacion'+data.id).text(data.observacion);
+                $('.nom_nota'+data.id).text(data.nota);
+
+
+            }
+
+            function process_data_nota(data) {
+                const sendGetRequest = async () => {
+                    try {
+                            const resp = await axios.put(base_url()+"/servicio-comunitario/faseone/add-nota",data);
+                            console.log(resp.data);
+                            if (resp.data.status==200) {
+                                $('#aler_notas'+data.id).addClass('d-flex');
+                                $('#aler_notas'+data.id).show();
+                                $('#text_aler_nota'+data.id).text(resp.data.success);
+
+                                let i=0;
+                                const h = setInterval(function () {
+                                i++
+                                $('#aler_notas'+data.id).removeClass('d-flex');
+                                $('#aler_notas'+data.id).hide(100);
+                                if (i=1) {
+                                    clearInterval(h);
+                                    }
+                                }, 6000);
+                            }
+
+                        } catch (err) {
+                            // Handle Error Here
+                        }
+                    };
+                    sendGetRequest();
+            }
+
+
             $(document).ready(function() {
                 // $('#kt_file_manager_new_folder').hide();
                 $("#selet_code").select2({
                     dropdownParent: $("#kt_modal_new_target"),
                     // placeholder:"hhhhh"
                 });
+                $('.alert_not').removeClass('d-flex');
+                $('.alert_not').hide();
                 list_temp_student();
             });
 
