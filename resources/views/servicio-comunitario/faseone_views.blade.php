@@ -313,7 +313,7 @@
                                     @if ($val_student->observaciones == null)
                                         Pendiente...
                                     @else
-                                        {{ $val_student->observaciones }}
+                                        <b>Observación:</b> {{ $val_student->observaciones }}
                                     @endif
                                 </p>
                                 <!--begin::Post-->
