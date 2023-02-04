@@ -53,10 +53,10 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystUnefa</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystCSCUnefa</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #05156f;">SystUnefa sistema de gestion de
+							<p class="fw-bold fs-2" style="color: #05156f;">SystCSCUnefa sistema de gestion de
 							<br>Documentos Digitales</p>
 							<!--end::Description-->
 						</div>
@@ -83,7 +83,7 @@
                                 @csrf
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-muted mb-3">Acceder a SystUnefa</h1>
+									<h1 class="text-muted mb-3">Acceder a SystCSCUnefa</h1>
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">No tienes cuenta?
