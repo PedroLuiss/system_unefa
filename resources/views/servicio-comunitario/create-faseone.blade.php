@@ -67,7 +67,7 @@
                                         data-placeholder="Seleccionar Estudiante" id="id_estudiante_select">
                                         <option></option>
                                         @foreach ($estudiantes as $value)
-                                            <option value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
+                                            <option value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}} - Semestre: {{$value->semestre}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -8,6 +8,7 @@
             href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('m2/assets/plugins/global/plugins.bundle.css') }}">
+
     @endpush
     <div class="card">
 
@@ -60,13 +61,7 @@
                         <thead>
                             <!--begin::Table row-->
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" aria-label=" "
-                                    style="width: 29.25px;">
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                            data-kt-check-target=" .form-check-input" value="1">
-                                    </div>
-                                </th>
+
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="User: activate to sort column ascending"
                                     style="width: 228.406px;">Profesor/a</th>
@@ -82,6 +77,9 @@
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Joined Date: activate to sort column ascending"
                                     style="width: 163.422px;">Estado</th>
+                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                    colspan="1" aria-label="Joined Date: activate to sort column ascending"
+                                    style="width: 163.422px;">Fecha Inicio</th>
                                 <th class="text-center min-w-100px sorting_disabled" rowspan="1" colspan="1"
                                     aria-label="Actions" style="width: 101px;">Actions</th>
                             </tr>
@@ -90,13 +88,7 @@
                         <tbody class="text-gray-600 fw-bold">
                             @foreach ($data as $value)
                                 <tr class="odd" id="iten{{ $value->id }}">
-                                    <!--begin::Checkbox-->
-                                    <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1">
-                                        </div>
-                                    </td>
-                                    <!--end::Checkbox-->
+
                                     <!--begin::User=-->
                                     <td class="d-flex align-items-center">
                                         <!--begin:: Avatar -->
@@ -141,26 +133,100 @@
                                         @endif
                                     </td>
                                     <!--begin::Joined-->
+                                     <!--begin::Joined-->
+                                     <td>
+                                        <div  class="badge badge-light-info fw-bolder">
+                                            {{$value->created_at->translatedFormat(' d/m/Y ');}}</div>
+                                    </td>
+                                    <!--begin::Joined-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
                                         @if ($value->status == 1)
-                                        <a href="javascript:void(0);" onclick="finalizar(this)"
-                                            data-id="{{ $value->id }}" title="Finalizar Fase"
+                                            <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                <i class="bi bi-three-dots fs-3"></i>
+                                            </button>
+                                            <a href="javascript:void(0);" onclick="finalizar(this)"
+                                                    data-id="{{ $value->id }}" title="Finalizar Fase"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1">
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                                    <span class="svg-icon svg-icon-3">
+                                                        <i class="fa-solid fa-check"></i>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </a>
+                                        @else
+                                        <a href="{{ route('faseone.views', $value->id) }}"
+                                            data-id="{{ $value->id }}" title="Ver Grupo"
                                             class="btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                             <span class="svg-icon svg-icon-3">
-                                                <i class="fa-solid fa-check"></i>
+                                                <i class="fa-sharp fa-solid fa-eye"></i>
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <a href="{{ route('faseone.add_nota_faseone', $value->id) }}" title="Agregar Nota" class="btn btn-icon btn-color-muted btn-bg-light btn-active-color-primary btn-sm">
+                                        @endif
+
+                                        <!--begin::Menu 3-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                                            data-kt-menu="true">
+                                            <!--begin::Heading-->
+                                            <div class="menu-item px-3">
+                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                                    Menú
+                                                </div>
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a  href="{{ route('faseone.edit', $value->id) }}" class="menu-link px-3">
+                                                    Editar Grupo
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="{{ route('faseone.add_nota_faseone', $value->id) }}"  class="menu-link flex-stack px-3">
+                                                    Evaluar Estudiante
+
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                        aria-label="Aqui podras asignar las nota para cada estudiante"
+                                                        data-bs-original-title="Aqui podras asignar las nota para cada estudiante"
+                                                        data-kt-initialized="1"></i>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_new_target" id="kt_file_manager_new_folder"  data-id="{{$value->id}}" onclick="prepare_data(this)" class="menu-link px-3">
+                                                    Cargar Archivo
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-1">
+                                                <a href="#" onclick="delet_grupo(this)"
+                                                data-id="{{ $value->id }}" class="menu-link px-3">
+                                                    Eliminar Grupo
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu 3-->
+                                        @if ($value->status == 1)
+
+                                        {{-- <a href="{{ route('faseone.add_nota_faseone', $value->id) }}" title="Agregar Nota" class="btn btn-icon btn-color-muted btn-bg-light btn-active-color-primary btn-sm">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.0021 10.9128V3.01281C13.0021 2.41281 13.5021 1.91281 14.1021 2.01281C16.1021 2.21281 17.9021 3.11284 19.3021 4.61284C20.7021 6.01284 21.6021 7.91285 21.9021 9.81285C22.0021 10.4129 21.5021 10.9128 20.9021 10.9128H13.0021Z" fill="currentColor"></path>
                                                 <path opacity="0.3" d="M11.0021 13.7128V4.91283C11.0021 4.31283 10.5021 3.81283 9.90208 3.91283C5.40208 4.51283 1.90209 8.41284 2.00209 13.1128C2.10209 18.0128 6.40208 22.0128 11.3021 21.9128C13.1021 21.8128 14.7021 21.3128 16.0021 20.4128C16.5021 20.1128 16.6021 19.3128 16.1021 18.9128L11.0021 13.7128Z" fill="currentColor"></path>
                                                 <path opacity="0.3" d="M21.9021 14.0128C21.7021 15.6128 21.1021 17.1128 20.1021 18.4128C19.7021 18.9128 19.0021 18.9128 18.6021 18.5128L13.0021 12.9128H20.9021C21.5021 12.9128 22.0021 13.4128 21.9021 14.0128Z" fill="currentColor"></path>
                                             </svg>
-                                        </a>
-                                        <a href="{{ route('faseone.edit', $value->id) }}" title="editar"
+                                        </a> --}}
+                                        {{-- <a href="{{ route('faseone.edit', $value->id) }}" title="editar"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -175,8 +241,8 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
-                                        </a>
-                                        <a href="" title="Cargar Archivo"
+                                        </a> --}}
+                                        {{-- <a href="" title="Cargar Archivo"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                             data-bs-toggle="modal" data-bs-target="#kt_modal_new_target"
                                             id="kt_file_manager_new_folder" data-id="{{$value->id}}" onclick="prepare_data(this)">
@@ -193,8 +259,8 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
-                                        </a>
-                                        <a href="javascript:void(0);" onclick="delet_grupo(this)"
+                                        </a> --}}
+                                        {{-- <a href="javascript:void(0);" onclick="delet_grupo(this)"
                                             data-id="{{ $value->id }}" title="Eliminar Grupo"
                                             class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -213,7 +279,7 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
-                                        </a>
+                                        </a> --}}
                                         @else
 
                                         @endif
@@ -234,26 +300,12 @@
         @include('servicio-comunitario.cargar_file_faseone')
     </div>
     @push('scripts')
-        <link rel="stylesheet" type="text/css" href="{{ asset('m2/assets/plugins/global/plugins.bundle.js') }}">
-
-        {{-- <script>var hostUrl = "/m2/assets/";</script> --}}
-        <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
-        <script src="/m2/assets/js/scripts.bundle.js"></script>
-        <!--end::Global Javascript Bundle-->
-        <!--begin::Page Vendors Javascript(used by this page)-->
-        <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-        <!--end::Page Vendors Javascript-->
-        <!--begin::Page Custom Javascript(used by this page)-->
-        {{-- <script src="/m2/assets/js/custom/apps/user-management/users/list/table.js"></script> --}}
-        {{-- <script src="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
-        <script src="/m2/assets/js/custom/apps/user-management/users/list/add.js"></script>
-        <script src="/m2/assets/js/widgets.bundle.js"></script>
-        {{-- <script src="/m2/assets/js/custom/widgets.js"></script> --}}
-        <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
-        <script src="/m2/assets/js/custom/intro.js"></script>
-        <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+         <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+        <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+
         <script src="{{ asset('js/axios.min.js') }}"></script>
+
 
         {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
         <script>
@@ -300,6 +352,18 @@
                                     location.reload();
                                 } else {
                                     messeg(resp.data.success, 'danger');
+                                    swal({
+                                            title: "¡ADVERTENCIA!",
+                                            text:resp.data.success,
+                                            icon: "error",
+                                            buttons:{
+                                                cancel: "Cerrar",
+
+                                            },
+                                            dangerMode: false,
+                                        }).then((willDelete) => {
+
+                                            })
                                 }
 
                             } catch (err) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiantecomunitarios;
 use App\Models\Estudiantes;
 use App\Models\GrupoSC;
 use App\Models\GrupoSCEstudiante;
@@ -16,14 +17,17 @@ class ServicioComunitarioController extends Controller
     {
         $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
         'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','grupo_s_c_s.estado',
-        'grupo_s_c_s.total_studiante','grupo_s_c_s.status')
+        'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
         ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')->get();
       return  view('servicio-comunitario.list-faseone',compact('data'));
     }
 
     public function faseone_create()
     {
-         $estudiantes=Estudiantes::where('carreras_id',1)->get();
+         $estudiantes=Estudiantecomunitarios::select('estudiantes.id','estudiantes.cedula',
+         'estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.turno',
+         'estudiantecomunitarios.seccion','estudiantecomunitarios.semestre')
+         ->join('estudiantes', 'estudiantes.id','=', 'estudiantecomunitarios.estudiantes_id')->get();
          $profesor=Profesore::all();
      return  view('servicio-comunitario.create-faseone',compact('estudiantes','profesor'));
     }
@@ -179,6 +183,21 @@ class ServicioComunitarioController extends Controller
         $profesor=Profesore::where('id',$grupo->profesore_id)->first();
         return  view('servicio-comunitario.agregar_nota',compact('estudiantes','profesor','grupo'));
     }
+
+    public function views_faseone($id)
+    {
+        $grupo = GrupoSC::find($id);
+        $estudiantes=GrupoSCEstudiante::select('grupo_s_c_estudiantes.id','grupo_s_c_estudiantes.estudiantes_id','grupo_s_c_estudiantes.observaciones',
+        'grupo_s_c_estudiantes.nota_eno','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','carreras.name as nombre_carrera',
+        'estudiantes.fe_ingreso','estudiantes.inicio_programa','estudiantes.sexo','estudiantes.email')
+        ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+        ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')
+        ->where('grupo_s_c_estudiantes.grupo_s_c_id',$id)->get();
+
+        $profesor=Profesore::where('id',$grupo->profesore_id)->first();
+        return  view('servicio-comunitario.faseone_views',compact('estudiantes','profesor','grupo'));
+    }
+
     public function add_nota_student(Request $request)
     {
         $resp = GrupoSCEstudiante::where('id',$request->id)->update([
@@ -191,10 +210,17 @@ class ServicioComunitarioController extends Controller
 
     public function finalisar_fase_one(Request $request)
     {
-        GrupoSC::where('id',$request->id)->update([
-            'status'=>2
-        ]);
-        return response()->json(['success' => 'Operación Realizado Correctamente.','status' => 200],201);
+        $data = GrupoSC::find($request->id);
+        if ($data->archivo_subido == 1 && $data->nota_evaluada_one == 1) {
+            GrupoSC::where('id',$request->id)->update([
+                'status'=>2
+            ]);
+            return response()->json(['success' => 'Operación Realizado Correctamente.','status' => 200,'ss'=>$data],201);
+        }else{
+            return response()->json(['success' => 'Error, El Grupo Falta Evaluarlo ó Cargar El Archivo, Debes Subir El Archivo Y Evaluar Los Estudiantes Para Asi Continuar.','status' => 419],201);
+        }
+
+
     }
 
     public function get_files_fase_one($id)
@@ -257,14 +283,17 @@ class ServicioComunitarioController extends Controller
         $grup_student = GrupoSCEstudiante::where('grupo_s_c_id',$request->id_grupo)->get();
         $resp_d = [];
         $resp_bool = true;
+        $e=1;
         $n=0;
         foreach ($grup_student as $key => $value) {
             if (is_null($value->nota_eno)) {
                 $n++;
                 $resp_bool = false;
+                $e=0;
                 break;
             }else{
                 $resp_bool = true;
+                $e=1;
             }
         }
         foreach ($grup_student as $key => $value) {
@@ -273,8 +302,8 @@ class ServicioComunitarioController extends Controller
                 $n++;
             }
         }
-        if ($resp_bool) {
-            GrupoSC::where('id',$request->id_grup)->update([
+        if ($e==1) {
+            GrupoSC::where('id',$request->id_grupo)->update([
                 'nota_evaluada_one'=>true
             ]);
         }
