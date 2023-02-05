@@ -49,33 +49,18 @@
                             <th class="min-w-200px">EDITAR</th>
                             <th class="min-w-200px">CEDULA</th>
                             <th class="min-w-200px">NOMBRES</th>
-                            <th class="min-w-200px">APELLIDO PATERNO</th>
-                            <th class="min-w-200px">APELLIDO MATERNO</th>
-                            <th class="min-w-200px">FE_INGRESO</th>
-                            <th class="min-w-200px">INICIO_PROGRAMA</th>
-                            <th class="min-w-200px">SEXO</th>
-                            <th class="min-w-200px">SANGUINEO</th>
-                            <th class="min-w-200px">EDO_CIVIL</th>
-                            <th class="min-w-200px">CONDICION</th>
-                            <th class="min-w-200px">NUCLEO</th>
-                            <th class="min-w-200px">ETNIA</th>
-                            <th class="min-w-200px">DISCAPACIDAD</th>
-                            <th class="min-w-200px">PAIS</th>
-                            <th class="min-w-200px">FEC_NAC</th>
-                            <th class="min-w-200px">LUGAR_NAC</th>
-                            <th class="min-w-200px">CIUDAD</th>
-                            <th class="min-w-200px">DIRECCION</th>
-                            <th class="min-w-200px">TEL_HAB</th>
-                            <th class="min-w-200px">TEL_CEL</th>
-                            <th class="min-w-200px">CORREO</th>
+                            <th class="min-w-200px">TURNO</th>
+                            <th class="min-w-200px">SECCION</th>
+                            <th class="min-w-200px">SEMESTRE</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($estu as $estus)
+                        @foreach ($estcs as $estcss)
                         <tr>
                             <td >
-                                <a href="{{route('estudiantedatos.edit_cc_estudiante',$estus->id)}}">
+                                <a href="{{route('estudiantedatos.edit_cc_estudiante',$estcss->id)}}">
                                     <button  class="btn btn-danger btn-xs" >Editar  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -84,27 +69,13 @@
                                 </a>
                             </td>
 
-                            <!-- <td>{{$estus->cedula}}</td>
-                            <td>{{$estus->nombres}}</td>
-                            <td>{{$estus->primer_apellido}}</td>
-                            <td>{{$estus->segundo_apellido}}</td>
-                            <td>{{$estus->fe_ingreso}}</td>
-                            <td>{{$estus->inicio_programa}}</td>
-                            <td>{{$estus->sexo}}</td>
-                            <td>{{$estus->sanguineo}}</td>
-                            <td>{{$estus->edo_civil}}</td>
-                            <td>{{$estus->condicion}}</td>
-                            <td>{{$estus->nucleo}}</td>
-                            <td>{{$estus->etnia}}</td>
-                            <td>{{$estus->discapacidad}}</td>
-                            <td>{{$estus->pais}}</td>
-                            <td>{{$estus->fe_nac}}</td>
-                            <td>{{$estus->lugar_nac}}</td>
-                            <td>{{$estus->ciudad}}</td>
-                            <td>{{$estus->direccion}}</td>
-                            <td>{{$estus->tel_hab}}</td>
-                            <td>{{$estus->tel_cel}}</td>
-                            <td>{{$estus->email}}</td> -->
+                            <td>{{$estcss->cedula}}</td>
+                            <td>{{$estcss->nombres}}</td>
+  
+                            <td>{{$estcss->turno}}</td>
+                            <td>{{$estcss->seccion}}</td>
+                            <td>{{$estcss->semestre}}</td>
+                            
 
                         </tr>
                         @endforeach

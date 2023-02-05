@@ -258,13 +258,10 @@ class EstudiantesController extends Controller
 
     public function index_cc_estudiante()
     {
-        $estu = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido',
-        'estudiantes.segundo_apellido','carreras.name','estudiantes.fe_ingreso','estudiantes.inicio_programa','estudiantes.sexo','estudiantes.sanguineo',
-        'estudiantes.edo_civil','estudiantes.condicion','estudiantes.nucleo','estudiantes.etnia','estudiantes.discapacidad','estudiantes.pais','estudiantes.fe_nac',
-        'estudiantes.lugar_nac','estudiantes.ciudad','estudiantes.direccion','estudiantes.tel_hab','estudiantes.tel_cel','estudiantes.email')
-        ->join('carreras', 'carreras.id', '=', 'estudiantes.carreras_id')->get();
+        $estcs = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.semestre','estudiantecomunitarios.seccion','estudiantecomunitarios.turno')->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id', '=', 'estudiantes.id')->get();
+
         // return response($estu);
-        return view('estudiantedatos.index_cc_estudiante', compact('estu'));
+        return view('estudiantedatos.index_cc_estudiante', compact('estcs'));
     }
 
     public function store_cc_estudiante(Request $request)
