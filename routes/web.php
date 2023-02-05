@@ -93,18 +93,21 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  /**-------------------------------------------------------------------------End Expedientes Carreras----------------------------------------------------------- */
 
  /**-------------------------------------------------------------------------Servicio Comunitario---------------------------------------------------------- */
+ // fase 1
  Route::get('servicio-comunitario/faseone',[App\Http\Controllers\ServicioComunitarioController::class,'list_faseone'])->name('serviciocomunitario.listfaseone');
  Route::get('servicio-comunitario/faseone/crear', [App\Http\Controllers\ServicioComunitarioController::class, 'faseone_create'])->name('faseone.create');
  Route::post('servicio-comunitario/faseone/estudent/store', [App\Http\Controllers\ServicioComunitarioController::class, 'temp_store_student'])->name('faseone.temp_store_student');
  Route::post('servicio-comunitario/faseone/estudent/edit', [App\Http\Controllers\ServicioComunitarioController::class, 'store_student'])->name('faseone.store_student');
  Route::post('servicio-comunitario/faseone/store', [App\Http\Controllers\ServicioComunitarioController::class, 'store_faseone'])->name('faseone.store_faseone');
  Route::post('servicio-comunitario/faseone/update', [App\Http\Controllers\ServicioComunitarioController::class, 'update_faseone'])->name('faseone.update_faseone');
+ Route::post('servicio-comunitario/fasetwo/update', [App\Http\Controllers\ServicioComunitarioController::class, 'update_fasetwo'])->name('faseone.update_fasetwo');
  Route::get('servicio-comunitario/faseone/estudent/list_temp_student', [App\Http\Controllers\ServicioComunitarioController::class, 'List_student_temp'])->name('faseone.listtempstudent');
  Route::get('servicio-comunitario/faseone/estudent/list_student/{id_grupo}', [App\Http\Controllers\ServicioComunitarioController::class, 'List_student'])->name('faseone.listtempstudent.edit');
  Route::delete('servicio-comunitario/delete_temp_student/{id}',[App\Http\Controllers\ServicioComunitarioController::class, 'delete_temp_student_list']);
  Route::delete('servicio-comunitario/delete_student/{id}',[App\Http\Controllers\ServicioComunitarioController::class, 'delete_student_list']);
  Route::delete('servicio-comunitario/delet_grupo/{id}',[App\Http\Controllers\ServicioComunitarioController::class, 'delete_grupo']);
  Route::get('servicio-comunitario/faseone/{id}/edit',[App\Http\Controllers\ServicioComunitarioController::class, 'edit_faseone'])->name('faseone.edit');
+ Route::get('servicio-comunitario/fasetwo/{id}/edit',[App\Http\Controllers\ServicioComunitarioController::class, 'edit_fasetwo'])->name('fasetwo.edit');
  Route::get('servicio-comunitario/faseone/get_files/{id}',[App\Http\Controllers\ServicioComunitarioController::class, 'get_files_fase_one'])->name('faseone.get_files_fase_one');
  Route::post('servicio-comunitario/store_file_fase_one',[App\Http\Controllers\ServicioComunitarioController::class,'store_file_fase_one'])->name('faseone.file.store');
  Route::get('servicio-comunitario/faseone/{id}/add-nota',[App\Http\Controllers\ServicioComunitarioController::class, 'add_nota_faseone'])->name('faseone.add_nota_faseone');
@@ -112,6 +115,9 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  Route::put('servicio-comunitario/faseone/add-nota',[App\Http\Controllers\ServicioComunitarioController::class, 'add_nota_student'])->name('faseone.add_nota_student');
  Route::put('servicio-comunitario/faseone/finalizar',[App\Http\Controllers\ServicioComunitarioController::class, 'finalisar_fase_one'])->name('faseone.finalizar');
  Route::post('servicio-comunitario/faseone/store_value_nota',[App\Http\Controllers\ServicioComunitarioController::class,'store_value_nota'])->name('faseone.nota.store');
+
+ // Fase 2
+ Route::get('servicio-comunitario/fasetwo',[App\Http\Controllers\ServicioComunitarioController::class,'list_fasetwo'])->name('serviciocomunitario.listfasetwo');
  /**-------------------------------------------------------------------------End Servicio Comunitario----------------------------------------------------------- */
 
 

@@ -16,6 +16,7 @@ class Estudiantecomunitarios extends Model
         'semestre',
         'seccion',
         'turno',
-       
+        'fase',
+
     ];
 }

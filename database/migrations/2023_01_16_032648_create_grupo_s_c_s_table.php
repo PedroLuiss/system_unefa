@@ -20,7 +20,7 @@ class CreateGrupoSCSTable extends Migration
             $table->string('nombre_proyecto')->nullable();
             $table->integer('estado')->comment("0 = pendiente, 1 = Finalizado");
             $table->integer('total_studiante')->nullable();
-            $table->integer('status')->comment("1 Face N1, Face N2");
+            $table->integer('status')->comment("1= Face N1, 2=Face N2, 3=Completado");
             $table->boolean('archivo_subido')->default(0);
             $table->boolean('nota_evaluada_one')->default(0);
             $table->boolean('nota_evaluada_twe')->default(0);

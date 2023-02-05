@@ -170,6 +170,7 @@ class ServicioComunitarioController extends Controller
         $profesor=Profesore::all();
         return  view('servicio-comunitario.edit-faseone',compact('estudiantes','profesor','grupo'));
     }
+
     public function add_nota_faseone($id)
     {
         $grupo = GrupoSC::find($id);
@@ -215,6 +216,16 @@ class ServicioComunitarioController extends Controller
             GrupoSC::where('id',$request->id)->update([
                 'status'=>2
             ]);
+            $estudiante = GrupoSCEstudiante::where('grupo_s_c_id',$request->id)->get();
+            foreach ($estudiante as $key => $value) {
+                $est_s = Estudiantecomunitarios::where('estudiantes_id',$value->estudiantes_id)->get();
+                if (count($est_s)) {
+                    Estudiantecomunitarios::where('estudiantes_id',$est_s[0]->estudiantes_id)->update([
+                        'fase'=>2
+                    ]);
+                }
+
+            }
             return response()->json(['success' => 'Operación Realizado Correctamente.','status' => 200,'ss'=>$data],201);
         }else{
             return response()->json(['success' => 'Error, El Grupo Falta Evaluarlo ó Cargar El Archivo, Debes Subir El Archivo Y Evaluar Los Estudiantes Para Asi Continuar.','status' => 419],201);
@@ -309,6 +320,43 @@ class ServicioComunitarioController extends Controller
         }
 
         return response()->json(['success' => 'Notas Evaluadas Correctamente.','status' => 200,'resp' => $resp_bool,'data'=>$resp_d],201);
+    }
+
+    // --------------------------------------------------Code Face 2--------------------------------------------------
+
+    public function list_fasetwo()
+    {
+        $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','grupo_s_c_s.estado',
+        'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+        ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')->where('grupo_s_c_s.status','=',2)->get();
+      return  view('servicio-comunitario.list-fasetwo',compact('data'));
+    }
+    public function edit_fasetwo($id)
+    {
+        $grupo = GrupoSC::find($id);
+        $estudiantes=Estudiantecomunitarios::select('estudiantes.id','estudiantes.cedula',
+        'estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.turno',
+        'estudiantecomunitarios.seccion','estudiantecomunitarios.semestre')
+        ->join('estudiantes', 'estudiantes.id','=', 'estudiantecomunitarios.estudiantes_id')->where('estudiantecomunitarios.fase',2)->get();
+        $profesor=Profesore::all();
+        return  view('servicio-comunitario.edit-fasetwo',compact('estudiantes','profesor','grupo'));
+    }
+
+    public function update_fasetwo(Request $request)
+    {
+    //    return response($request);
+
+       $temp_student = GrupoSCEstudiante::where('grupo_s_c_id',$request->id_grupo)->get();
+
+        GrupoSC::where('id',$request->id_grupo)->update([
+            'profesore_id'=>$request->profesor,
+            'nombre_proyecto'=>$request->nombre_proyecto,
+            'total_studiante'=>count($temp_student),
+        ]);
+
+
+        return response()->json(['message' => 'Grupo Actualizado Correctamente','status' => 200,], 201);
     }
 
 }

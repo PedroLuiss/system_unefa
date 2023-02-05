@@ -19,6 +19,7 @@ class CreateEstudiantecomunitariosTable extends Migration
             $table->integer('semestre')->nullable();
             $table->string('turno')->nullable();
             $table->string('seccion')->nullable();
+            $table->integer('fase')->default(1);
             $table->timestamps();
         });
     }
