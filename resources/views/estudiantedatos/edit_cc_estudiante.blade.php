@@ -6,9 +6,10 @@
 
         <div class="card-body card-scroll h-800px">
 
-            <form action="{{route('estudiantedatos.update')}}" method="POST" novalidate>
+            <form action="{{route('estudiantedatos.update_cc_estudiante')}}" method="POST" novalidate>
                 @method('PUT')
                 @csrf
+<<<<<<< Updated upstream
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-5">
@@ -83,9 +84,64 @@
                     </div>
 
                 </div>
+=======
+                        <div class="row">
+                            <input type="hidden" name="id" value="{{$estudent->id}}">
+
+                            
+
+                            <div class="col-md-6">
+                                <div class="mb-10 ">
+                                    <label for="exampleFormControlInput1" class="required form-label">SECCION</label>
+                                    <input type="txtSeccion" name="seccion" class="form-control form-control-solid @error('seccion') is-invalid @enderror" value="{{$estudent->seccion}}" placeholder="SECCION"/>
+                                    @error('seccion')
+                                        <span class="invalid-feedback">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                     
+                            <div class="col-md-6">
+                                <div class="mb-10">
+                                    <label for="exampleFormControlInput1" class="required form-label">SEMESTRES 1/8</label>
+                                    <input type="txtSemestre" name="semestre" class="form-control form-control-solid @error('semestre') is-invalid @enderror" value="{{$estudent->semestre}}" placeholder="SEMESTRE 1/8"/>
+                                    @error('semestre')
+                                        <span class="invalid-feedback">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                
+
+                            </div>
+
+                            <div class="col-md-6">
+                                    <div class="mb-10">
+                                       
+                                     <select id="lista" class="form-select form-select-transparent @error('turno') is-invalid @enderror"  name="turno" aria-label="turno">
+                                        
+                                            
+                                            <option value="{{$estudent->turno}} ">{{$estudent->turno}}</option>
+
+                                        </select>
+                                        @error('turno')
+                                            <span class="invalid-feedback">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                        </div>
+
+                            
+
+>>>>>>> Stashed changes
 
 
-                        <button type="submit" class="btn btn-success gu" style="left: 40%; align-items: center; position: relative;">Actualizar Datos</button>
+                        <button type="submit" class="btn btn-success gu" style="left: 27%;width: 36vw; align-items: center; position: relative;">Actualizar Datos</button>
             </form>
 
         </div>

@@ -140,7 +140,7 @@ class EstudiantesController extends Controller
             'carreras'=>$carrera_estuden,
             'all_carreras'=>$all_carreras
         ];
-
+        // dd($data);
         return view('estudiantedatos.edit',compact('data'));
     }
 
@@ -311,104 +311,55 @@ class EstudiantesController extends Controller
 
     public function edit_cc_estudiante($id)
     {
+<<<<<<< Updated upstream
         $estudent = Estudiantecomunitarios::where('estudiantes_id',$id)->first();
 
         $cc_estudiante = Estudiantes::all();
 
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent','cc_estudiante'));
+=======
+        $estudent = Estudiantecomunitarios::find($id);
+           
+        
+         // dd($estudent);
+        return view('estudiantedatos.edit_cc_estudiante',compact('estudent'));
+>>>>>>> Stashed changes
     }
 
     public function update_cc_estudiante(Request $request)
     {
+           
         $request->validate([
 
-            'cedula' => [
-                'required',
-                'max:20',
-                Rule::unique('estudiantes','cedula')->ignore($request->id,'id'),
-            ],
-            'nombres' =>['required'],
-            'primer_apellido' =>['required'],
-            'segundo_apellido' =>['required'],
-            'carrera' =>['required'],
-            'fe_ingreso' =>['required'],
-            'inicio_programa' =>['required'],
-            'sexo' =>['required'],
-            'sanguineo' =>['required'],
-            'edo_civil' =>['required'],
-            'condicion' =>['required'],
-            'nucleo' =>['required'],
-            'etnia' =>['required'],
-            'discapacidad' =>['required'],
-            'pais' =>['required'],
-            'etnia' =>['required'],
-            'fe_nac' =>['required'],
-            'lugar_nac' =>['required'],
-            'ciudad' =>['required'],
-            'direccion' =>['required'],
-            'tel_hab' =>['required','max:15'],
-            'tel_cel' =>['required','max:15'],
-            'email' => [
-                'required',
-                'max:100',
-                'email',
-                Rule::unique('estudiantes','email')->ignore($request->id,'id'),
-            ]
+           
+            'semestre' =>['required'],
+            'turno' =>['required'],
+            'seccion' =>['required'],
+
+
         ],[],[
-            'cedula' => '',
-            'nombres' => '',
-            'primer_apellido' => '',
-            'segundo_apellido' => '',
-            'carrera'=> '',
-            'fe_ingreso' => '',
-            'inicio_programa' => '',
-            'sexo' => '',
-            'sanguineo' => '',
-            'edo_civil'=> '',
-            'condicion' => '',
-            'nucleo' => '',
-            'etnia' => '',
-            'discapacidad' => '',
-            'pais'=> '',
-            'etnia' => '',
-            'fe_nac' => '',
-            'lugar_nac' => '',
-            'ciudad' => '',
-            'direccion'=> '',
-            'tel_hab' => '',
-            'tel_cel' => '',
-            'email' => '',
+
+            
+            'semestre' => '',
+            'turno' => '',
+            'seccion' => '',
         ]);
 
-        $data = $request->all();
 
-        $estud_st =  Estudiantes::where('id',$data['id'])->update([
-        'cedula'=> $data['cedula'],
-        'nombres'=> $data['nombres'],
-        'primer_apellido'=> $data['primer_apellido'],
-        'segundo_apellido'=> $data['segundo_apellido'],
-        'carreras_id'=> $data['carrera'],
-        'fe_ingreso'=> $data['fe_ingreso'],
-        'inicio_programa'=> $data['inicio_programa'],
-        'sexo'=> $data['sexo'],
-        'sanguineo'=> $data['sanguineo'],
-        'edo_civil'=> $data['edo_civil'],
-        'condicion'=> $data['condicion'],
-        'nucleo'=> $data['nucleo'],
-        'etnia'=> $data['etnia'],
-        'discapacidad'=> $data['discapacidad'],
-        'pais'=> $data['pais'],
-        'fe_nac'=> $data['fe_nac'],
-        'lugar_nac'=> $data['lugar_nac'],
-        'ciudad'=> $data['ciudad'],
-        'direccion'=> $data['direccion'],
-        'tel_hab'=> $data['tel_hab'],
-        'tel_cel'=> $data['tel_cel'],
-        'email'=> $data['email']
-    ]);
 
-    $messege = $estud_st ? 'Estudiante Actualizado Correctamente' : 'Error al actualizar';
-    return redirect()->route('estudiantedatos.index')->with('mensaje', $messege);
+            $data = $request->all();
+           // dd($data);
+            $estudiante_cc =  Estudiantecomunitarios::where('id',$data['id'])->update([
+
+           
+            'semestre'=> $data['semestre'],
+            'turno'=> $data['turno'],
+            'seccion'=> $data['seccion'],
+
+        ]);
+
+    $messege = $estudiante_cc ? 'Estudiante Actualizado Correctamente' : 'Error al actualizar';
+    return redirect()->route('estudiantedatos.index_cc_estudiante')->with('mensaje', $messege);
 
     }
 }

@@ -139,5 +139,14 @@ Route::put('/estudiantedatos/ccregistr0/update_cc_registro',[App\Http\Controller
 /**-----------------------------------------------------------
 Registro estudiantes comunitarios */
 
+
+/**Reporte */
+
+Route::get('/estudiantedatos/reporte', [App\Http\Controllers\ReportexportController::class, 'index'])->name('reporte.index');
+
+
+/**-----------------------------------------------------------
+*/
+
 });
 

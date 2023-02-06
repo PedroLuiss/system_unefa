@@ -162,7 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Rukhsar\ActiveRoute\ActiveRouteServiceProvider::class,
-
+        maatwebsite\Excel\ExcelServiceProvider::class,
+      
         /*
          * Package Service Providers...
          */
@@ -231,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Active'    =>  Rukhsar\ActiveRoute\Facades\Active::class,
+        'Excel'    =>  Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
