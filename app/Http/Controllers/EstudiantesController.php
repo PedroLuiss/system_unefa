@@ -311,19 +311,19 @@ class EstudiantesController extends Controller
 
     public function edit_cc_estudiante($id)
     {
-<<<<<<< Updated upstream
+// <<<<<<< Updated upstream
         $estudent = Estudiantecomunitarios::where('estudiantes_id',$id)->first();
 
         $cc_estudiante = Estudiantes::all();
 
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent','cc_estudiante'));
-=======
+// =======
         $estudent = Estudiantecomunitarios::find($id);
            
         
          // dd($estudent);
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent'));
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
     }
 
     public function update_cc_estudiante(Request $request)

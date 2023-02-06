@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <a href="{{route('expedientes.empaquetar.nucleo')}}" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-5 py-1 px-3">
+                                    <a href="{{route('reporte.exportar_csc')}}" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-5 py-1 px-3">
                                         <div class="symbol symbol-30px me-4">
                                             <span class="symbol-label text-success bg-light-success">
                                                 <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->
@@ -59,15 +59,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($data as $datas)
-                        <tr>
-                           
-                            <td>{{$datas->datoestudi.cedula}}</td>
-                           
-                          
-
-                        </tr>
-                        @endforeach
+                      
                     </tbody>
                 </table>
             </div>

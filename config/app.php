@@ -162,8 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Rukhsar\ActiveRoute\ActiveRouteServiceProvider::class,
-        maatwebsite\Excel\ExcelServiceProvider::class,
-      
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\GrupoSCEstudiante;
 use App\Models\Estudiantes;
 use App\Models\Estudiantecomunitarios;
+use Excel;
+use Maatwebsite\Excel\Facades\Fxcel;
+use App\Exports\UsersExport;
 
 class reportexportController extends Controller
 {
@@ -17,14 +20,32 @@ class reportexportController extends Controller
     public function index()
 
     {
-        $data = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres','carreras.name')
-        ->join('GruposSCEstudiante', 'GruposSCEstudiante.id', '=', 'estudiantes.id')->get();
 
+        // $estudiante_c = Estudiantes::all();
 
+        // $estudicomunitario = GrupoSCEstudiante::select('grupo_s_c_estudiantes.estudiantes_id','estudiantecomunitarios.semestre')
+        // ->join('Estudiantecomunitarios', 'Estudiantecomunitarios.estudiantes_id', '=', 'grupo_s_c_estudiantes.estudiantes_id')->get();
+
+        // $data =[
+
+        //     'estudiante_c' => $estudiante_c,
+        //     'estudicomunitario' => $estudicomunitario,
+        // ];
         
         // dd($data);
         // dd($datosreport);
-       return view('reporte.index',compact('data'));
+       return view('reporte.index');
+    }
+
+
+    public function  exportar_csc(){
+
+        $dat = Estudiantes::all();
+
+        return Excel::download(new UsersExport ,'reporte.xlsx');
+
+        
+
     }
 
     /**

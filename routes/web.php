@@ -144,6 +144,8 @@ Registro estudiantes comunitarios */
 
 Route::get('/estudiantedatos/reporte', [App\Http\Controllers\ReportexportController::class, 'index'])->name('reporte.index');
 
+Route::get('/estudiantedatos/reporte/exportar', [App\Http\Controllers\ReportexportController::class, 'exportar_csc'])->name('reporte.exportar_csc');
+
 
 /**-----------------------------------------------------------
 */
