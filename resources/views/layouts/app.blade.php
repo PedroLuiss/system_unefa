@@ -51,6 +51,28 @@ License: For each use you must have a valid license purchased only from above li
                     .b-danger{
                         border: 1px solid rgb(238, 51, 51);
                     }
+
+                .heder_iten_file{
+                    justify-content: center !important;
+                    min-height: auto !important;
+                    padding: 4px 2.25rem !important;
+                }
+
+                .timeline-label:before {
+                    content: "";
+                    position: absolute;
+                    left: 83px;
+                    width: 4px;
+                    top: 0;
+                    bottom: 0;
+                    background-color: #efefef;
+                }
+                .timeline-label .timeline-label {
+                    width: 83px;
+                    flex-shrink: 0;
+                    position: relative;
+                    color: #3F4254;
+                }
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->

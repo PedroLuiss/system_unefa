@@ -28,6 +28,7 @@
                             @csrf
                             <input type="hidden" class="form-control " id="id_grupo_form_file" name="id_grupo"  />
                             <input type="hidden" class="form-control " id="id_fase" name="fase"  />
+                            {{-- <input type="hidden" class="form-control " id="fase_act" name="fase_n"  /> --}}
 							<!--begin::Heading-->
 							<div class="mb-13 text-center">
 								<!--begin::Title-->

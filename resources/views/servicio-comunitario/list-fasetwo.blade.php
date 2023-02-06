@@ -155,7 +155,7 @@
                                                     <!--end::Svg Icon-->
                                                 </a>
                                         @else
-                                        <a href="{{ route('faseone.views', $value->id) }}"
+                                        <a href="{{ route('fasetwo.views', $value->id) }}"
                                             data-id="{{ $value->id }}" title="Ver Grupo"
                                             class="btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -187,9 +187,8 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('faseone.add_nota_faseone', $value->id) }}"  class="menu-link flex-stack px-3">
+                                                <a href="{{ route('fasetwo.add_nota_fasetwo', $value->id) }}"  class="menu-link flex-stack px-3">
                                                     Evaluar Estudiante
-
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                         aria-label="Aqui podras asignar las nota para cada estudiante"
                                                         data-bs-original-title="Aqui podras asignar las nota para cada estudiante"
@@ -200,7 +199,7 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_new_target" id="kt_file_manager_new_folder"  data-id="{{$value->id}}" onclick="prepare_data(this)" class="menu-link px-3">
+                                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_new_target" id="kt_file_manager_new_folder"  data-fase="2" data-id="{{$value->id}}" onclick="prepare_data(this)" class="menu-link px-3">
                                                     Cargar Archivo
                                                 </a>
                                             </div>
@@ -310,8 +309,10 @@
         <script>
             function prepare_data(obj) {
                 let id = $(obj).attr('data-id');
+                let id_fase = $(obj).attr('data-fase');
+
                 $('#id_grupo_form_file').val(id);
-                $('#id_fase').val(1);
+                $('#id_fase').val(id_fase);
                 list_files(id);
             }
             $('#kt_table_users').dataTable({
@@ -483,8 +484,11 @@
                                 // table += '<span   onmouseout="btn_delete_show(false,'+i+')" onmouseover="btn_delete_show(true,'+i+')" title="'+resp.data[i].name+'" class="files-view"><span  id="btn-delete-file'+i+'" class="btn-file-delete ocult-btn" onclick="delet_file_compras('+resp.data[i].id+');" ><i class="fa fa-times"></i></span><i onclick="showFile('+resp.data[i].id+')" class="'+ex+'"></i></span>';
                                 // table += ' </div>';
 
-                                table += '<div class="col-md-6 ">';
+                                table += '<div class="col-md-6 mb-3">';
                                 table += ' <div class="card h-100 border">';
+                                table += ' <div class="card-header heder_iten_file">';
+                                table += ' <div><span style="font-size: 1vw;" class="badge badge-secondary">Fase: '+resp.data[i].fase+'</span></div>';
+                                table += ' </div>';
                                 table += ' <div class="card-body d-flex justify-content-center text-center flex-column p-8">';
                                 table += '<a href="'+base_url()+resp.data[i].url+'"  target="_blank" class="text-gray-800 text-hover-primary d-flex flex-column">';
                                 table += ' <div class="symbol symbol-60px mb-5">';

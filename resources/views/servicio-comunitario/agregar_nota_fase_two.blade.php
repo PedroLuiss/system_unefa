@@ -6,13 +6,13 @@
 @endpush
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
-        <input type="hidden" id="id_grupo_hide" value="{{$grupo->id}}">
+        <input type="hidden" id="id_grupo_hide" value="{{ $grupo->id }}">
         <!--begin::Navbar-->
         <div class="card mb-5 mb-xxl-8">
             <div class="card-header border-0 pt-5">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold fs-3 mb-1">Proyecto: {{$grupo->nombre_proyecto}}</span>
+                    <span class="card-label fw-bold fs-3 mb-1">Proyecto: {{ $grupo->nombre_proyecto }}</span>
 
                 </h3>
                 <!--end::Title-->
@@ -38,7 +38,9 @@
                             <div class="d-flex flex-column">
                                 <!--begin::Name-->
                                 <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">CI: {{$profesor->cedula}} | {{$profesor->nombre}} {{$profesor->primer_apellido}} {{$profesor->segundo_apellido}}</a>
+                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">CI:
+                                        {{ $profesor->cedula }} | {{ $profesor->nombre }} {{ $profesor->primer_apellido }}
+                                        {{ $profesor->segundo_apellido }}</a>
 
                                 </div>
                                 <!--end::Name-->
@@ -60,7 +62,7 @@
                                                     rx="2" fill="currentColor"></rect>
                                             </svg>
                                         </span>
-                                        {{$profesor->especialidad}}
+                                        {{ $profesor->especialidad }}
                                     </a>
 
                                     <a href="#"
@@ -76,7 +78,7 @@
                                                     fill="currentColor"></path>
                                             </svg>
                                         </span>
-                                        {{$profesor->email}}
+                                        {{ $profesor->email }}
                                     </a>
                                 </div>
                                 <!--end::Info-->
@@ -265,7 +267,7 @@
                                             <!--end::Svg Icon-->
                                             <div class="fs-2 fw-bold counted" data-kt-countup="true"
                                                 data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                data-kt-initialized="1">{{$grupo->total_studiante}}</div>
+                                                data-kt-initialized="1">{{ $grupo->total_studiante }}</div>
                                         </div>
                                         <!--end::Number-->
 
@@ -307,53 +309,58 @@
         <!--begin::Row-->
         <div class="row g-5 g-xxl-8">
             @foreach ($estudiantes as $val_student)
-            <!--begin::Col-->
-            <div class="col-xl-6 ">
+                <!--begin::Col-->
+                <div class="col-xl-6 ">
 
-                <!--begin::Feeds Widget 2-->
-                <div id="card_all_studen{{$val_student->id}}" class="card mb-5 mb-xxl-8 ">
-                    <!--begin::Alert-->
-                    <div class="alert alert-primary d-flex align-items-center p-5 alert_not" id="aler_notas{{$val_student->id}}">
-                        <!--begin::Icon-->
-                        <span class="svg-icon svg-icon-2hx svg-icon-primary me-3"><i class="fa-solid fa-thumbs-up"></i></span>
-                        <!--end::Icon-->
+                    <!--begin::Feeds Widget 2-->
+                    <div id="card_all_studen{{ $val_student->id }}" class="card mb-5 mb-xxl-8 ">
+                        <!--begin::Alert-->
+                        <div class="alert alert-primary d-flex align-items-center p-5 alert_not"
+                            id="aler_notas{{ $val_student->id }}">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-2hx svg-icon-primary me-3"><i
+                                    class="fa-solid fa-thumbs-up"></i></span>
+                            <!--end::Icon-->
 
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-column">
-                            <!--begin::Title-->
-                            <h4 class="mb-1 text-dark">!Exelente</h4>
-                            <!--end::Title-->
-                            <!--begin::Content-->
-                            <span id="text_aler_nota{{$val_student->id}}"></span>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Alert-->
-                    <!--begin::Body-->
-                    <div class="card-body pb-0">
-                        <!--begin::Header-->
-                        <div class="d-flex align-items-center mb-5">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-center flex-grow-1">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-60px me-5">
-                                    <img src="{{ asset('logo_estudiantes.jpg') }}" alt="">
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::Info-->
-                                <div class="d-flex flex-column">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-6 fw-bold">CI: {{$val_student->cedula}} <br> {{$val_student->nombres}} {{$val_student->primer_apellido}} {{$val_student->segundo_apellido}}</a>
-
-                                    <span class="text-gray-400 fw-bold">Carrera: {{$val_student->nombre_carrera}} </span>
-                                </div>
-                                <!--end::Info-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column">
+                                <!--begin::Title-->
+                                <h4 class="mb-1 text-dark">!Exelente</h4>
+                                <!--end::Title-->
+                                <!--begin::Content-->
+                                <span id="text_aler_nota{{ $val_student->id }}"></span>
+                                <!--end::Content-->
                             </div>
-                            <!--end::User-->
+                            <!--end::Wrapper-->
+                        </div>
+                        <!--end::Alert-->
+                        <!--begin::Body-->
+                        <div class="card-body pb-0">
+                            <!--begin::Header-->
+                            <div class="d-flex align-items-center mb-5">
+                                <!--begin::User-->
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-60px me-5">
+                                        <img src="{{ asset('logo_estudiantes.jpg') }}" alt="">
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <a href="#" class="text-gray-900 text-hover-primary fs-6 fw-bold">CI:
+                                            {{ $val_student->cedula }} <br> {{ $val_student->nombres }}
+                                            {{ $val_student->primer_apellido }} {{ $val_student->segundo_apellido }}</a>
 
-                            <!--begin::Menu-->
-                            <div class="my-0">
-                                {{-- <button type="button"
+                                        <span class="text-gray-400 fw-bold">Carrera: {{ $val_student->nombre_carrera }}
+                                        </span>
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::User-->
+
+                                <!--begin::Menu-->
+                                <div class="my-0">
+                                    {{-- <button type="button"
                                     class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
@@ -373,138 +380,219 @@
                                     <!--end::Svg Icon-->
                                 </button> --}}
 
-                                <!--begin::Menu 2-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                    data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
+                                    <!--begin::Menu 2-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu separator-->
+                                        <div class="separator mb-3 opacity-75"></div>
+                                        <!--end::Menu separator-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                New Ticket
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                New Customer
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                New Contact
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu separator-->
+                                        <div class="separator mt-3 opacity-75"></div>
+                                        <!--end::Menu separator-->
+
+
                                     </div>
-                                    <!--end::Menu item-->
+                                    <!--end::Menu 2-->
+                                </div>
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Header-->
+                            <div class="timeline-label mb-4">
+                                <!--begin::Item-->
+                                <div class="timeline-item">
+                                    <!--begin::Label-->
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº1</div>
+                                    <!--end::Label-->
 
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mb-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
-
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">
-                                            New Ticket
-                                        </a>
+                                    <!--begin::Badge-->
+                                    <div class="timeline-badge">
+                                        <i class="fa fa-genderless text-success  fs-1"></i>
                                     </div>
-                                    <!--end::Menu item-->
+                                    <!--end::Badge-->
 
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">
-                                            New Customer
-                                        </a>
+                                    <!--begin::Text-->
+                                    <div class="fw-mormal timeline-content text-muted ps-3">
+                                        {{ $val_student->observaciones }}, Nota: {{ $val_student->nota_eno }}
                                     </div>
-                                    <!--end::Menu item-->
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Item-->
 
+                                <!--begin::Item-->
+                                <div class="timeline-item">
+                                    <!--begin::Label-->
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº2</div>
+                                    <!--end::Label-->
 
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">
-                                            New Contact
-                                        </a>
+                                    <!--begin::Badge-->
+                                    <div class="timeline-badge">
+                                        <i class="fa fa-genderless text-warning fs-1"></i>
                                     </div>
-                                    <!--end::Menu item-->
+                                    <!--end::Badge-->
 
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mt-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
+                                    <!--begin::Content-->
+                                    <div class="timeline-content d-flex">
+                                        <span id="time_line_info" class="fw-bold text-gray-800 ps-3">
+                                            <span class="text_observacion{{ $val_student->id }}">
+                                                @if ($val_student->observaciones_2 == null)
+                                                    Pendiente...
+                                                @else
+                                                    {{ $val_student->observaciones_2 }}
+                                                @endif
+                                            </span>
+                                        , Nota:
+                                            <span class="nom_nota{{ $val_student->id }}">
+                                                @if ($val_student->nota_two == null)
+                                                    0
+                                                @else
+                                                    {{ $val_student->nota_two }}
+                                                @endif
+                                            </span>
 
+                                    </span>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Item-->
+
+
+                            </div>
+                              <!--begin::Separator-->
+                              <div class="separator mb-4"></div>
+                              <!--end::Separator-->
+                            {{-- <p class="text-gray-800 fw-normal mb-5 h3 text_observacion{{ $val_student->id }}">
+                                @if ($val_student->observaciones == null)
+                                    Pendiente...
+                                @else
+                                    {{ $val_student->observaciones }}
+                                @endif
+                            </p> --}}
+                            <!--begin::Post-->
+                            <div class="mb-5">
+                                <!--begin::Toolbar-->
+                                <div class="d-flex align-items-center mb-5">
+                                    <a href="#"
+                                        class="btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4"
+                                        style="font-size: 1vw">
+                                        <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            Nota:
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                        <span class="nom_nota{{ $val_student->id }}">
+                                            @if ($val_student->nota_two == null)
+                                                0
+                                            @else
+                                                {{ $val_student->nota_two }}
+                                            @endif
+                                        </span>
+                                    </a>
+
+                                    <a href="javascript:void(0);" onclick="vaciar_nota({{ $val_student->id }})"
+                                        class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2"
+                                        title="Vaciar Nota">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3"
+                                                    d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
 
                                 </div>
-                                <!--end::Menu 2-->
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <!--end::Header-->
-                        <p class="text-gray-800 fw-normal mb-5 h3 text_observacion{{$val_student->id}}">@if ($val_student->observaciones==null) Pendiente...  @else {{$val_student->observaciones}}   @endif
-                        </p>
-                        <!--begin::Post-->
-                        <div class="mb-5">
-                            <!--begin::Toolbar-->
-                            <div class="d-flex align-items-center mb-5">
-                                <a href="#"
-                                    class="btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4" style="font-size: 1vw">
-                                    <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-                                    <span class="svg-icon svg-icon-3">
-                                        Nota:
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                    <span class="nom_nota{{$val_student->id}}">@if ($val_student->nota_eno==null) 0 @else {{$val_student->nota_eno}}   @endif </span>
-                                </a>
-
-                                <a href="javascript:void(0);" onclick="vaciar_nota({{$val_student->id}})" class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2" title="Vaciar Nota">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
-                                    <span class="svg-icon svg-icon-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3"
-                                                d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
-                                                fill="currentColor"></path>
-                                            <path
-                                                d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
-                                                fill="currentColor"></path>
-                                        </svg>
-                                    </span>
-                                </a>
+                                <!--end::Toolbar-->
 
                             </div>
-                            <!--end::Toolbar-->
+                            <!--end::Post-->
 
-                        </div>
-                        <!--end::Post-->
+                            <!--begin::Separator-->
+                            <div class="separator mb-4"></div>
+                            <!--end::Separator-->
 
-                        <!--begin::Separator-->
-                        <div class="separator mb-4"></div>
-                        <!--end::Separator-->
+                            <!--begin::Reply input-->
+                            <div class="position-relative mb-8">
+                                <div class="mb-3">
+                                    <label for="nota_student" class="form-label">Nota</label>
+                                    <input type="number" id="nota_student{{ $val_student->id }}" class="form-control"
+                                        id="nota_student" aria-describedby="emailHelp">
+                                    {{-- <div id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</div> --}}
+                                </div>
+                                <div class="mb-6">
+                                    <label for="observacion" class="form-label">Observación</label>
+                                    <input type="text" id="observacion{{ $val_student->id }}" class="form-control"
+                                        id="observacion">
+                                </div>
 
-                        <!--begin::Reply input-->
-                        <div class="position-relative mb-8">
-                            <div class="mb-3">
-                                <label for="nota_student" class="form-label">Nota</label>
-                                <input type="number" id="nota_student{{$val_student->id}}" class="form-control" id="nota_student" aria-describedby="emailHelp">
-                                {{-- <div id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</div> --}}
-                              </div>
-                              <div class="mb-6">
-                                <label for="observacion" class="form-label">Observación</label>
-                                <input type="text" id="observacion{{$val_student->id}}" class="form-control" id="observacion">
-                              </div>
-
-                              <div class=" top-0 end-0 me-n5">
-                                <button onclick="save_nota({{$val_student->id}})" class=" mb-3 btn btn-primary  text-center" id="kt_widget_2_load_more_btn">
-                                    <span class="indicator-label">
-                                        <i class="fa-solid fa-plus"></i> Guardar Cambios
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Espere... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
-                                </button>
+                                <div class=" top-0 end-0 me-n5">
+                                    <button onclick="save_nota({{ $val_student->id }})"
+                                        class=" mb-3 btn btn-primary  text-center" id="kt_widget_2_load_more_btn">
+                                        <span class="indicator-label">
+                                            <i class="fa-solid fa-plus"></i> Guardar Cambios
+                                        </span>
+                                        <span class="indicator-progress">
+                                            Espere... <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--edit::Reply input-->
+                            <!--edit::Reply input-->
+                        </div>
+                        <!--end::Body-->
                     </div>
-                    <!--end::Body-->
+                    <!--end::Feeds Widget 2-->
                 </div>
-                <!--end::Feeds Widget 2-->
-            </div>
-            <!--end::Col-->
+                <!--end::Col-->
             @endforeach
 
 
 
         </div>
         <!--end::Row-->
-         <!--begin::Separator-->
-         <div class="separator mb-4"></div>
-         <!--end::Separator-->
-         <!--begin::Feeds widget 4, 5 load more-->
-         <button class="btn btn-primary w-100 text-center" onclick="Save_all_nota()" id="kt_widget_5_load_more_btn">
+        <!--begin::Separator-->
+        <div class="separator mb-4"></div>
+        <!--end::Separator-->
+        <!--begin::Feeds widget 4, 5 load more-->
+        <button class="btn btn-primary w-100 text-center" onclick="Save_all_nota()" id="kt_widget_5_load_more_btn">
             <span class="indicator-label">
                 Guardar Notas
             </span>
@@ -525,131 +613,6 @@
         <script src="{{ asset('js/axios.min.js') }}"></script>
         <script src="{{ asset('m2/assets/plugins/global/plugins.bundle.js') }}"></script>
         <script>
-
-            function Save_all_nota() {
-                const data = {
-                    id_grupo: $('#id_grupo_hide').val()
-                }
-
-                console.log(data);
-
-                const sendGetRequest = async () => {
-                    try {
-                        const resp = await axios.post(base_url()+"/servicio-comunitario/faseone/store_value_nota",data)
-                        .catch(function(error) {
-                            console.log(error);
-                            $("#load").hide();
-                        });;
-                        console.log(resp.data);
-                        if (resp.data.resp) {
-                            url = "{{route('serviciocomunitario.listfaseone')}}";
-                            $(location).attr('href',url);
-                        }else{
-                            for (let i = 1; i < resp.data.data.length; i++) {
-                                console.log(resp.data.data);
-                                $('#card_all_studen'+resp.data.data[i].id).addClass('b-danger');
-                            }
-                        }
-
-
-                    } catch (err) {
-                        // Handle Error Here
-                        console.log(err);
-                    }
-                };
-                sendGetRequest();
-            }
-
-            function vaciar_nota(id) {
-                const data = {
-                    id,
-                    observacion:null,
-                    nota:null,
-                    fase:1
-                }
-                process_data_nota(data);
-                $('.text_observacion'+data.id).text("Pendiente..");
-                $('.nom_nota'+data.id).text(0);
-            }
-            function save_nota(id) {
-
-
-               const data = {
-                    id,
-                    observacion:$('#observacion'+id).val(),
-                    nota:$('#nota_student'+id).val(),
-                    fase:1
-                }
-
-                if (data.observacion=="") {
-                    $('#observacion'+id).addClass('is-invalid');
-                }else{
-                    $('#observacion'+id).removeClass('is-invalid');
-                }
-
-                if (data.nota=="") {
-                    $('#nota_student'+id).addClass('is-invalid');
-                }else{
-                    if (data.nota < 0 || data.nota > 20) {
-                        $('#nota_student'+id).addClass('is-invalid');
-                        return false;
-                    }else{
-
-                        $('#nota_student'+id).removeClass('is-invalid');
-                    }
-                }
-
-                if (data.observacion==""||data.nota=="") {
-                    return false;
-                }
-                console.log(data);
-                process_data_nota(data);
-                $('.text_observacion'+data.id).text(data.observacion);
-                $('.nom_nota'+data.id).text(data.nota);
-
-
-            }
-
-            function process_data_nota(data) {
-                const sendGetRequest = async () => {
-                    try {
-                            const resp = await axios.put(base_url()+"/servicio-comunitario/faseone/add-nota",data);
-                            console.log(resp.data);
-                            if (resp.data.status==200) {
-                                $('#aler_notas'+data.id).addClass('d-flex');
-                                $('#aler_notas'+data.id).show();
-                                $('#text_aler_nota'+data.id).text(resp.data.success);
-
-                                let i=0;
-                                const h = setInterval(function () {
-                                i++
-                                $('#aler_notas'+data.id).removeClass('d-flex');
-                                $('#aler_notas'+data.id).hide(100);
-                                if (i=1) {
-                                    clearInterval(h);
-                                    }
-                                }, 6000);
-                            }
-
-                        } catch (err) {
-                            // Handle Error Here
-                        }
-                    };
-                    sendGetRequest();
-            }
-
-
-            $(document).ready(function() {
-                // $('#kt_file_manager_new_folder').hide();
-                $("#selet_code").select2({
-                    dropdownParent: $("#kt_modal_new_target"),
-                    // placeholder:"hhhhh"
-                });
-                $('.alert_not').removeClass('d-flex');
-                $('.alert_not').hide();
-                list_temp_student();
-            });
-
             function messeg(m, t) {
                 if (t == "success") {
                     $.notify(
@@ -675,6 +638,134 @@
                     }
                 );
             }
+            function Save_all_nota() {
+                const data = {
+                    id_grupo: $('#id_grupo_hide').val()
+                }
+
+                console.log(data);
+
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.post(base_url() + "/servicio-comunitario/faseone/store_value_nota",
+                                data)
+                            .catch(function(error) {
+                                console.log(error);
+                                $("#load").hide();
+                            });;
+                        console.log(resp.data);
+                        if (resp.data.resp) {
+                            url = "{{ route('serviciocomunitario.listfasetwo') }}";
+                            $(location).attr('href', url);
+                        } else {
+                            for (let i = 1; i < resp.data.data.length; i++) {
+                                console.log(resp.data.data[i]);
+                                $('#card_all_studen' + resp.data.data[i].id).addClass('b-danger');
+                            }
+                            messeg(resp.data.erro, 'danger');
+                        }
+
+
+                    } catch (err) {
+                        // Handle Error Here
+                        console.log(err);
+                    }
+                };
+                sendGetRequest();
+            }
+
+            function vaciar_nota(id) {
+                const data = {
+                    id,
+                    observacion: null,
+                    nota: null,
+                    fase:2
+                }
+                process_data_nota(data);
+                $('.text_observacion' + data.id).text("Pendiente..");
+                $('.nom_nota' + data.id).text(0);
+            }
+
+            function save_nota(id) {
+
+
+                const data = {
+                    id,
+                    observacion: $('#observacion' + id).val(),
+                    nota: $('#nota_student' + id).val(),
+                    fase:2
+                }
+
+                if (data.observacion == "") {
+                    $('#observacion' + id).addClass('is-invalid');
+                } else {
+                    $('#observacion' + id).removeClass('is-invalid');
+                }
+
+                if (data.nota == "") {
+                    $('#nota_student' + id).addClass('is-invalid');
+                } else {
+                    if (data.nota < 0 || data.nota > 20) {
+                        $('#nota_student' + id).addClass('is-invalid');
+                        return false;
+                    } else {
+
+                        $('#nota_student' + id).removeClass('is-invalid');
+                    }
+                }
+
+                if (data.observacion == "" || data.nota == "") {
+                    return false;
+                }
+                console.log(data);
+                process_data_nota(data);
+                $('.text_observacion' + data.id).text(data.observacion);
+                $('.nom_nota' + data.id).text(data.nota);
+
+
+            }
+
+            function process_data_nota(data) {
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.put(base_url() + "/servicio-comunitario/faseone/add-nota", data);
+                        console.log(resp.data);
+                        if (resp.data.status == 200) {
+                            $('#aler_notas' + data.id).addClass('d-flex');
+                            $('#aler_notas' + data.id).show();
+                            $('#text_aler_nota' + data.id).text(resp.data.success);
+
+                            let i = 0;
+                            const h = setInterval(function() {
+                                i++
+                                $('#aler_notas' + data.id).removeClass('d-flex');
+                                $('#aler_notas' + data.id).hide(100);
+                                if (i = 1) {
+                                    clearInterval(h);
+                                }
+                            }, 6000);
+                        }
+
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendGetRequest();
+            }
+
+
+            $(document).ready(function() {
+                // $('#kt_file_manager_new_folder').hide();
+                $("#selet_code").select2({
+                    dropdownParent: $("#kt_modal_new_target"),
+                    // placeholder:"hhhhh"
+                });
+                $('.alert_not').removeClass('d-flex');
+                $('.alert_not').hide();
+                list_temp_student();
+            });
+
+
 
 
             $('#btn_add_student').on('click', (e) => {
@@ -842,7 +933,7 @@
                 const sendPostRequest = async () => {
                     try {
                         const resp = await axios.post(base_url() + "/servicio-comunitario/faseone/update",
-                        data);
+                            data);
                         console.log(resp.data);
                         if (resp.data.status == 200) {
                             // list_temp_student();
@@ -923,7 +1014,7 @@
                             var r = resp.data.current_page - 1;
                             if (resp.data.links[d].url == null) {
                                 x +=
-                                '<li class="page-item previous disabled"><a class="page-link page-endorsement-ope page-link-endorsement-previous-ope" href="javascript:void(0)" data-page="1" >Atras</a></li>';
+                                    '<li class="page-item previous disabled"><a class="page-link page-endorsement-ope page-link-endorsement-previous-ope" href="javascript:void(0)" data-page="1" >Atras</a></li>';
                                 break;
                             } else {
                                 x += '<li class="page-item "><a class="page-link page-endorsement-ope page-link-endorsement-previous-ope" href="javascript:void(0)" data-page="' +
@@ -948,7 +1039,7 @@
 
                         if (resp.data.current_page >= resp.data.last_page) {
                             x +=
-                            '<li class="page-item next disabled"><a data-page="" class="page-link page-endorsement-ope page-link-endorsement-next-ope" href="javascript:void(0)">Siguiente</a></li>';
+                                '<li class="page-item next disabled"><a data-page="" class="page-link page-endorsement-ope page-link-endorsement-next-ope" href="javascript:void(0)">Siguiente</a></li>';
 
                         } else {
                             x += '<li class="page-item next "><a data-page="' + s +
