@@ -258,7 +258,10 @@ class EstudiantesController extends Controller
 
     public function index_cc_estudiante()
     {
-        $estcs = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.semestre','estudiantecomunitarios.seccion','estudiantecomunitarios.turno')->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id', '=', 'estudiantes.id')->get();
+        $estcs = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres',
+        'estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantes.email','estudiantecomunitarios.semestre',
+        'estudiantecomunitarios.seccion','estudiantecomunitarios.turno','estudiantecomunitarios.created_at')
+        ->join('estudiantecomunitarios','estudiantecomunitarios.estudiantes_id', '=', 'estudiantes.id')->get();
 
         // return response($estu);
         return view('estudiantedatos.index_cc_estudiante', compact('estcs'));
@@ -270,7 +273,10 @@ class EstudiantesController extends Controller
 
         $request->validate([
 
-            'estudiantes_id' =>['required'],
+            'estudiantes_id' => [
+                'required',
+                Rule::unique('estudiantecomunitarios','estudiantes_id')->ignore($request->id,'id'),
+            ],
             'semestre' =>['required'],
             'turno' =>['required'],
             'seccion' =>['required'],
@@ -278,10 +284,10 @@ class EstudiantesController extends Controller
 
         ],[],[
 
-            'estudiantes_id' => '',
-            'semestre' => '',
-            'turno' => '',
-            'seccion' => '',
+            'estudiantes_id' => 'Estudiante',
+            'semestre' => 'Semestre',
+            'turno' => 'Turno',
+            'seccion' => 'Sección',
         ]);
 
 
@@ -305,16 +311,11 @@ class EstudiantesController extends Controller
 
     public function edit_cc_estudiante($id)
     {
-        $estudent = Estudiantes::find($id);
-        $carrera_estuden = carrera::find($estudent->id_carrera);
-        $all_carreras = carrera::all();
-        $data=[
-            'estudent'=>$estudent,
-            'carreras'=>$carrera_estuden,
-            'all_carreras'=>$all_carreras
-        ];
+        $estudent = Estudiantecomunitarios::where('estudiantes_id',$id)->first();
 
-        return view('estudiantedatos.edit',compact('data'));
+        $cc_estudiante = Estudiantes::all();
+
+        return view('estudiantedatos.edit_cc_estudiante',compact('estudent','cc_estudiante'));
     }
 
     public function update_cc_estudiante(Request $request)
