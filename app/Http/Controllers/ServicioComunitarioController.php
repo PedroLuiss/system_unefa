@@ -261,7 +261,7 @@ class ServicioComunitarioController extends Controller
         }else{
             if ($data->archivo_subido == 1 && $data->nota_evaluada_twe == 1) {
                 GrupoSC::where('id',$request->id)->update([
-                    'status'=>3,
+                    // 'status'=>3,
                     'estado'=>true
                 ]);
                 $estudiante = GrupoSCEstudiante::where('grupo_s_c_id',$request->id)->get();
@@ -269,7 +269,7 @@ class ServicioComunitarioController extends Controller
                     $est_s = Estudiantecomunitarios::where('estudiantes_id',$value->estudiantes_id)->get();
                     if (count($est_s)) {
                         Estudiantecomunitarios::where('estudiantes_id',$est_s[0]->estudiantes_id)->update([
-                            'fase'=>2 //completado
+                            'fase'=>3 //completado
                         ]);
                     }
 

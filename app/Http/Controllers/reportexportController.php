@@ -31,20 +31,24 @@ class reportexportController extends Controller
         //     'estudiante_c' => $estudiante_c,
         //     'estudicomunitario' => $estudicomunitario,
         // ];
-        
+
         // dd($data);
         // dd($datosreport);
        return view('reporte.index');
     }
 
 
-    public function  exportar_csc(){
+    public function  exportar_csc($fase){
+
+        if($fase){
+
+        }
 
         $dat = Estudiantes::all();
 
-        return Excel::download(new UsersExport ,'reporte.xlsx');
+        return Excel::download(new UsersExport($fase) ,'reporte.xlsx');
 
-        
+
 
     }
 

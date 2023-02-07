@@ -24,6 +24,7 @@ class CreateGrupoSCSTable extends Migration
             $table->boolean('archivo_subido')->default(0);
             $table->boolean('nota_evaluada_one')->default(0);
             $table->boolean('nota_evaluada_twe')->default(0);
+            $table->boolean('exportar_exel')->default(0);
             $table->timestamps();
         });
     }
