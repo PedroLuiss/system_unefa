@@ -47,7 +47,7 @@
                     <!--end::Add user-->
 
                     <!--begin::Add user-->
-                    <a href="{{route('reporte.exportar_csc',1)}}" class="ms-5 btn btn-info">
+                    <a href="{{route('reporte.exportar_csc',1)}}" class="ms-5 btn btn-success">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <i class="fa-solid fa-file-excel"></i>
                         <!--end::Svg Icon-->Reporte Exel
@@ -137,7 +137,12 @@
                                             <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">
                                                 Pindiente</div>
                                         @else
-                                            <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
+                                              @if ($value->esdado == 1 || $value->status == 2)
+                                                <div style="font-size: 1vw;" class="badge badge-light-info fw-bolder"><i class="fa-solid fa-check" style="    font-size: 1vw;margin-right: 0.2vw;"></i> Completado</div>
+                                              @else
+                                                <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
+
+                                              @endif
                                         @endif
                                     </td>
                                     <!--begin::Joined-->

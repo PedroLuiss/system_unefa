@@ -18,6 +18,7 @@
     <tbody>
         @foreach ($data as $val)
             @php
+                $date = new DateTime($val->fecha_acta_grupo);
 
                 $fechaComoEntero = strtotime($val->periodo);
                 $m = date('m', $fechaComoEntero);
@@ -61,7 +62,7 @@
                         @endif
                     @endif
                 </td>
-                <td>{{$val->fecha_acta_grupo->translatedFormat(' d/m/Y ');}}</td>
+                <td>{{$date->format('Y-m-d');}}</td>
                 <td>
                     @if ($val->fase_asignatura == 2)
                         {{ $val->observacion_fase1 }}
