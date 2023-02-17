@@ -31,15 +31,15 @@
             <tr>
                 <td>{{ $val->cedula }}</td>
                 <td>{{ $periodo }}</td>
-                <td>Semestre:{{ $val->semestre }}</td>
+                <td>{{ $val->semestre }} SEMESTRE</td>
                 <td>
                     @if ($val->fase_asignatura == 2)
-                        Taller: TAI-01
+                         TAI-01
                     @else
-                        Proyecto: PRO-01
+                         PRO-01
                     @endif
                 </td>
-                <td>{{ $val->num_plan_estudio }}:{{ $val->nombre_carrera }}</td>
+                <td>{{ $val->num_plan_estudio }}</td>
                 <td>
                     @if ($val->fase_asignatura == 2)
                         {{ $val->calificacion_fase_1 }}
