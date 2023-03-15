@@ -163,7 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Rukhsar\ActiveRoute\ActiveRouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        
+        Spatie\Permission\PermissionServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

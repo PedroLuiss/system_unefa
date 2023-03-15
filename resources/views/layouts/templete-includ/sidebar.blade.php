@@ -4,8 +4,8 @@
         <!--begin::Logo-->
         <a href="#">
             <img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-65px logo" />
-
         </a>
+        <h1 class="title_sidebar">UNEFA-LARA</h1>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
@@ -263,6 +263,57 @@
                         <span class="menu-title">Layout Builder</span>
                     </a>
                 </div>
+                <div class="menu-item pt-5">
+                    <div class="menu-content">
+                        <span class="menu-heading fw-bold text-uppercase fs-7 text-muted">Sistema</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{route('user.index')}}"><span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"></path>
+                                <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"></rect>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Usuarios</span>
+                    </a><!--end:Menu link-->
+                </div>
+                @can('role_index')
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('roles.index') }}"><span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"></path>
+                                <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"></rect>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Roles</span>
+                    </a><!--end:Menu link-->
+                </div>
+                @endcan
+                @can('permission_index')
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('permissions.index') }}"><span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"></path>
+                                <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"></rect>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Permisos</span>
+                    </a><!--end:Menu link-->
+                </div>
+                @endcan
                 <div class="menu-item">
                     <div class="menu-content">
                         <div class="separator mx-1 my-4"></div>
