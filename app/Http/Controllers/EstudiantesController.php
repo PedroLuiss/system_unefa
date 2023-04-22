@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EstudiateServicioImport;
 use App\Models\carrera;
 use App\Models\Estudiantes;
 use App\Models\Estudiantecomunitarios;
-use Excel;
-use Maatwebsite\Excel\Facades\xcel;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\imports\importexcel;
@@ -367,10 +367,26 @@ class EstudiantesController extends Controller
             // echo("hola")
 
             $file = $request->file('exceldocumento');
-
+            // dd($request);
             Excel::import (new importexcel, $file );
 
             return back()->withStatus('subido correcto');
+    }
+
+
+
+    public function import_student_sc_add()
+    {
+        return view('estudiantedatos.add_import_student_sc');
+    }
+
+    public function store_import_exel_sc(Request $request)
+    {
+        $file = $request->file('import_file');
+
+        Excel::import(new EstudiateServicioImport, $file);
+
+        return redirect()->route('estudiantedatos.index_cc_estudiante')->with('success', 'Productos importados exitosamente');
     }
 
 

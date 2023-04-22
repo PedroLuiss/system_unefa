@@ -29,6 +29,9 @@ Auth::routes();
     Route::post('/estudiantedatos',[App\Http\Controllers\EstudiantesController::class, 'store'])->name('estudiantedatos.store');
     Route::get('/estudiantedatos/{id}/edit',[App\Http\Controllers\EstudiantesController::class, 'edit'])->name('estudiantedatos.edit');
     Route::put('/estudiantedatos/update',[App\Http\Controllers\EstudiantesController::class, 'update'])->name('estudiantedatos.update');
+    Route::get('/estudiantes/import-servicio-comunitario',[App\Http\Controllers\EstudiantesController::class, 'import_student_sc_add'])->name('estudiantedatos.import_student_sc_add');
+    Route::post('/estudiantedatos/import_store_sc',[App\Http\Controllers\EstudiantesController::class, 'store_import_exel_sc'])->name('studenimportsc.store');
+
 
 
      /**--------------------------------------------------------Profesores--------------------------------------------------------- */
