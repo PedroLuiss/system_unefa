@@ -3,7 +3,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="#">
-            <img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-65px logo" />
+            <img alt="Logo" src="{{asset('m2/assets/media/logos/logo-unefadash.png')}}" class="h-65px logo" />
         </a>
         <h1 class="title_sidebar">UNEFA-LARA</h1>
         <!--end::Logo-->
@@ -51,7 +51,7 @@
                         <span class="menu-title">Registros</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    
+
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
                             <a class="menu-link" href="{{route('estudiantedatos.index')}}">
@@ -76,7 +76,7 @@
 
                     </div>
 
-                    
+
                 </div>
                 @endcan
 
