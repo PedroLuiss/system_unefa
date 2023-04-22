@@ -2,10 +2,13 @@
 
 @section('content')
 @if (session('mensaje'))
+
 <div class="alert alert-success">
     <strong>{{ session('mensaje') }}</strong>
 </div>
 @endif
+
+@can('isAdmin')
 <div >
     <div class="card shadow-sm">
 
@@ -29,7 +32,7 @@
                 </div>
                 <!--end::Search-->
             </div>
-
+    
             <div class="buttton-register" style="text-align:end;">
 
                 <a href="{{route('estudiantedatos.create')}}" class="btn btn-sm btn-primary" ><span class="svg-icon svg-icon-1"><svg><!--begin::Svg Icon | path: assets/media/icons/duotune/communication/com013.svg-->
@@ -39,6 +42,12 @@
                     </svg></span>
                     <!--end::Svg Icon--></svg></span>Registro
                 </a>
+
+                <form action="{{route('estudiantedatos.importdocexcel')}}" class="btn btn-sm btn-primary" method="POST" enctype="multipart/form-data" >
+                    @csrf
+                    <input type="file"  name="exceldocumento" >
+                    <button type="submit" class="btn-primary">Import</button>
+                </form>
 
             </div>
 
@@ -132,4 +141,5 @@
 <script src="/m2/assets/js/custom/apps/chat/chat.js"></script>
 <script src="/m2/assets/js/custom/intro.js"></script>
 @endpush
+@endcan
 @endsection
