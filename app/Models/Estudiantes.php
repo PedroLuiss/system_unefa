@@ -31,6 +31,9 @@ class Estudiantes extends Model
         'direccion',
         'tel_hab',
         'tel_cel',
-        'email'
+        'email',
+        'string_sevicio_comunitario',
+        'recorrido',
+        'turno'
     ];
 }

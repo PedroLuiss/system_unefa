@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\carrera;
+use App\Models\Estudiantecomunitarios;
 use App\Models\Estudiantes;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
@@ -28,16 +29,16 @@ class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInser
     {
 
         $names_all = explode(" ", $row['estudiante']);
-        $fe_ingr_ar = explode("-", $row['fe_ingreso']);
+        $data_carre = explode(" ", $row['cod_carrera']);
+        $turno = $data_carre[count($data_carre)-1];
 
-        $r = date($row['fe_ingreso']);
         return new Estudiantes([
             'cedula' => $row['cedula'],
             'nombres' => isset($names_all[0])?$names_all[0]." ".$names_all[1]:null,
             'primer_apellido'=>  isset($names_all[2])?$names_all[2]:null,
             'segundo_apellido'=> isset($names_all[3])?$names_all[3]:null,
             'carreras_id'=>  $this->carreras_data[$row['carrera']],
-            'fe_ingreso'=>$fe_ingr_ar[0],
+            'fe_ingreso'=>date('Y-m-d',$row['fe_ingreso']),
             'inicio_programa'=>date('Y-m-d',$row['inicio_programa']),
             'sexo'=>$row['sexo'],
             'sanguineo'=>$row['sanguineo'],
@@ -54,6 +55,8 @@ class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInser
             'tel_hab'=>$row['tel_hab'],
             'tel_cel'=>$row['tel_cel'],
             'email'=>$row['correo'],
+            'string_sevicio_comunitario'=>$row['asignatura'],
+            'turno'=>$turno
         ]);
     }
 

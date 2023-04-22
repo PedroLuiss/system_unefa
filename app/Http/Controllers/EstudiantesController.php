@@ -386,7 +386,28 @@ class EstudiantesController extends Controller
 
         Excel::import(new EstudiateServicioImport, $file);
 
-        return redirect()->route('estudiantedatos.index_cc_estudiante')->with('success', 'Productos importados exitosamente');
+        $student_hoy = Estudiantes::whereDate('created_at', \Carbon\Carbon::today())->get();
+
+        foreach($student_hoy as $key=>$student){
+            if (!$student->string_sevicio_comunitario == null) {
+
+
+                Estudiantecomunitarios::create([
+                    'estudiantes_id'=>$student->id,
+                    // 'semestre',
+                    // 'seccion',
+                    'turno'=>$student->turno,
+                    'fase'=>1,
+                ]);
+
+                Estudiantes::where('id',$student->id)->update([
+                    'recorrido'=>true
+                ]);
+            }
+        }
+        // dd($student_hoy);
+
+        return redirect()->route('estudiantedatos.index_cc_estudiante')->with('mensaje', 'Estudiantes importados correctamente');
     }
 
 

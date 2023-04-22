@@ -37,6 +37,9 @@ class CreateEstudiantesTable extends Migration
             $table->string('tel_hab')->nullable();
             $table->string('tel_cel')->nullable();
             $table->string('email')->nullable();
+            $table->string('string_sevicio_comunitario')->nullable();
+            $table->string('turno')->nullable();
+            $table->boolean('recorrido')->default(false);
             $table->timestamps();
         });
     }
