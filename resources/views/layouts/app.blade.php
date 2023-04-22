@@ -69,6 +69,7 @@
                     margin-bottom: 0vw;
                     margin-left: -2vw;
                 }
+
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->

@@ -102,6 +102,11 @@
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
 		<!--End::Google Tag Manager -->
+        <style>
+            .logo_login{
+                width: 70% !important;
+            }
+        </style>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -124,7 +129,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px logo_login">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->

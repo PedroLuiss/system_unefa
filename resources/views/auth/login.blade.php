@@ -33,6 +33,11 @@
 
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <style>
+        .logo_login{
+            width: 70% !important;
+        }
+    </style>
 </head>
 <body class="bg-body" id="kt_body" >
     <noscript>
@@ -49,7 +54,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px">
+								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px logo_login">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
