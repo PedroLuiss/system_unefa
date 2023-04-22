@@ -20,31 +20,26 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'login']);
 Auth::routes();
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/estudiantedatos', [App\Http\Controllers\EstudiantesController::class, 'index'])->name('estudiantedatos.index');
+     /**---------------------------------------------------------Estudiantes--------------------------------------------------------- */
+    Route::get('/estudiantedatos', [App\Http\Controllers\EstudiantesController::class, 'index'])->middleware('can:isAdmin')->name('estudiantedatos.index');
     Route::get('/estudiantedatos/create', [App\Http\Controllers\EstudiantesController::class, 'create'])->name('estudiantedatos.create');
     Route::post('/estudiantedatos',[App\Http\Controllers\EstudiantesController::class, 'store'])->name('estudiantedatos.store');
     Route::get('/estudiantedatos/{id}/edit',[App\Http\Controllers\EstudiantesController::class, 'edit'])->name('estudiantedatos.edit');
     Route::put('/estudiantedatos/update',[App\Http\Controllers\EstudiantesController::class, 'update'])->name('estudiantedatos.update');
 
 
-    //PROFESORES
+     /**--------------------------------------------------------Profesores--------------------------------------------------------- */
     Route::get('/profesoresdatos', [App\Http\Controllers\ProfesoresController::class, 'index'])->name('profesoresdatos.index');
-
     Route::get('/profesoresdatos/create', [App\Http\Controllers\ProfesoresController::class, 'create'])->name('profesoresdatos.create');
-
-
     Route::post('/profesoresdatos',[App\Http\Controllers\ProfesoresController::class, 'store'])->name('profesoresdatos.store');
-
     Route::get('/profesoresdatos/{id}/edit',[App\Http\Controllers\ProfesoresController::class, 'edit'])->name('profesoresdatos.edit');
-
     Route::put('/profesoresdatos/update',[App\Http\Controllers\ProfesoresController::class, 'update'])->name('profesoresdatos.update');
 
     /**---------------------------------------------------------Expedientes--------------------------------------------------------- */
     Route::get('/expedientes/ingenieria-de-sistemas', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_index'])->name('expedientes.ingsistemas.index');
-
     Route::get('/expedientes/ingenieria-de-sistemas/{id}/edit', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_edit'])->name('expedientes.ingsistemas.edit');
     Route::get('/expedientes/ingenieria-de-sistemas/crear', [App\Http\Controllers\ExpedientesController::class, 'ing_sistem_create'])->name('expedientes.ingsistemas.create');
     /**---------------------------------------------------------End Expedientes--------------------------------------------------------- */
@@ -140,7 +135,7 @@ Route::put('/estudiantedatos/ccregistr0/update_cc_registro',[App\Http\Controller
 Registro estudiantes comunitarios */
 
 
-/**Reporte */
+/**Reporte exportar*/
 
 Route::get('/estudiantedatos/reporte', [App\Http\Controllers\ReportexportController::class, 'index'])->name('reporte.index');
 
@@ -148,6 +143,18 @@ Route::get('/estudiantedatos/reporte/exportar/{fase}', [App\Http\Controllers\Rep
 
 
 /**-----------------------------------------------------------
+
+
+/**Reporte importar*/
+
+Route::post('/estudiantedatos/importdocexcel', [App\Http\Controllers\EstudiantesController::class, 'importdocexcel'])->name('estudiantedatos.importdocexcel');
+
+
+
+
+/**-----------------------------------------------------------
+
+
 */
 
 //----------------------------------------------User----------------------------------------------
@@ -163,5 +170,5 @@ Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'des
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 Route::resource('roles', App\Http\Controllers\RoleController::class);
 
-});
+
 

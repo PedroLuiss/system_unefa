@@ -5,29 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\carrera;
 use App\Models\Estudiantes;
 use App\Models\Estudiantecomunitarios;
-
+use Excel;
+use Maatwebsite\Excel\Facades\xcel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\imports\importexcel;
 
 class EstudiantesController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
+
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
+
+
         $estu = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres','estudiantes.primer_apellido',
         'estudiantes.segundo_apellido','carreras.name','estudiantes.fe_ingreso','estudiantes.inicio_programa','estudiantes.sexo','estudiantes.sanguineo',
         'estudiantes.edo_civil','estudiantes.condicion','estudiantes.nucleo','estudiantes.etnia','estudiantes.discapacidad','estudiantes.pais','estudiantes.fe_nac',
@@ -242,6 +239,7 @@ class EstudiantesController extends Controller
     {
         $carreras = carrera::all();
         return view('estudiantedatos.create',compact('carreras'));
+
     }
 
     public function login()
@@ -319,8 +317,8 @@ class EstudiantesController extends Controller
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent','cc_estudiante'));
 // =======
         $estudent = Estudiantecomunitarios::find($id);
-           
-        
+
+
          // dd($estudent);
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent'));
 // >>>>>>> Stashed changes
@@ -328,10 +326,10 @@ class EstudiantesController extends Controller
 
     public function update_cc_estudiante(Request $request)
     {
-           
+
         $request->validate([
 
-           
+
             'semestre' =>['required'],
             'turno' =>['required'],
             'seccion' =>['required'],
@@ -339,7 +337,7 @@ class EstudiantesController extends Controller
 
         ],[],[
 
-            
+
             'semestre' => '',
             'turno' => '',
             'seccion' => '',
@@ -351,7 +349,7 @@ class EstudiantesController extends Controller
            // dd($data);
             $estudiante_cc =  Estudiantecomunitarios::where('id',$data['id'])->update([
 
-           
+
             'semestre'=> $data['semestre'],
             'turno'=> $data['turno'],
             'seccion'=> $data['seccion'],
@@ -362,4 +360,20 @@ class EstudiantesController extends Controller
     return redirect()->route('estudiantedatos.index_cc_estudiante')->with('mensaje', $messege);
 
     }
+
+
+    public function importdocexcel(Request $request){
+
+            // echo("hola")
+
+            $file = $request->file('exceldocumento');
+
+            Excel::import (new importexcel, $file );
+
+            return back()->withStatus('subido correcto');
+    }
+
+
+
+
 }
