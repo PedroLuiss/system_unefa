@@ -9,18 +9,18 @@
             <form action="{{route('estudiantedatos.update_cc_estudiante')}}" method="POST" novalidate>
                 @method('PUT')
                 @csrf
+                <input type="hidden" name="id" value="{{$estudent->estudiantes_id}}">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-5">
                             <label for="exampleFormControlInput1" class="required form-label">ESTUDIANTE C.C</label>
                             <select id="lista"
                                 class="form-select form-select-transparent @error('estudiantes_id') is-invalid @enderror"
-                                value="{{ old('estudiantes_id') }} " name="estudiantes_id">
+                                value="{{ old('estudiantes_id') }} "  disabled name="estudiantes_id">
                                 <option>SELECCIONAR</option>
                                 @foreach ($cc_estudiante as $val)
                                     <option  @if ($val->id==$estudent->estudiantes_id) selected  @endif value="{{ $val->id }} ">{{ $val->cedula . '-' . $val->nombres }}</option>
                                 @endforeach
-
                             </select>
                             @error('estudiantes_id')
                                 <span class="invalid-feedback">
@@ -36,8 +36,8 @@
                             <select id="lista" class="form-select form-select-transparent" name="turno"
                                 aria-label="Select example">
                                 <option>SELECCIONAR</option>
-                                <option @if ($val->id==$estudent->estudiantes_id) selected  @endif  value="DIURNO">DIURNO</option>
-                                <option @if ($val->id==$estudent->estudiantes_id) selected  @endif value="NOCTURNO">NOCTURNO</option>
+                                <option @if ($estudent->turno == "DIURNO") selected  @endif  value="DIURNO">DIURNO</option>
+                                <option @if ($estudent->turno == "NOCTURNO") selected  @endif value="NOCTURNO">NOCTURNO</option>
 
                             </select>
                             @error('turno')

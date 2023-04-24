@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header h1">Importar productos</div>
+                <div class="card-header h1">Importar Estudiantes</div>
 
                 <div class="card-body">
                     @if (isset($errors) && $errors->any())

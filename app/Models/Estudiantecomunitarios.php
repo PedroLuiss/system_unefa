@@ -11,12 +11,11 @@ class Estudiantecomunitarios extends Model
 
     protected $table='estudiantecomunitarios';
     protected $fillable = [
-
         'estudiantes_id',
         'semestre',
         'seccion',
         'turno',
         'fase',
-
+        'all_fase'
     ];
 }

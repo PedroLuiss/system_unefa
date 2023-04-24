@@ -309,19 +309,12 @@ class EstudiantesController extends Controller
 
     public function edit_cc_estudiante($id)
     {
-// <<<<<<< Updated upstream
         $estudent = Estudiantecomunitarios::where('estudiantes_id',$id)->first();
 
         $cc_estudiante = Estudiantes::all();
 
         return view('estudiantedatos.edit_cc_estudiante',compact('estudent','cc_estudiante'));
-// =======
-        $estudent = Estudiantecomunitarios::find($id);
 
-
-         // dd($estudent);
-        return view('estudiantedatos.edit_cc_estudiante',compact('estudent'));
-// >>>>>>> Stashed changes
     }
 
     public function update_cc_estudiante(Request $request)
@@ -348,7 +341,6 @@ class EstudiantesController extends Controller
             $data = $request->all();
            // dd($data);
             $estudiante_cc =  Estudiantecomunitarios::where('id',$data['id'])->update([
-
 
             'semestre'=> $data['semestre'],
             'turno'=> $data['turno'],
@@ -391,13 +383,24 @@ class EstudiantesController extends Controller
         foreach($student_hoy as $key=>$student){
             if (!$student->string_sevicio_comunitario == null) {
 
+                $fase_n =1;
+                $array_asig =  explode(",", $student->string_sevicio_comunitario);
 
+                if (count($array_asig)==1) {
+                    if ($array_asig[0] == "TALLER DE SERVICIO COMUNITARIO") {
+                        $fase_n =1;
+                    }else{
+                        $fase_n =2;
+                    }
+                }else{
+                    $fase_n =2;
+                }
                 Estudiantecomunitarios::create([
                     'estudiantes_id'=>$student->id,
                     // 'semestre',
                     // 'seccion',
                     'turno'=>$student->turno,
-                    'fase'=>1,
+                    'fase'=>$fase_n,
                 ]);
 
                 Estudiantes::where('id',$student->id)->update([
