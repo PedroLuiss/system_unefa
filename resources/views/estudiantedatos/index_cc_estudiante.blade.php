@@ -97,9 +97,8 @@
         <!--begin::Card header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-dark">Lista De Grupos - Fase Nº1</span>
-                <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los grupos creados
-                    actualmente.</span>
+                <span class="card-label fw-bolder text-dark">Lista De Estudiantes</span>
+                <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los estudiantes que cursaran servicio comunitario.</span>
             </h3>
         </div>
         <div class="card-header border-0 pt-6">
@@ -235,12 +234,18 @@
                                     <!--begin::Joined-->
                                     <!--begin::Action=-->
                                     <td class="text-center">
-                                            <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                                            {{-- <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                 <i class="bi bi-three-dots fs-3"></i>
-                                            </button>
+                                            </button> --}}
+                                            <a href="{{route('estudiantedatos.edit_cc_estudiante',$value->id)}}" title="Editar estudiante" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                                <i class="fas fa-edit"></i>
+                                             </a>
 
-                                        <!--begin::Menu 3-->
+                                             {{-- <a href="#" onclick="delet_grupo(this)"  data-id="{{ $value->id }}" title="Eliminar estudiante" class="btn btn-sm btn-icon btn-bg-light btn-active-color-danger w-30px h-30px">
+                                                <i class="fas fa-trash"></i>
+                                             </a> --}}
+                                        {{-- <!--begin::Menu 3-->
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
                                             data-kt-menu="true">
                                             <!--begin::Heading-->
@@ -269,7 +274,7 @@
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
-                                        <!--end::Menu 3-->
+                                        <!--end::Menu 3--> --}}
 
 
                                     </td>

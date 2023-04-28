@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Validation\Rule;
 
 class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, WithValidation
 {
@@ -56,7 +57,8 @@ class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInser
             'tel_cel'=>$row['tel_cel'],
             'email'=>$row['correo'],
             'string_sevicio_comunitario'=>$row['asignatura'],
-            'turno'=>$turno
+            'turno'=>$turno,
+            'import_control'=>true
         ]);
     }
 
@@ -74,12 +76,16 @@ class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInser
     {
         return [
             '*.cedula' => [
+                'required',
+                // Rule::unique('estudiantes','email'),
+                // Rule::unique('estudiantes','cedula'),
+            ],
+            '*.estudiante' => [
                 'required'
             ],
-            // '*.precio' => [
-            //     'numeric',
-            //     'required'
-            // ]
+            '*.cod_carrera' => [
+                'required'
+            ]
         ];
     }
 }

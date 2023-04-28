@@ -34,6 +34,7 @@ class Estudiantes extends Model
         'email',
         'string_sevicio_comunitario',
         'recorrido',
-        'turno'
+        'turno',
+        'import_control'
     ];
 }

@@ -34,6 +34,19 @@
         <link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.js')}}">
         @stack('css')
         <style>
+
+            .loader {
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 127%;
+                z-index: 9999;
+                background: url("{{asset('loader2.gif')}}") 50% 50% no-repeat #ffffff;
+                opacity: 1;
+            }
                 .select2-container .select2-selection--single {
 
                     height: 46px !important;
@@ -70,6 +83,12 @@
                     margin-left: -2vw;
                 }
 
+                .logo_loader{
+                    width: 15vw;
+                    height: 22vw;
+                    margin-top: 4vw;
+                }
+
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
@@ -81,6 +100,9 @@
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--Begin::Google Tag Manager (noscript) -->
+        <div class="loader">
+            <img class="logo_loader" src="{{asset('logo_unefa.png')}}" alt="">
+        </div>
 		<noscript>
 			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FS8GGP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
 		</noscript>
@@ -1026,7 +1048,13 @@
 		<!--begin::Javascript-->
         @includeIf('layouts.templete-includ.js')
 		<!--end::Javascript-->
+        <script>
 
+            // A $( document ).ready() block.
+            $( document ).ready(function() {
+                $(".loader").hide();
+            });
+        </script>
 	</body>
 	<!--end::Body-->
 </html>

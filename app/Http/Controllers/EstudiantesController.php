@@ -261,7 +261,7 @@ class EstudiantesController extends Controller
         'estudiantecomunitarios.seccion','estudiantecomunitarios.turno','estudiantecomunitarios.created_at')
         ->join('estudiantecomunitarios','estudiantecomunitarios.estudiantes_id', '=', 'estudiantes.id')->get();
 
-        // return response($estu);
+        // return response($estcs);
         return view('estudiantedatos.index_cc_estudiante', compact('estcs'));
     }
 
@@ -339,14 +339,12 @@ class EstudiantesController extends Controller
 
 
             $data = $request->all();
-           // dd($data);
+        //    dd($data);
             $estudiante_cc =  Estudiantecomunitarios::where('id',$data['id'])->update([
-
-            'semestre'=> $data['semestre'],
-            'turno'=> $data['turno'],
-            'seccion'=> $data['seccion'],
-
-        ]);
+                'semestre'=> $data['semestre'],
+                'turno'=> $data['turno'],
+                'seccion'=> $data['seccion'],
+            ]);
 
     $messege = $estudiante_cc ? 'Estudiante Actualizado Correctamente' : 'Error al actualizar';
     return redirect()->route('estudiantedatos.index_cc_estudiante')->with('mensaje', $messege);
@@ -374,38 +372,59 @@ class EstudiantesController extends Controller
 
     public function store_import_exel_sc(Request $request)
     {
+        $request->validate([
+
+            'import_file' => [
+                'required',
+                'file',
+                'mimes:xlsx'
+            ],
+
+        ],[],[
+            'import_file' => 'archivo',
+        ]);
+
         $file = $request->file('import_file');
 
         Excel::import(new EstudiateServicioImport, $file);
 
-        $student_hoy = Estudiantes::whereDate('created_at', \Carbon\Carbon::today())->get();
+        $student_hoy = Estudiantes::where('import_control',true)->whereDate('created_at', \Carbon\Carbon::today())->get();
 
         foreach($student_hoy as $key=>$student){
             if (!$student->string_sevicio_comunitario == null) {
 
-                $fase_n =1;
-                $array_asig =  explode(",", $student->string_sevicio_comunitario);
+                $student_verif = Estudiantes::where('cedula',$student->cedula)->where('import_control',false)->get();
+                if (count($student_verif )) {
+                    Estudiantes::where('id',$student->id)->delete();
+                }else{
+                    $fase_n =1;
+                    $dos_fases =false;
+                    $array_asig =  explode(",", $student->string_sevicio_comunitario);
 
-                if (count($array_asig)==1) {
-                    if ($array_asig[0] == "TALLER DE SERVICIO COMUNITARIO") {
-                        $fase_n =1;
+                    if (count($array_asig)==1) {
+                        if ($array_asig[0] == "TALLER DE SERVICIO COMUNITARIO") {
+                            $fase_n =1;
+                        }else{
+                            $fase_n =2;
+                        }
                     }else{
                         $fase_n =2;
+                        $dos_fases = true;
                     }
-                }else{
-                    $fase_n =2;
-                }
-                Estudiantecomunitarios::create([
-                    'estudiantes_id'=>$student->id,
-                    // 'semestre',
-                    // 'seccion',
-                    'turno'=>$student->turno,
-                    'fase'=>$fase_n,
-                ]);
+                    Estudiantecomunitarios::create([
+                        'estudiantes_id'=>$student->id,
+                        // 'semestre',
+                        'all_fase'=>$dos_fases,
+                        'turno'=>$student->turno,
+                        'fase'=>$fase_n,
+                    ]);
 
-                Estudiantes::where('id',$student->id)->update([
-                    'recorrido'=>true
-                ]);
+                    Estudiantes::where('id',$student->id)->update([
+                        'recorrido'=>true,
+                        'import_control'=>false
+                    ]);
+                }
+
             }
         }
         // dd($student_hoy);

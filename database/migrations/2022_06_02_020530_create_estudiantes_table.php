@@ -40,6 +40,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('string_sevicio_comunitario')->nullable();
             $table->string('turno')->nullable();
             $table->boolean('recorrido')->default(false);
+            $table->boolean('import_control')->default(false);
             $table->timestamps();
         });
     }

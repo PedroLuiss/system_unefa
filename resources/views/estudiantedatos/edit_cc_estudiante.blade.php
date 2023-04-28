@@ -57,9 +57,16 @@
                     <div class="col-md-6">
                         <div class="mb-5">
                             <label for="exampleFormControlInput1" class="required form-label">SEMESTRES 1/8</label>
-                            <input type="txtSemestre" name="semestre"
-                                class="form-control form-control-solid @error('semestre') is-invalid @enderror"
-                                value="{{ old('semestre') }}" placeholder="SEMESTRE 1/8" />
+                            <select id="semestre" class="form-select form-select-transparent @error('semestre') is-invalid @enderror" name="semestre"
+                                aria-label="Select example">
+                                <option value="">SELECCIONAR EL SEMESTRE</option>
+                                <option @if ($estudent->semestre == 4) selected  @endif  value="4">4 SEMESTRE</option>
+                                <option  @if ($estudent->semestre == 5) selected  @endif value="5">5 SEMESTRE</option>
+                                <option  @if ($estudent->semestre == 6) selected  @endif value="6">6 SEMESTRE</option>
+                                <option  @if ($estudent->semestre == 7) selected  @endif value="7">7 SEMESTRE</option>
+                                <option  @if ($estudent->semestre == 8) selected  @endif value="8">8 SEMESTRE</option>
+
+                            </select>
                             @error('semestre')
                                 <span class="invalid-feedback">
                                     <strong>{{ $message }}</strong>

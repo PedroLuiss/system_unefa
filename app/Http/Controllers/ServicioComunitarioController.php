@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DocumentoServicioComunitario;
 use App\Models\Estudiantecomunitarios;
 use App\Models\Estudiantes;
+use App\Models\GrupoDocumentoServicioComunitario;
 use App\Models\GrupoSC;
 use App\Models\GrupoSCEstudiante;
 use App\Models\GrupoSCFile;
@@ -95,6 +97,16 @@ class ServicioComunitarioController extends Controller
                 'status'=>1,
            ]);
        }
+
+       //tomo los documentos y agregarlo a grupo para validar los documentos.
+       $document_service = DocumentoServicioComunitario::all();
+       foreach ($document_service as $key => $value) {
+            GrupoDocumentoServicioComunitario::create([
+                'documento_servicio_comunitario_id'=>$value->id,
+                'grupo_s_c_id'=>$resp_grup->id,
+            ]);
+       }
+
        TempGrupoSCEstudiante::where('user_id',1)->delete();
         return response()->json(['message' => 'Grupo Generado Correctamente','status' => 200,], 201);
     }
@@ -158,6 +170,7 @@ class ServicioComunitarioController extends Controller
 
             GrupoSC::where('id',$id)->delete();
             GrupoSCEstudiante::where('grupo_s_c_id',$id)->delete();
+            GrupoDocumentoServicioComunitario::where('grupo_s_c_id',$id)->delete();
              return response()->json(['message' => 'Grupo Eliminado Correctamente','status' => 200,], 201);
         }
 
