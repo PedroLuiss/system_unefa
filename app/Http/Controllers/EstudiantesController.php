@@ -352,15 +352,31 @@ class EstudiantesController extends Controller
     }
 
 
-    public function importdocexcel(Request $request){
+       public function importdocexcel(Request $request){
 
-            // echo("hola")
+            $request->validate([
+
+            'exceldocumento' => [
+                'required',
+                'file',
+                'mimes:xlsx'
+            ],
+
+            ],[],[
+                'exceldocumento' => 'archivo',
+            ]);
 
             $file = $request->file('exceldocumento');
             // dd($request);
             Excel::import (new importexcel, $file );
 
-            return back()->withStatus('subido correcto');
+            
+            return redirect()->route('estudiantedatos.index')->with('mensaje', 'Estudiantes importados correctamente');
+    }
+
+     public function import_student_ssc_secretaria()
+    {
+        return view('estudiantedatos.add_secretaria_import');
     }
 
 

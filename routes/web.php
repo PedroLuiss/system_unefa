@@ -33,6 +33,8 @@ Auth::routes();
     Route::post('/estudiantedatos/import_store_sc',[App\Http\Controllers\EstudiantesController::class, 'store_import_exel_sc'])->name('studenimportsc.store');
 
 
+    Route::get('/estudiantes/import-secretaria-excel',[App\Http\Controllers\EstudiantesController::class, 'import_student_ssc_secretaria'])->name('estudiantedatos.student_ssc_secretaria');
+    
 
      /**--------------------------------------------------------Profesores--------------------------------------------------------- */
     Route::get('/profesoresdatos', [App\Http\Controllers\ProfesoresController::class, 'index'])->name('profesoresdatos.index');
