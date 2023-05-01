@@ -24,6 +24,7 @@ class CreateGrupoSCEstudiantesTable extends Migration
             $table->float("nota_eno")->nullable();
             $table->float("nota_two")->nullable();
             $table->integer("status")->default(1);
+            $table->boolean("reprobo")->default(false);
             $table->timestamps();
         });
     }

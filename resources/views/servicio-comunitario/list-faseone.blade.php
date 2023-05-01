@@ -78,7 +78,10 @@
                                     style="width: 126.141px;">Cédula</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
-                                    style="width: 126.141px;">Nombre Proyecto</th>
+                                    style="width: 626.141px;">Nombre Proyecto</th>
+                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                    colspan="1" aria-label="Last login: activate to sort column ascending"
+                                    style="width: 626.141px;">Carrera</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
                                     style="width: 126.141px;">Total</th>
@@ -125,6 +128,13 @@
                                         <p>{{ $value->nombre_proyecto }} </p>
                                     </td>
                                     <!--end::Two step=-->
+
+                                    <!--begin::Two step=-->
+                                    <td>
+                                        <p><b>{{ $value->codigo_carrera }} </b> - {{ $value->nombre_carrera }} </p>
+                                    </td>
+                                    <!--end::Two step=-->
+
                                     <!--begin::Two step=-->
                                     <td>
                                         <div class="badge badge-light-info fw-bolder" style="font-size: 1vw;">Total
@@ -137,12 +147,19 @@
                                             <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">
                                                 Pindiente</div>
                                         @else
-                                              @if ($value->esdado == 1 || $value->status == 2)
-                                                <div style="font-size: 1vw;" class="badge badge-light-info fw-bolder"><i class="fa-solid fa-check" style="    font-size: 1vw;margin-right: 0.2vw;"></i> Completado</div>
-                                              @else
-                                                <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
+                                            @if ($value->status == 4)
+                                                <div style="font-size: 1vw;" class="badge badge-light-dark fw-bolder">
+                                                Reprobado</div>
+                                            @else
+                                                @if ($value->esdado == 1 || $value->status == 2)
+                                                    <div style="font-size: 1vw;" class="badge badge-light-info fw-bolder"><i class="fa-solid fa-check" style="    font-size: 1vw;margin-right: 0.2vw;"></i> Completado</div>
+                                                @else
 
-                                              @endif
+                                                    <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
+
+                                                @endif
+                                            @endif
+
                                         @endif
                                     </td>
                                     <!--begin::Joined-->
@@ -207,6 +224,18 @@
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                         aria-label="Aqui podras asignar las nota para cada estudiante"
                                                         data-bs-original-title="Aqui podras asignar las nota para cada estudiante"
+                                                        data-kt-initialized="1"></i>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                             <!--begin::Menu item-->
+                                             <div class="menu-item px-3">
+                                                <a href="#" style="white-space: nowrap;" onclick="list_verification_document(this)" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2" id_grupo="{{$value->id}}" class="menu-link flex-stack px-3">
+                                                    Verificar Documentos
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                        aria-label="Aqui podras verificar los documentos digitales."
+                                                        data-bs-original-title="Aqui podras verificar los documentos digitales."
                                                         data-kt-initialized="1"></i>
                                                 </a>
                                             </div>
@@ -311,6 +340,8 @@
         </div>
         <!--end::Card body-->
         @include('servicio-comunitario.cargar_file_faseone')
+        @include('servicio-comunitario.modal_evaluar_document')
+
     </div>
     @push('scripts')
          <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -322,6 +353,82 @@
 
         {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
         <script>
+
+            function list_verification_document(obj) {
+                let id_grupo = $(obj).attr('id_grupo');
+
+                console.log(id_grupo);
+
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.get(base_url() +
+                                    "/servicio-comunitario/faseone/list_validar_document/1/"+id_grupo);
+                                console.log(resp.data);
+                                let table ="";
+                                if (resp.data=="") {
+                                    console.log("Vacio");
+                                }else{
+                                    for (let i = 0; i < resp.data.length; i++) {
+                                        let check = resp.data[i].checket?"checked":"onchecked";
+                                        table+=`<div class="d-flex align-items-center p_iten_d justify-content-between ps-10 mb-n1">
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Bullet-->
+                                                <!--end::Bullet-->
+                                                <p class="text_number_modal_value">${resp.data[i].num_document}</p>
+
+                                                <span class="bullet me-3"></span>
+                                                <!--begin::Label-->
+                                                <div class="text-gray-600 fw-semibold fs-6">
+                                                    ${resp.data[i].documento} </div>
+                                                <!--end::Label-->
+
+                                            </div>
+                                            <div class="box_iten_all_check align-items-center">
+                                                <p class="mb-0 me-2">NO</p>
+                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input id="value_check_iten_ducume" data-id="${resp.data[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                </label>
+                                                <p class="mb-0 ms-2">SI</p>
+                                            </div>
+                                        </div>  `
+
+
+                                    }
+
+                                    $('#list_documet_value_all').html(table);
+                                }
+
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+            }
+
+            function change_status_document(obj) {
+                const data ={
+                    id:$(obj).attr('data-id'),
+                    ckeck:$(obj).prop('checked')
+                }
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.put(base_url() +
+                                    "/servicio-comunitario/faseone/chage_status_document",data);
+                                console.log(resp.data);
+                                if (resp.data.status == 200) {
+                                    messeg(resp.data.message, 'success');
+                                } else {
+                                    messeg(resp.data.message, 'danger');
+
+                                }
+
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+            }
+
             function prepare_data(obj) {
                 let id = $(obj).attr('data-id');
                 let id_fase = $(obj).attr('data-fase');
@@ -446,7 +553,8 @@
                         $('#file').val(null);
                         list_files($('#id_fase').val());
                         // $('.modal_file').modal('hide');
-                        $('#kt_modal_new_target_cancel').click();
+                        // $('#kt_modal_new_target_cancel').click();
+                        list_files(msg.id_grupo);
                         messeg(msg.success, 'success');
                         $('#file').removeClass('is-invalid');
                         $('#error-file').text("");

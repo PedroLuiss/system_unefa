@@ -178,7 +178,7 @@
                 </h3>
                 <!--end::Title-->
 
-                <!--begin::Controls-->
+                {{-- <!--begin::Controls-->
                 <div class="d-flex my-2">
                     <!--begin::Search-->
                     <div class="d-flex align-items-center position-relative me-4">
@@ -201,7 +201,7 @@
                         File Manager
                     </a>
                 </div>
-                <!--end::Controls-->
+                <!--end::Controls--> --}}
             </div>
             <!--begin::Row-->
             <div class="row g-5 g-xxl-8">
@@ -210,7 +210,21 @@
                     <div class="col-xl-6 ">
 
                         <!--begin::Feeds Widget 2-->
-                        <div id="card_all_studen{{ $val_student->id }}" class="card mb-5 mb-xxl-8 ">
+                        <div id="card_all_studen{{ $val_student->id }}" class="card card-bordered mb-5 mb-xxl-8 ">
+                            @if ($val_student->nota_two<10)
+                            <div class="card-header ribbon ribbon-end">
+                                <div class="ribbon-label bg-danger">REPROBO</div>
+                                <div class="card-title">Estudiante</div>
+
+                            </div>
+                            @else
+                            <div class="card-header ribbon ribbon-end">
+                                <div class="ribbon-label bg-success">APROBO</div>
+                                <div class="card-title">Estudiante</div>
+
+                            </div>
+                            @endif
+
 
                             <!--begin::Body-->
                             <div class="card-body pb-0">
@@ -313,12 +327,12 @@
                                     <!--begin::Item-->
                                     <div class="timeline-item">
                                         <!--begin::Label-->
-                                        <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº1</div>
+                                        <div class="timeline-label fw-bold text-gray-800 fs-6">TALLER DE SERVICIO </div>
                                         <!--end::Label-->
 
                                         <!--begin::Badge-->
                                         <div class="timeline-badge">
-                                            <i class="fa fa-genderless text-success  fs-1"></i>
+                                            <i class="fa fa-genderless @if ($val_student->nota_eno < 10) text-danger @else text-success  @endif    fs-1"></i>
                                         </div>
                                         <!--end::Badge-->
 
@@ -338,7 +352,7 @@
 
                                         <!--begin::Badge-->
                                         <div class="timeline-badge">
-                                            <i class="fa fa-genderless text-warning fs-1"></i>
+                                            <i class="fa fa-genderless  @if ($val_student->nota_two < 10) text-danger @else text-success  @endif  fs-1"></i>
                                         </div>
                                         <!--end::Badge-->
 

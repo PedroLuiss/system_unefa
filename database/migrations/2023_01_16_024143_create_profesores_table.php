@@ -21,6 +21,9 @@ class CreateProfesoresTable extends Migration
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
             $table->string('especialidad');
+            $table->string('tipo_perfil')->nullable()->comment("INDIQUE SI ES ADMINISTRATIVO Ó DOCENTE");
+            $table->string('tipo_perfil_unidad_admi')->nullable()->comment("EN CASO DE SER ADMINISTRATIVO INDIQUE UNIDAD A LA QUE PERTENECE");
+            $table->string('tipo_perfil_unidad_doce')->nullable()->comment("EN CASO DE SER DOCENTE INDIQUE LA CATEGORÍA");
             $table->timestamps();
         });
     }

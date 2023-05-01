@@ -340,7 +340,7 @@ class EstudiantesController extends Controller
 
             $data = $request->all();
         //    dd($data);
-            $estudiante_cc =  Estudiantecomunitarios::where('id',$data['id'])->update([
+            $estudiante_cc =  Estudiantecomunitarios::where('estudiantes_id',$data['id'])->update([
                 'semestre'=> $data['semestre'],
                 'turno'=> $data['turno'],
                 'seccion'=> $data['seccion'],
@@ -399,6 +399,8 @@ class EstudiantesController extends Controller
                 }else{
                     $fase_n =1;
                     $dos_fases =false;
+                    $nota_one = null;
+                    $observacion_one = null;
                     $array_asig =  explode(",", $student->string_sevicio_comunitario);
 
                     if (count($array_asig)==1) {
@@ -406,9 +408,11 @@ class EstudiantesController extends Controller
                             $fase_n =1;
                         }else{
                             $fase_n =2;
+                            $nota_one = 20;
+                            $observacion_one = "Aprobado";
                         }
                     }else{
-                        $fase_n =2;
+                        $fase_n =1;
                         $dos_fases = true;
                     }
                     Estudiantecomunitarios::create([
@@ -417,6 +421,8 @@ class EstudiantesController extends Controller
                         'all_fase'=>$dos_fases,
                         'turno'=>$student->turno,
                         'fase'=>$fase_n,
+                        'nota_one'=>$nota_one,
+                        'observacion_fase_one'=>$observacion_one
                     ]);
 
                     Estudiantes::where('id',$student->id)->update([

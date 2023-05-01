@@ -16,6 +16,12 @@ class Estudiantecomunitarios extends Model
         'seccion',
         'turno',
         'fase',
-        'all_fase'
+        'all_fase',
+        'tiene_grupo',
+        'nota_one',
+        'nota_twe',
+        'observacion_fase_one',
+        'observacion_fase_twe',
     ];
+
 }

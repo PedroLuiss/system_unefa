@@ -16,5 +16,6 @@ class GrupoSCEstudiante extends Model
         'nota_eno',
         'nota_two',
         'status',
+        'reprobo'
     ];
 }

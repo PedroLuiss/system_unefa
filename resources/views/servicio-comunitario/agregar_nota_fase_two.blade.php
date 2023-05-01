@@ -6,6 +6,7 @@
 @endpush
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
+        <div id="view_alert_error"></div>
         <input type="hidden" id="id_grupo_hide" value="{{ $grupo->id }}">
         <!--begin::Navbar-->
         <div class="card mb-5 mb-xxl-8">
@@ -85,7 +86,7 @@
                             </div>
                             <!--end::User-->
 
-                            <!--begin::Actions-->
+                            {{-- <!--begin::Actions-->
                             <div class="d-flex my-4">
                                 <a href="#" class="btn btn-sm btn-light me-2" id="kt_user_follow_button">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr012.svg-->
@@ -237,7 +238,7 @@
                                 </div>
                                 <!--end::Menu-->
                             </div>
-                            <!--end::Actions-->
+                            <!--end::Actions--> --}}
                         </div>
                         <!--end::Title-->
 
@@ -433,59 +434,63 @@
                                 <!--begin::Item-->
                                 <div class="timeline-item">
                                     <!--begin::Label-->
-                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº1</div>
+                                    <div class="timeline-label fw-bold text-gray-800 fs-6">TALLER DE SERVICIO </div>
                                     <!--end::Label-->
 
                                     <!--begin::Badge-->
                                     <div class="timeline-badge">
-                                        <i class="fa fa-genderless text-success  fs-1"></i>
+                                        <i class="fa fa-genderless @if ($val_student->nota_eno<10) text-danger @else text-success @endif   fs-1"></i>
                                     </div>
                                     <!--end::Badge-->
 
                                     <!--begin::Text-->
                                     <div class="fw-mormal timeline-content text-muted ps-3">
-                                        {{ $val_student->observaciones }}, Nota: {{ $val_student->nota_eno }}
+                                        {{ $val_student->observaciones }}, <b>Calificación final</b>: {{ $val_student->nota_eno }}
                                     </div>
                                     <!--end::Text-->
                                 </div>
                                 <!--end::Item-->
+                                @if ($val_student->nota_eno<10)
 
-                                <!--begin::Item-->
-                                <div class="timeline-item">
-                                    <!--begin::Label-->
-                                    <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº2</div>
-                                    <!--end::Label-->
+                                @else
+                                    <!--begin::Item-->
+                                    <div class="timeline-item">
+                                        <!--begin::Label-->
+                                        <div class="timeline-label fw-bold text-gray-800 fs-6">PROYECTO DE SERVICIO COMUNITARIO</div>
+                                        <!--end::Label-->
 
-                                    <!--begin::Badge-->
-                                    <div class="timeline-badge">
-                                        <i class="fa fa-genderless text-warning fs-1"></i>
+                                        <!--begin::Badge-->
+                                        <div class="timeline-badge">
+                                            <i class="fa fa-genderless text-warning fs-1"></i>
+                                        </div>
+                                        <!--end::Badge-->
+
+                                        <!--begin::Content-->
+                                        <div class="timeline-content d-flex">
+                                            <span id="time_line_info" class="fw-bold text-gray-800 ps-3">
+                                                <span class="text_observacion{{ $val_student->id }}">
+                                                    @if ($val_student->observaciones_2 == null)
+                                                        Pendiente...
+                                                    @else
+                                                        {{ $val_student->observaciones_2 }}
+                                                    @endif
+                                                </span>
+                                            , Calificación Final:
+                                                <span class="nom_nota{{ $val_student->id }}">
+                                                    @if ($val_student->nota_two == null)
+                                                        0
+                                                    @else
+                                                        {{ $val_student->nota_two }}
+                                                    @endif
+                                                </span>
+
+                                        </span>
+                                        </div>
+                                        <!--end::Content-->
                                     </div>
-                                    <!--end::Badge-->
+                                    <!--end::Item-->
+                                @endif
 
-                                    <!--begin::Content-->
-                                    <div class="timeline-content d-flex">
-                                        <span id="time_line_info" class="fw-bold text-gray-800 ps-3">
-                                            <span class="text_observacion{{ $val_student->id }}">
-                                                @if ($val_student->observaciones_2 == null)
-                                                    Pendiente...
-                                                @else
-                                                    {{ $val_student->observaciones_2 }}
-                                                @endif
-                                            </span>
-                                        , Nota:
-                                            <span class="nom_nota{{ $val_student->id }}">
-                                                @if ($val_student->nota_two == null)
-                                                    0
-                                                @else
-                                                    {{ $val_student->nota_two }}
-                                                @endif
-                                            </span>
-
-                                    </span>
-                                    </div>
-                                    <!--end::Content-->
-                                </div>
-                                <!--end::Item-->
 
 
                             </div>
@@ -499,8 +504,16 @@
                                     {{ $val_student->observaciones }}
                                 @endif
                             </p> --}}
-                            <!--begin::Post-->
-                            <div class="mb-5">
+
+                            <!--end::Separator-->
+
+                            <!--begin::Reply input-->
+                            @if ($val_student->nota_eno<10)
+                            <h1 class="h1 w-100 text-danger text-center">REPROBO</h1>
+
+                            @else
+                             <!--begin::Post-->
+                             <div class="mb-5">
                                 <!--begin::Toolbar-->
                                 <div class="d-flex align-items-center mb-5">
                                     <a href="#"
@@ -545,15 +558,11 @@
 
                             <!--begin::Separator-->
                             <div class="separator mb-4"></div>
-                            <!--end::Separator-->
-
-                            <!--begin::Reply input-->
                             <div class="position-relative mb-8">
                                 <div class="mb-3">
                                     <label for="nota_student" class="form-label">Nota</label>
                                     <input type="number" id="nota_student{{ $val_student->id }}" class="form-control"
                                         id="nota_student" aria-describedby="emailHelp">
-                                    {{-- <div id="emailHelp" class="form-text text-danger">We'll never share your email with anyone else.</div> --}}
                                 </div>
                                 <div class="mb-6">
                                     <label for="observacion" class="form-label">Observación</label>
@@ -574,6 +583,8 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
+
 
                             <!--edit::Reply input-->
                         </div>
@@ -658,11 +669,47 @@
                             url = "{{ route('serviciocomunitario.listfasetwo') }}";
                             $(location).attr('href', url);
                         } else {
-                            for (let i = 1; i < resp.data.data.length; i++) {
-                                console.log(resp.data.data[i]);
-                                $('#card_all_studen' + resp.data.data[i].id).addClass('b-danger');
+                            // for (let i = 1; i < resp.data.data.length; i++) {
+                            //     console.log(resp.data.data[i]);
+                            //     $('#card_all_studen' + resp.data.data[i].id).addClass('b-danger');
+                            // }
+                            // messeg(resp.data.erro, 'danger');
+                            console.log(resp.data.data);
+                            let n =0;
+                            for(const [key, value] of Object.entries(resp.data.data)){
+                                console.log("value")
+                                console.log(value.id)
+                                $('#card_all_studen'+value.id).addClass('b-danger');
+                                n++;
                             }
-                            messeg(resp.data.erro, 'danger');
+
+                            let alert = `
+                            <!--begin::Alert-->
+                                <div class="alert alert-dismissible hidd bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10" data-bs-dismiss="alert">
+                                    <!--begin::Icon-->
+                                    <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><img src="{{ asset('icon_error.png') }}" alt=""></i>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                        <!--begin::Title-->
+                                        <h4 class="fw-semibold">Error</h4>
+                                        <!--end::Title-->
+
+                                        <!--begin::Content-->
+                                        <span>Te faltan <b>${n}</b> Estudiantes por evaluar, debes asignarle la calificación final y su observación</span>
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Wrapper-->
+
+                                    <!--begin::Close-->
+                                    <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+                                        <i class="ki-duotone ki-cross fs-1 text-primary"><img class="w-icon" src="{{ asset('icon_cerrar.png') }}" alt=""></i>
+                                    </button>
+                                    <!--end::Close-->
+                                </div>
+                                <!--end::Alert-->`;
+                            $('#view_alert_error').append(alert);
                         }
 
 

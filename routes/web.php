@@ -115,6 +115,8 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
  Route::put('servicio-comunitario/faseone/add-nota',[App\Http\Controllers\ServicioComunitarioController::class, 'add_nota_student'])->name('faseone.add_nota_student');
  Route::put('servicio-comunitario/faseone/finalizar',[App\Http\Controllers\ServicioComunitarioController::class, 'finalisar_fase_one'])->name('faseone.finalizar');
  Route::post('servicio-comunitario/faseone/store_value_nota',[App\Http\Controllers\ServicioComunitarioController::class,'store_value_nota'])->name('faseone.nota.store');
+ Route::put('servicio-comunitario/faseone/chage_status_document',[App\Http\Controllers\ServicioComunitarioController::class,'change_status_document_grup'])->name('faseone.changeestatusdocument');
+ Route::get('servicio-comunitario/faseone/list_validar_document/{fase}/{id_grupo}',[App\Http\Controllers\ServicioComunitarioController::class,'list_evaluar_document'])->name('faseone.evaluardocument');
 
  // Fase 2
  Route::get('servicio-comunitario/fasetwo',[App\Http\Controllers\ServicioComunitarioController::class,'list_fasetwo'])->name('serviciocomunitario.listfasetwo');

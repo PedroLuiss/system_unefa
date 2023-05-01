@@ -21,6 +21,12 @@ class CreateEstudiantecomunitariosTable extends Migration
             $table->string('seccion')->nullable();
             $table->boolean('all_fase')->default(false)->comment("true->saber si esta viendo las dos fases, false-> solo una fase");
             $table->integer('fase')->default(1)->comment("1= Face N1, 2=Face N2, 3=Completado");
+            $table->double('nota_one')->nullable()->comment("La nota de la fase 1");
+            $table->double('nota_twe')->nullable()->comment("La nota de la fase 2");
+            $table->longText('observacion_fase_one')->nullable();
+            $table->longText('observacion_fase_twe')->nullable();
+            $table->boolean('tiene_grupo')->default(false)->comment("Saber si tiene un grupo false:No, True:Ss");
+
             $table->timestamps();
         });
     }

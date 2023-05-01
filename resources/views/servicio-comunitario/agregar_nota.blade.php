@@ -5,7 +5,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}">
 @endpush
 @section('content')
+
     <div id="kt_app_content_container" class="app-container  container-xxl ">
+        <div id="view_alert_error"></div>
+
         <input type="hidden" id="id_grupo_hide" value="{{$grupo->id}}">
         <!--begin::Navbar-->
         <div class="card mb-5 mb-xxl-8">
@@ -83,7 +86,7 @@
                             </div>
                             <!--end::User-->
 
-                            <!--begin::Actions-->
+                            {{-- <!--begin::Actions-->
                             <div class="d-flex my-4">
                                 <a href="#" class="btn btn-sm btn-light me-2" id="kt_user_follow_button">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr012.svg-->
@@ -235,7 +238,7 @@
                                 </div>
                                 <!--end::Menu-->
                             </div>
-                            <!--end::Actions-->
+                            <!--end::Actions--> --}}
                         </div>
                         <!--end::Title-->
 
@@ -294,7 +297,7 @@
                     <!--begin::Nav item-->
                     <li class="nav-item mt-2">
                         <a class="nav-link text-active-primary ms-0 me-10 py-5 active"
-                            href="/metronic8/demo1/../demo1/pages/user-profile/overview.html">
+                            href="#">
                             Lista De Estudiantes </a>
                     </li>
                     <!--end::Nav item-->
@@ -432,7 +435,7 @@
                                     class="btn btn-sm btn-light btn-color-muted btn-active-light-success px-4 py-2 me-4" style="font-size: 1vw">
                                     <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
                                     <span class="svg-icon svg-icon-3">
-                                        Nota:
+                                        Calificación Final:
                                     </span>
                                     <!--end::Svg Icon-->
                                     <span class="nom_nota{{$val_student->id}}">@if ($val_student->nota_eno==null) 0 @else {{$val_student->nota_eno}}   @endif </span>
@@ -451,6 +454,7 @@
                                                 fill="currentColor"></path>
                                         </svg>
                                     </span>
+                                    Vaciar Nota
                                 </a>
 
                             </div>
@@ -520,7 +524,7 @@
     @push('scripts')
         <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
-        <script src="/m2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+        <script src="{{ asset('m2/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 
         <script src="{{ asset('js/axios.min.js') }}"></script>
         <script src="{{ asset('m2/assets/plugins/global/plugins.bundle.js') }}"></script>
@@ -545,10 +549,47 @@
                             url = "{{route('serviciocomunitario.listfaseone')}}";
                             $(location).attr('href',url);
                         }else{
-                            for (let i = 1; i < resp.data.data.length; i++) {
-                                console.log(resp.data.data);
-                                $('#card_all_studen'+resp.data.data[i].id).addClass('b-danger');
+                            console.log(resp.data.data);
+                            let n =0;
+                            for(const [key, value] of Object.entries(resp.data.data)){
+                                console.log("value")
+                                console.log(value.id)
+                                $('#card_all_studen'+value.id).addClass('b-danger');
+                                n++;
                             }
+
+                            let alert = `
+                            <!--begin::Alert-->
+                                <div class="alert alert-dismissible hidd bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10" data-bs-dismiss="alert">
+                                    <!--begin::Icon-->
+                                    <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><img src="{{ asset('icon_error.png') }}" alt=""></i>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                        <!--begin::Title-->
+                                        <h4 class="fw-semibold">Error</h4>
+                                        <!--end::Title-->
+
+                                        <!--begin::Content-->
+                                        <span>Te faltan <b>${n}</b> Estudiantes por evaluar, debes asignarle la calificación final y su observación</span>
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Wrapper-->
+
+                                    <!--begin::Close-->
+                                    <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+                                        <i class="ki-duotone ki-cross fs-1 text-primary"><img class="w-icon" src="{{ asset('icon_cerrar.png') }}" alt=""></i>
+                                    </button>
+                                    <!--end::Close-->
+                                </div>
+                                <!--end::Alert-->`;
+                            $('#view_alert_error').append(alert);
+                            // messeg("Error, falta por evaluar estudiantes", 'success');
+                            // for (let i = 1; i < resp.data.data.length; i++) {
+                            //     console.log(resp.data.data);
+                            //     $('#card_all_studen'+resp.data.data[i].id).addClass('b-danger');
+                            // }
                         }
 
 
@@ -571,7 +612,7 @@
                 $('.text_observacion'+data.id).text("Pendiente..");
                 $('.nom_nota'+data.id).text(0);
             }
-            function save_nota(id) {
+            function save_nota(id,id_estudent = 0) {
 
 
                const data = {
@@ -650,31 +691,7 @@
                 list_temp_student();
             });
 
-            function messeg(m, t) {
-                if (t == "success") {
-                    $.notify(
-                        '<i class="fa fa-bell-o"></i><strong>Excelente</strong> ' + m +
-                        "", {
-                            type: t,
-                            allow_dismiss: true,
-                            delay: 2000,
-                            showProgressbar: false,
-                            timer: 300,
-                        }
-                    );
-                    return false;
-                }
-                $.notify(
-                    '<i class="fa fa-bell-o"></i><strong>!Hoops¡</strong> ' + m +
-                    "", {
-                        type: t,
-                        allow_dismiss: true,
-                        delay: 2000,
-                        showProgressbar: false,
-                        timer: 300,
-                    }
-                );
-            }
+
 
 
             $('#btn_add_student').on('click', (e) => {
@@ -1017,6 +1034,34 @@
                             sendGetRequest();
                         }
                     })
+
+            }
+
+            function messeg(m, t) {
+                if (t == "success") {
+                    $.notify(
+                        '<i class="fa fa-bell-o"></i><strong>Excelente</strong> ' + m +
+                        "", {
+                            type: t,
+                            allow_dismiss: true,
+                            delay: 2000,
+                            showProgressbar: false,
+                            timer: 300,
+                        }
+                    );
+                    return false;
+                }else{
+                    $.notify(
+                        '<i class="fa fa-bell-o"></i><strong>!Hoops¡</strong> ' + m +
+                        "", {
+                            type: t,
+                            allow_dismiss: true,
+                            delay: 2000,
+                            showProgressbar: false,
+                            timer: 300,
+                        }
+                    );
+                }
 
             }
         </script>

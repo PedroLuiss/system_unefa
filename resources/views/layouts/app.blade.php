@@ -64,14 +64,14 @@
                 .timeline-label:before {
                     content: "";
                     position: absolute;
-                    left: 83px;
+                    left: 174px;
                     width: 4px;
                     top: 0;
                     bottom: 0;
                     background-color: #efefef;
                 }
                 .timeline-label .timeline-label {
-                    width: 83px;
+                    width: 174px;
                     flex-shrink: 0;
                     position: relative;
                     color: #3F4254;
@@ -88,7 +88,33 @@
                     height: 22vw;
                     margin-top: 4vw;
                 }
-
+                .max_w_modal_val_document{
+                    max-width: 50vw;
+                }
+                .box_iten_eval_document{
+                    padding: 0.6vw 0vw;
+                    border: 1px solid #f2f2f2;
+                }
+                .box_all_iten_val{
+                    margin-bottom: 1vw !important;
+                }
+                .text_number_modal_value{
+                    margin-bottom: 0vw;
+                    margin-right: 0.5vw;
+                    font-weight: 900;
+                    color: #b5b5c3;
+                    font-size: 1.3vw;
+                }
+                .box_iten_all_check{
+                    margin-right: 2vw;
+                    display: flex;
+                }
+                .p_iten_d{
+                    padding: 0.7vw;
+                }
+                .w-icon{
+                    width: 1.5vw;
+                }
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
