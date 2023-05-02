@@ -25,6 +25,17 @@ class importexcel implements ToModel, WithHeadingRow, WithBatchInserts, WithChun
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+   
+    protected function formatDateExcel($date) { 
+        if ('double' === gettype($date)) {
+            $date = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date);
+
+            return $date->format('n/j/Y');
+        }
+
+        return $date;
+    }
+
     public function model(array $row)
     {
         $names_all = explode(" ", $row['estudiante']);
@@ -37,8 +48,8 @@ class importexcel implements ToModel, WithHeadingRow, WithBatchInserts, WithChun
             'primer_apellido'=>  isset($names_all[2])?$names_all[2]:null,
             'segundo_apellido'=> isset($names_all[3])?$names_all[3]:null,
             'carreras_id'=>  $this->carreras_data[$row['carrera']],
-            'fe_ingreso'=>date('Y-m-d',$row['fe_ingreso']),
-            'inicio_programa'=>date('Y-m-d',$row['inicio_programa']),
+            'fe_ingreso'=>$this->formatDateExcel($row['fe_ingreso']),
+            'inicio_programa'=>$this->formatDateExcel($row['inicio_programa']),
             'sexo'=>$row['sexo'],
             'sanguineo'=>$row['sanguineo'],
             'edo_civil'=>$row['edo_civil'],
@@ -47,7 +58,7 @@ class importexcel implements ToModel, WithHeadingRow, WithBatchInserts, WithChun
             'etnia'=>$row['etnia'],
             'discapacidad'=>$row['discapacida'],
             'pais'=>$row['pais'],
-            'fe_nac'=>date('Y-m-d',$row['fe_nac']),
+            'fe_nac'=>$this->formatDateExcel($row['fe_nac']),
             'lugar_nac'=>$row['lugar_nac'],
             'ciudad'=>$row['ciudad'],
             'direccion'=>$row['direccion'],
