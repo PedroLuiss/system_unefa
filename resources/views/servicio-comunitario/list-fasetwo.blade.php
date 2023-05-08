@@ -64,6 +64,9 @@
                                     style="width: 126.141px;">Nombre Proyecto</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
+                                    style="width: 126.141px;">Carrera</th>
+                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                    colspan="1" aria-label="Last login: activate to sort column ascending"
                                     style="width: 126.141px;">Total</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Joined Date: activate to sort column ascending"
@@ -106,6 +109,11 @@
                                     <!--begin::Two step=-->
                                     <td>
                                         <p>{{ $value->nombre_proyecto }} </p>
+                                    </td>
+                                    <!--end::Two step=-->
+                                    <!--begin::Two step=-->
+                                    <td>
+                                        <p><b>{{ $value->codigo_carrera }} </b> - {{ $value->nombre_carrera }} </p>
                                     </td>
                                     <!--end::Two step=-->
                                     <!--begin::Two step=-->
@@ -184,6 +192,18 @@
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                         aria-label="Aqui podras asignar las nota para cada estudiante"
                                                         data-bs-original-title="Aqui podras asignar las nota para cada estudiante"
+                                                        data-kt-initialized="1"></i>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" style="white-space: nowrap;" onclick="list_verification_document(this)" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2" id_grupo="{{$value->id}}" class="menu-link flex-stack px-3">
+                                                    Verificar Documentos
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                        aria-label="Aqui podras verificar los documentos digitales."
+                                                        data-bs-original-title="Aqui podras verificar los documentos digitales."
                                                         data-kt-initialized="1"></i>
                                                 </a>
                                             </div>
@@ -288,6 +308,7 @@
         </div>
         <!--end::Card body-->
         @include('servicio-comunitario.cargar_file_faseone')
+        @include('servicio-comunitario.modal_evaluar_document_fase_twe')
     </div>
     @push('scripts')
          <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -299,6 +320,112 @@
 
         {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
         <script>
+             function list_verification_document(obj) {
+                let id_grupo = $(obj).attr('id_grupo');
+
+                console.log(id_grupo);
+
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.get(base_url() +
+                                    "/servicio-comunitario/faseone/list_validar_document/1/"+id_grupo);
+                                console.log(resp.data);
+                                let table ="";
+                                if (resp.data=="") {
+                                    console.log("Vacio");
+                                }else{
+                                    for (let i = 0; i < resp.data.data_one.length; i++) {
+                                        let check = resp.data.data_one[i].checket?"checked":"onchecked";
+                                        table+=`<div class="d-flex align-items-center p_iten_d justify-content-between ps-10 mb-n1">
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Bullet-->
+                                                <!--end::Bullet-->
+                                                <p class="text_number_modal_value">${resp.data.data_one[i].num_document}</p>
+
+                                                <span class="bullet me-3"></span>
+                                                <!--begin::Label-->
+                                                <div class="text-gray-600 fw-semibold fs-6">
+                                                    ${resp.data.data_one[i].documento} </div>
+                                                <!--end::Label-->
+
+                                            </div>
+                                            <div class="box_iten_all_check align-items-center">
+                                                <p class="mb-0 me-2">NO</p>
+                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input id="value_check_iten_ducume" disabled data-id="${resp.data.data_one[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                </label>
+                                                <p class="mb-0 ms-2">SI</p>
+                                            </div>
+                                        </div>  `
+
+
+                                    }
+
+                                    $('#list_documet_value_all').html(table);
+                                }
+                                let table_2 ="";
+                                if (resp.data.data_twe=="") {
+                                    console.log("Vacio twe");
+                                }else{
+                                    for (let i = 0; i < resp.data.data_twe.length; i++) {
+                                        let check = resp.data.data_twe[i].checket?"checked":"onchecked";
+                                        table_2+=`<div class="d-flex align-items-center p_iten_d justify-content-between ps-10 mb-n1">
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Bullet-->
+                                                <!--end::Bullet-->
+                                                <p class="text_number_modal_value">${resp.data.data_twe[i].num_document}</p>
+
+                                                <span class="bullet me-3"></span>
+                                                <!--begin::Label-->
+                                                <div class="text-gray-600 fw-semibold fs-6">
+                                                    ${resp.data.data_twe[i].documento} </div>
+                                                <!--end::Label-->
+
+                                            </div>
+                                            <div class="box_iten_all_check align-items-center">
+                                                <p class="mb-0 me-2">NO</p>
+                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input id="value_check_iten_ducume" data-id="${resp.data.data_twe[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                </label>
+                                                <p class="mb-0 ms-2">SI</p>
+                                            </div>
+                                        </div>`;
+
+                                        console.log("Vacio twe");
+                                    }
+                                    $('#list_documet_value_all_2').html(table_2);
+                                }
+
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+            }
+
+            function change_status_document(obj) {
+                const data ={
+                    id:$(obj).attr('data-id'),
+                    ckeck:$(obj).prop('checked')
+                }
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.put(base_url() +
+                                    "/servicio-comunitario/faseone/chage_status_document",data);
+                                console.log(resp.data);
+                                if (resp.data.status == 200) {
+                                    messeg(resp.data.message, 'success');
+                                } else {
+                                    messeg(resp.data.message, 'danger');
+
+                                }
+
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+            }
             function prepare_data(obj) {
                 let id = $(obj).attr('data-id');
                 let id_fase = $(obj).attr('data-fase');
@@ -421,9 +548,9 @@
                         $('#description').val("");
                         $('#name').val("");
                         $('#file').val(null);
-                        list_files($('#id_fase').val());
+                        list_files(msg.id_grupo);
                         // $('.modal_file').modal('hide');
-                        $('#kt_modal_new_target_cancel').click();
+                        // $('#kt_modal_new_target_cancel').click();
                         messeg(msg.success, 'success');
                         $('#file').removeClass('is-invalid');
                         $('#error-file').text("");

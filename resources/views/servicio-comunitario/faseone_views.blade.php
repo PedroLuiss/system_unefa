@@ -12,7 +12,7 @@
             <div class="card-header border-0 pt-5">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold fs-3 mb-1">Proyecto: {{ $grupo->nombre_proyecto }}</span>
+                    <span class="card-label fw-bold fs-3 mb-1">Nombre Del Proyecto: <b>{{ $grupo->nombre_proyecto }}</b></span>
 
                 </h3>
                 <!--end::Title-->
@@ -178,7 +178,7 @@
                 </h3>
                 <!--end::Title-->
 
-                <!--begin::Controls-->
+                {{-- <!--begin::Controls-->
                 <div class="d-flex my-2">
                     <!--begin::Search-->
                     <div class="d-flex align-items-center position-relative me-4">
@@ -201,7 +201,7 @@
                         File Manager
                     </a>
                 </div>
-                <!--end::Controls-->
+                <!--end::Controls--> --}}
             </div>
             <!--begin::Row-->
             <div class="row g-5 g-xxl-8">
@@ -211,9 +211,21 @@
 
                         <!--begin::Feeds Widget 2-->
                         <div id="card_all_studen{{ $val_student->id }}" class="card mb-5 mb-xxl-8 ">
-
+                            @if ($val_student->nota_eno<10)
+                            <div class="card-header ribbon ribbon-end">
+                                <div class="ribbon-label bg-danger">REPROBO</div>
+                                <div class="card-title">Estudiante</div>
+                            </div>
+                            @else
+                            <div class="card-header ribbon ribbon-end">
+                                <div class="ribbon-label bg-success">APROBO</div>
+                                <div class="card-title">Estudiante</div>
+                            </div>
+                            @endif
                             <!--begin::Body-->
                             <div class="card-body pb-0">
+
+
                                 <!--begin::Header-->
                                 <div class="d-flex align-items-center mb-5">
                                     <!--begin::User-->

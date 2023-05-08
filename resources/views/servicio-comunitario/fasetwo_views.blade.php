@@ -12,7 +12,7 @@
             <div class="card-header border-0 pt-5">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold fs-3 mb-1">Proyecto: {{ $grupo->nombre_proyecto }}</span>
+                    <span class="card-label fw-bold fs-3 mb-1">Nombre Del Proyecto: <b>{{ $grupo->nombre_proyecto }}</b></span>
 
                 </h3>
                 <!--end::Title-->
@@ -160,6 +160,14 @@
                         <a class="nav-link text-active-primary ms-0 me-10 py-5  menu_list_file"
                             href="javascript:void(0);">
                             Lista De Archivos </a>
+                    </li>
+                    <!--end::Nav item-->
+
+                    <!--begin::Nav item-->
+                    <li class="nav-item mt-2 " data-id="3" onclick="menu_progress(this)">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5  menu_info_project"
+                            href="javascript:void(0);">
+                            Información Del Proyecto </a>
                     </li>
                     <!--end::Nav item-->
 
@@ -347,7 +355,7 @@
                                     <!--begin::Item-->
                                     <div class="timeline-item">
                                         <!--begin::Label-->
-                                        <div class="timeline-label fw-bold text-gray-800 fs-6">Fase Nº2</div>
+                                        <div class="timeline-label fw-bold text-gray-800 fs-6">PROYECTO DE SERVICIO COMUNITARIO</div>
                                         <!--end::Label-->
 
                                         <!--begin::Badge-->
@@ -492,6 +500,296 @@
             </div>
         </div>
 
+        <div class="view_info_project" style="display: none">
+
+
+            <div class="card">
+                <div class="card-header mt-4 border-0">
+                    <h1 class=" w-100 mb-0">INFORMACIÓN DEL PROYECTO </h1>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        {{-- <div class="col-12 col-md-12">
+                            <input type="hidden" value="{{$grupo->id}}" id="id_grupo_hiden">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <label for="" class="form-label">Selecciona El Profesor (TUTOR)</label>
+                                <!--begin::Default example-->
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-bookmarks-fill fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <select class="form-select rounded-start-0 " data-control="select2"
+                                            data-placeholder="Seleccionar Profesor" id="select_profesor">
+                                            <option></option>
+                                            @foreach ($profesor_all as $value)
+                                                <option  @if ($grupo->profesore_id == $value->id) selected    @endif value="{{$value->id}}">V-{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Default example-->
+                            </div>
+                        </div> --}}
+                        <div class="col-md-12">
+                            <div class="mb-5">
+                                <label for="exampleFormControlInput1" class="required form-label">Nombre Del Proyecto</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="email" class="form-control " disabled id="nombre_proyecto" value="{{$grupo->nombre_proyecto}}" placeholder="Ingresar el nombre del proyecto"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-12">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <label for="" class="form-label required">Selecciona La Carrera</label>
+                                <!--begin::Default example-->
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-bookmarks-fill fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <select class="form-select rounded-start-0" disabled data-control="select2"
+                                            data-placeholder="Seleccionar carrera" id="select_carrera">
+                                            <option></option>
+                                            @foreach ($carrera as $value)
+                                                <option  @if ($grupo->carrera_id == $value->id) selected   @endif value="{{$value->id}}"><b>CÓDIGO:</b> {{$value->code}} | CARRERA: {{$value->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Default example-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-5">
+                                <label for="exampleFormControlInput1" class="required form-label">Nombre De La Comunidad y/o Institución</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="email" class="form-control " disabled id="nombre_comunidad" value="{{$grupo->nombre_comunidad}}" placeholder="Ingresar Nombre De La Comunidad y/o Institución"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="direccion_comunidad" class="form-label">Dirección de la comunidad</label>
+                                <textarea class="form-control" disabled id="direccion_comunidad" placeholder="Ingrese la Direccion de la comindad" rows="3">{{$grupo->direccion_comunidad}}</textarea>
+                              </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <label for="nomb_tutor_comunitario" class="required form-label">Nombre Del Tutor Comunitario</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="text" disabled class="form-control " value="{{$grupo->nombre_tutor_comunitario}}" id="nomb_tutor_comunitario" placeholder="Ingresar el Nombre Del Tutor Comunitario"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <label for="cedula_tutor_comunitario" class="required form-label">Cédula Del Tutor Comunitario</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+
+
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="text" disabled class="form-control " value="{{$grupo->cedula_tutor_comunitario}}" id="cedula_tutor_comunitario" placeholder="Ingresar el Cédula Del Tutor Comunitario"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <label for="telefono_tutor_comunitario" class="required form-label">Telefono Del Tutor Comunitario</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="number" disabled class="form-control " value="{{$grupo->telefono_tutor_comunitario}}" id="telefono_tutor_comunitario" placeholder="Ingresar el Telefono Del Tutor Comunitario"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-5">
+                                <label for="cant_beneficiados" class="required form-label">Cantidad De Beneficiados</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="number" disabled class="form-control " value="{{$grupo->cant_beneficiados}}" id="cant_beneficiados" placeholder="Ingresar la Cantidad De Beneficiados"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-5">
+                                <label for="vinculacion_project" class="required form-label">Vinculación Del Proyecto Con Los Planes, Programas y/o Proyectos Establecido Por El Ejecutivo Nacional</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <input type="text" disabled class="form-control " value="{{$grupo->vinc_project_planes_prog}}" id="vinculacion_project" placeholder="Ingresar la Cantidad De Beneficiados"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-5">
+                                <label for="select_area_accion" class="required form-label">Indeque El Área De Accion Del Proyecto</label>
+                                <div class="input-group flex-nowrap">
+                                    <span class="input-group-text">
+                                        {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
+                                        <i class="fa-solid fa-layer-group fs-4"></i>
+                                    </span>
+                                    <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
+                                        <select class="form-select" disabled id="select_area_accion" aria-label="Select example">
+                                            <option>Seleccione El Área</option>
+                                            <option @if ($grupo->area_accion_project == "AMBIENTAL") selected   @endif value="AMBIENTAL">AMBIENTAL</option>
+                                            <option @if ($grupo->area_accion_project == "SOCIOPRODUCTIVO") selected   @endif  value="SOCIOPRODUCTIVO,">SOCIOPRODUCTIVO</option>
+                                            <option @if ($grupo->area_accion_project == "TECNOLOGICO") selected   @endif  value="TECNOLOGICO">TECNOLOGICO</option>
+                                            <option @if ($grupo->area_accion_project == "SOCIAL") selected   @endif  value="SOCIAL">SOCIAL</option>
+                                            <option @if ($grupo->area_accion_project == "EDUCATIVO") selected   @endif  value="EDUCATIVO">EDUCATIVO</option>
+                                            <option @if ($grupo->area_accion_project == "SOCIO-COMUNITARIO") selected   @endif  value="SOCIO-COMUNITARIO">SOCIO-COMUNITARIO</option>
+                                            <option @if ($grupo->area_accion_project == "ENTRE OTROS") selected   @endif  value=" ENTRE OTROS"> ENTRE OTROS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header border-0">
+                    <h1 class="w-100 mb-0">CANTIDAD DE ACTIVIDADES REALIZADAS EN EL MARCO DE LOS PROYECTOS </h1>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input  disabled class="form-check-input" type="checkbox" @if ($grupo->foros)   checked @endif  value="" id="foro_check"/>
+                                    <label class="form-check-label" for="foro_check">
+                                        FOROS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->charlas)   checked @endif  value="" id="charlas_check"/>
+                                    <label class="form-check-label" for="charlas_check">
+                                        CHARLAS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->jornadas)   checked @endif  value="" id="jornadas_check"/>
+                                    <label class="form-check-label" for="jornadas_check">
+                                        JORNADAS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->talleres)   checked @endif  value="" id="talleres_check"/>
+                                    <label class="form-check-label" for="talleres_check">
+                                        TALLERES
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->campanas)   checked @endif  value="" id="campana_check"/>
+                                    <label class="form-check-label" for="campana_check">
+                                        CAMPAÑAS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox"  @if ($grupo->reunion_misiones)   checked @endif value="" id="reunion_misiones_check"/>
+                                    <label class="form-check-label" for="reunion_misiones_check">
+                                        REUNIÓN CON MISIONES
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->ferias)   checked @endif  value="" id="ferias_check"/>
+                                    <label class="form-check-label" for="ferias_check">
+                                        FERIAS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="mb-5" data-select2-id="select2-data-100-kjmd">
+                                <div class="form-check form-check-custom form-check-solid form-check-lg">
+                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->alianzas_estrategicas)   checked @endif  value="" id="alianzas_estrategicas_check"/>
+                                    <label class="form-check-label" for="alianzas_estrategicas_check">
+                                        ALIANZAS ESTRATÉGICAS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
 
     </div>
 
@@ -510,17 +808,32 @@
                     case 1:
                         $('.list_student').show(100);
                         $('.list_file').hide(100);
+                        $('.view_info_project').hide(100);
 
                         $('.menu_list_estudiante').addClass('active');
                         $('.menu_list_file').removeClass('active');
+                        $('.menu_info_project').removeClass('active');
 
                         break;
                     case 2:
                         $('.list_student').hide(100);
                         $('.list_file').show(100);
+                        $('.view_info_project').hide(100);
 
                         $('.menu_list_estudiante').removeClass('active');
                         $('.menu_list_file').addClass('active');
+                        $('.menu_info_project').removeClass('active');
+
+                        break;
+                    case 3:
+                        $('.list_student').hide(100);
+                        $('.list_file').hide(100);
+                        $('.view_info_project').show(100);
+
+                        $('.menu_list_estudiante').removeClass('active');
+                        $('.menu_list_file').removeClass('active');
+                        $('.menu_info_project').addClass('active');
+
 
                         break;
 

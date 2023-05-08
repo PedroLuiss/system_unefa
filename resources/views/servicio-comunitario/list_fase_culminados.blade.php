@@ -15,9 +15,8 @@
         <!--begin::Card header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-dark">Lista De Grupos - Fase Nº1</span>
-                <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los grupos creados
-                    actualmente.</span>
+                <span class="card-label fw-bolder text-dark">Lista De Proyectos Culminados</span>
+                <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los proyectos finalizados</span>
             </h3>
         </div>
         <div class="card-header border-0 pt-6">
@@ -30,29 +29,13 @@
                     <!--begin::Filter-->
 
 
-                    <!--begin::Add user-->
-                    <a href="{{ route('faseone.create') }}" class="btn btn-primary">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                        <span class="svg-icon svg-icon-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
-                                    rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
-                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
-                                    fill="currentColor"></rect>
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->Crear Grupo
-                    </a>
-                    <!--end::Add user-->
-
-                    <!--begin::Add user-->
-                    <a href="{{route('reporte.exportar_csc',1)}}" class="ms-5 btn btn-success">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                        <i class="fa-solid fa-file-excel"></i>
-                        <!--end::Svg Icon-->Reporte Exel
-                    </a>
-                    <!--end::Add user-->
+                   <!--begin::Add user-->
+                   <a href="{{route('reporte.exportar_csc',2)}}" class="ms-5 btn btn-info">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                    <i class="fa-solid fa-file-excel"></i>
+                    <!--end::Svg Icon-->Reporte Exel
+                </a>
+                <!--end::Add user-->
                 </div>
 
             </div>
@@ -78,7 +61,7 @@
                                     style="width: 126.141px;">Cédula</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
-                                    style="width: 626.141px;">Nombre Proyecto</th>
+                                    style="width: 126.141px;">Nombre Proyecto</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
                                     style="width: 626.141px;">Carrera</th>
@@ -128,13 +111,11 @@
                                         <p>{{ $value->nombre_proyecto }} </p>
                                     </td>
                                     <!--end::Two step=-->
-
                                     <!--begin::Two step=-->
                                     <td>
                                         <p><b>{{ $value->codigo_carrera }} </b> - {{ $value->nombre_carrera }} </p>
                                     </td>
                                     <!--end::Two step=-->
-
                                     <!--begin::Two step=-->
                                     <td>
                                         <div class="badge badge-light-info fw-bolder" style="font-size: 1vw;">Total
@@ -143,23 +124,11 @@
                                     <!--end::Two step=-->
                                     <!--begin::Joined-->
                                     <td>
-                                        @if ($value->status == 1)
+                                        @if (!$value->estado)
                                             <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">
                                                 Pindiente</div>
                                         @else
-                                            @if ($value->status == 4)
-                                                <div style="font-size: 1vw;" class="badge badge-light-dark fw-bolder">
-                                                Reprobado</div>
-                                            @else
-                                                @if ($value->esdado == 1 || $value->status == 2)
-                                                    <div style="font-size: 1vw;" class="badge badge-light-info fw-bolder"><i class="fa-solid fa-check" style="    font-size: 1vw;margin-right: 0.2vw;"></i> Completado</div>
-                                                @else
-
-                                                    <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
-
-                                                @endif
-                                            @endif
-
+                                            <div style="font-size: 1vw;" class="badge badge-light-success fw-bolder">Finalizado</div>
                                         @endif
                                     </td>
                                     <!--begin::Joined-->
@@ -171,7 +140,7 @@
                                     <!--begin::Joined-->
                                     <!--begin::Action=-->
                                     <td class="text-end">
-                                        @if ($value->status == 1)
+                                        @if (!$value->estado)
                                             <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                 <i class="bi bi-three-dots fs-3"></i>
@@ -186,7 +155,7 @@
                                                     <!--end::Svg Icon-->
                                                 </a>
                                         @else
-                                        <a href="{{ route('faseone.views', $value->id) }}"
+                                        <a href="{{ route('fasetwo.views', $value->id) }}"
                                             data-id="{{ $value->id }}" title="Ver Grupo"
                                             class="btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -210,7 +179,7 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a  href="{{ route('faseone.edit', $value->id) }}" class="menu-link px-3">
+                                                <a  href="{{ route('fasetwo.edit', $value->id) }}" class="menu-link px-3">
                                                     Editar Grupo
                                                 </a>
                                             </div>
@@ -218,9 +187,8 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('faseone.add_nota_faseone', $value->id) }}"  class="menu-link flex-stack px-3">
+                                                <a href="{{ route('fasetwo.add_nota_fasetwo', $value->id) }}"  class="menu-link flex-stack px-3">
                                                     Evaluar Estudiante
-
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                         aria-label="Aqui podras asignar las nota para cada estudiante"
                                                         data-bs-original-title="Aqui podras asignar las nota para cada estudiante"
@@ -229,8 +197,8 @@
                                             </div>
                                             <!--end::Menu item-->
 
-                                             <!--begin::Menu item-->
-                                             <div class="menu-item px-3">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
                                                 <a href="#" style="white-space: nowrap;" onclick="list_verification_document(this)" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2" id_grupo="{{$value->id}}" class="menu-link flex-stack px-3">
                                                     Verificar Documentos
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
@@ -243,7 +211,7 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_new_target" id="kt_file_manager_new_folder"  data-fase="1" data-id="{{$value->id}}" onclick="prepare_data(this)" class="menu-link px-3">
+                                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_new_target" id="kt_file_manager_new_folder"  data-fase="2" data-id="{{$value->id}}" onclick="prepare_data(this)" class="menu-link px-3">
                                                     Cargar Archivo
                                                 </a>
                                             </div>
@@ -340,8 +308,7 @@
         </div>
         <!--end::Card body-->
         @include('servicio-comunitario.cargar_file_faseone')
-        @include('servicio-comunitario.modal_evaluar_document')
-
+        @include('servicio-comunitario.modal_evaluar_document_fase_twe')
     </div>
     @push('scripts')
          <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -353,8 +320,7 @@
 
         {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
         <script>
-
-            function list_verification_document(obj) {
+             function list_verification_document(obj) {
                 let id_grupo = $(obj).attr('id_grupo');
 
                 console.log(id_grupo);
@@ -365,7 +331,6 @@
                                     "/servicio-comunitario/faseone/list_validar_document/1/"+id_grupo);
                                 console.log(resp.data);
                                 let table ="";
-
                                 if (resp.data=="") {
                                     console.log("Vacio");
                                 }else{
@@ -387,7 +352,7 @@
                                             <div class="box_iten_all_check align-items-center">
                                                 <p class="mb-0 me-2">NO</p>
                                                 <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <input id="value_check_iten_ducume" data-id="${resp.data.data_one[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                    <input id="value_check_iten_ducume" disabled data-id="${resp.data.data_one[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
                                                 </label>
                                                 <p class="mb-0 ms-2">SI</p>
                                             </div>
@@ -396,12 +361,40 @@
 
                                     }
 
-
-
                                     $('#list_documet_value_all').html(table);
-
                                 }
+                                let table_2 ="";
+                                if (resp.data.data_twe=="") {
+                                    console.log("Vacio twe");
+                                }else{
+                                    for (let i = 0; i < resp.data.data_twe.length; i++) {
+                                        let check = resp.data.data_twe[i].checket?"checked":"onchecked";
+                                        table_2+=`<div class="d-flex align-items-center p_iten_d justify-content-between ps-10 mb-n1">
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Bullet-->
+                                                <!--end::Bullet-->
+                                                <p class="text_number_modal_value">${resp.data.data_twe[i].num_document}</p>
 
+                                                <span class="bullet me-3"></span>
+                                                <!--begin::Label-->
+                                                <div class="text-gray-600 fw-semibold fs-6">
+                                                    ${resp.data.data_twe[i].documento} </div>
+                                                <!--end::Label-->
+
+                                            </div>
+                                            <div class="box_iten_all_check align-items-center">
+                                                <p class="mb-0 me-2">NO</p>
+                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input id="value_check_iten_ducume" data-id="${resp.data.data_twe[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                </label>
+                                                <p class="mb-0 ms-2">SI</p>
+                                            </div>
+                                        </div>`;
+
+                                        console.log("Vacio twe");
+                                    }
+                                    $('#list_documet_value_all_2').html(table_2);
+                                }
 
                             } catch (err) {
                                 // Handle Error Here
@@ -433,7 +426,6 @@
                         };
                         sendGetRequest();
             }
-
             function prepare_data(obj) {
                 let id = $(obj).attr('data-id');
                 let id_fase = $(obj).attr('data-fase');
@@ -556,10 +548,9 @@
                         $('#description').val("");
                         $('#name').val("");
                         $('#file').val(null);
-                        list_files($('#id_fase').val());
+                        list_files(msg.id_grupo);
                         // $('.modal_file').modal('hide');
                         // $('#kt_modal_new_target_cancel').click();
-                        list_files(msg.id_grupo);
                         messeg(msg.success, 'success');
                         $('#file').removeClass('is-invalid');
                         $('#error-file').text("");
@@ -612,7 +603,7 @@
                                 // table += '<span   onmouseout="btn_delete_show(false,'+i+')" onmouseover="btn_delete_show(true,'+i+')" title="'+resp.data[i].name+'" class="files-view"><span  id="btn-delete-file'+i+'" class="btn-file-delete ocult-btn" onclick="delet_file_compras('+resp.data[i].id+');" ><i class="fa fa-times"></i></span><i onclick="showFile('+resp.data[i].id+')" class="'+ex+'"></i></span>';
                                 // table += ' </div>';
 
-                                table += '<div class="col-md-6 ">';
+                                table += '<div class="col-md-6 mb-3">';
                                 table += ' <div class="card h-100 border">';
                                 table += ' <div class="card-header heder_iten_file">';
                                 table += ' <div><span style="font-size: 1vw;" class="badge badge-secondary">Fase: '+resp.data[i].fase+'</span></div>';

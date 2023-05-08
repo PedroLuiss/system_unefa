@@ -34,7 +34,7 @@ Auth::routes();
 
 
     Route::get('/estudiantes/import-secretaria-excel',[App\Http\Controllers\EstudiantesController::class, 'import_student_ssc_secretaria'])->name('estudiantedatos.student_ssc_secretaria');
-    
+
 
      /**--------------------------------------------------------Profesores--------------------------------------------------------- */
     Route::get('/profesoresdatos', [App\Http\Controllers\ProfesoresController::class, 'index'])->name('profesoresdatos.index');
@@ -122,6 +122,7 @@ Route::get('/expedientes/economia/{id}/edit', [App\Http\Controllers\ExpedientesC
 
  // Fase 2
  Route::get('servicio-comunitario/fasetwo',[App\Http\Controllers\ServicioComunitarioController::class,'list_fasetwo'])->name('serviciocomunitario.listfasetwo');
+ Route::get('servicio-comunitario/fase-culminados',[App\Http\Controllers\ServicioComunitarioController::class,'list_fasefinal'])->name('serviciocomunitario.listfasefinal');
  /**-------------------------------------------------------------------------End Servicio Comunitario----------------------------------------------------------- */
 
 
