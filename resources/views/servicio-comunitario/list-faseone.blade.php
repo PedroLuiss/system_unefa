@@ -46,13 +46,13 @@
                     </a>
                     <!--end::Add user-->
 
-                    <!--begin::Add user-->
+                    {{-- <!--begin::Add user-->
                     <a href="{{route('reporte.exportar_csc',1)}}" class="ms-5 btn btn-success">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <i class="fa-solid fa-file-excel"></i>
                         <!--end::Svg Icon-->Reporte Exel
                     </a>
-                    <!--end::Add user-->
+                    <!--end::Add user--> --}}
                 </div>
 
             </div>

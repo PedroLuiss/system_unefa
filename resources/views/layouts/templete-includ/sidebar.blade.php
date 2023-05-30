@@ -29,10 +29,14 @@
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
 
-
+                <div class="menu-item">
+                    <div class="menu-content">
+                        <div class="separator mx-1 my-4"></div>
+                    </div>
+                </div>
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-0">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Módulos</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Secretaria</span>
                     </div>
                 </div>
                 @can('isAdmin')
@@ -187,7 +191,11 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="menu-item">
+                    <div class="menu-content">
+                        <div class="separator mx-1 my-4"></div>
+                    </div>
+                </div>
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-0">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Servicio Comunitario</span>
@@ -268,6 +276,11 @@
                             </a>
                         </div>
 
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-content">
+                        <div class="separator mx-1 my-4"></div>
                     </div>
                 </div>
                 <div class="menu-item pt-5">

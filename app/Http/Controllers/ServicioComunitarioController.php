@@ -621,16 +621,54 @@ class ServicioComunitarioController extends Controller
       return  view('servicio-comunitario.list-fasetwo',compact('data'));
     }
 
-    public function list_fasefinal(Type $var = null)
+    public function list_fasefinal(Request $request)
     {
-        $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
-        'profesores.primer_apellido','profesores.segundo_apellido','carreras.name as nombre_carrera','carreras.code as codigo_carrera','profesores.especialidad','grupo_s_c_s.estado',
-        'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
-        ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
-        ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
-        ->where('grupo_s_c_s.status','=',2)->where('grupo_s_c_s.estado','=',1)->get();
+        if ($request->periodo) {
+            if ($request->periodo=="all") {
+                $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                'profesores.primer_apellido','profesores.segundo_apellido','carreras.name as nombre_carrera','carreras.code as codigo_carrera','profesores.especialidad','grupo_s_c_s.estado',
+                'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+                ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+                ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+                ->where('grupo_s_c_s.status','=',2)->where('grupo_s_c_s.estado','=',1)->get();
+            }else{
 
-      return  view('servicio-comunitario.list_fase_culminados',compact('data'));
+                $array_periodo = explode("-",$request->periodo);
+                // dd($array_periodo);
+                if ($array_periodo[0] == 1) {
+                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                    'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+                    'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+                    ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+                    ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+                    ->where('grupo_s_c_s.status','=',2)->where('grupo_s_c_s.estado','=',1)
+                    ->whereYear('grupo_s_c_s.created_at', $array_periodo[1])
+                    ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
+                    ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
+                }else{
+                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                    'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+                    'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+                    ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+                    ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+                    ->where('grupo_s_c_s.status','=',2)->where('grupo_s_c_s.estado','=',1)
+                    ->whereYear('grupo_s_c_s.created_at', $array_periodo[1])
+                    ->whereMonth('grupo_s_c_s.created_at','>=' , '06')
+                    ->whereMonth('grupo_s_c_s.created_at','<=', '12')->get();
+                }
+            }
+
+        }else{
+            $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+            'profesores.primer_apellido','profesores.segundo_apellido','carreras.name as nombre_carrera','carreras.code as codigo_carrera','profesores.especialidad','grupo_s_c_s.estado',
+            'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+            ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+            ->where('grupo_s_c_s.status','=',2)->where('grupo_s_c_s.estado','=',1)->get();
+        }
+
+        $periodo = $request->periodo;
+      return  view('servicio-comunitario.list_fase_culminados',compact('data','periodo'));
     }
 
     public function edit_fasetwo($id)

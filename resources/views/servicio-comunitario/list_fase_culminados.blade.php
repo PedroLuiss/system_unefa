@@ -22,19 +22,90 @@
         <div class="card-header border-0 pt-6">
 
             <!--begin::Card toolbar-->
-            <div class="card-toolbar" data-select2-id="select2-data-133-a0zo">
+            <div class="card-toolbar w-100 row justify-content-center" data-select2-id="select2-data-133-a0zo">
+                <div class="col-md-6">
+                    <form action="" id="form_filter_periodo">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                            <!--begin::Input group-->
+                            <div class="input-group ">
+                                <span class="input-group-text" id="basic-addon2">
+                                    Periodo:
+                                </span>
+                                <select class="form-select" name="periodo" id="periodo" aria-label="Select example">
+                                    <option value="all" @if ($periodo == "all")  selected  @endif>Todos</option>
+                                    <option value="1-2023" @if ($periodo == "1-2023")  selected  @endif>1-2023</option>
+                                    <option value="2-2023" @if ($periodo == "2-2023")  selected  @endif>2-2023</option>
+
+                                    <option value="1-2024"  @if ($periodo == "1-2024")  selected  @endif>1-2024</option>
+                                    <option value="2-2024" @if ($periodo == "2-2024")  selected  @endif>2-2024</option>
+
+                                    <option value="1-2025" @if ($periodo == "1-2025")  selected  @endif>1-2025</option>
+                                    <option value="2-2025" @if ($periodo == "2-2025")  selected  @endif>2-2025</option>
+
+                                    <option value="1-2026" @if ($periodo == "1-2026")  selected  @endif>1-2026</option>
+                                    <option value="2-2026" @if ($periodo == "2-2026")  selected  @endif>2-2026</option>
+
+                                    <option value="1-2027" @if ($periodo == "1-2027")  selected  @endif>1-2027</option>
+                                    <option value="2-2027" @if ($periodo == "2-2027")  selected  @endif>2-2027</option>
+
+                                    <option value="1-2028" @if ($periodo == "1-2028")  selected  @endif>1-2028</option>
+                                    <option value="2-2028" @if ($periodo == "2-2028")  selected  @endif>2-2028</option>
+
+                                    <option value="1-2029" @if ($periodo == "1-2029")  selected  @endif>1-2029</option>
+                                    <option value="2-2029" @if ($periodo == "2-2029")  selected  @endif>2-2029</option>
+
+                                    <option value="1-2030" @if ($periodo == "1-2030")  selected  @endif>1-2030</option>
+                                    <option value="2-2030" @if ($periodo == "2-2030")  selected  @endif>2-2030</option>
+
+                                    <option value="1-2031" @if ($periodo == "1-2031")  selected  @endif>1-2031</option>
+                                    <option value="2-2031" @if ($periodo == "2-2031")  selected  @endif>2-2031</option>
+
+                                    <option value="1-2032" @if ($periodo == "1-2032")  selected  @endif>1-2032</option>
+                                    <option value="2-2032" @if ($periodo == "2-2032")  selected  @endif>2-2032</option>
+
+                                    <option value="1-2033" @if ($periodo == "1-2033")  selected  @endif>1-2033</option>
+                                    <option value="2-2033" @if ($periodo == "2-2033")  selected  @endif>2-2033</option>
+
+                                    <option value="1-2034" @if ($periodo == "1-2034")  selected  @endif>1-2034</option>
+                                    <option value="2-2034" @if ($periodo == "2-2034")  selected  @endif>2-2034</option>
+
+                                    <option value="1-2035" @if ($periodo == "1-2035")  selected  @endif>1-2035</option>
+                                    <option value="2-2035" @if ($periodo == "2-2035")  selected  @endif>2-2035</option>
+
+                                    <option value="1-2036" @if ($periodo == "1-2036")  selected  @endif>1-2036</option>
+                                    <option value="2-2036" @if ($periodo == "2-2036")  selected  @endif>2-2036</option>
+
+                                    <option value="1-2037" @if ($periodo == "1-2037")  selected  @endif>1-2037</option>
+                                    <option value="2-2037" @if ($periodo == "2-2037")  selected  @endif>2-2037</option>
+
+                                    <option value="1-2038" @if ($periodo == "1-2038")  selected  @endif>1-2038</option>
+                                    <option value="2-2038" @if ($periodo == "2-2038")  selected  @endif>2-2038</option>
+                                </select>
+
+                            </div>
+                            <!--end::Input group-->
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <a href="#" id="btn_filter_periodo" class="btn btn-light-primary">Buscar</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
                 <!--begin::Toolbar-->
-                <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base"
+                <div class="d-flex justify-content-end col-md-6" data-kt-user-table-toolbar="base"
                     data-select2-id="select2-data-132-co2t">
                     <!--begin::Filter-->
 
 
                    <!--begin::Add user-->
-                   <a href="{{route('reporte.exportar_csc',2)}}" class="ms-5 btn btn-info">
+                   {{-- <a href="{{route('reporte.exportar_csc',2)}}" class="ms-5 btn btn-info">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <i class="fa-solid fa-file-excel"></i>
                     <!--end::Svg Icon-->Reporte Exel
-                </a>
+                </a> --}}
                 <!--end::Add user-->
                 </div>
 
@@ -320,6 +391,12 @@
 
         {{-- <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script> --}}
         <script>
+
+            $('#btn_filter_periodo').on('click',()=>{
+                let periodo = $('#periodo').val();
+                console.log(periodo);
+                $(location).attr('href',base_url() +"/servicio-comunitario/fase-culminados?periodo="+periodo);
+            });
              function list_verification_document(obj) {
                 let id_grupo = $(obj).attr('id_grupo');
 

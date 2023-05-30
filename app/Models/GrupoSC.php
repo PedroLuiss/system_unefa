@@ -38,4 +38,10 @@ class GrupoSC extends Model
 
 
     ];
+
+
+    public function estudiantes_grupo()
+    {
+        return $this->belongsTo(GrupoSCEstudiante::class,'grupo_s_c_id');
+    }
 }

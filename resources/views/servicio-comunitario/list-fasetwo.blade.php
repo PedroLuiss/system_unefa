@@ -19,7 +19,7 @@
                 <span class="text-muted mt-1 fw-bold fs-7">Aqui se mostrara el listado de los grupos de que vienen de la fase 1.</span>
             </h3>
         </div>
-        <div class="card-header border-0 pt-6">
+        {{-- <div class="card-header border-0 pt-6">
 
             <!--begin::Card toolbar-->
             <div class="card-toolbar" data-select2-id="select2-data-133-a0zo">
@@ -40,7 +40,7 @@
 
             </div>
             <!--end::Card toolbar-->
-        </div>
+        </div> --}}
         <!--end::Card header-->
         <!--begin::Card body-->
         <div class="card-body py-4">
