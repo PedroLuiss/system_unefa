@@ -86,7 +86,6 @@ class reportexportController extends Controller
         // dd($estudent);
         // echo print_r(json_decode(response($estudent)) $estudent);
     //    return response($estudent[0]);
-        $dat = Estudiantes::all();
 
         return Excel::download(new UsersExport($request->periodo,$request->fase) ,'Data De Los Estudiantes Evaluados Periodo '.$request->periodo.'.xlsx');
 

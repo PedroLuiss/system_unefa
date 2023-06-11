@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
@@ -18,6 +19,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
 {
     public $reques;
+    public $data;
 
     function __construct(String $reques) {
         $this->reques= $reques;
@@ -28,17 +30,17 @@ class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
     public function view():View
     {
         // if($this->fase == 1){
-            $data=[];
+            $this->data=[];
             $all_array_data=[];
 
             $array_request = explode('-',$this->reques);
             if ($array_request[0] == 1) {
-                $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.status','grupo_s_c_s.status','grupo_s_c_s.estado','grupo_s_c_s.direccion_comunidad','grupo_s_c_s.alianzas_estrategicas',
+                $this->data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.status','grupo_s_c_s.status','grupo_s_c_s.estado','grupo_s_c_s.direccion_comunidad','grupo_s_c_s.alianzas_estrategicas',
                 'grupo_s_c_s.ferias','grupo_s_c_s.reunion_misiones','grupo_s_c_s.total_studiante','grupo_s_c_s.campanas','grupo_s_c_s.talleres','grupo_s_c_s.jornadas','grupo_s_c_s.charlas',
                 'grupo_s_c_s.foros','grupo_s_c_s.cant_beneficiados','grupo_s_c_s.area_accion_project','grupo_s_c_s.vinc_project_planes_prog','grupo_s_c_s.telefono_tutor_comunitario',
                 'grupo_s_c_s.cedula_tutor_comunitario','grupo_s_c_s.nombre_tutor_comunitario','grupo_s_c_s.nombre_comunidad','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor'
                 ,'profesores.cedula','profesores.nombre','profesores.email',
-                 'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+                 'profesores.primer_apellido','profesores.segundo_apellido','profesores.tipo_perfil_unidad_doce','profesores.tipo_perfil_unidad_admi','profesores.tipo_perfil','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
                  'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
                  ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
                  ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
@@ -50,12 +52,12 @@ class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
 
 
              }else{
-                 $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.status','grupo_s_c_s.status','grupo_s_c_s.estado','grupo_s_c_s.direccion_comunidad','grupo_s_c_s.alianzas_estrategicas',
+                $this->data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.status','grupo_s_c_s.status','grupo_s_c_s.estado','grupo_s_c_s.direccion_comunidad','grupo_s_c_s.alianzas_estrategicas',
                  'grupo_s_c_s.ferias','grupo_s_c_s.reunion_misiones','grupo_s_c_s.total_studiante','grupo_s_c_s.campanas','grupo_s_c_s.talleres','grupo_s_c_s.jornadas','grupo_s_c_s.charlas',
                  'grupo_s_c_s.foros','grupo_s_c_s.cant_beneficiados','grupo_s_c_s.area_accion_project','grupo_s_c_s.vinc_project_planes_prog','grupo_s_c_s.telefono_tutor_comunitario',
                  'grupo_s_c_s.cedula_tutor_comunitario','grupo_s_c_s.nombre_tutor_comunitario','grupo_s_c_s.nombre_comunidad','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor'
                  ,'profesores.cedula','profesores.nombre','profesores.email',
-                  'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+                  'profesores.primer_apellido','profesores.segundo_apellido','profesores.tipo_perfil_unidad_doce','profesores.tipo_perfil_unidad_admi','profesores.tipo_perfil','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
                   'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
                  ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
                  ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
@@ -66,7 +68,9 @@ class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
              }
 
 
-             foreach ($data as $key => $val) {
+
+             $f = 12;
+             foreach ($this->data as $key => $val) {
                 $studen_all = GrupoSCEstudiante::select('*')
                 ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'grupo_s_c_estudiantes.estudiantes_id')
                 ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
@@ -74,10 +78,12 @@ class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
                 ->where('grupo_s_c_estudiantes.grupo_s_c_id',$val->id)
                 ->where('grupo_s_c_estudiantes.reprobo',0)->get();
                 $all_array_data[$val->id] = $studen_all;
+
+
              }
             //  dd($data);
             return view('reporte.export-cs4',[
-                'data' => $data,
+                'data' => $this->data,
                 'student_array'=>$all_array_data
             ]);
 
@@ -118,11 +124,27 @@ class ExportCS4 implements FromView, ShouldAutoSize,WithDrawings,WithStyles
         $drawing2->setCoordinates('AF1');
 
         return [$drawing, $drawing2];
-
+        // $cells->setAlignment('center');
     }
 
     public function styles(Worksheet $sheet)
     {
+        $sheet->getStyle('A11:AF11:AF10')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('AF10')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+
+
+        $f = 12;
+        foreach ($this->data as $key => $val) {
+            $studen_all = GrupoSCEstudiante::select('*')
+            ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+            ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+            ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')
+            ->where('grupo_s_c_estudiantes.grupo_s_c_id',$val->id)
+            ->where('grupo_s_c_estudiantes.reprobo',0)->get();
+            $sheet->getStyle('P'.$f.':AF'.$f)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+            $sheet->getStyle('A'.$f.':G'.$f)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+            $f= $f +  count($studen_all);
+        }
         return [
 
             // Styling a specific cell by coordinate.

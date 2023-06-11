@@ -85,6 +85,55 @@
 
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-10">
+                                    <label for="exampleFormControlInput1" class="required form-label">INDIQUE SI ES ADMINISTRATIVO Ó DOCENTE </label>
+                                    <select class="form-select  form-select-solid @error('tipo_perfil') is-invalid @enderror" onchange="change_input(this)" name="tipo_perfil" id="tipo_perfil" aria-label="Select example">
+                                        <option value="">Seleccione el tipo</option>
+                                        <option  value="DOCENTE" @if ($profe_ed->tipo_perfil == "DOCENTE")  selected @else @endif>DOCENTE</option>
+                                        <option value="ADMINISTRATIVO" @if ($profe_ed->tipo_perfil == "ADMINISTRATIVO")  selected @else @endif>ADMINISTRATIVO</option>
+                                    </select>
+                                    @error('tipo_perfil')
+                                        <span class="invalid-feedback">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" @if ($profe_ed->tipo_perfil == "ADMINISTRATIVO")  @else  style="display: none"  @endif  id="box_administrativo">
+                                <div class="mb-10">
+                                    <label for="exampleFormControlInput1" class="required form-label">INGRESE LA UNIDAD A LA QUE PERTENECE</label>
+                                    <input type="text" name="tipo_perfil_unidad_admi" id="tipo_perfil_unidad_admi" value="{{$profe_ed->tipo_perfil_unidad_admi}}" class="form-control form-control-solid @error('tipo_perfil_unidad_admi') is-invalid @enderror" value="{{old('tipo_perfil_unidad_admi')}}" placeholder="Nombre de la unidad en la que pertenece"/>
+
+                                    @error('tipo_perfil_unidad_admi')
+                                        <span class="invalid-feedback">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12" @if ($profe_ed->tipo_perfil == "DOCENTE")  @else  style="display: none"  @endif id="box_docente">
+                                <div class="mb-10">
+                                    <label for="exampleFormControlInput1" class="required form-label">INDIQUE LA CATEGORÌA </label>
+                                    <select class="form-select  form-select-solid @error('tipo_perfil_unidad_doce') is-invalid @enderror" name="tipo_perfil_unidad_doce" id="tipo_perfil_unidad_doce" aria-label="Select example">
+                                        <option value="">Seleccione LA CATEGORIA</option>
+                                        <option value="TV"  @if ($profe_ed->tipo_perfil_unidad_doce == "TV") selected @endif >TV</option>
+                                        <option value="MT" @if ($profe_ed->tipo_perfil_unidad_doce == "MT") selected @endif >MT</option>
+                                        <option value="TC" @if ($profe_ed->tipo_perfil_unidad_doce == "TC") selected @endif >TC</option>
+                                        <option value="TC" @if ($profe_ed->tipo_perfil_unidad_doce == "TC") selected @endif >TC</option>
+                                    </select>
+                                    @error('tipo_perfil_unidad_doce')
+                                        <span class="invalid-feedback">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+
 
                         </div>
 
@@ -97,3 +146,22 @@
     </div>
 
     @endsection
+
+
+   @push('scripts')
+
+   <script>
+
+        function change_input(params) {
+            console.log(params);
+            if ($(params).val() == "DOCENTE") {
+                $('#box_administrativo').hide();
+                $('#box_docente').show();
+            }else{
+                $('#box_administrativo').show();
+                $('#box_docente').hide();
+            }
+        }
+
+   </script>
+   @endpush

@@ -39,32 +39,96 @@ class ProfesoresController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        if ($request->tipo_perfil == "") {
+            $request->validate([
 
-            'cedula' => [
-                'required',
-                'max:20',
-                Rule::unique('profesores','cedula'),
-            ],
-            'email' => [
-                'required',
-                Rule::unique('profesores','email'),
-            ],
-            'nombres' =>['required'],
-            'primer_apellido' =>[],
-            'segundo_apellido' =>[],
-            'especialidad' =>['required'],
+                'cedula' => [
+                    'required',
+                    'max:20',
+                    Rule::unique('profesores','cedula'),
+                ],
+                'email' => [
+                    'required',
+                    Rule::unique('profesores','email'),
+                ],
+                'nombres' =>['required'],
+                'primer_apellido' =>[],
+                'segundo_apellido' =>[],
+                'especialidad' =>['required'],
+                'tipo_perfil' =>['required'],
 
 
-        ],[],[
-            'cedula' => '',
-            'nombres' => '',
-            'primer_apellido' => '',
-            'segundo_apellido' => '',
-            'especialidad' => '',
-            'email' => 'Email',
+            ],[],[
+                'cedula' => '',
+                'nombres' => '',
+                'primer_apellido' => '',
+                'segundo_apellido' => '',
+                'especialidad' => '',
+                'email' => 'Email',
+                'tipo_perfil' => 'tipo perfil',
+            ]);
+        }else if ($request->tipo_perfil == "ADMINISTRATIVO") {
+            $request->validate([
 
-        ]);
+                'cedula' => [
+                    'required',
+                    'max:20',
+                    Rule::unique('profesores','cedula'),
+                ],
+                'email' => [
+                    'required',
+                    Rule::unique('profesores','email'),
+                ],
+                'nombres' =>['required'],
+                'primer_apellido' =>[],
+                'segundo_apellido' =>[],
+                'especialidad' =>['required'],
+                'tipo_perfil' =>['required'],
+                'tipo_perfil_unidad_admi' =>['required'],
+
+
+            ],[],[
+                'cedula' => '',
+                'nombres' => '',
+                'primer_apellido' => '',
+                'segundo_apellido' => '',
+                'especialidad' => '',
+                'email' => 'Email',
+                'tipo_perfil' => 'tipo perfil',
+                'tipo_perfil_unidad_admi' => 'unidad',
+            ]);
+        }else{
+            $request->validate([
+
+                'cedula' => [
+                    'required',
+                    'max:20',
+                    Rule::unique('profesores','cedula'),
+                ],
+                'email' => [
+                    'required',
+                    Rule::unique('profesores','email'),
+                ],
+                'nombres' =>['required'],
+                'primer_apellido' =>[],
+                'segundo_apellido' =>[],
+                'especialidad' =>['required'],
+                'tipo_perfil' =>['required'],
+                'tipo_perfil_unidad_doce' =>['required'],
+
+
+            ],[],[
+                'cedula' => '',
+                'nombres' => '',
+                'primer_apellido' => '',
+                'segundo_apellido' => '',
+                'especialidad' => '',
+                'email' => 'Email',
+                'tipo_perfil' => 'tipo perfil',
+                'tipo_perfil_unidad_doce' => 'tipo',
+            ]);
+        }
+
         // dd($request);
             $data = $request->all();
         $profe_st =  Profesore::create([
@@ -74,6 +138,9 @@ class ProfesoresController extends Controller
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
+            'tipo_perfil'=> $data['tipo_perfil'],
+            'tipo_perfil_unidad_admi'=> $data['tipo_perfil_unidad_admi'],
+            'tipo_perfil_unidad_doce'=> $data['tipo_perfil_unidad_doce'],
 
         ]);
 
@@ -130,6 +197,7 @@ class ProfesoresController extends Controller
             'primer_apellido' =>[],
             'segundo_apellido' =>[],
             'especialidad' =>['required'],
+            'tipo_perfil' =>['required'],
 
 
         ],[],[
@@ -138,6 +206,7 @@ class ProfesoresController extends Controller
             'primer_apellido' => '',
             'segundo_apellido' => '',
             'especialidad' => '',
+            'tipo_perfil' => '',
             'email' => '',
 
         ]);
@@ -150,6 +219,9 @@ class ProfesoresController extends Controller
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
+            'tipo_perfil'=> $data['tipo_perfil'],
+            'tipo_perfil_unidad_admi'=> $data['tipo_perfil_unidad_admi'],
+            'tipo_perfil_unidad_doce'=> $data['tipo_perfil_unidad_doce'],
 
         ]);
 

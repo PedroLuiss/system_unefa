@@ -183,36 +183,37 @@
                 $v=1;
                 $f=1;
             @endphp
-            @foreach ( $student_array[$val->id] as $val_student)
+            @foreach ( $student_array[$val->id] as $key  => $val_student)
             <tr>
-             {{-- informacion del tutor --}}
-             @if ($v == 1)
-
-             @php
-                $v=0;
-            @endphp
-                <th  rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">{{$n}}</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800; width: 300px;border: 1px solid black">{{$val->nombre}}</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">{{$val->primer_apellido}} {{$val->segundo_apellido}}</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">{{$val->cedula}}</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">-----------</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">-----------</th>
-                <th rowspan="{{$val->total_studiante}}" style="font-weight: 800;border: 1px solid black">-----------</th>
-             @endif
+                {{-- informacion del tutor --}}
+                @if ($v == 1)
+                @php
+                    $v=0;
+                @endphp
+                    <th  rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">{{$n}}</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800; width: 300px;border: 1px solid black">{{$val->nombre}}</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">{{$val->primer_apellido}} {{$val->segundo_apellido}}</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">{{$val->cedula}}</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">{{$val->tipo_perfil}}</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">@if ($val->tipo_perfil=="ADMINISTRATIVO")  {{$val->tipo_perfil_unidad_admi}} @else  @endif</th>
+                    <th rowspan="{{count($student_array[$val->id])}}" style="font-weight: 800;border: 1px solid black">@if ($val->tipo_perfil=="DOCENTE")  {{$val->tipo_perfil_unidad_doce}} @else  @endif</th>
+                @endif
 
 
 
                     {{-- End informacion del tutor --}}
+                @if (!$val_student->reprobo)
+                     {{-- Informacion del estudiante --}}
+                     <td style="font-weight: 800;border: 1px solid black">1</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->nombres}}</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->primer_apellido}} {{$val_student->segundo_apellido}}</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->cedula}}</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->name}}</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->semestre}}S</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->seccion}}</td>
+                     <td style="font-weight: 800;border: 1px solid black">{{$val_student->turno}}</td>
+                @endif
 
-                    {{-- Informacion del estudiante --}}
-                        <td style="font-weight: 800;border: 1px solid black">1</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->nombres}}</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->primer_apellido}} {{$val_student->segundo_apellido}}</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->cedula}}</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->name}}</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->semestre}}S</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->seccion}}</td>
-                        <td style="font-weight: 800;border: 1px solid black">{{$val_student->turno}}</td>
                     {{-- </tr> --}}
 
 
@@ -222,52 +223,52 @@
                         @php
                             $f=0;
                         @endphp
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->nombre_proyecto}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->nombre_comunidad}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->nombre_tutor_comunitario}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->cedula_tutor_comunitario}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->telefono_tutor_comunitario}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->cant_beneficiados}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->vinc_project_planes_prog}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black" rowspan="{{count($student_array[$val->id])}}" >
                             {{$val->area_accion_project}}
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->foros)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->charlas)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->jornadas)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->talleres)
                                 X
                             @else
@@ -275,7 +276,7 @@
                             @endif
                         </td>
 
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->campanas)
                                 X
                             @else
@@ -283,32 +284,32 @@
                             @endif
                         </td>
 
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->reunion_misiones)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->ferias)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                             @if ($val->alianzas_estrategicas)
                                 X
                             @else
 
                             @endif
                         </td>
-                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{$val->total_studiante}}" >
+                        <td style="font-weight: 800;border: 1px solid black;text-align: center" rowspan="{{count($student_array[$val->id])}}" >
                            Aprobado
                         </td>
                     @endif
-                </tr>
+                    </tr>
                     @endforeach
 
 

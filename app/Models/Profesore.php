@@ -15,6 +15,9 @@ class Profesore extends Model
         'email',
         'primer_apellido',
         'segundo_apellido',
-        'especialidad'
+        'especialidad',
+        'tipo_perfil',
+        'tipo_perfil_unidad_admi',
+        'tipo_perfil_unidad_doce',
     ];
 }

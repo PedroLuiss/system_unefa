@@ -6,7 +6,7 @@
                 <div class="card-header border-0">
                     <h3 class="card-title align-items-start flex-column">
                         <span class="card-label fw-bold text-dark">Evaluación De Documentos</span>
-                        <span class="text-muted mt-1 fw-semibold fs-7">Aqui Evaluaras Los Documentos Físicos De La Fase 1</span>
+                        <span class="text-muted mt-1 fw-semibold fs-7">Aqui Evaluaras Los Documentos Físicos De La Fase 2</span>
                     </h3>
 
                 </div>
