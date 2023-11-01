@@ -643,7 +643,7 @@ function messeg(m,t) {
 
              $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
                 //  console.log("holasss");
-                $('.loader').show();
+
                  const data = {
                     profesor: $('#select_profesor').val(),
                     carrrera_id: $('#select_carrera').val(),
@@ -740,6 +740,7 @@ function messeg(m,t) {
                     return false;
                  }
                  console.log(data);
+                 $('.loader').show();
                 //  return false
                  const sendPostRequest = async () => {
                 try {
