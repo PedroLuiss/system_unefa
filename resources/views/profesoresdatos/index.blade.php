@@ -1,78 +1,119 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('mensaje'))
-<div class="alert alert-success">
-    <strong>{{ session('mensaje') }}</strong>
-</div>
-@endif
-<div >
-    <div class="card shadow-sm">
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            <strong>{{ session('mensaje') }}</strong>
+        </div>
+    @endif
 
-        <div class="card-header pt-8">
+    <div class="card card-flush h-md-100">
+        <!--begin::Header-->
+        <div class="card-header pt-7">
+            <!--begin::Title-->
+            <h3 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bold text-gray-800">Profesores</span>
 
+                <span class="text-gray-500 mt-1 fw-semibold fs-6">Listados de profesores</span>
+            </h3>
+            <!--end::Title-->
 
-            <div class="buttton-register" style="text-align:end;">
-
-                <a href="{{route('profesoresdatos.create')}}" class="btn btn-sm btn-primary" ><span class="svg-icon svg-icon-1"><svg><!--begin::Svg Icon | path: assets/media/icons/duotune/communication/com013.svg-->
-                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"/>
-                    <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"/>
-                    </svg></span>
-                    <!--end::Svg Icon--></svg></span>Registro
-                </a>
-
+            <!--begin::Toolbar-->
+            <div class="card-toolbar">
+                <a href="{{ route('profesoresdatos.create') }}"
+                    class="btn btn-sm btn-light">Agregar</a>
             </div>
+            <!--end::Toolbar-->
+        </div>
+        <!--end::Header-->
 
+        <!--begin::Body-->
+        <div class="card-body pt-6">
+            <!--begin::Table container-->
             <div class="table-responsive">
-                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_table_users">
+                <!--begin::Table-->
+                <table class="table table-row-dashed align-middle gs-0 gy-3 my-0 dataTable" id="kt_table_users">
+                    <!--begin::Table head-->
                     <thead>
-                        <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                            <th class="min-w-200px">EDITAR</th>
-                            <th class="min-w-200px">CEDULA</th>
-                            <th class="min-w-200px">NOMBRES</th>
-                            <th class="min-w-200px">APELLIDO PATERNO</th>
-                            <th class="min-w-200px">APELLIDO MATERNO</th>
-                            <th class="min-w-200px">ESPECIALIDAD</th>
-
+                        <tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
+                            <th class="p-0 pb-3 min-w-140px text-start">NOMBRES APELLIDOS</th>
+                            <th class="p-0 pb-3 min-w-120px text-center">CEDULA</th>
+                            <th class="p-0 pb-3 min-w-200px text-center">ESPECIALIDAD</th>
+                            {{-- <th class="p-0 pb-3 min-w-175px text-end pe-12">STATUS</th> --}}
+                            <th class="p-0 pb-3 w-50px text-center">OPCIONES</th>
                         </tr>
                     </thead>
+                    <!--end::Table head-->
+
+                    <!--begin::Table body-->
                     <tbody>
-                    @foreach ($profe_all as $profe_alls)
+                        @foreach ($profe_all as $profe_alls)
+
                         <tr>
-                            <td >
-                                <a href="{{route('profesoresdatos.edit',$profe_alls->id)}}">
-                                    <button  class="btn btn-success btn-xs" >Editar  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                      </svg>
-                                    </button>
-                                </a>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-50px me-3">
+                                        <img src="@if ($profe_alls->foto == null){{ asset('m2/assets/media/avatars/blank.png') }}@else{{ asset($profe_alls->foto) }}@endif" class=""
+                                            alt="">
+                                    </div>
+
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $profe_alls->nombre }} {{ $profe_alls->primer_apellido }} {{ $profe_alls->segundo_apellido }}</a>
+                                        <span class="text-gray-500 fw-semibold d-block fs-7">{{ $profe_alls->email }}</span>
+                                    </div>
+                                </div>
                             </td>
 
-                            <td>{{$profe_alls->cedula}}</td>
-                            <td>{{$profe_alls->nombre}}</td>
-                            <td>{{$profe_alls->primer_apellido}}</td>
-                            <td>{{$profe_alls->segundo_apellido}}</td>
-                            <td>{{$profe_alls->especialidad}}</td>
+                            <td class="text-center pe-0">
+                                <span class="text-gray-600 fw-bold fs-6">{{ $profe_alls->cedula }}</span>
+                            </td>
+
+                            <td class="text-center pe-0">
+                                <!--begin::Label-->
+                                <span class="badge badge-light-success fs-base">
+                                    <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span
+                                            class="path1"></span><span class="path2"></span></i>
+                                            {{ $profe_alls->especialidad }}
+                                </span>
+                                <!--end::Label-->
+
+                            </td>
+
+                            {{-- <td class="text-end pe-12">
+                                <span class="badge py-3 px-4 fs-7 badge-light-primary">In Process</span>
+                            </td> --}}
 
 
+
+                            <td class="text-center">
+                                <a href="#"
+                                    class="btn btn-sm d-flex btn-bg-light btn-active-color-primary px-3">
+                                    Editar <svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg> </a>
+                            </td>
                         </tr>
                         @endforeach
+
                     </tbody>
+                    <!--end::Table body-->
                 </table>
             </div>
+            <!--end::Table-->
+        </div>
+        <!--end: Card Body-->
+    </div>
+    @push('scripts')
+        <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
 
-</div>
-</div>
-</div>
-
-@push('scripts')
-<script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-<script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
-
-<script src="{{ asset('js/axios.min.js') }}"></script>
-<script>
+        <script src="{{ asset('js/axios.min.js') }}"></script>
+        <script>
             $('#kt_table_users').dataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
@@ -85,6 +126,6 @@
                     // 'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-</script>
-@endpush
+        </script>
+    @endpush
 @endsection

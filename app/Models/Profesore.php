@@ -19,5 +19,8 @@ class Profesore extends Model
         'tipo_perfil',
         'tipo_perfil_unidad_admi',
         'tipo_perfil_unidad_doce',
+        'telefono',
+        'foto',
+
     ];
 }

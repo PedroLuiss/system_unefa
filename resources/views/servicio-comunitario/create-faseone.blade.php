@@ -361,10 +361,15 @@
                                                         <!--begin::Table row-->
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
-                                                            <th class="min-w-250px sorting_disabled"
+                                                            <th class="min-w-80px sorting_disabled"
                                                                 style="width: 80.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Correo</th>
+                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Carrera</th>
 
                                                             <th class="sorting_disabled"
                                                                ></th>
@@ -400,7 +405,7 @@
                                 </div>
                                 <div class="row border-to-grey pt-3">
                                     <div class="col-9 col-md-8 ">
-                                        <span  class="text-muted px-2" id="total_registros_files_operacion"></span><small>Regístros</small>
+                                        <span  class="text-muted px-2" id="total_registro_estu"></span><small>Regístros</small>
 
                                     </div>
 
@@ -531,13 +536,16 @@ function messeg(m,t) {
 
                     var table = "";
                     console.log(resp.data);
+                    let f = 0;
                     if (resp.data=="") {
                             table+=' <tr class="iten">';
                             table+='<td colspan="4" class="text-center"> <h3 class="text-muted">Sin Información</h3>  </td> ';
                             table+=' </tr>';
                     }else{
+
                         // console.log(resp.data);
                         for (let i = 0; i < resp.data.length; i++) {
+                            f++;
 
                             table+=' <tr class="iten">';
 
@@ -546,6 +554,21 @@ function messeg(m,t) {
                             <td>
 
                                 <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
                             </td> `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -566,6 +589,7 @@ function messeg(m,t) {
                         }
                     }
                     console.log("Hola");
+                    $('#total_registro_estu').text(f);
                     $(".list_files_ing_sistemas").html(table);
                 } catch (err) {
                     // Handle Error Here
@@ -643,7 +667,7 @@ function messeg(m,t) {
 
              $('#btn-guardar-all-files-ing-sistema').on('click',(e)=>{
                 //  console.log("holasss");
-                $('.loader').show();
+
                  const data = {
                     profesor: $('#select_profesor').val(),
                     carrrera_id: $('#select_carrera').val(),
@@ -740,6 +764,7 @@ function messeg(m,t) {
                     return false;
                  }
                  console.log(data);
+                 $('.loader').show();
                 //  return false
                  const sendPostRequest = async () => {
                 try {

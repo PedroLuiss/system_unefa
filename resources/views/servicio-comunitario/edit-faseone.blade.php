@@ -374,10 +374,15 @@
                                                         <!--begin::Table row-->
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
-                                                            <th class="min-w-250px sorting_disabled"
+                                                            <th class="min-w-80px sorting_disabled"
                                                                 style="width: 80.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Correo</th>
+                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Carrera</th>
 
                                                             <th class="sorting_disabled"
                                                                ></th>
@@ -413,7 +418,7 @@
                                 </div>
                                 <div class="row border-to-grey pt-3">
                                     <div class="col-9 col-md-8 ">
-                                        <span  class="text-muted px-2" id="total_registros_files_operacion"></span><small>Regístros</small>
+                                        <span  class="text-muted px-2" id="total_estudiantes_edit"></span><small>Regístros</small>
 
                                     </div>
 
@@ -547,6 +552,7 @@ function messeg(m,t) {
                     const resp = await axios.get(base_url()+"/servicio-comunitario/faseone/estudent/list_student/"+id_grupo);
 
                     var table = "";
+                    var f = 0;
                     console.log(resp.data);
                     if (resp.data=="") {
                             table+=' <tr class="iten">';
@@ -555,6 +561,7 @@ function messeg(m,t) {
                     }else{
                         // console.log(resp.data);
                         for (let i = 0; i < resp.data.length; i++) {
+                            f++;
                             let btn_delet = $('#val_evaluacion_nota').val()?" ": `<a href="javascript:void(0)" onclick="delet_file(${resp.data[i].estudiantes_id});" title="Eliminar Estudiante" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                         <span class="svg-icon svg-icon-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -573,6 +580,21 @@ function messeg(m,t) {
 
                                 <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
                             </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
+                            </td> `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
                                     ${btn_delet}
@@ -584,6 +606,7 @@ function messeg(m,t) {
                         }
                     }
                     console.log("Hola");
+                    $('#total_estudiantes_edit').text(f);
                     $(".list_files_ing_sistemas").html(table);
                 } catch (err) {
                     // Handle Error Here

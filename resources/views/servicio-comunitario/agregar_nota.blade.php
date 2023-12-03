@@ -27,7 +27,7 @@
                     <!--begin: Pic-->
                     <div class="me-7 mb-4">
                         <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img src="{{ asset('icon_profesor.png') }}" alt="image">
+                            <img src="@if ($profesor->foto == null){{ asset('icon_profesor.png') }}@else{{ asset($profesor->foto) }}@endif" alt="image">
 
                         </div>
                     </div>

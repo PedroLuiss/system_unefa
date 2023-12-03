@@ -372,10 +372,15 @@
                                                         <!--begin::Table row-->
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
-                                                            <th class="min-w-250px sorting_disabled"
+                                                            <th class="min-w-80px sorting_disabled"
                                                                 style="width: 80.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Correo</th>
+                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                            <th class="min-w-10px sorting_disabled"
+                                                                style="width: 306px;">Carrera</th>
 
                                                             <th class="sorting_disabled"
                                                                ></th>
@@ -555,10 +560,26 @@ function messeg(m,t) {
                             table+=' <tr class="iten">';
 
                             table+='<td>'+resp.data[i].cedula+'</td>'
-                            table+=`
+
+                           table+=`
                             <td>
 
                                 <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                            </td> `;
+                            table+=`
+                            <td>
+
+                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
                             </td> `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">

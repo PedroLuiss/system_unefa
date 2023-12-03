@@ -18,8 +18,10 @@ class CreateProfesoresTable extends Migration
             $table->string('cedula');
             $table->string('nombre');
             $table->string('email');
+            $table->string('telefono')->nullable();
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
+            $table->text('foto')->nullable();
             $table->string('especialidad');
             $table->string('tipo_perfil')->nullable()->comment("INDIQUE SI ES ADMINISTRATIVO Ó DOCENTE");
             $table->string('tipo_perfil_unidad_admi')->nullable()->comment("EN CASO DE SER ADMINISTRATIVO INDIQUE UNIDAD A LA QUE PERTENECE");

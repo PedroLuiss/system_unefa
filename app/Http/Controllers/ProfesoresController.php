@@ -39,6 +39,8 @@ class ProfesoresController extends Controller
      */
     public function store(Request $request)
     {
+        // $image = $request->file('foto');
+        // dd($image);die;
         if ($request->tipo_perfil == "") {
             $request->validate([
 
@@ -52,20 +54,23 @@ class ProfesoresController extends Controller
                     Rule::unique('profesores','email'),
                 ],
                 'nombres' =>['required'],
+                'telefono' =>['required'],
                 'primer_apellido' =>[],
+                'foto' => 'image|mimes:jpeg,png,jpg',
                 'segundo_apellido' =>[],
                 'especialidad' =>['required'],
                 'tipo_perfil' =>['required'],
 
 
             ],[],[
-                'cedula' => '',
-                'nombres' => '',
-                'primer_apellido' => '',
-                'segundo_apellido' => '',
-                'especialidad' => '',
+                'cedula' => 'cédula',
+                'nombres' => 'nombres',
+                'primer_apellido' => 'primer apellido',
+                'segundo_apellido' => 'segundo apellido',
+                'especialidad' => 'especialidad',
                 'email' => 'Email',
                 'tipo_perfil' => 'tipo perfil',
+                'telefono' => 'telefono',
             ]);
         }else if ($request->tipo_perfil == "ADMINISTRATIVO") {
             $request->validate([
@@ -82,20 +87,23 @@ class ProfesoresController extends Controller
                 'nombres' =>['required'],
                 'primer_apellido' =>[],
                 'segundo_apellido' =>[],
+                'foto' => 'image|mimes:jpeg,png,jpg',
+                'telefono' =>['required'],
                 'especialidad' =>['required'],
                 'tipo_perfil' =>['required'],
                 'tipo_perfil_unidad_admi' =>['required'],
 
 
             ],[],[
-                'cedula' => '',
-                'nombres' => '',
-                'primer_apellido' => '',
-                'segundo_apellido' => '',
-                'especialidad' => '',
+                'cedula' => 'cédula',
+                'nombres' => 'nombres',
+                'primer_apellido' => 'primer apellido',
+                'segundo_apellido' => 'segundo apellido',
+                'especialidad' => 'especialidad',
                 'email' => 'Email',
                 'tipo_perfil' => 'tipo perfil',
                 'tipo_perfil_unidad_admi' => 'unidad',
+                'telefono' => 'telefono',
             ]);
         }else{
             $request->validate([
@@ -110,31 +118,35 @@ class ProfesoresController extends Controller
                     Rule::unique('profesores','email'),
                 ],
                 'nombres' =>['required'],
+                'foto' => 'image|mimes:jpeg,png,jpg',
                 'primer_apellido' =>[],
                 'segundo_apellido' =>[],
+                'telefono' =>['required'],
                 'especialidad' =>['required'],
                 'tipo_perfil' =>['required'],
                 'tipo_perfil_unidad_doce' =>['required'],
 
 
             ],[],[
-                'cedula' => '',
-                'nombres' => '',
-                'primer_apellido' => '',
-                'segundo_apellido' => '',
-                'especialidad' => '',
+                'cedula' => 'cédula',
+                'nombres' => 'nombres',
+                'primer_apellido' => 'primer apellido',
+                'segundo_apellido' => 'segundo apellido',
+                'especialidad' => 'especialidad',
                 'email' => 'Email',
                 'tipo_perfil' => 'tipo perfil',
-                'tipo_perfil_unidad_doce' => 'tipo',
+                'tipo_perfil_unidad_admi' => 'unidad',
+                'telefono' => 'telefono',
             ]);
         }
 
         // dd($request);
-            $data = $request->all();
-        $profe_st =  Profesore::create([
+        $data = $request->all();
+        $dataSend = [
             'cedula'=> $data['cedula'],
             'nombre'=> $data['nombres'],
             'email'=> $data['email'],
+            'telefono'=> $data['telefono'],
             'primer_apellido'=> $data['primer_apellido'],
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
@@ -142,7 +154,23 @@ class ProfesoresController extends Controller
             'tipo_perfil_unidad_admi'=> $data['tipo_perfil_unidad_admi'],
             'tipo_perfil_unidad_doce'=> $data['tipo_perfil_unidad_doce'],
 
-        ]);
+        ];
+        $file = $request->file('foto');
+        if($file){
+            $id = uniqid();
+            // $filename = $file->getClientOriginalName();
+            $filename = $id . '.' . $file->getClientOriginalExtension();
+            $foo = \File::extension($filename);
+            $nam_patch = $filename;
+            $route_file = $nam_patch;
+            $path = public_path().DIRECTORY_SEPARATOR."FOTO-PROFESOR";
+            $path_guardar = '/FOTO-PROFESOR/'.$route_file;
+            $file->move($path,$route_file);
+            $dataSend['foto'] = $path_guardar;
+
+        }
+        // dd($dataSend); die;
+        $profe_st =  Profesore::create($dataSend);
 
         $messege = $profe_st ? 'Profesor Creado Correctamente' : 'Error al agregar';
         return redirect()->route('profesoresdatos.index')->with('mensaje', $messege);
@@ -196,6 +224,7 @@ class ProfesoresController extends Controller
             'nombres' =>['required'],
             'primer_apellido' =>[],
             'segundo_apellido' =>[],
+            'foto' => 'image|mimes:jpeg,png,jpg',
             'especialidad' =>['required'],
             'tipo_perfil' =>['required'],
 
@@ -208,11 +237,14 @@ class ProfesoresController extends Controller
             'especialidad' => '',
             'tipo_perfil' => '',
             'email' => '',
+            'foto' => '',
 
         ]);
         // dd($request);
         $data = $request->all();
-        $profe_st =  Profesore::where('id',$data['id'])->update([
+        $file = $request->file('foto');
+
+        $dataSend = [
             'cedula'=> $data['cedula'],
             'nombre'=> $data['nombres'],
             'email'=> $data['email'],
@@ -220,10 +252,27 @@ class ProfesoresController extends Controller
             'segundo_apellido'=> $data['segundo_apellido'],
             'especialidad'=> $data['especialidad'],
             'tipo_perfil'=> $data['tipo_perfil'],
+            'telefono'=> $data['telefono'],
             'tipo_perfil_unidad_admi'=> $data['tipo_perfil_unidad_admi'],
             'tipo_perfil_unidad_doce'=> $data['tipo_perfil_unidad_doce'],
 
-        ]);
+        ];
+        if($file){
+            $id = uniqid();
+            // $filename = $file->getClientOriginalName();
+            $filename = $id . '.' . $file->getClientOriginalExtension();
+            $foo = \File::extension($filename);
+            $nam_patch = $filename;
+            $route_file = $nam_patch;
+            $path = public_path().DIRECTORY_SEPARATOR."FOTO-PROFESOR";
+            $path_guardar = '/FOTO-PROFESOR/'.$route_file;
+            $file->move($path,$route_file);
+            $dataSend['foto'] = $path_guardar;
+
+        }
+        $profe_st =  Profesore::where('id',$data['id'])->update($dataSend);
+
+
 
         $messege = $profe_st ? 'Profesores Actualizado Correctamente' : 'Error al actualizar';
         return redirect()->route('profesoresdatos.index')->with('mensaje', $messege);

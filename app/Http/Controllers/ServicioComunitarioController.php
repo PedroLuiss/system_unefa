@@ -95,7 +95,7 @@ class ServicioComunitarioController extends Controller
             if (count($verif)) {
                 return response()->json(['message' => "Estudiante Ya Esta Registrado",'status'=>419],201);
             }else{
-                if (count(GrupoSCEstudiante::where('estudiantes_id',$request->id_estudiante)->get())<6) {
+                if (count(GrupoSCEstudiante::where('grupo_s_c_id',$request->id_grupo)->get())<6) {
                     $verifi_est = Estudiantecomunitarios::where('estudiantes_id',$request->id_estudiante)->first();
                     GrupoSCEstudiante::create([
                         'estudiantes_id'=>$request->id_estudiante,
@@ -207,13 +207,21 @@ class ServicioComunitarioController extends Controller
     }
     public function List_student_temp()
     {
-        $data = TempGrupoSCEstudiante::select('*')->join('estudiantes', 'estudiantes.id', '=', 'temp_grupo_s_c_estudiantes.estudiantes_id')->get();
+        $data = TempGrupoSCEstudiante::select('temp_grupo_s_c_estudiantes.id','carreras.name as nombre_carrera','carreras.code as codigo_carrera',
+        'estudiantes.tel_hab','estudiantes.tel_cel','estudiantes.cedula','estudiantes.email','estudiantes.segundo_apellido','estudiantes.primer_apellido',
+        'estudiantes.nombres','estudiantes.id as estudiantes_id')
+        ->join('estudiantes', 'estudiantes.id', '=', 'temp_grupo_s_c_estudiantes.estudiantes_id')
+        ->join('carreras', 'carreras.id', '=', 'estudiantes.carreras_id')->get();
         return response($data);
     }
 
     public function List_student($id_grupo)
     {
-        $data = GrupoSCEstudiante::select('*')->join('estudiantes', 'estudiantes.id', '=', 'grupo_s_c_estudiantes.estudiantes_id')
+        $data = GrupoSCEstudiante::select('grupo_s_c_estudiantes.id','carreras.name as nombre_carrera','carreras.code as codigo_carrera',
+        'estudiantes.tel_hab','estudiantes.tel_cel','estudiantes.cedula','estudiantes.email','estudiantes.segundo_apellido','estudiantes.primer_apellido',
+        'estudiantes.nombres','estudiantes.id as estudiantes_id')
+        ->join('estudiantes', 'estudiantes.id', '=', 'grupo_s_c_estudiantes.estudiantes_id')
+        ->join('carreras', 'carreras.id', '=', 'estudiantes.carreras_id')
         ->where('grupo_s_c_estudiantes.grupo_s_c_id', $id_grupo)->get();
         return response($data);
     }
