@@ -7,18 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
+    <link rel="shortcut icon" href="{{asset('/m2/assets/media/logos/logo-unefa.ico')}}" />
+
     <title>{{ config('app.name','SystUnefa') }}</title>
 
    		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/logo-unefa.ico" />
+		{{-- <link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/logo-unefa.ico" /> --}}
 		<!--begin::Fonts-->
 
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('m2/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
