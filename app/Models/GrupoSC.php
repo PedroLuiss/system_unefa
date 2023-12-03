@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,7 @@ class GrupoSC extends Model
     use HasFactory;
     protected $fillable = [
         'profesore_id',
+        'code',
         'carrera_id',
         'estado',
         'total_studiante',
@@ -43,5 +45,14 @@ class GrupoSC extends Model
     public function estudiantes_grupo()
     {
         return $this->belongsTo(GrupoSCEstudiante::class,'grupo_s_c_id');
+    }
+
+
+    public static function change_code($id)
+    {
+        $code = Controller::generate_code($id);
+        GrupoSC::where('id',$id)->update([
+            'code' => $code
+        ]);
     }
 }

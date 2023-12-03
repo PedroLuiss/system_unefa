@@ -17,6 +17,7 @@ class CreateGrupoSCSTable extends Migration
     {
         Schema::create('grupo_s_c_s', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
             $table->foreignIdFor(Profesore::class)->nullable();
             $table->foreignIdFor(carrera::class)->nullable();
             $table->string('nombre_proyecto')->nullable();

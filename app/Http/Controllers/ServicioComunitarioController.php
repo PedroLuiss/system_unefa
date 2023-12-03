@@ -24,28 +24,35 @@ class ServicioComunitarioController extends Controller
         // $fecha_actual = Carbon::parse('2023-05-25');
         $ano_actual = $fecha_actual->format('Y');
         $mes_actual = $fecha_actual->format('m');
-        if (intval($mes_actual) <= 06) {
-            $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        // if (intval($mes_actual) <= 06) {
+        //     $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        //     'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+        //     'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+        //     ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+        //     ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+        //     ->whereYear('grupo_s_c_s.created_at', $ano_actual)
+        //     ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
+        //     ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
+        // }else{
+        //     $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        //     'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
+        //     'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
+        //     ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
+        //     ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
+        //     ->whereYear('grupo_s_c_s.created_at', $ano_actual)
+        //     ->whereMonth('grupo_s_c_s.created_at','>=' , '06')
+        //     ->whereMonth('grupo_s_c_s.created_at','<=', '12')->get();
+        // }ç
+        $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
             'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
             'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
             ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
-            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
-            ->whereYear('grupo_s_c_s.created_at', $ano_actual)
-            ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
-            ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
-        }else{
-            $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
-            'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
-            'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
-            ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
-            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')
-            ->whereYear('grupo_s_c_s.created_at', $ano_actual)
-            ->whereMonth('grupo_s_c_s.created_at','>=' , '06')
-            ->whereMonth('grupo_s_c_s.created_at','<=', '12')->get();
-        }
+            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')->where('grupo_s_c_s.status',1)->get();
 
       return  view('servicio-comunitario.list-faseone',compact('data'));
     }
+
+
 
     public function faseone_create()
     {
@@ -145,7 +152,11 @@ class ServicioComunitarioController extends Controller
         'total_studiante'=>count($temp_student),
         'status'=>1,
        ]);
-
+       if ($resp_grup == null) {
+            return response()->json(['message' => 'Error al guardar','status' => 419,], 201);
+            die;
+       }
+       GrupoSC::change_code($resp_grup->id);
        foreach ($temp_student as $key => $value) {
            GrupoSCEstudiante::create([
                 'grupo_s_c_id'=>$resp_grup->id,
@@ -619,7 +630,7 @@ class ServicioComunitarioController extends Controller
         $ano_actual = $fecha_actual->format('Y');
         $mes_actual = $fecha_actual->format('m');
 
-        $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+        $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
         'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','grupo_s_c_s.estado',
         'grupo_s_c_s.total_studiante','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.status','grupo_s_c_s.created_at')
         ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
@@ -633,7 +644,7 @@ class ServicioComunitarioController extends Controller
     {
         if ($request->periodo) {
             if ($request->periodo=="all") {
-                $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
                 'profesores.primer_apellido','profesores.segundo_apellido','carreras.name as nombre_carrera','carreras.code as codigo_carrera','profesores.especialidad','grupo_s_c_s.estado',
                 'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
                 ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
@@ -644,7 +655,7 @@ class ServicioComunitarioController extends Controller
                 $array_periodo = explode("-",$request->periodo);
                 // dd($array_periodo);
                 if ($array_periodo[0] == 1) {
-                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
                     'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
                     'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
                     ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
@@ -654,7 +665,7 @@ class ServicioComunitarioController extends Controller
                     ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
                     ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
                 }else{
-                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+                    $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
                     'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
                     'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
                     ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
@@ -667,7 +678,7 @@ class ServicioComunitarioController extends Controller
             }
 
         }else{
-            $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
+            $data = GrupoSC::select('grupo_s_c_s.id','grupo_s_c_s.code','grupo_s_c_s.nombre_proyecto','profesores.id as id_profesor','profesores.cedula','profesores.nombre','profesores.email',
             'profesores.primer_apellido','profesores.segundo_apellido','carreras.name as nombre_carrera','carreras.code as codigo_carrera','profesores.especialidad','grupo_s_c_s.estado',
             'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
             ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')

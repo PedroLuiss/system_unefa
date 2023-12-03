@@ -60,6 +60,9 @@
                                     colspan="1" aria-label="Role: activate to sort column ascending"
                                     style="width: 126.141px;">Cédula</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                colspan="1" aria-label="Role: activate to sort column ascending"
+                                style="width: 126.141px;">Código</th>
+                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
                                     style="width: 126.141px;">Nombre Proyecto</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
@@ -105,7 +108,7 @@
                                     <!--begin::Role=-->
                                     <td>{{ $value->cedula }} </td>
                                     <!--end::Role=-->
-
+                                    <td>SC-{{ $value->code }}</td>
                                     <!--begin::Two step=-->
                                     <td>
                                         <p>{{ $value->nombre_proyecto }} </p>

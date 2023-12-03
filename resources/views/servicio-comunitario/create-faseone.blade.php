@@ -782,6 +782,7 @@ function messeg(m,t) {
 
                     } catch (err) {
                         // Handle Error Here
+                        $('.loader').hide();
                     }
                 };
                 sendPostRequest();

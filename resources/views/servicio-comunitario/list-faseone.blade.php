@@ -2,7 +2,6 @@
 
 @section('content')
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}"> --}}
-
     @push('css')
         <link rel="stylesheet" type="text/css"
             href="https://preview.keenthemes.com/metronic8/demo1/assets/plugins/custom/datatables/datatables.bundle.css">
@@ -10,6 +9,10 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('m2/assets/plugins/global/plugins.bundle.css') }}">
 
     @endpush
+    @php
+        use App\Http\Controllers\Controller;
+       $controller = new Controller();
+    @endphp
     <div class="card">
 
         <!--begin::Card header-->
@@ -70,12 +73,15 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
 
+                                <th class="min-w-250px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                colspan="1" aria-label="User: activate to sort column ascending"
+                                style="width: 290.406px;">Profesor/a</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                colspan="1" aria-label="Role: activate to sort column ascending"
+                                style="width: 126.141px;">Cédula</th>
+                                <th class="min-w-50px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="User: activate to sort column ascending"
-                                    style="width: 228.406px;">Profesor/a</th>
-                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
-                                    colspan="1" aria-label="Role: activate to sort column ascending"
-                                    style="width: 126.141px;">Cédula</th>
+                                    style="width: 90px;">Código</th>
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Last login: activate to sort column ascending"
                                     style="width: 626.141px;">Nombre Proyecto</th>
@@ -119,8 +125,9 @@
                                         <!--begin::User details-->
                                     </td>
                                     <!--end::User=-->
-                                    <!--begin::Role=-->
                                     <td>{{ $value->cedula }} </td>
+                                    <!--begin::Role=-->
+                                    <td>SC-{{ $value->code }}</td>
                                     <!--end::Role=-->
 
                                     <!--begin::Two step=-->
