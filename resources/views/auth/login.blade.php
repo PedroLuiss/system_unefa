@@ -55,7 +55,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px logo_login">
+								<img alt="Logo" src="{{asset('/m2/assets/media/logos/logo-unefadash.png')}}" class="h-60px logo_login">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
@@ -155,11 +155,11 @@
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script> --}}
         <script>var hostUrl = "/m2/assets/";</script>
-        <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="/m2/assets/js/scripts.bundle.js"></script>
+        <script src="{{asset('/m2/assets/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{asset('/m2/assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="/m2/assets/js/custom/authentication/sign-in/general.js"></script>
+		<script src="{{asset('/m2/assets/js/custom/authentication/sign-in/general.js')}}"></script>
 		{{-- <script src="/m2/assets/js/custom/authentication/sign-in/two-steps.js"></script> --}}
         {{-- <script src="/m2/assets/js/custom/authentication/sign-up/general.js"></script> --}}
 </body>
