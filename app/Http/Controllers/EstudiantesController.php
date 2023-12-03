@@ -258,7 +258,7 @@ class EstudiantesController extends Controller
     {
         $estcs = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.nombres',
         'estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantes.email','estudiantecomunitarios.semestre',
-        'estudiantecomunitarios.seccion','estudiantecomunitarios.turno','estudiantecomunitarios.created_at')
+        'estudiantecomunitarios.seccion','estudiantecomunitarios.turno','estudiantecomunitarios.fase','estudiantecomunitarios.created_at')
         ->join('estudiantecomunitarios','estudiantecomunitarios.estudiantes_id', '=', 'estudiantes.id')->get();
 
         // return response($estcs);
@@ -370,7 +370,7 @@ class EstudiantesController extends Controller
             // dd($request);
             Excel::import (new importexcel, $file );
 
-            
+
             return redirect()->route('estudiantedatos.index')->with('mensaje', 'Estudiantes importados correctamente');
     }
 

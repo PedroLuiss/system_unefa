@@ -688,7 +688,7 @@
                                 table += ' <div class="card-body d-flex justify-content-center text-center flex-column p-8">';
                                 table += '<a href="'+base_url()+resp.data[i].url+'"  target="_blank" class="text-gray-800 text-hover-primary d-flex flex-column">';
                                 table += ' <div class="symbol symbol-60px mb-5">';
-                                table += ' <img src="/m2/assets/media/svg/files/doc.svg" class="theme-light-show" alt="">';
+                                table += ' <img src="{{asset("/m2/assets/media/svg/files/doc.svg")}}" class="theme-light-show" alt="">';
                                 table += ' </div>';
                                 table += '<div class="fs-5 fw-bold mb-2">'+resp.data[i].nombre+'</div>';
                                 table += ' </a>';

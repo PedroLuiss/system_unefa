@@ -177,6 +177,9 @@
                                 <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
                                     colspan="1" aria-label="Joined Date: activate to sort column ascending"
                                     style="width: 163.422px;">Fecha resgistro</th>
+                                <th class="min-w-125px sorting" tabindex="0" aria-controls="" rowspan="1"
+                                    colspan="1" aria-label="Joined Date: activate to sort column ascending"
+                                    style="width: 163.422px;">Estado</th>
                                 <th class="text-center min-w-100px sorting_disabled" rowspan="1" colspan="1"
                                     aria-label="Actions" style="width: 101px;">Actions</th>
                             </tr>
@@ -232,6 +235,17 @@
                                             {{$value->created_at->translatedFormat(' d/m/Y ');}}</div>
                                     </td>
                                     <!--begin::Joined-->
+                                    <td>
+                                        <div  class="badge badge-light-info fw-bolder">
+                                            @if ($value->fase == 1)
+                                            <div  class="badge badge-light-dark fw-bolder">FASE I</div>
+                                            @elseif ($value->fase == 2)
+                                            <div  class="badge badge-light-dark fw-bolder">FASE II</div>
+                                            @elseif ($value->fase == 3)
+                                            <div  class="badge badge-light-success fw-bolder">FINALIZADO</div>
+                                            @endif
+                                        </div>
+                                    </td>
                                     <!--begin::Action=-->
                                     <td class="text-center">
                                             {{-- <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"

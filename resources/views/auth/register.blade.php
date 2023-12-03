@@ -96,8 +96,8 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
-		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/m2/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('/m2/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
@@ -250,11 +250,11 @@
 		<!--begin::Javascript-->
 		<script>var hostUrl = "/m2/assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="/m2/assets/js/scripts.bundle.js"></script>
+        <script src="{{asset('/m2/assets/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{asset('/m2/assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="/m2/assets/js/custom/authentication/sign-up/general.js"></script>
+		<script src="{{asset('/m2/assets/js/custom/authentication/sign-in/general.js')}}"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

@@ -7,18 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="/m2/assets/media/logos/logo-unefa.ico" />
+    <link rel="shortcut icon" href="{{asset('/m2/assets/media/logos/logo-unefa.ico')}}" />
+
     <title>{{ config('app.name','SystUnefa') }}</title>
 
    		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/logo-unefa.ico" />
+		{{-- <link rel="shortcut icon" href="/metronic8/demo1/assets/media/logos/logo-unefa.ico" /> --}}
 		<!--begin::Fonts-->
 
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="/m2/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('m2/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5FS8GGP');</script>
@@ -54,7 +55,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="http://www.unefa.edu.ve/" class="py-9 mb-5">
-								<img alt="Logo" src="/m2/assets/media/logos/logo-unefadash.png" class="h-60px logo_login">
+								<img alt="Logo" src="{{asset('/m2/assets/media/logos/logo-unefadash.png')}}" class="h-60px logo_login">
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
@@ -154,11 +155,11 @@
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script> --}}
         <script>var hostUrl = "/m2/assets/";</script>
-        <script src="/m2/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="/m2/assets/js/scripts.bundle.js"></script>
+        <script src="{{asset('/m2/assets/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{asset('/m2/assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="/m2/assets/js/custom/authentication/sign-in/general.js"></script>
+		<script src="{{asset('/m2/assets/js/custom/authentication/sign-in/general.js')}}"></script>
 		{{-- <script src="/m2/assets/js/custom/authentication/sign-in/two-steps.js"></script> --}}
         {{-- <script src="/m2/assets/js/custom/authentication/sign-up/general.js"></script> --}}
 </body>
