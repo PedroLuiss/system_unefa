@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnvioNotasEstundetMail;
 use App\Models\carrera;
 use App\Models\DocumentoServicioComunitario;
 use App\Models\Estudiantecomunitarios;
@@ -14,6 +15,7 @@ use App\Models\Profesore;
 use App\Models\TempGrupoSCEstudiante;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ServicioComunitarioController extends Controller
 {
@@ -56,10 +58,14 @@ class ServicioComunitarioController extends Controller
 
     public function faseone_create()
     {
-         $estudiantes=Estudiantecomunitarios::select('estudiantes.id','estudiantes.cedula',
+        $estudiantes=Estudiantecomunitarios::select('estudiantes.id','estudiantes.cedula',
          'estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.turno',
          'estudiantecomunitarios.seccion','estudiantecomunitarios.semestre')
          ->join('estudiantes', 'estudiantes.id','=', 'estudiantecomunitarios.estudiantes_id')->where('estudiantecomunitarios.fase','=',1)->where('estudiantecomunitarios.tiene_grupo',false)->get();
+        //  dd($estudiantes);
+        // $data_sen_email =[];
+        // $data_sen_email['nombre_estudiante'] = "TALLER DE SERVICIO COMUNITARIO";
+        // $this->send_email_notas_estudent($data_sen_email);
          $profesor=Profesore::all();
          $carrera=carrera::all();
      return  view('servicio-comunitario.create-faseone',compact('estudiantes','profesor','carrera'));
@@ -376,8 +382,24 @@ class ServicioComunitarioController extends Controller
                     if (count($estudiante)) {
                         $num_estudent = count($estudiante);
                         $cont_repro = 0;
-
+                        $data_sen_email =[];
                         foreach ($estudiante as $key => $value) {
+                            $estud = Estudiantes::find($value->estudiantes_id);
+                            $tutor = Profesore::find($data->profesore_id);
+
+                            $data_sen_email['code_project'] = $data->code;
+                            $data_sen_email['nombre_proyecto'] = $data->nombre_proyecto;
+                            $data_sen_email['nombre_estudiante'] = $estud->nombres." ".$estud->primer_apellido." ".$estud->segundo_apellido;
+                            $data_sen_email['email_estudiante'] = $value->email;
+                            $data_sen_email['nota_estudiante'] = $value->nota_eno;
+                            $data_sen_email['materia_estudiante'] = "TALLER DE SERVICIO COMUNITARIO";
+                            $data_sen_email['nombre_profesor'] = $tutor->nombre;
+                            $data_sen_email['primer_apellido_profesor'] = $tutor->primer_apellido;
+                            $data_sen_email['segundo_apellido_profesor'] = $tutor->segundo_apellido;
+                            $data_sen_email['cedula_profesor'] = $tutor->cedula;
+                            $data_sen_email['email_profesor'] = $tutor->email;
+                            $data_sen_email['telefono_profesor'] = $tutor->telefono;
+                            $this->send_email_notas_estudent($data_sen_email);
                             if ($value->nota_eno<10) {
                                 $cont_repro++;
                                 GrupoSCEstudiante::where('id',$value->id)->update([
@@ -394,6 +416,7 @@ class ServicioComunitarioController extends Controller
                                     ]);
                                 }
                             }
+
 
 
                         }
@@ -436,7 +459,22 @@ class ServicioComunitarioController extends Controller
                     $cont_repro = 0;
 
                     foreach ($estudiante as $key => $value) {
+                        $estud = Estudiantes::find($value->estudiantes_id);
+                        $tutor = Profesore::find($data->profesore_id);
 
+                        $data_sen_email['code_project'] = $data->code;
+                        $data_sen_email['nombre_proyecto'] = $data->nombre_proyecto;
+                        $data_sen_email['nombre_estudiante'] = $estud->nombres." ".$estud->primer_apellido." ".$estud->segundo_apellido;
+                        $data_sen_email['email_estudiante'] = $value->email;
+                        $data_sen_email['nota_estudiante'] = $value->nota_eno;
+                        $data_sen_email['materia_estudiante'] = "PROYECTO DE SERVICIO";
+                        $data_sen_email['nombre_profesor'] = $tutor->nombre;
+                        $data_sen_email['primer_apellido_profesor'] = $tutor->primer_apellido;
+                        $data_sen_email['segundo_apellido_profesor'] = $tutor->segundo_apellido;
+                        $data_sen_email['cedula_profesor'] = $tutor->cedula;
+                        $data_sen_email['email_profesor'] = $tutor->email;
+                        $data_sen_email['telefono_profesor'] = $tutor->telefono;
+                        $this->send_email_notas_estudent($data_sen_email);
                         if (!$value->nota_two == null) {
                             if ($value->nota_two<10) {
                                 $cont_repro++;
@@ -468,6 +506,11 @@ class ServicioComunitarioController extends Controller
 
 
 
+    }
+
+    public function send_email_notas_estudent($data)
+    {
+        Mail::to("rodriguezrojaspedroluis@gmail.com")->send(new EnvioNotasEstundetMail($data));
     }
 
     public function get_files_fase_one($id)

@@ -21,7 +21,7 @@
             <!--begin::Toolbar-->
             <div class="card-toolbar">
                 <a href="{{ route('profesoresdatos.create') }}"
-                    class="btn btn-sm btn-light">Agregar</a>
+                    class="btn btn-sm btn-primary">Agregar</a>
             </div>
             <!--end::Toolbar-->
         </div>
