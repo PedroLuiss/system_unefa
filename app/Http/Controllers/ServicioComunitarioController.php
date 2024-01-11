@@ -19,6 +19,15 @@ use Illuminate\Support\Facades\Mail;
 
 class ServicioComunitarioController extends Controller
 {
+    public function home_comunitario(){
+        $c=[];
+        $carreras = carrera::all();
+        foreach($carreras as $val){
+            $studen = Estudiantes::where('carreras_id',$val->id)->count();
+            $c[$val->id]=$studen;
+        }
+        return  view('servicio-comunitario.home_comunitario',compact('carreras','c'));
+    }
     public function list_faseone()
     {
         $data=[];

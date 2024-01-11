@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('m2/assets/plugins/global/plugins.bundle.css')}}">
+@endpush
 @section('content')
     <div class="card shadow-sm">
         <div class="card-header border-0 pt-5">
@@ -18,14 +21,21 @@
                     <div class="col-md-6">
                         <div class="mb-5">
                             <label for="exampleFormControlInput1" class="required form-label">ESTUDIANTE C.C</label>
-                            <select id="lista"
-                                class="form-select form-select-transparent @error('estudiantes_id') is-invalid @enderror"
+                            {{-- <select id="lista" data-control="select2"
+                                class="select2 form-select form-select-transparent @error('estudiantes_id') is-invalid @enderror"
                                 value="{{ old('estudiantes_id') }} " name="estudiantes_id">
                                 <option>SELECCIONAR</option>
                                 @foreach ($cc_estudiante as $val)
                                     <option value="{{ $val->id }} ">{{ $val->cedula . '-' . $val->nombres }}</option>
                                 @endforeach
 
+                            </select> --}}
+                            <select class="form-select  rounded-start-0  @error('estudiantes_id') is-invalid @enderror"  name="estudiantes_id" data-control="select2"
+                                data-placeholder="Seleccionar Estudiantes" id="lista" >
+                                <option></option>
+                                @foreach ($cc_estudiante as $val)
+                                    <option value="{{ $val->id }} ">{{ $val->cedula . '-' . $val->nombres }}</option>
+                                @endforeach
                             </select>
                             @error('estudiantes_id')
                                 <span class="invalid-feedback">
@@ -38,12 +48,18 @@
                     <div class="col-md-6">
                         <div class="mb-5">
                             <label for="exampleFormControlInput1" class="required form-label">TURNO D/N</label>
-                            <select id="lista" class="form-select form-select-transparent" name="turno"
+                            {{-- <select id="lista" class="form-select form-select-transparent" name="turno"
                                 aria-label="Select example">
                                 <option>SELECCIONAR</option>
                                 <option value="DIURNO">DIURNO</option>
                                 <option value="NOCTURNO">NOCTURNO</option>
 
+                            </select> --}}
+                            <select class="form-select  rounded-start-0 @error('estudiantes_id') is-invalid @enderror"  name="turno" data-control="select2"
+                                data-placeholder="TURNO D/N " id="lista_turno" >
+                                <option>SELECCIONAR</option>
+                                <option value="DIURNO">DIURNO</option>
+                                <option value="NOCTURNO">NOCTURNO</option>
                             </select>
                             @error('turno')
                                 <span class="invalid-feedback">
@@ -101,3 +117,9 @@
 
     </div>
 @endsection
+<script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+<script src=""></script>
+
+<script src="{{ asset('js/axios.min.js') }}"></script>
+<script src="{{ asset('m2/assets/plugins/global/plugins.bundle.js') }}"></script>

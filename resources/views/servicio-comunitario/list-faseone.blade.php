@@ -152,7 +152,7 @@
                                     <td>
                                         @if ($value->status == 1)
                                             <div style="font-size: 1vw;" class="badge badge-light-danger fw-bolder">
-                                                Pindiente</div>
+                                                Pendiente</div>
                                         @else
                                             @if ($value->status == 4)
                                                 <div style="font-size: 1vw;" class="badge badge-light-dark fw-bolder">
@@ -238,7 +238,7 @@
 
                                              <!--begin::Menu item-->
                                              <div class="menu-item px-3">
-                                                <a href="#" style="white-space: nowrap;" onclick="list_verification_document(this)" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2" id_grupo="{{$value->id}}" class="menu-link flex-stack px-3">
+                                                <a href="#" style="white-space: nowrap;" onclick="list_verification_document({{$value->id}})" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2" id_grupo="{{$value->id}}" class="menu-link flex-stack px-3">
                                                     Verificar Documentos
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                         aria-label="Aqui podras verificar los documentos digitales."
@@ -362,7 +362,8 @@
         <script>
 
             function list_verification_document(obj) {
-                let id_grupo = $(obj).attr('id_grupo');
+                // let id_grupo = $(obj).attr('id_grupo');
+                let id_grupo = obj;
 
                 console.log(id_grupo);
 
@@ -376,7 +377,16 @@
                                 if (resp.data=="") {
                                     console.log("Vacio");
                                 }else{
+                                    let cont =0;
+
                                     for (let i = 0; i < resp.data.data_one.length; i++) {
+                                        if (resp.data.data_one[i].checket) {
+                                            cont++;
+                                            let porcentaje = (cont / resp.data.data_one.length)*100;
+                                            $('#text_modal_porct').text(porcentaje.toFixed(2)+"%");
+                                            $('.barra_modal_verific').css('width',porcentaje+"%");
+                                        }
+
                                         let check = resp.data.data_one[i].checket?"checked":"onchecked";
                                         table+=`<div class="d-flex align-items-center p_iten_d justify-content-between ps-10 mb-n1">
                                             <div class="d-flex align-items-center">
@@ -394,7 +404,7 @@
                                             <div class="box_iten_all_check align-items-center">
                                                 <p class="mb-0 me-2">NO</p>
                                                 <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <input id="value_check_iten_ducume" data-id="${resp.data.data_one[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
+                                                    <input id="value_check_iten_ducume" data-id-proyec="${id_grupo}" data-id="${resp.data.data_one[i].id}" onchange="change_status_document(this)" ${check} class="form-check-input" type="checkbox" value=""/>
                                                 </label>
                                                 <p class="mb-0 ms-2">SI</p>
                                             </div>
@@ -420,25 +430,28 @@
             function change_status_document(obj) {
                 const data ={
                     id:$(obj).attr('data-id'),
+                    id_projec:$(obj).attr('data-id-proyec'),
                     ckeck:$(obj).prop('checked')
                 }
-                        const sendGetRequest = async () => {
-                            try {
-                                const resp = await axios.put(base_url() +
-                                    "/servicio-comunitario/faseone/chage_status_document",data);
-                                console.log(resp.data);
-                                if (resp.data.status == 200) {
-                                    messeg(resp.data.message, 'success');
-                                } else {
-                                    messeg(resp.data.message, 'danger');
 
-                                }
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.put(base_url() +
+                            "/servicio-comunitario/faseone/chage_status_document",data);
+                        console.log(resp.data);
+                        if (resp.data.status == 200) {
+                            list_verification_document(data.id_projec);
+                            messeg(resp.data.message, 'success');
+                        } else {
+                            messeg(resp.data.message, 'danger');
 
-                            } catch (err) {
-                                // Handle Error Here
-                            }
-                        };
-                        sendGetRequest();
+                        }
+
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendGetRequest();
             }
 
             function prepare_data(obj) {

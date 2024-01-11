@@ -93,6 +93,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
      /**-------------------------------------------------------------------------Servicio Comunitario---------------------------------------------------------- */
      // fase 1
+     Route::get('servicio-comunitario/home',[App\Http\Controllers\ServicioComunitarioController::class,'home_comunitario'])->name('serviciocomunitario.home');
      Route::get('servicio-comunitario/faseone',[App\Http\Controllers\ServicioComunitarioController::class,'list_faseone'])->name('serviciocomunitario.listfaseone');
      Route::get('servicio-comunitario/faseone/crear', [App\Http\Controllers\ServicioComunitarioController::class, 'faseone_create'])->name('faseone.create');
      Route::post('servicio-comunitario/faseone/estudent/store', [App\Http\Controllers\ServicioComunitarioController::class, 'temp_store_student'])->name('faseone.temp_store_student');
