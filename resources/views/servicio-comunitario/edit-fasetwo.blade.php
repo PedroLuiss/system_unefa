@@ -67,7 +67,7 @@
                                         <i class="bi bi-bookmarks-fill fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <select class="form-select rounded-start-0" data-control="select2"
+                                        <select onchange="chang_select_carr(this)" class="form-select rounded-start-0" data-control="select2"
                                             data-placeholder="Seleccionar carrera" id="select_carrera">
                                             <option></option>
                                             @foreach ($carrera as $value)
@@ -313,12 +313,12 @@
                                             <i class="bi bi-bookmarks-fill fs-4"></i>
                                         </span>
                                         <div class="flex-grow-1 " data-select2-id="select2-data-99-jk2x">
-                                            <select class="form-select rounded-start-0 w-600px " data-control="select2"
+                                            <select  class="form-select rounded-start-0 w-600px list_estudent_select_carrera" data-control="select2"
                                                 data-placeholder="Seleccionar Estudiante" id="id_estudiante_select">
-                                                <option></option>
+                                                {{-- <option></option>
                                                 @foreach ($estudiantes as $value)
                                                     <option value="{{$value->id}}">{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
@@ -373,17 +373,17 @@
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
                                                             <th class="min-w-80px sorting_disabled"
-                                                                style="width: 80.3125px;">Cedula</th>
+                                                                style="width: 100.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Correo</th>
-                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                            <th class="min-w-10px sorting_disabled" style="width: 100.3125px;">Telefono</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Carrera</th>
 
-                                                            <th class="sorting_disabled"
-                                                               ></th>
+                                                            {{-- <th class="sorting_disabled"
+                                                               ></th> --}}
                                                         </tr>
                                                         <!--end::Table row-->
                                                     </thead>
@@ -471,6 +471,7 @@
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
         $(document).ready(function(){
+            get_select_estudent_carrera({{$grupo->carrera_id}},2);
         // $('#kt_file_manager_new_folder').hide();
         $("#selet_code").select2({
             dropdownParent: $("#kt_modal_new_target"),
@@ -564,37 +565,37 @@ function messeg(m,t) {
                            table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
                             </td> `;
-                            table+=`<td class="text-end">
-                                <div class="d-flex justify-content-end flex-shrink-0">
+                            // table+=`<td class="text-end">
+                            //     <div class="d-flex justify-content-end flex-shrink-0">
 
-                                    <a href="javascript:void(0)" onclick="delet_file(${resp.data[i].estudiantes_id});" title="Eliminar Estudiante" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
-                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"></path>
-                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"></path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>
-                            </td>`;
+                            //         <a href="javascript:void(0)" onclick="delet_file(${resp.data[i].estudiantes_id});" title="Eliminar Estudiante" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                            //             <span class="svg-icon svg-icon-3">
+                            //                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            //                     <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
+                            //                     <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"></path>
+                            //                     <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"></path>
+                            //                 </svg>
+                            //             </span>
+                            //         </a>
+                            //     </div>
+                            // </td>`;
 
                             table+=' </tr>';
                         }
@@ -821,7 +822,7 @@ function messeg(m,t) {
 											<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"></path>
 											</svg>
                                 </span>
-                            <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
+                            <a href="${resp.data.data[i].file_url}"   class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
                          </td>
                             `;
                             table+=`<td class="text-end">
@@ -937,6 +938,12 @@ function messeg(m,t) {
                                         }
                                     })
 
+            }
+            function chang_select_carr(obj) {
+                let id = $(obj).val();
+                console.log(id);
+                get_select_estudent_carrera(id,2)
+                // list_temp_student();
             }
         </script>
 

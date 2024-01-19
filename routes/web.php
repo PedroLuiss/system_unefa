@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/estudiantedatos/update',[App\Http\Controllers\EstudiantesController::class, 'update'])->name('estudiantedatos.update');
         Route::get('/estudiantes/import-servicio-comunitario',[App\Http\Controllers\EstudiantesController::class, 'import_student_sc_add'])->name('estudiantedatos.import_student_sc_add');
         Route::post('/estudiantedatos/import_store_sc',[App\Http\Controllers\EstudiantesController::class, 'store_import_exel_sc'])->name('studenimportsc.store');
+        Route::get('/get_estudiante_carrera/{id_carrera}/{fase}',[App\Http\Controllers\EstudiantesController::class, 'get_estudent_carrera'])->name('studencarrera.list');
 
 
         Route::get('/estudiantes/import-secretaria-excel',[App\Http\Controllers\EstudiantesController::class, 'import_student_ssc_secretaria'])->name('estudiantedatos.student_ssc_secretaria');

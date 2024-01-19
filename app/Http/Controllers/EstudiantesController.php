@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\imports\importexcel;
+use App\Models\TempGrupoSCEstudiante;
 
 class EstudiantesController extends Controller
 {
@@ -482,5 +483,19 @@ class EstudiantesController extends Controller
         // dd($student_hoy);
 
         return redirect()->route('estudiantedatos.index_cc_estudiante')->with('mensaje', 'Estudiantes importados correctamente');
+    }
+
+    function get_estudent_carrera($id_carrera,$fase) {
+        // Vaciar table temporal
+        TempGrupoSCEstudiante::where('user_id',1)->delete();
+        $estudiantes=Estudiantecomunitarios::select('estudiantes.id','estudiantes.cedula',
+         'estudiantes.nombres','estudiantes.primer_apellido','estudiantes.segundo_apellido','estudiantecomunitarios.turno',
+         'estudiantecomunitarios.seccion','estudiantecomunitarios.semestre')
+         ->join('estudiantes', 'estudiantes.id','=', 'estudiantecomunitarios.estudiantes_id')->where('estudiantes.carreras_id','=',$id_carrera)
+         ->where('estudiantecomunitarios.fase','=',$fase)->where('estudiantecomunitarios.tiene_grupo',false)->get();
+
+         return response($estudiantes);
+
+
     }
 }

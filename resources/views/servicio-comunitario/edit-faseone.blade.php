@@ -67,7 +67,7 @@
                                         <i class="bi bi-bookmarks-fill fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <select class="form-select rounded-start-0" data-control="select2"
+                                        <select onchange="chang_select_carr(this)" class="form-select rounded-start-0" data-control="select2"
                                             data-placeholder="Seleccionar carrera" id="select_carrera">
                                             <option></option>
                                             @foreach ($carrera as $value)
@@ -315,12 +315,12 @@
                                             <i class="bi bi-bookmarks-fill fs-4"></i>
                                         </span>
                                         <div class="flex-grow-1 " data-select2-id="select2-data-99-jk2x">
-                                            <select class="form-select rounded-start-0 w-600px " data-control="select2"
+                                            <select class="form-select rounded-start-0 w-600px  list_estudent_select_carrera" data-control="select2"
                                                 data-placeholder="Seleccionar Estudiante" id="id_estudiante_select">
-                                                <option></option>
+                                                {{-- <option></option>
                                                 @foreach ($estudiantes as $value)
                                                     <option value="{{$value->id}}">{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
@@ -474,6 +474,7 @@
         <script src="{{asset('js/axios.min.js')}}"></script>
         <script>
         $(document).ready(function(){
+            get_select_estudent_carrera({{$grupo->carrera_id}});
         // $('#kt_file_manager_new_folder').hide();
         $("#selet_code").select2({
             dropdownParent: $("#kt_modal_new_target"),
@@ -945,6 +946,13 @@ function messeg(m,t) {
                                         }
                                     })
 
+            }
+
+            function chang_select_carr(obj) {
+                let id = $(obj).val();
+                console.log(id);
+                get_select_estudent_carrera(id)
+                // list_temp_student();
             }
         </script>
 

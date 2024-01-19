@@ -48,7 +48,7 @@
                                         <i class="bi bi-bookmarks-fill fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <select class="form-select rounded-start-0" data-control="select2"
+                                        <select onchange="chang_select_carr(this)" class="form-select rounded-start-0" data-control="select2"
                                             data-placeholder="Seleccionar carrera" id="select_carrera">
                                             <option></option>
                                             @foreach ($carrera as $value)
@@ -70,7 +70,7 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="email" class="form-control " id="nombre_proyecto" placeholder="Ingresar el nombre del proyecto"/>
+                                        <input type="text" class="form-control " id="nombre_proyecto" placeholder="Ingresar el nombre del proyecto"/>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="email" class="form-control " id="nombre_comunidad" placeholder="Ingresar Nombre De La Comunidad y/o Institución"/>
+                                        <input type="text" class="form-control " id="nombre_comunidad" placeholder="Ingresar Nombre De La Comunidad y/o Institución"/>
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
                     <div id="box-all-file-ing-sistem"  class="">
                         <!--begin::Card header-->
                         <div class="card-header pt-0 px-0 ">
-                            <div class="card-title">
+                            <div class="card-title w-75">
                                 <div class="mb-10" data-select2-id="select2-data-100-kjmd">
                                     <label for="" class="form-label">Selecciona El Estudiante</label>
                                     <!--begin::Default example-->
@@ -309,12 +309,12 @@
                                             <i class="bi bi-bookmarks-fill fs-4"></i>
                                         </span>
                                         <div class="flex-grow-1 " data-select2-id="select2-data-99-jk2x">
-                                            <select class="form-select rounded-start-0 w-600px " data-control="select2"
+                                            <select class="form-select rounded-start-0 w-600px  list_estudent_select_carrera" data-control="select2"
                                                 data-placeholder="Seleccionar Estudiante" id="id_estudiante_select">
-                                                <option></option>
+                                                {{-- <option></option>
                                                 @foreach ($estudiantes as $value)
                                                     <option value="{{$value->id}}">{{$value->cedula}} - {{$value->nombres." ".$value->primer_apellido." ".$value->segundo_apellido}} - Semestre: {{$value->semestre}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
@@ -362,12 +362,12 @@
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
                                                             <th class="min-w-80px sorting_disabled"
-                                                                style="width: 80.3125px;">Cedula</th>
+                                                                style="width: 90.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
                                                             <th class="min-w-10px sorting_disabled"
-                                                                style="width: 306px;">Correo</th>
-                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                                style="width: 406px;">Correo</th>
+                                                            <th class="min-w-30px sorting_disabled" style="width: 170px;">Telefono</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Carrera</th>
 
@@ -538,8 +538,8 @@ function messeg(m,t) {
                     console.log(resp.data);
                     let f = 0;
                     if (resp.data=="") {
-                            table+=' <tr class="iten">';
-                            table+='<td colspan="4" class="text-center"> <h3 class="text-muted">Sin Información</h3>  </td> ';
+                            table+=' <tr class="iten bg_empty">';
+                            table+='<td colspan="6" class="text-center"> <h3 class="text-muted">Sin Información</h3>  </td> ';
                             table+=' </tr>';
                     }else{
 
@@ -553,22 +553,22 @@ function messeg(m,t) {
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel == null?"Sín teléfono":resp.data[i].tel_cel}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
                             </td> `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -817,13 +817,13 @@ function messeg(m,t) {
 											<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"></path>
 											</svg>
                                 </span>
-                            <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
+                            <a href="${resp.data.data[i].file_url}"   class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
                          </td>
                             `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
 
-									<a href="javascript:void(0)" onclick="delet_file(${resp.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar archivo" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+									<a href="javascript:void(0)" onclick="delet_file(${resp.data[i].id},${resp.data.data[i].estudiantes_id});" title="Eliminar estudiantes" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
 										<span class="svg-icon svg-icon-3">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 												<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
@@ -907,32 +907,39 @@ function messeg(m,t) {
 
             function delet_file(id_estudiante) {
                 console.log(id_estudiante);
-                        swal({
-                            title: "Estas seguro?",
-                                        text: "Deseas eliminar el estudiante?",
-                                        icon: "warning",
-                                        buttons: true,
-                                        dangerMode: true,
-                                    })
-                                    .then((willDelete) => {
-                                        if (willDelete) {
-                                            const sendGetRequest = async () => {
-                                                try {
-                                                    const resp = await axios.delete(base_url()+"/servicio-comunitario/delete_temp_student/"+id_estudiante);
-                                                    console.log(resp);
-                                                    if (resp.data.status==200) {
-                                                        list_temp_student();
-                                                        messeg(resp.data.message,'success');
-                                                    }
+                swal({
+                    title: "Estas seguro?",
+                        text: "Deseas eliminar el estudiante?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        const sendGetRequest = async () => {
+                            try {
+                                const resp = await axios.delete(base_url()+"/servicio-comunitario/delete_temp_student/"+id_estudiante);
+                                console.log(resp);
+                                if (resp.data.status==200) {
+                                    list_temp_student();
+                                    messeg(resp.data.message,'success');
+                                }
 
-                                                } catch (err) {
-                                                    // Handle Error Here
-                                                }
-                                            };
-                                            sendGetRequest();
-                                        }
-                                    })
+                            } catch (err) {
+                                // Handle Error Here
+                            }
+                        };
+                        sendGetRequest();
+                    }
+                })
 
+            }
+
+            function chang_select_carr(obj) {
+                let id = $(obj).val();
+                console.log(id);
+                get_select_estudent_carrera(id)
+                list_temp_student();
             }
         </script>
 

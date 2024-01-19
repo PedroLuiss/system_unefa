@@ -115,6 +115,9 @@
                 .w-icon{
                     width: 1.5vw;
                 }
+                .bg_empty{
+                    background: aliceblue;
+                }
         </style>
 		<!--end::Global Stylesheets Bundle-->
 		<!--Begin::Google Tag Manager -->
@@ -1080,6 +1083,38 @@
             $( document ).ready(function() {
                 $(".loader").hide();
             });
+
+            function get_select_estudent_carrera(id_carrera,fase=1) {
+                const sendGetRequest = async () => {
+                    try {
+                        const resp = await axios.get(base_url()+"/get_estudiante_carrera/"+id_carrera+"/"+fase);
+                        console.log(resp.data);
+                        var cadena = "";
+                            cadena += '<option value="">Seleccionar Estudiantes</option>';
+                        for (const key in resp.data) {
+                            // console.log(resp.data[key]);
+                            if (Object.hasOwnProperty.call(resp.data, key)) {
+                                const element = resp.data[key];
+
+                                cadena +=
+                                '<option value="' +
+                                element.id +
+                                '">' + element.cedula +" - "+
+                                element.nombres +" "+element.primer_apellido+" "+element.segundo_apellido
+                                " </option>";
+
+                            }
+                        }
+                        $(".list_estudent_select_carrera").html(cadena);
+                        $(".list_estudent_select_carrera").select2({
+                            // placeholder:"hhhhh"
+                        });
+                    } catch (err) {
+                        // Handle Error Here
+                    }
+                };
+                sendGetRequest();
+            }
         </script>
 	</body>
 	<!--end::Body-->

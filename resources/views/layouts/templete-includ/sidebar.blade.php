@@ -201,7 +201,8 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Servicio Comunitario</span>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is(['serviciocomunitario.home','estudiantedatos.index_cc_estudiante','estudiantedatos.create_cc_estudiante','estudiantedatos.edit_cc_estudiante',
+                'estudiantedatos.import_student_sc_add','serviciocomunitario.listfaseone','faseone.create','faseone.edit','serviciocomunitario.listfasetwo','fasetwo.edit','faseone.add_nota_faseone','fasetwo.add_nota_fasetwo','serviciocomunitario.listfasefinal','reporte.index','fasetwo.views','faseone.views']) ? 'show' : ''}} ">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
@@ -219,7 +220,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('serviciocomunitario.home')}}">
+                            <a class="menu-link {{Route::is(['serviciocomunitario.home']) ? 'active' : ''}}" href="{{route('serviciocomunitario.home')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -230,7 +231,7 @@
                     </div>
                      <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('estudiantedatos.index_cc_estudiante')}}">
+                            <a class="menu-link {{Route::is(['estudiantedatos.index_cc_estudiante','estudiantedatos.create_cc_estudiante','estudiantedatos.edit_cc_estudiante','estudiantedatos.import_student_sc_add']) ? 'active' : ''}}" href="{{route('estudiantedatos.index_cc_estudiante')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -242,7 +243,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('serviciocomunitario.listfaseone')}}">
+                            <a class="menu-link {{Route::is(['serviciocomunitario.listfaseone','faseone.create','faseone.add_nota_faseone','faseone.edit']) ? 'active' : ''}}" href="{{route('serviciocomunitario.listfaseone')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -254,7 +255,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('serviciocomunitario.listfasetwo')}}">
+                            <a class="menu-link {{Route::is(['serviciocomunitario.listfasetwo','fasetwo.edit','fasetwo.add_nota_fasetwo']) ? 'active' : ''}}" href="{{route('serviciocomunitario.listfasetwo')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -266,7 +267,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('serviciocomunitario.listfasefinal')}}">
+                            <a class="menu-link {{Route::is(['serviciocomunitario.listfasefinal','fasetwo.views']) ? 'active' : ''}}" href="{{route('serviciocomunitario.listfasefinal')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -278,7 +279,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('reporte.index')}}">
+                            <a class="menu-link {{Route::is(['reporte.index']) ? 'active' : ''}}" href="{{route('reporte.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

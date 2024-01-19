@@ -298,15 +298,12 @@
                                                                     <td width="560" class="esd-container-frame"
                                                                         align="left">
                                                                         <table cellpadding="0" cellspacing="0"
-                                                                            width="100%" role="presentation"
-                                                                            bgcolor="#efefef"
-                                                                            style="background-color:#efefef">
+                                                                            width="100%">
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td align="left"
                                                                                         class="esd-block-text">
-                                                                                        <h5><strong style="    font-size: 21px;">Información del
-                                                                                                proyecto</strong>
+                                                                                        <h5><strong style="    font-size: 21px;">INFORMACIÓN DEL PROYECTO</strong>
                                                                                             <table cellspacing="0"
                                                                                                 cellpadding="0"
                                                                                                 style="width:100%"
@@ -338,8 +335,7 @@
                                                                                 <tr>
                                                                                     <td align="left"
                                                                                         class="esd-block-text es-p20t">
-                                                                                        <h5><strong style="    font-size: 21px;">Información del
-                                                                                                tutor</strong>
+                                                                                        <h5><strong style="    font-size: 21px;">INFORMACIÓN DEL TUTOR</strong>
                                                                                             <table cellspacing="0"
                                                                                                 cellpadding="0"
                                                                                                 style="width:100%"

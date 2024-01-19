@@ -59,11 +59,11 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystCSCUnefa</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #05156f;">Bienvenido a SystSCUnefa</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #05156f;">SystCSCUnefa sistema de gestion de
-							<br>Documentos Digitales</p>
+							<p class="fw-bold fs-2" style="color: #05156f;">SystSCUnefa sistema de gestion de
+							<br>De Procesos administrativo</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
@@ -89,7 +89,7 @@
                                 @csrf
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-muted mb-3">Acceder a SystCSCUnefa</h1>
+									<h1 class="text-muted mb-3">Acceder a SystSCUnefa</h1>
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">No tienes cuenta?

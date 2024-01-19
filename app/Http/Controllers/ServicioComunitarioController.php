@@ -408,7 +408,7 @@ class ServicioComunitarioController extends Controller
                             $data_sen_email['cedula_profesor'] = $tutor->cedula;
                             $data_sen_email['email_profesor'] = $tutor->email;
                             $data_sen_email['telefono_profesor'] = $tutor->telefono;
-                            $this->send_email_notas_estudent($data_sen_email);
+                            // $this->send_email_notas_estudent($data_sen_email);
                             if ($value->nota_eno<10) {
                                 $cont_repro++;
                                 GrupoSCEstudiante::where('id',$value->id)->update([
@@ -519,7 +519,7 @@ class ServicioComunitarioController extends Controller
 
     public function send_email_notas_estudent($data)
     {
-        Mail::to("rodriguezrojaspedroluis@gmail.com")->send(new EnvioNotasEstundetMail($data));
+        Mail::to("yixon2011@gmail.com")->send(new EnvioNotasEstundetMail($data));
     }
 
     public function get_files_fase_one($id)

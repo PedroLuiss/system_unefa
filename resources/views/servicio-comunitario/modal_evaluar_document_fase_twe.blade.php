@@ -3,12 +3,21 @@
     <div class="modal-dialog modal-dialog-scrollable max_w_modal_val_document">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="card-header border-0">
+                <div class="card-header border-0 w-100">
                     <h3 class="card-title align-items-start flex-column">
                         <span class="card-label fw-bold text-dark">Evaluación De Documentos</span>
                         <span class="text-muted mt-1 fw-semibold fs-7">Aqui Evaluaras Los Documentos Físicos De La Fase 2</span>
                     </h3>
+                    <div class="d-flex align-items-center flex-column mt-3 w-100">
+                        <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                            <span class="fw-bolder fs-6 text-gray-900">Progreso del diagnóstico de los documentos (FASE Nº 2)</span>
+                            <span class="fw-bold fs-6 text-gray-500" id="text_modal_porct">0%</span>
+                        </div>
 
+                        <div class="h-8px mx-3 w-100 bg-light-success rounded">
+                            <div class="bg-success rounded h-8px barra_modal_verific" role="progressbar" style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!--begin::Close-->

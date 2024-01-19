@@ -58,7 +58,7 @@ class DocumentoServicioComunitarioSeeder extends Seeder
                 'documento'    => 'PORTADA DEL ANTEPROYECTO.',
                 'fase'    => 1,
             ],[
-                'documento'    => 'NDICE.',
+                'documento'    => 'INDICE.',
                 'fase'    => 1,
             ],[
                 'documento'    => 'PLANTEAMIENTO DEL PROBLEMA.',
