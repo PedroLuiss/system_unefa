@@ -95,16 +95,16 @@
                     <!--end:: Card body-->
                 </div>
                 <!--end::Card-->
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            {{-- <a href="{{route('expedientes.empaquetar.cerrara',$val->id)}}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Descarga la data completa de la carrera {{$val->name}}, se descargara un archivo .zip" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <a href="{{route('expedientes.empaquetar.cerrara',$val->id)}}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Descarga la data completa de la carrera {{$val->name}}, se descargara un archivo .zip" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                                 <i class="fa-solid fa-cloud-arrow-down"></i>
-                                <!--end::Svg Icon-->Descargar Data</a> --}}
+                                <!--end::Svg Icon-->Descargar Data</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!--end::Col-->
             @endforeach

@@ -23,7 +23,8 @@ class ServicioComunitarioController extends Controller
         $c=[];
         $carreras = carrera::all();
         foreach($carreras as $val){
-            $studen = Estudiantes::where('carreras_id',$val->id)->count();
+            $studen = Estudiantes::where('carreras_id',$val->id)
+            ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'estudiantes.id')->where('estudiantecomunitarios.fase',"<=",2)->count();
             $c[$val->id]=$studen;
         }
         return  view('servicio-comunitario.home_comunitario',compact('carreras','c'));
@@ -58,7 +59,7 @@ class ServicioComunitarioController extends Controller
             'profesores.primer_apellido','profesores.segundo_apellido','profesores.especialidad','carreras.name as nombre_carrera','carreras.code as codigo_carrera','grupo_s_c_s.estado',
             'grupo_s_c_s.total_studiante','grupo_s_c_s.status','grupo_s_c_s.created_at')
             ->join('profesores', 'profesores.id','=', 'grupo_s_c_s.profesore_id')
-            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')->where('grupo_s_c_s.status',1)->get();
+            ->join('carreras', 'carreras.id','=', 'grupo_s_c_s.carrera_id')->where('grupo_s_c_s.status',1)->orderByDesc('grupo_s_c_s.created_at')->get();
 
       return  view('servicio-comunitario.list-faseone',compact('data'));
     }
@@ -408,7 +409,14 @@ class ServicioComunitarioController extends Controller
                             $data_sen_email['cedula_profesor'] = $tutor->cedula;
                             $data_sen_email['email_profesor'] = $tutor->email;
                             $data_sen_email['telefono_profesor'] = $tutor->telefono;
-                            // $this->send_email_notas_estudent($data_sen_email);
+                            // $domain = $_SERVER['HTTP_HOST'];
+                            $connected = @fsockopen("www.google.com", 80);
+                            if ($connected) {
+                                // fclose($connected);
+                                $this->send_email_notas_estudent($data_sen_email);
+                            } else {
+                                // return false;
+                            }
                             if ($value->nota_eno<10) {
                                 $cont_repro++;
                                 GrupoSCEstudiante::where('id',$value->id)->update([
@@ -483,7 +491,14 @@ class ServicioComunitarioController extends Controller
                         $data_sen_email['cedula_profesor'] = $tutor->cedula;
                         $data_sen_email['email_profesor'] = $tutor->email;
                         $data_sen_email['telefono_profesor'] = $tutor->telefono;
-                        $this->send_email_notas_estudent($data_sen_email);
+                        //Verifica si hay conexion a internet
+                        $connected = @fsockopen("www.google.com", 80);
+                        if ($connected) {
+                            // fclose($connected);
+                            $this->send_email_notas_estudent($data_sen_email);
+                        } else {
+                            // return false;
+                        }
                         if (!$value->nota_two == null) {
                             if ($value->nota_two<10) {
                                 $cont_repro++;
@@ -519,7 +534,7 @@ class ServicioComunitarioController extends Controller
 
     public function send_email_notas_estudent($data)
     {
-        Mail::to("yixon2011@gmail.com")->send(new EnvioNotasEstundetMail($data));
+        Mail::to("rodriguezrojaspedroluis@gmail.com")->send(new EnvioNotasEstundetMail($data));
     }
 
     public function get_files_fase_one($id)

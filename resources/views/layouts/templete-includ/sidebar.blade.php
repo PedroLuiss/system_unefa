@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 @can('isAdmin')
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is(['estudiantedatos.index','estudiantedatos.create','profesoresdatos.index','profesoresdatos.create']) ? 'show' : ''}}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
@@ -58,7 +58,7 @@
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('estudiantedatos.index')}}">
+                            <a class="menu-link {{Route::is(['estudiantedatos.index','estudiantedatos.create']) ? 'active' : ''}}" href="{{route('estudiantedatos.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -69,8 +69,8 @@
                     </div>
 
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{route('profesoresdatos.index')}}">
+                        <div class="menu-item ">
+                            <a class="menu-link {{Route::is(['profesoresdatos.index','profesoresdatos.create']) ? 'active' : ''}}" href="{{route('profesoresdatos.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

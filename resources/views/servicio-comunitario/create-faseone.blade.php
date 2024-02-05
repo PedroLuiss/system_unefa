@@ -761,6 +761,18 @@ function messeg(m,t) {
                  if (data.profesor==""||data.nombre_proyecto==""||data.carrrera_id==""||data.nomb_tutor_comunitario==""||
                  data.direccion_comunidad==""||data.cedula_tutor_comunitario==""||data.telefono_tutor_comunitario==""||data.vinculacion_project==""||
                  data.select_area_accion==""||data.cant_beneficiados==""||data.nombre_comunidad=="") {
+                    swal({
+                        title: "¡ADVERTENCIA!",
+                        text:"Error, Falta campos por llenar",
+                        icon: "error",
+                        buttons:{
+                            cancel: "Cerrar",
+
+                        },
+                        dangerMode: false,
+                    }).then((willDelete) => {
+
+                        })
                     return false;
                  }
                  console.log(data);

@@ -31,8 +31,10 @@ class EnvioNotasEstundetMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.notas-student.templete-mail-notas', [
-            'data_email' => $this->data_email,
-        ]);
+        return $this->from('serviciocomunitario.nucleolara@gmail.com')
+                    ->subject('Notas de los estudiantes')
+                    ->view('mail.notas-student.templete-mail-notas', [
+                        'data_email' => $this->data_email,
+                    ]);
     }
 }

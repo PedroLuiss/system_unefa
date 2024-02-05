@@ -475,6 +475,7 @@
                 ]
             });
             function finalizar(obj) {
+
                 let id = $(obj).attr('data-id');
                 console.log(id);
                 const data = {
@@ -490,6 +491,7 @@
                     if (willDelete) {
                         console.log("Hola");
                         const sendGetRequest = async () => {
+                            $(".loader").show();
                             try {
                                 const resp = await axios.put(base_url() +
                                     "/servicio-comunitario/faseone/finalizar",  data);
@@ -497,6 +499,7 @@
                                 if (resp.data.status == 200) {
                                     messeg(resp.data.success, 'success');
                                     location.reload();
+                                    // $(".loader").hide();
                                 } else {
                                     messeg(resp.data.success, 'danger');
                                     swal({
@@ -511,6 +514,7 @@
                                         }).then((willDelete) => {
 
                                             })
+                                        $(".loader").hide();
                                 }
 
                             } catch (err) {

@@ -83,10 +83,8 @@
                                 <span class="badge py-3 px-4 fs-7 badge-light-primary">In Process</span>
                             </td> --}}
 
-
-
                             <td class="text-center">
-                                <a href="#"
+                                <a href="{{ route('profesoresdatos.edit', $profe_alls->id) }}"
                                     class="btn btn-sm d-flex btn-bg-light btn-active-color-primary px-3">
                                     Editar <svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"

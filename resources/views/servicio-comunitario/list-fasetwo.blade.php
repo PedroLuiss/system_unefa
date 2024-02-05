@@ -479,6 +479,7 @@
                     if (willDelete) {
                         console.log("Hola");
                         const sendGetRequest = async () => {
+                            $(".loader").show();
                             try {
                                 const resp = await axios.put(base_url() +
                                     "/servicio-comunitario/faseone/finalizar",  data);
@@ -500,6 +501,7 @@
                                         }).then((willDelete) => {
 
                                             })
+                                    $(".loader").hide();
                                 }
 
                             } catch (err) {

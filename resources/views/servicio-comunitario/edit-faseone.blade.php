@@ -375,12 +375,12 @@
                                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
 
                                                             <th class="min-w-80px sorting_disabled"
-                                                                style="width: 80.3125px;">Cedula</th>
+                                                                style="width: 100.3125px;">Cedula</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Estudiante</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Correo</th>
-                                                            <th class="min-w-10px sorting_disabled">Telefono</th>
+                                                            <th class="min-w-10px sorting_disabled" style="width: 100.3125px;">Telefono</th>
                                                             <th class="min-w-10px sorting_disabled"
                                                                 style="width: 306px;">Carrera</th>
 
@@ -579,22 +579,22 @@ function messeg(m,t) {
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].nombres} ${resp.data[i].primer_apellido} ${resp.data[i].segundo_apellido}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].email}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">${resp.data[i].tel_cel}</a>
                             </td> `;
                             table+=`
                             <td>
 
-                                <a href="#"  target="_blank" class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
+                                <a href="#"   class="text-gray-800 text-hover-primary">(${resp.data[i].codigo_carrera})${resp.data[i].nombre_carrera}</a>
                             </td> `;
                             table+=`<td class="text-end">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -776,6 +776,18 @@ function messeg(m,t) {
                  if (data.profesor==""||data.nombre_proyecto==""||data.carrrera_id==""||data.nomb_tutor_comunitario==""||
                  data.direccion_comunidad==""||data.cedula_tutor_comunitario==""||data.telefono_tutor_comunitario==""||data.vinculacion_project==""||
                  data.select_area_accion==""||data.cant_beneficiados==""||data.nombre_comunidad=="") {
+                    swal({
+                        title: "¡ADVERTENCIA!",
+                        text:"Error, Falta campos por llenar",
+                        icon: "error",
+                        buttons:{
+                            cancel: "Cerrar",
+
+                        },
+                        dangerMode: false,
+                    }).then((willDelete) => {
+
+                        })
                     return false;
                  }
                  console.log(data);
@@ -830,7 +842,7 @@ function messeg(m,t) {
 											<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"></path>
 											</svg>
                                 </span>
-                            <a href="${resp.data.data[i].file_url}"  target="_blank" class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
+                            <a href="${resp.data.data[i].file_url}"   class="text-gray-800 text-hover-primary">${resp.data.data[i].name}</a>
                          </td>
                             `;
                             table+=`<td class="text-end">
