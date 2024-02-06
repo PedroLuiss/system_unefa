@@ -61,7 +61,7 @@ class EstudiateServicioImport implements ToModel, WithHeadingRow, WithBatchInser
             'tel_hab'=>$row['tel_hab'],
             'tel_cel'=>$row['tel_cel'],
             'email'=>$row['correo'],
-            'string_sevicio_comunitario'=>$row['asignatura'],
+            'string_sevicio_comunitario'=>isset($row['asignatura'])?$row['asignatura']:"TALLER DE SERVICIO COMUNITARIO",
             'turno'=>$turno,
             'import_control'=>true
         ]);
