@@ -59,34 +59,34 @@ class reportexportController extends Controller
 
     public function  exportar_csc(Request $request){
 
-        $data = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.fe_ingreso as periodo','estudiantecomunitarios.semestre',
-        'estudiantecomunitarios.fase as fase_asignatura','carreras.name as nombre_carrera','carreras.num_plan_estudio','grupo_s_c_estudiantes.nota_eno as calificacion_fase_1',
-        'grupo_s_c_estudiantes.nota_two as calificacion_fase_2','grupo_s_c_estudiantes.observaciones as observacion_fase1','grupo_s_c_estudiantes.observaciones_2 as observacion_fase2',
-        'grupo_s_c_s.created_at as fecha_acta_grupo')
-        ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')
-        ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'estudiantes.id')
-        ->join('grupo_s_c_estudiantes', 'grupo_s_c_estudiantes.estudiantes_id','=', 'estudiantes.id')
-        ->join('grupo_s_c_s', 'grupo_s_c_s.id','=', 'grupo_s_c_estudiantes.grupo_s_c_id')
-        ->where('estudiantecomunitarios.fase',[2,3])
-        ->whereYear('grupo_s_c_s.created_at',2023)
-        ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
-        ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
+        // $data = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.fe_ingreso as periodo','estudiantecomunitarios.semestre',
+        // 'estudiantecomunitarios.fase as fase_asignatura','carreras.name as nombre_carrera','carreras.num_plan_estudio','grupo_s_c_estudiantes.nota_eno as calificacion_fase_1',
+        // 'grupo_s_c_estudiantes.nota_two as calificacion_fase_2','grupo_s_c_estudiantes.observaciones as observacion_fase1','grupo_s_c_estudiantes.observaciones_2 as observacion_fase2',
+        // 'grupo_s_c_s.created_at as fecha_acta_grupo')
+        // ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')
+        // ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'estudiantes.id')
+        // ->join('grupo_s_c_estudiantes', 'grupo_s_c_estudiantes.estudiantes_id','=', 'estudiantes.id')
+        // ->join('grupo_s_c_s', 'grupo_s_c_s.id','=', 'grupo_s_c_estudiantes.grupo_s_c_id')
+        // ->where('estudiantecomunitarios.fase',[2,3])
+        // ->whereYear('grupo_s_c_s.created_at',2023)
+        // ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
+        // ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
 
-        $da = GrupoSC::where('nota_evaluada_one',true)
-        ->whereYear('grupo_s_c_s.created_at',2023)
-        ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
-        ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
-        foreach ($da as $key => $value_grupo) {
-            $estudent[$key] = GrupoSCEstudiante::select('estudiantes.id','estudiantes.cedula','estudiantes.fe_ingreso as periodo','estudiantecomunitarios.semestre',
-            'estudiantecomunitarios.fase as fase_asignatura','carreras.name as nombre_carrera','carreras.num_plan_estudio','grupo_s_c_estudiantes.nota_eno as calificacion_fase_1',
-            'grupo_s_c_estudiantes.nota_two as calificacion_fase_2','grupo_s_c_estudiantes.observaciones as observacion_fase1','grupo_s_c_estudiantes.observaciones_2 as observacion_fase2')->where('grupo_s_c_estudiantes.grupo_s_c_id',$value_grupo->id)
-            ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'grupo_s_c_estudiantes.estudiantes_id')
-            ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
-            ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')->get();
-        }
+        // $da = GrupoSC::where('nota_evaluada_one',true)
+        // ->whereYear('grupo_s_c_s.created_at',2023)
+        // ->whereMonth('grupo_s_c_s.created_at','>=' , '01')
+        // ->whereMonth('grupo_s_c_s.created_at','<=', '06')->get();
+        // foreach ($da as $key => $value_grupo) {
+        //     $estudent[$key] = GrupoSCEstudiante::select('estudiantes.id','estudiantes.cedula','estudiantes.fe_ingreso as periodo','estudiantecomunitarios.semestre',
+        //     'estudiantecomunitarios.fase as fase_asignatura','carreras.name as nombre_carrera','carreras.num_plan_estudio','grupo_s_c_estudiantes.nota_eno as calificacion_fase_1',
+        //     'grupo_s_c_estudiantes.nota_two as calificacion_fase_2','grupo_s_c_estudiantes.observaciones as observacion_fase1','grupo_s_c_estudiantes.observaciones_2 as observacion_fase2')->where('grupo_s_c_estudiantes.grupo_s_c_id',$value_grupo->id)
+        //     ->join('estudiantecomunitarios', 'estudiantecomunitarios.estudiantes_id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+        //     ->join('estudiantes', 'estudiantes.id','=', 'grupo_s_c_estudiantes.estudiantes_id')
+        //     ->join('carreras', 'carreras.id','=', 'estudiantes.carreras_id')->get();
+        // }
         // dd($estudent);
         // echo print_r(json_decode(response($estudent)) $estudent);
-    //    return response($estudent[0]);
+    //    return response($request);
 
         return Excel::download(new UsersExport($request->periodo,$request->fase) ,'Data De Los Estudiantes Evaluados Periodo '.$request->periodo.'.xlsx');
 
@@ -147,7 +147,7 @@ class reportexportController extends Controller
             'year' =>  date("Y"),
         ];
         // return response( $daraResp['estudiante']);
-        return \PDF::loadView('pdf.report.culminacion',compact('daraResp','data_1'))->stream("Carta-de-culminacion.pdf");
+        return \PDF::loadView('pdf.report.culminacion',compact('daraResp','data_1'))->stream("Carta-de-culminacion-".$data_1->cedula.".pdf");
 
     }
 

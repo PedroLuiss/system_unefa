@@ -125,7 +125,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="{{route('reporte.exportar_csc')}}" method="POST" id="form_send_report_student">
+                                <form action="{{route('reporte.exportar_csc')}}"  method="POST" id="form_send_report_student">
                                     @csrf
                                     {{-- <input type="hidden" name="periodo" value="1-2023"> --}}
                                     <div class="row">
@@ -242,7 +242,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="{{route('reporte.exportar_culminacion')}}" method="POST" id="form_send_report_student_culmiunacion">
+                                <form action="{{route('reporte.exportar_culminacion')}}"  method="POST" id="form_send_report_student_culmiunacion">
                                     @csrf
                                     {{-- <input type="hidden" name="periodo" value="1-2023"> --}}
                                     <div class="row">

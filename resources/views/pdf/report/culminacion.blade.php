@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Constancia de cuminación de servicio comunitario</title>
+	<title>Constancia de culminación de servicio comunitario</title>
 
 	<style>
         @page {

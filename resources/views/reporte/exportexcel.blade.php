@@ -63,6 +63,71 @@
                         $periodo = $m >= 06 ? '2-' . $y : '1-' . $y;
 
                     @endphp
+                    @if ($fase_request == 0)
+                        @if ($val->calificacion_fase_1!=null || $val->calificacion_fase_2 !=null)
+                            @for ($g = 1; $g <=2 ; $g++)
+                                @if ($g == 1)
+                                    @if (!$val->calificacion_fase_1 == null)
+                                    <tr>
+                                        <td>{{ $val->cedula }}</td>
+                                        <td>{{ $periodo }}</td>
+                                        <td>{{ $val->semestre }} SEMESTRE</td>
+                                        <td>
+                                            TAI-01
+                                        </td>
+                                        <td>{{ $val->num_plan_estudio }}</td>
+                                        <td>
+                                            {{ $val->calificacion_fase_1 }}
+                                        </td>
+                                        <td>
+                                            @if ($val->calificacion_fase_1>=10)
+                                                APROBO
+                                            @else
+                                                REPROBO
+                                            @endif
+
+                                        </td>
+                                        <td>{{$date->format('Y-m-d');}}</td>
+                                        <td>
+                                            {{ $val->observacion_fase1 }}
+                                        </td>
+                                        <td>REGULAR</td>
+                                    </tr>
+                                    @endif
+                                @endif
+
+                                @if ($g == 2)
+                                    @if (!$val->calificacion_fase_2 == null)
+                                    <tr>
+                                        <td>{{ $val->cedula }}</td>
+                                        <td>{{ $periodo }}</td>
+                                        <td>{{ $val->semestre }} SEMESTRE</td>
+                                        <td>
+                                            PRO-01
+                                        </td>
+                                        <td>{{ $val->num_plan_estudio }}</td>
+                                        <td>
+                                            {{ $val->calificacion_fase_2 }}
+                                        </td>
+                                        <td>
+                                            @if ($val->calificacion_fase_2>=10)
+                                                APROBO
+                                            @else
+                                                REPROBO
+                                            @endif
+                                        </td>
+                                        <td>{{$date->format('Y-m-d');}}</td>
+                                        <td>
+                                            {{ $val->observacion_fase2 }}
+                                        </td>
+                                        <td>REGULAR</td>
+                                    </tr>
+                                    @endif
+                                @endif
+
+                            @endfor
+                        @endif
+                    @else
                     <tr>
                         <td>{{ $val->cedula }}</td>
                         <td>{{ $periodo }}</td>
@@ -107,6 +172,8 @@
                         </td>
                         <td>REGULAR</td>
                     </tr>
+                    @endif
+
                 @endforeach
             @endfor
 
