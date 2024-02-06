@@ -84,10 +84,11 @@ class UsersExport implements FromView, ShouldAutoSize,WithDrawings
                 }
 
             }
-            // dd($da);
+            // dd($estudent);
             return view('reporte.exportexcel',[
                 'data' => count($da)? $estudent:null,
-                'cant_data'=> count($da)?count($estudent):null
+                'cant_data'=> count($da)?count($estudent):null,
+                'fase_request'=>$this->fase
             ]);
         }else{
             $data = Estudiantes::select('estudiantes.id','estudiantes.cedula','estudiantes.fe_ingreso as periodo','estudiantecomunitarios.semestre',
