@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Fxcel;
 use App\Exports\UsersExport;
 use App\Models\GrupoSC;
+use Illuminate\Validation\Rule;
 
 class reportexportController extends Controller
 {
@@ -97,6 +98,75 @@ class reportexportController extends Controller
     {
         // dd($request);
         return Excel::download(new ExportCS4($request->periodo) ,'Planilla S.C. 4 Cuadro de Proyectos '.$request->periodo.'.xlsx');
+    }
+
+
+    public function export_culminacion(Request $request)
+    {
+        $request->validate([
+
+            'cedula' => [
+                'required',
+            ]
+
+
+        ],[],[
+            'cedula' => 'cédula',
+        ]);
+
+        $data_1 = [];
+        $data_2 = [];
+        $data_3 = [];
+
+        $estud = Estudiantes::where('cedula',"V-".$request->cedula)->get();
+        if (count($estud)) {
+            $estud_comu = Estudiantecomunitarios::where('estudiantes_id',$estud[0]->id)->where('fase',3)->get();
+            if (count($estud_comu)) {
+                $data_1 = $estud[0];
+                $data_1 = $estud[0];
+                $estud_comu_ge = GrupoSCEstudiante::where('estudiantes_id',$estud[0]->id)->get();
+                if (count($estud_comu_ge)) {
+
+                    $grup = GrupoSC::where('id',$estud_comu_ge[0]->grupo_s_c_id)->get();
+                    $data_2 = $grup[0];
+
+                }else{
+                    return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No ha culminado Servicio comunitario, y no tiene grupo asignado');
+                }
+                // return response( $estud);
+            }else{
+                return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No ha culminado Servicio comunitario');
+            }
+        }else{
+            return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No Existe');
+        }
+        $daraResp = [
+            'estudiante' => $data_1,
+            'grupo' => $data_2,
+            'carrera' => $this->text_viwes_carrera($estud[0]->carreras_id),
+            'year' =>  date("Y"),
+        ];
+        // return response( $daraResp['estudiante']);
+        return \PDF::loadView('pdf.report.culminacion',compact('daraResp','data_1'))->stream("Carta-de-culminacion.pdf");
+
+    }
+
+    function text_viwes_carrera($id){
+        $text = "";
+        if ($id == 1 && $id == 7) {
+            $text = "INGENIERO (A) SISTEMAS";
+        }else if ($id == 2 && $id == 8) {
+            $text = "INGENIERO (A) ELÉCTRICA";
+        }else if ($id == 3) {
+            $text = "INGENIERO (A) AGRONOMICA";
+        }else if ($id == 4 && $id == 9) {
+            $text = "LICENCIADO (A) EN ADMINISTRACIÓN Y GESTIÓN  MUNICIPAL";
+        }else if ($id == 5) {
+            $text = "TSU ENFERMERIA";
+        }else if ($id == 6) {
+            $text = "LICENCIADO (A) EN ECONOMÍA SOCIAL";
+        }
+        return $text;
     }
 
     /**
