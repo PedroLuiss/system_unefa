@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GrupoSCEstudiante;
 use App\Models\Estudiantes;
 use App\Models\Estudiantecomunitarios;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Excel;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Fxcel;
@@ -147,9 +148,52 @@ class reportexportController extends Controller
             'year' =>  date("Y"),
         ];
         // return response( $daraResp['estudiante']);
-        return \PDF::loadView('pdf.report.culminacion',compact('daraResp','data_1'))->stream("Carta-de-culminacion-".$data_1->cedula.".pdf");
+        return Pdf::loadView('pdf.report.culminacion',compact('daraResp','data_1'))->stream("Carta-de-culminacion-".$data_1->cedula.".pdf");
 
     }
+
+    public function export_const_tutaria($id_projec)
+    {
+
+
+        $data_1 = [];
+        $data_2 = [];
+        $data_3 = [];
+
+        $estud = Estudiantes::where('cedula',"V-28604274")->get();
+        if (count($estud)) {
+            $estud_comu = Estudiantecomunitarios::where('estudiantes_id',$estud[0]->id)->where('fase',3)->get();
+            if (count($estud_comu)) {
+                $data_1 = $estud[0];
+                $data_1 = $estud[0];
+                $estud_comu_ge = GrupoSCEstudiante::where('estudiantes_id',$estud[0]->id)->get();
+                if (count($estud_comu_ge)) {
+
+                    $grup = GrupoSC::where('id',$estud_comu_ge[0]->grupo_s_c_id)->get();
+                    $data_2 = $grup[0];
+
+                }else{
+                    return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No ha culminado Servicio comunitario, y no tiene grupo asignado');
+                }
+                // return response( $estud);
+            }else{
+                return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No ha culminado Servicio comunitario');
+            }
+        }else{
+            return redirect()->route('reporte.index')->with('mensaje', 'Error, Estudiante No Existe');
+        }
+        $daraResp = [
+            'estudiante' => $data_1,
+            'grupo' => $data_2,
+            'carrera' => $this->text_viwes_carrera($estud[0]->carreras_id),
+            'year' =>  date("Y"),
+        ];
+        // return response( $daraResp['estudiante']);
+        return Pdf::loadView('pdf.tutor.constancia-tutoria',compact('daraResp','data_1'))->stream("CONSTANCIA DE TUTORÍA DE SERVICIO COMUNITARIO.pdf");
+
+    }
+
+
 
     function text_viwes_carrera($id){
         $text = "";

@@ -12,7 +12,8 @@
             <div class="card-header border-0 pt-5">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold fs-3 mb-1">Nombre Del Proyecto: <b>{{ $grupo->nombre_proyecto }}</b></span>
+                    <span class="card-label fw-bold fs-3 mb-1">Nombre Del Proyecto:
+                        <b>{{ $grupo->nombre_proyecto }}</b></span>
 
                 </h3>
                 <!--end::Title-->
@@ -24,7 +25,8 @@
                     <!--begin: Pic-->
                     <div class="me-7 mb-4">
                         <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img src="@if ($profesor->foto == null){{ asset('icon_profesor.png') }}@else{{ asset($profesor->foto) }}@endif" alt="image">
+                            <img src="@if ($profesor->foto == null) {{ asset('icon_profesor.png') }}@else{{ asset($profesor->foto) }} @endif"
+                                alt="image">
 
                         </div>
                     </div>
@@ -58,8 +60,8 @@
                                                 <path
                                                     d="M9 16.5C10.95 16.5 12.75 15.75 14.025 14.55C13.425 12.675 11.4 11.25 9 11.25C6.6 11.25 4.57499 12.675 3.97499 14.55C5.24999 15.75 7.05 16.5 9 16.5Z"
                                                     fill="currentColor"></path>
-                                                <rect x="7" y="6" width="4" height="4"
-                                                    rx="2" fill="currentColor"></rect>
+                                                <rect x="7" y="6" width="4" height="4" rx="2"
+                                                    fill="currentColor"></rect>
                                             </svg>
                                         </span>
                                         {{ $profesor->especialidad }}
@@ -87,10 +89,130 @@
 
                             <!--begin::Actions-->
                             <div class="d-flex my-4">
+                                <!--begin::Menu-->
+                                <div class="me-0">
+                                    <button class="btn btn-sm btn-light me-2 btn-bg-light btn-active-color-primary"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        Acción </button>
 
+                                    <!--begin::Menu 3-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                                        data-kt-menu="true">
+                                        <!--begin::Heading-->
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                                menú
+                                            </div>
+                                        </div>
+                                        <!--end::Heading-->
 
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="{{route('reporte.export_const_tutaria',1)}}" target="black_" style="font-size: 11px; font-weight: bold;" class="menu-link px-3">
+                                                CONSTANCIA DE TUTORÍA
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
 
+                                        {{-- <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link flex-stack px-3">
+                                                Create Payment
 
+                                                <span class="ms-2" data-bs-toggle="tooltip"
+                                                    aria-label="Specify a target name for future usage and reference"
+                                                    data-bs-original-title="Specify a target name for future usage and reference"
+                                                    data-kt-initialized="1">
+                                                    <i class="ki-duotone ki-information fs-6"><span
+                                                            class="path1"></span><span class="path2"></span><span
+                                                            class="path3"></span></i> </span>
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                Generate Bill
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
+                                            data-kt-menu-placement="right-end">
+                                            <a href="#" class="menu-link px-3">
+                                                <span class="menu-title">Subscription</span>
+                                                <span class="menu-arrow"></span>
+                                            </a>
+
+                                            <!--begin::Menu sub-->
+                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3">
+                                                        Plans
+                                                    </a>
+                                                </div>
+                                                <!--end::Menu item-->
+
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3">
+                                                        Billing
+                                                    </a>
+                                                </div>
+                                                <!--end::Menu item-->
+
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3">
+                                                        Statements
+                                                    </a>
+                                                </div>
+                                                <!--end::Menu item-->
+
+                                                <!--begin::Menu separator-->
+                                                <div class="separator my-2"></div>
+                                                <!--end::Menu separator-->
+
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <div class="menu-content px-3">
+                                                        <!--begin::Switch-->
+                                                        <label
+                                                            class="form-check form-switch form-check-custom form-check-solid">
+                                                            <!--begin::Input-->
+                                                            <input class="form-check-input w-30px h-20px" type="checkbox"
+                                                                value="1" checked="checked" name="notifications">
+                                                            <!--end::Input-->
+
+                                                            <!--end::Label-->
+                                                            <span class="form-check-label text-muted fs-6">
+                                                                Recuring
+                                                            </span>
+                                                            <!--end::Label-->
+                                                        </label>
+                                                        <!--end::Switch-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                            <!--end::Menu sub-->
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3 my-1">
+                                            <a href="#" class="menu-link px-3">
+                                                Settings
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item--> --}}
+                                    </div>
+                                    <!--end::Menu 3-->
+                                </div>
+                                <!--end::Menu-->
                             </div>
                             <!--end::Actions-->
                         </div>
@@ -111,9 +233,9 @@
                                             <span class="svg-icon svg-icon-3 svg-icon-success me-2"><svg width="24"
                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="13" y="6" width="13"
-                                                        height="2" rx="1" transform="rotate(90 13 6)"
-                                                        fill="currentColor"></rect>
+                                                    <rect opacity="0.5" x="13" y="6" width="13" height="2"
+                                                        rx="1" transform="rotate(90 13 6)" fill="currentColor">
+                                                    </rect>
                                                     <path
                                                         d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
                                                         fill="currentColor"></path>
@@ -219,18 +341,18 @@
 
                         <!--begin::Feeds Widget 2-->
                         <div id="card_all_studen{{ $val_student->id }}" class="card card-bordered mb-5 mb-xxl-8 ">
-                            @if ($val_student->nota_two<10)
-                            <div class="card-header ribbon ribbon-end">
-                                <div class="ribbon-label bg-danger">REPROBO</div>
-                                <div class="card-title">Estudiante</div>
+                            @if ($val_student->nota_two < 10)
+                                <div class="card-header ribbon ribbon-end">
+                                    <div class="ribbon-label bg-danger">REPROBO</div>
+                                    <div class="card-title">Estudiante</div>
 
-                            </div>
+                                </div>
                             @else
-                            <div class="card-header ribbon ribbon-end">
-                                <div class="ribbon-label bg-success">APROBO</div>
-                                <div class="card-title">Estudiante</div>
+                                <div class="card-header ribbon ribbon-end">
+                                    <div class="ribbon-label bg-success">APROBO</div>
+                                    <div class="card-title">Estudiante</div>
 
-                            </div>
+                                </div>
                             @endif
 
 
@@ -340,7 +462,8 @@
 
                                         <!--begin::Badge-->
                                         <div class="timeline-badge">
-                                            <i class="fa fa-genderless @if ($val_student->nota_eno < 10) text-danger @else text-success  @endif    fs-1"></i>
+                                            <i
+                                                class="fa fa-genderless @if ($val_student->nota_eno < 10) text-danger @else text-success @endif    fs-1"></i>
                                         </div>
                                         <!--end::Badge-->
 
@@ -355,12 +478,14 @@
                                     <!--begin::Item-->
                                     <div class="timeline-item">
                                         <!--begin::Label-->
-                                        <div class="timeline-label fw-bold text-gray-800 fs-6">PROYECTO DE SERVICIO COMUNITARIO</div>
+                                        <div class="timeline-label fw-bold text-gray-800 fs-6">PROYECTO DE SERVICIO
+                                            COMUNITARIO</div>
                                         <!--end::Label-->
 
                                         <!--begin::Badge-->
                                         <div class="timeline-badge">
-                                            <i class="fa fa-genderless  @if ($val_student->nota_two < 10) text-danger @else text-success  @endif  fs-1"></i>
+                                            <i
+                                                class="fa fa-genderless  @if ($val_student->nota_two < 10) text-danger @else text-success @endif  fs-1"></i>
                                         </div>
                                         <!--end::Badge-->
 
@@ -374,7 +499,7 @@
                                                         {{ $val_student->observaciones_2 }}
                                                     @endif
                                                 </span>
-                                            , Nota:
+                                                , Nota:
                                                 <span class="nom_nota{{ $val_student->id }}">
                                                     @if ($val_student->nota_two == null)
                                                         0
@@ -383,7 +508,7 @@
                                                     @endif
                                                 </span>
 
-                                        </span>
+                                            </span>
                                         </div>
                                         <!--end::Content-->
                                     </div>
@@ -469,7 +594,7 @@
                                 class="text-gray-800 text-hover-primary d-flex flex-column">
                                 <!--begin::Image-->
                                 <div class="symbol symbol-60px mb-5">
-                                    <img src="{{asset('/m2/assets/media/svg/files/doc.svg')}}" class="theme-light-show"
+                                    <img src="{{ asset('/m2/assets/media/svg/files/doc.svg') }}" class="theme-light-show"
                                         alt="">
                                 </div>
                                 <!--end::Image-->
@@ -533,7 +658,8 @@
                         </div> --}}
                         <div class="col-md-12">
                             <div class="mb-5">
-                                <label for="exampleFormControlInput1" class="required form-label">Nombre Del Proyecto</label>
+                                <label for="exampleFormControlInput1" class="required form-label">Nombre Del
+                                    Proyecto</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
@@ -541,7 +667,9 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="email" class="form-control " disabled id="nombre_proyecto" value="{{$grupo->nombre_proyecto}}" placeholder="Ingresar el nombre del proyecto"/>
+                                        <input type="email" class="form-control " disabled id="nombre_proyecto"
+                                            value="{{ $grupo->nombre_proyecto }}"
+                                            placeholder="Ingresar el nombre del proyecto" />
                                     </div>
                                 </div>
                             </div>
@@ -560,7 +688,9 @@
                                             data-placeholder="Seleccionar carrera" id="select_carrera">
                                             <option></option>
                                             @foreach ($carrera as $value)
-                                                <option  @if ($grupo->carrera_id == $value->id) selected   @endif value="{{$value->id}}"><b>CÓDIGO:</b> {{$value->code}} | CARRERA: {{$value->name}}</option>
+                                                <option @if ($grupo->carrera_id == $value->id) selected @endif
+                                                    value="{{ $value->id }}"><b>CÓDIGO:</b> {{ $value->code }} |
+                                                    CARRERA: {{ $value->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -571,7 +701,8 @@
 
                         <div class="col-md-12">
                             <div class="mb-5">
-                                <label for="exampleFormControlInput1" class="required form-label">Nombre De La Comunidad y/o Institución</label>
+                                <label for="exampleFormControlInput1" class="required form-label">Nombre De La Comunidad
+                                    y/o Institución</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
@@ -579,7 +710,9 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="email" class="form-control " disabled id="nombre_comunidad" value="{{$grupo->nombre_comunidad}}" placeholder="Ingresar Nombre De La Comunidad y/o Institución"/>
+                                        <input type="email" class="form-control " disabled id="nombre_comunidad"
+                                            value="{{ $grupo->nombre_comunidad }}"
+                                            placeholder="Ingresar Nombre De La Comunidad y/o Institución" />
                                     </div>
                                 </div>
                             </div>
@@ -587,13 +720,15 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="direccion_comunidad" class="form-label">Dirección de la comunidad</label>
-                                <textarea class="form-control" disabled id="direccion_comunidad" placeholder="Ingrese la Direccion de la comindad" rows="3">{{$grupo->direccion_comunidad}}</textarea>
-                              </div>
+                                <textarea class="form-control" disabled id="direccion_comunidad" placeholder="Ingrese la Direccion de la comindad"
+                                    rows="3">{{ $grupo->direccion_comunidad }}</textarea>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-5">
-                                <label for="nomb_tutor_comunitario" class="required form-label">Nombre Del Tutor Comunitario</label>
+                                <label for="nomb_tutor_comunitario" class="required form-label">Nombre Del Tutor
+                                    Comunitario</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
@@ -601,7 +736,9 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="text" disabled class="form-control " value="{{$grupo->nombre_tutor_comunitario}}" id="nomb_tutor_comunitario" placeholder="Ingresar el Nombre Del Tutor Comunitario"/>
+                                        <input type="text" disabled class="form-control "
+                                            value="{{ $grupo->nombre_tutor_comunitario }}" id="nomb_tutor_comunitario"
+                                            placeholder="Ingresar el Nombre Del Tutor Comunitario" />
                                     </div>
                                 </div>
                             </div>
@@ -609,7 +746,8 @@
 
                         <div class="col-md-6">
                             <div class="mb-5">
-                                <label for="cedula_tutor_comunitario" class="required form-label">Cédula Del Tutor Comunitario</label>
+                                <label for="cedula_tutor_comunitario" class="required form-label">Cédula Del Tutor
+                                    Comunitario</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
@@ -618,7 +756,9 @@
 
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="text" disabled class="form-control " value="{{$grupo->cedula_tutor_comunitario}}" id="cedula_tutor_comunitario" placeholder="Ingresar el Cédula Del Tutor Comunitario"/>
+                                        <input type="text" disabled class="form-control "
+                                            value="{{ $grupo->cedula_tutor_comunitario }}" id="cedula_tutor_comunitario"
+                                            placeholder="Ingresar el Cédula Del Tutor Comunitario" />
                                     </div>
                                 </div>
                             </div>
@@ -626,42 +766,52 @@
 
                         <div class="col-md-6">
                             <div class="mb-5">
-                                <label for="telefono_tutor_comunitario" class="required form-label">Telefono Del Tutor Comunitario</label>
+                                <label for="telefono_tutor_comunitario" class="required form-label">Telefono Del Tutor
+                                    Comunitario</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
                                         <i class="fa-solid fa-layer-group fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="number" disabled class="form-control " value="{{$grupo->telefono_tutor_comunitario}}" id="telefono_tutor_comunitario" placeholder="Ingresar el Telefono Del Tutor Comunitario"/>
+                                        <input type="number" disabled class="form-control "
+                                            value="{{ $grupo->telefono_tutor_comunitario }}"
+                                            id="telefono_tutor_comunitario"
+                                            placeholder="Ingresar el Telefono Del Tutor Comunitario" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-5">
-                                <label for="cant_beneficiados" class="required form-label">Cantidad De Beneficiados</label>
+                                <label for="cant_beneficiados" class="required form-label">Cantidad De
+                                    Beneficiados</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
                                         <i class="fa-solid fa-layer-group fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="number" disabled class="form-control " value="{{$grupo->cant_beneficiados}}" id="cant_beneficiados" placeholder="Ingresar la Cantidad De Beneficiados"/>
+                                        <input type="number" disabled class="form-control "
+                                            value="{{ $grupo->cant_beneficiados }}" id="cant_beneficiados"
+                                            placeholder="Ingresar la Cantidad De Beneficiados" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-5">
-                                <label for="vinculacion_project" class="required form-label">Vinculación Del Proyecto Con Los Planes, Programas y/o Proyectos Establecido Por El Ejecutivo Nacional</label>
+                                <label for="vinculacion_project" class="required form-label">Vinculación Del Proyecto Con
+                                    Los Planes, Programas y/o Proyectos Establecido Por El Ejecutivo Nacional</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
                                         <i class="fa-solid fa-layer-group fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <input type="text" disabled class="form-control " value="{{$grupo->vinc_project_planes_prog}}" id="vinculacion_project" placeholder="Ingresar la Cantidad De Beneficiados"/>
+                                        <input type="text" disabled class="form-control "
+                                            value="{{ $grupo->vinc_project_planes_prog }}" id="vinculacion_project"
+                                            placeholder="Ingresar la Cantidad De Beneficiados" />
                                     </div>
                                 </div>
                             </div>
@@ -669,22 +819,31 @@
 
                         <div class="col-md-12">
                             <div class="mb-5">
-                                <label for="select_area_accion" class="required form-label">Indeque El Área De Accion Del Proyecto</label>
+                                <label for="select_area_accion" class="required form-label">Indeque El Área De Accion Del
+                                    Proyecto</label>
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text">
                                         {{-- <i class="bi bi-bookmarks-fill fs-4"></i> --}}
                                         <i class="fa-solid fa-layer-group fs-4"></i>
                                     </span>
                                     <div class="flex-grow-1" data-select2-id="select2-data-99-jk2x">
-                                        <select class="form-select" disabled id="select_area_accion" aria-label="Select example">
+                                        <select class="form-select" disabled id="select_area_accion"
+                                            aria-label="Select example">
                                             <option>Seleccione El Área</option>
-                                            <option @if ($grupo->area_accion_project == "AMBIENTAL") selected   @endif value="AMBIENTAL">AMBIENTAL</option>
-                                            <option @if ($grupo->area_accion_project == "SOCIOPRODUCTIVO") selected   @endif  value="SOCIOPRODUCTIVO,">SOCIOPRODUCTIVO</option>
-                                            <option @if ($grupo->area_accion_project == "TECNOLOGICO") selected   @endif  value="TECNOLOGICO">TECNOLOGICO</option>
-                                            <option @if ($grupo->area_accion_project == "SOCIAL") selected   @endif  value="SOCIAL">SOCIAL</option>
-                                            <option @if ($grupo->area_accion_project == "EDUCATIVO") selected   @endif  value="EDUCATIVO">EDUCATIVO</option>
-                                            <option @if ($grupo->area_accion_project == "SOCIO-COMUNITARIO") selected   @endif  value="SOCIO-COMUNITARIO">SOCIO-COMUNITARIO</option>
-                                            <option @if ($grupo->area_accion_project == "ENTRE OTROS") selected   @endif  value=" ENTRE OTROS"> ENTRE OTROS</option>
+                                            <option @if ($grupo->area_accion_project == 'AMBIENTAL') selected @endif value="AMBIENTAL">
+                                                AMBIENTAL</option>
+                                            <option @if ($grupo->area_accion_project == 'SOCIOPRODUCTIVO') selected @endif
+                                                value="SOCIOPRODUCTIVO,">SOCIOPRODUCTIVO</option>
+                                            <option @if ($grupo->area_accion_project == 'TECNOLOGICO') selected @endif value="TECNOLOGICO">
+                                                TECNOLOGICO</option>
+                                            <option @if ($grupo->area_accion_project == 'SOCIAL') selected @endif value="SOCIAL">
+                                                SOCIAL</option>
+                                            <option @if ($grupo->area_accion_project == 'EDUCATIVO') selected @endif value="EDUCATIVO">
+                                                EDUCATIVO</option>
+                                            <option @if ($grupo->area_accion_project == 'SOCIO-COMUNITARIO') selected @endif
+                                                value="SOCIO-COMUNITARIO">SOCIO-COMUNITARIO</option>
+                                            <option @if ($grupo->area_accion_project == 'ENTRE OTROS') selected @endif
+                                                value=" ENTRE OTROS"> ENTRE OTROS</option>
                                         </select>
                                     </div>
                                 </div>
@@ -704,7 +863,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input  disabled class="form-check-input" type="checkbox" @if ($grupo->foros)   checked @endif  value="" id="foro_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->foros) checked @endif value=""
+                                        id="foro_check" />
                                     <label class="form-check-label" for="foro_check">
                                         FOROS
                                     </label>
@@ -714,7 +875,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->charlas)   checked @endif  value="" id="charlas_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->charlas) checked @endif value=""
+                                        id="charlas_check" />
                                     <label class="form-check-label" for="charlas_check">
                                         CHARLAS
                                     </label>
@@ -724,7 +887,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->jornadas)   checked @endif  value="" id="jornadas_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->jornadas) checked @endif value=""
+                                        id="jornadas_check" />
                                     <label class="form-check-label" for="jornadas_check">
                                         JORNADAS
                                     </label>
@@ -734,7 +899,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->talleres)   checked @endif  value="" id="talleres_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->talleres) checked @endif value=""
+                                        id="talleres_check" />
                                     <label class="form-check-label" for="talleres_check">
                                         TALLERES
                                     </label>
@@ -744,7 +911,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->campanas)   checked @endif  value="" id="campana_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->campanas) checked @endif value=""
+                                        id="campana_check" />
                                     <label class="form-check-label" for="campana_check">
                                         CAMPAÑAS
                                     </label>
@@ -754,7 +923,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox"  @if ($grupo->reunion_misiones)   checked @endif value="" id="reunion_misiones_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->reunion_misiones) checked @endif value=""
+                                        id="reunion_misiones_check" />
                                     <label class="form-check-label" for="reunion_misiones_check">
                                         REUNIÓN CON MISIONES
                                     </label>
@@ -764,7 +935,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->ferias)   checked @endif  value="" id="ferias_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->ferias) checked @endif value=""
+                                        id="ferias_check" />
                                     <label class="form-check-label" for="ferias_check">
                                         FERIAS
                                     </label>
@@ -774,7 +947,9 @@
                         <div class="col-6 col-md-3">
                             <div class="mb-5" data-select2-id="select2-data-100-kjmd">
                                 <div class="form-check form-check-custom form-check-solid form-check-lg">
-                                    <input disabled class="form-check-input" type="checkbox" @if ($grupo->alianzas_estrategicas)   checked @endif  value="" id="alianzas_estrategicas_check"/>
+                                    <input disabled class="form-check-input" type="checkbox"
+                                        @if ($grupo->alianzas_estrategicas) checked @endif value=""
+                                        id="alianzas_estrategicas_check" />
                                     <label class="form-check-label" for="alianzas_estrategicas_check">
                                         ALIANZAS ESTRATÉGICAS
                                     </label>
@@ -841,6 +1016,7 @@
                         break;
                 }
             }
+
             function Save_all_nota() {
                 const data = {
                     id_grupo: $('#id_grupo_hide').val()
@@ -1185,39 +1361,47 @@
                 console.log(id);
                 const sendGetRequest = async () => {
                     try {
-                        const resp = await axios.get(base_url()+"/servicio-comunitario/faseone/get_files/"+id);
+                        const resp = await axios.get(base_url() + "/servicio-comunitario/faseone/get_files/" + id);
 
                         var table = "";
                         console.log(resp.data);
-                        if (resp.data=="") {
+                        if (resp.data == "") {
                             $('#file-contend').addClass('bg-grei-p');
-                            table +='<div class="col-md-12"><h5 class="text-muted text-center">Sin Archivo</h5></div>';
-                        }else{
+                            table += '<div class="col-md-12"><h5 class="text-muted text-center">Sin Archivo</h5></div>';
+                        } else {
                             $('#file-contend').removeClass('bg-grei-p');
                             // console.log(resp.data);
                             let g = 0;
                             for (let i = 0; i < resp.data.length; i++) {
-                                const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+                                const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+                                    'septiembre', 'octubre', 'noviembre', 'diciembre'
+                                ];
                                 // Creamos array con los días de la semana
-                                const dias_semana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                                const dias_semana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes',
+                                    'Sábado'
+                                ];
                                 // Creamos el objeto fecha instanciándolo con la clase Date
                                 const fecha = new Date(resp.data[i].created_at);
                                 // Construimos el formato de salida
-                                 let  dia = dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getUTCFullYear();
+                                let dia = dias_semana[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + meses[fecha
+                                    .getMonth()] + ' de ' + fecha.getUTCFullYear();
                                 // table += '<div  class="col-3 my-3 px-0 text-center col-md-1">';
                                 // table += '<span   onmouseout="btn_delete_show(false,'+i+')" onmouseover="btn_delete_show(true,'+i+')" title="'+resp.data[i].name+'" class="files-view"><span  id="btn-delete-file'+i+'" class="btn-file-delete ocult-btn" onclick="delet_file_compras('+resp.data[i].id+');" ><i class="fa fa-times"></i></span><i onclick="showFile('+resp.data[i].id+')" class="'+ex+'"></i></span>';
                                 // table += ' </div>';
 
                                 table += '<div class="col-md-6 col-lg-4 col-xl-3">';
                                 table += ' <div class="card h-100 border">';
-                                table += ' <div class="card-body d-flex justify-content-center text-center flex-column p-8">';
-                                table += '<a href="'+base_url()+resp.data[i].url+'"  target="_blank" class="text-gray-800 text-hover-primary d-flex flex-column">';
+                                table +=
+                                    ' <div class="card-body d-flex justify-content-center text-center flex-column p-8">';
+                                table += '<a href="' + base_url() + resp.data[i].url +
+                                    '"  target="_blank" class="text-gray-800 text-hover-primary d-flex flex-column">';
                                 table += ' <div class="symbol symbol-60px mb-5">';
-                                table += ' <img src="{{asset("/m2/assets/media/svg/files/doc.svg")}}" class="theme-light-show" alt="">';
+                                table +=
+                                    ' <img src="{{ asset('/m2/assets/media/svg/files/doc.svg') }}" class="theme-light-show" alt="">';
                                 table += ' </div>';
-                                table += '<div class="fs-5 fw-bold mb-2">'+resp.data[i].nombre+'</div>';
+                                table += '<div class="fs-5 fw-bold mb-2">' + resp.data[i].nombre + '</div>';
                                 table += ' </a>';
-                                table += '<div class="fs-7 fw-semibold text-gray-400">'+dia+'</div>';
+                                table += '<div class="fs-7 fw-semibold text-gray-400">' + dia + '</div>';
                                 table += `</div>`;
                                 table += '  </div>';
                                 table += ' </div>';
@@ -1233,8 +1417,6 @@
                 };
                 sendGetRequest();
             }
-
-
         </script>
     @endpush
 @endsection
