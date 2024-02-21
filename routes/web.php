@@ -151,6 +151,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/estudiantedatos/reporte/exportar', [App\Http\Controllers\ReportexportController::class, 'exportar_csc'])->name('reporte.exportar_csc');
     Route::post('/estudiantedatos/reporte/exportar/cs-4', [App\Http\Controllers\ReportexportController::class, 'export_cs4'])->name('reporte.exportar_cs4');
     Route::post('/estudiantedatos/reporte/exportar/culminacion', [App\Http\Controllers\ReportexportController::class, 'export_culminacion'])->name('reporte.exportar_culminacion');
+    Route::get('/estudiantedatos/reporte/{id_projec}/constancia-tutoria', [App\Http\Controllers\ReportexportController::class, 'export_const_tutaria'])->name('reporte.export_const_tutaria');
 
 
     /**-----------------------------------------------------------
